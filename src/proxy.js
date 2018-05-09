@@ -1,4 +1,4 @@
-const client = require("./client");
+const client = require('./client');
 
 function getPageProxy(subPages) {
   return new Proxy(() => getClientProxy(subPages), {
@@ -11,7 +11,7 @@ function getClientProxy(subPages) {
     {},
     {
       get: (target, name) => {
-        if (name !== "page") {
+        if (name !== 'page') {
           const api = client().api;
 
           if (!subPages.length) {

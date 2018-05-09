@@ -1,4 +1,4 @@
-const { start, stop } = require("../src");
+const { start, stop } = require('../src');
 
 jest.setTimeout(60000);
 

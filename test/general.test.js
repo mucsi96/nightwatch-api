@@ -1,7 +1,7 @@
-const { client } = require("../src");
+const { client } = require('../src');
 
-describe("general", () => {
-  test("runs", async () => {
-    expect(client.settings.desiredCapabilities.browserName).toEqual("chrome");
+describe('general', () => {
+  test('runs', async () => {
+    expect(client.settings.desiredCapabilities.browserName).toEqual('chrome');
   });
 });

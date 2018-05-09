@@ -1,1 +1,1 @@
-module.exports = { log: require("debug")("nightwatch-api") };
+module.exports = { log: require('debug')('nightwatch-api') };
