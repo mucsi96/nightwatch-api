@@ -4,6 +4,14 @@ const path = require('path');
 
 let runner;
 let client;
+let idle = false;
+
+const idleInterval = setInterval(() => {
+    if (idle) {
+        clearInterval(idleInterval);
+        deleteSession();
+    } 
+}, 1000);
 
 function createRunner(env) {
     if (!runner) {
@@ -18,21 +26,27 @@ function createRunner(env) {
 }
 
 async function createSession(env = 'default') {
-    createRunner(env);
-    const settings = runner.test_settings;
-    await runner.startWebDriver();
-    console.log('webdriver started');
-    client = createClient(settings);
-    await new Promise(function(resolve, reject) {
-        client.once('nightwatch:session.create', function(id) {
-            resolve(client);
-        }).once('nightwatch:session.error', function(err) {
-            reject(err);
+    try {
+        createRunner(env);
+        const settings = runner.test_settings;
+        await runner.startWebDriver();
+        console.log('webdriver started');
+        client = createClient(settings);
+        await new Promise(function(resolve, reject) {
+            client.once('nightwatch:session.create', function(id) {
+                resolve(client);
+            }).once('nightwatch:session.error', function(err) {
+                reject(err);
+            });
+            
+            client.startSession();
         });
-        
-        client.startSession();
-    });
-    console.log('session created');
+        console.log('session created');
+    } catch(err) {
+        throw err;
+    } finally {
+        idle = true;
+    }
 }
 
 async function deleteSession() {
@@ -52,8 +66,6 @@ async function deleteSession() {
         await createSession();
     } catch (err) {
         console.log(err.stack);
-    } finally {
-        await deleteSession();
     }
 })();
 
