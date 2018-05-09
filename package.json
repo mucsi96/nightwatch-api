@@ -6,7 +6,7 @@
   "author": "Igor Mucsicska <mucsi_96@yahoo.com>",
   "license": "MIT",
   "scripts": {
-    "start": "cross-env DEBUG=nightwatch-api node src/index.js",
+    "test": "cross-env DEBUG=nightwatch-api node src/index.js",
     "debug":
       "cross-env DEBUG=nightwatch-api node --inspect --inspect-brk src/index.js",
     "lint": "eslint src",
