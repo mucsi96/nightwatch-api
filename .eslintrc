@@ -1,0 +1,17 @@
+{
+    "env": {
+        "node": true,
+        "es6": true
+    },
+    "parser": "babel-eslint",
+    "rules": {
+        "strict": 0
+    },
+    "parserOptions": {
+        "ecmaFeatures": {
+            "experimentalObjectRestSpread": true,
+        },
+        "sourceType": "module"
+    },
+    "extends": "eslint:recommended"
+}

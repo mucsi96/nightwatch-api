@@ -1,9 +1,10 @@
-const client = require('./client');
+const client = require("./client");
+const { log } = require("./logger");
 
 (async () => {
-    try {
-        await client();
-    } catch (err) {
-        console.log(err.stack);
-    }
+  try {
+    await client();
+  } catch (err) {
+    log(err.stack);
+  }
 })();
