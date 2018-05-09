@@ -5,14 +5,6 @@ const { log } = require('./logger');
 
 let runner;
 let client;
-// let idle = false;
-
-// const idleInterval = setInterval(() => {
-//   if (idle) {
-//     clearInterval(idleInterval);
-//     deleteSession();
-//   }
-// }, 1000);
 
 function createRunner(env) {
   if (!runner) {
@@ -27,44 +19,38 @@ function createRunner(env) {
 }
 
 async function createSession(env = 'default') {
-  try {
-    createRunner(env);
-    const settings = runner.test_settings;
-    await runner.startWebDriver();
-    log('webdriver started');
-    client = createClient(settings);
-    await new Promise(function(resolve, reject) {
-      client.once('nightwatch:session.create', resolve).once('nightwatch:session.error', reject);
+  createRunner(env);
+  const settings = runner.test_settings;
+  await runner.startWebDriver();
+  log('webdriver started');
+  client = createClient(settings);
+  await new Promise(function(resolve, reject) {
+    client.once('nightwatch:session.create', resolve).once('nightwatch:session.error', reject);
 
-      client.startSession();
-    });
-    log('session created');
-  } catch (err) {
-    throw err;
-  } finally {
-    // idle = true;
-  }
+    client.startSession();
+  });
+  log('session created');
+  return client.api;
 }
 
 async function deleteSession() {
-  await new Promise((resolve, reject) => {
-    client.queue.empty();
-    client.queue.reset();
-    client.session.close();
-    client.queue.run(err => (!err ? resolve() : reject()));
-  });
+  client.queue.empty();
+  client.queue.reset();
+  client.session.close();
+  await runQueue();
   log('session closed');
   await runner.stopWebDriver();
   log('webdriver stopped');
 }
 
+async function runQueue() {
+  await new Promise((resolve, reject) => {
+    client.queue.run(err => (!err ? resolve() : reject()));
+  });
+}
+
 module.exports = {
-  start: createSession,
-  stop: deleteSession,
-  client: new Proxy(
-    {},
-    {
-      get: (target, name) => client[name]
-    }
-  )
+  createSession,
+  deleteSession,
+  runQueue
 };
