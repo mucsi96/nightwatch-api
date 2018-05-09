@@ -37,12 +37,8 @@ async function createSession(env = "default") {
     client = createClient(settings);
     await new Promise(function(resolve, reject) {
       client
-        .once("nightwatch:session.create", function(id) {
-          resolve(client);
-        })
-        .once("nightwatch:session.error", function(err) {
-          reject(err);
-        });
+        .once("nightwatch:session.create", resolve)
+        .once("nightwatch:session.error", reject);
 
       client.startSession();
     });
