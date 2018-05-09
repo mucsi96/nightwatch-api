@@ -6,9 +6,9 @@
   "author": "Igor Mucsicska <mucsi_96@yahoo.com>",
   "license": "MIT",
   "scripts": {
-    "test": "cross-env DEBUG=nightwatch-api node src/index.js",
+    "test": "cross-env DEBUG=nightwatch-api jest",
     "debug":
-      "cross-env DEBUG=nightwatch-api node --inspect --inspect-brk src/index.js",
+      "cross-env DEBUG=nightwatch-api node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
     "lint": "eslint src",
     "precommit": "lint-staged"
   },
@@ -25,6 +25,7 @@
     "eslint-plugin-import": "^2.11.0",
     "geckodriver": "^1.11.0",
     "husky": "^0.14.3",
+    "jest": "^22.4.3",
     "lint-staged": "^7.1.0",
     "prettier": "1.12.1",
     "selenium-server": "^3.11.0"

@@ -5,14 +5,14 @@ const { log } = require("./logger");
 
 let runner;
 let client;
-let idle = false;
+// let idle = false;
 
-const idleInterval = setInterval(() => {
-  if (idle) {
-    clearInterval(idleInterval);
-    deleteSession();
-  }
-}, 1000);
+// const idleInterval = setInterval(() => {
+//   if (idle) {
+//     clearInterval(idleInterval);
+//     deleteSession();
+//   }
+// }, 1000);
 
 function createRunner(env) {
   if (!runner) {
@@ -46,7 +46,7 @@ async function createSession(env = "default") {
   } catch (err) {
     throw err;
   } finally {
-    idle = true;
+    // idle = true;
   }
 }
 
@@ -62,4 +62,13 @@ async function deleteSession() {
   log("webdriver stopped");
 }
 
-module.exports = createSession;
+module.exports = {
+  start: createSession,
+  stop: deleteSession,
+  client: new Proxy(
+    {},
+    {
+      get: (target, name) => client[name]
+    }
+  )
+};
