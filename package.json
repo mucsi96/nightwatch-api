@@ -6,8 +6,8 @@
   "author": "Igor Mucsicska <mucsi_96@yahoo.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node index.js",
-    "debug": "node --inspect --inspect-brk index.js"
+    "start": "node src/index.js",
+    "debug": "node --inspect --inspect-brk src/index.js"
   },
   "dependencies": {
     "nightwatch": "^1.0.6"
