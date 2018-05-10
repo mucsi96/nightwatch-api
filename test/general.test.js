@@ -1,15 +1,12 @@
 const { client } = require('../src');
 
 describe('general', () => {
-  test('google', async () => {
+  test('basic commands', async () => {
     await client
-      .url('http://google.com')
-      .expect.element('body')
-      .to.be.present.before(1000);
-
-    await client
-      .setValue('input[type=text]', ['nightwatch', client.Keys.ENTER])
-      .pause(1000)
-      .assert.containsText('#main', 'Night Watchhh');
+      .init()
+      .setValue('#a', 4)
+      .setValue('#b', 5)
+      .click('#add')
+      .getText('#result', ({ value }) => expect(value).toEqual('9'));
   });
 });

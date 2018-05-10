@@ -15,7 +15,7 @@ module.exports = {
     start_process: true,
     server_path: seleniumServer.path,
     log_path: '',
-    port: 4444,
+    port: process.env.WEB_DRIVER_PORT,
     cli_args: {
       'webdriver.chrome.driver': chromedriver.path,
       'webdriver.gecko.driver': geckodriver.path
@@ -24,8 +24,8 @@ module.exports = {
 
   test_settings: {
     default: {
-      launch_url: 'http://localhost',
-      selenium_port: 4444,
+      launch_url: `http://localhost:${process.env.TEST_APP_PORT}`,
+      selenium_port: process.env.WEB_DRIVER_PORT,
       selenium_host: 'localhost',
       silent: true,
       screenshots: {

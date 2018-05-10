@@ -22,25 +22,25 @@ async function createSession(env = 'default') {
   createRunner(env);
   const settings = runner.test_settings;
   await runner.startWebDriver();
-  log('webdriver started');
+  log(`WebDriver started on port ${runner.test_settings.selenium_port}`);
   client = createClient(settings);
   await new Promise(function(resolve, reject) {
     client.once('nightwatch:session.create', resolve).once('nightwatch:session.error', reject);
 
     client.startSession();
   });
-  log('session created');
+  log('Session created');
   return client.api;
 }
 
-async function deleteSession() {
+async function closeSession() {
   client.queue.empty();
   client.queue.reset();
   client.session.close();
   await runQueue();
-  log('session closed');
+  log('Session closed');
   await runner.stopWebDriver();
-  log('webdriver stopped');
+  log(`WebDriver stopped on port ${runner.test_settings.selenium_port}`);
 }
 
 async function runQueue() {
@@ -58,6 +58,6 @@ async function runQueue() {
 
 module.exports = {
   createSession,
-  deleteSession,
+  closeSession,
   runQueue
 };
