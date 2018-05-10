@@ -9,6 +9,7 @@ module.exports = {
   custom_assertions_path: '',
   page_objects_path: '',
   globals_path: '',
+  output: false,
 
   selenium: {
     start_process: true,
