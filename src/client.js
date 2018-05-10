@@ -45,7 +45,14 @@ async function deleteSession() {
 
 async function runQueue() {
   await new Promise((resolve, reject) => {
-    client.queue.run(err => (!err ? resolve() : reject()));
+    client.queue.run(err => {
+      if (!err) {
+        return resolve();
+      }
+
+      err.stack = [err.message, err.stack].join('\n');
+      return reject(err);
+    });
   });
 }
 

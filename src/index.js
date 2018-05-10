@@ -1,10 +1,5 @@
 const { createSession, deleteSession, runQueue } = require('./client');
-const {
-  promisifyApi,
-  promisifyExpect,
-  promisifyAssertions,
-  promisifyPageObjects
-} = require('./promisify');
+const { promisifyApi, promisifyPageObjects } = require('./promisify');
 
 let client;
 
@@ -12,8 +7,6 @@ module.exports = {
   start: async env => {
     client = await createSession(env);
     promisifyApi(client, runQueue);
-    promisifyExpect(client, runQueue);
-    promisifyAssertions(client, runQueue);
     promisifyPageObjects(client, runQueue);
   },
   stop: deleteSession,

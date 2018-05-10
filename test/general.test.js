@@ -10,6 +10,6 @@ describe('general', () => {
     await client
       .setValue('input[type=text]', ['nightwatch', client.Keys.ENTER])
       .pause(1000)
-      .assert.title('nightwatch - ');
+      .assert.containsText('#main', 'Night Watchhh');
   });
 });

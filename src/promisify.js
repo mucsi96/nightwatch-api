@@ -1,7 +1,3 @@
-const Nightwatch = {
-  Assertion: require('nightwatch/lib/core/assertion')
-};
-
 function promisifyApi(api, runQueue) {
   let _successCb, _catchCb;
   api.catch = catchCb => {
@@ -16,32 +12,7 @@ function promisifyApi(api, runQueue) {
   };
 }
 
-function promisifyAssertions(runQueue) {
-  const promise = {};
-  promisifyApi(promise, runQueue);
-  const originalAssert = Nightwatch.Assertion.assert;
-
-  Nightwatch.Assertion.assert = function() {
-    return promise.then(() => originalAssert.apply(this, arguments));
-  };
-}
-
-function promisifyExpect(api, runQueue) {
-  if (!api.expect) return;
-  ['element', 'section'].forEach(field => {
-    const originalExpectation = api.expect[field];
-
-    api.expect[field] = function() {
-      const result = originalExpectation.apply(this, arguments);
-      promisifyApi(result, runQueue);
-      return result;
-    };
-  });
-}
-
 function promisifySection(section, runQueue) {
-  promisifyApi(section, runQueue);
-  promisifyExpect(section, runQueue);
   if (section.section) {
     Object.keys(section.section).forEach(key => {
       promisifySection(section.section[key], runQueue);
@@ -72,7 +43,5 @@ function promisifyPageObjects(api, runQueue) {
 
 module.exports = {
   promisifyApi,
-  promisifyAssertions,
-  promisifyExpect,
   promisifyPageObjects
 };
