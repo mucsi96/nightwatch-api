@@ -52,13 +52,23 @@ const server = http.createServer((req, res) => {
 });
 
 async function startSelenium() {
-  execFile('java', ['-jar', seleniumPath, '-port', 4444]);
+  const instance = execFile('java', ['-jar', seleniumPath, '-port', 4444]);
+  const onClose = () => log(`Selenium terminated`);
+  const onOut = chunk => log(`Selenium: ${chunk}`);
+  instance.stdout.on('data', onOut);
+  instance.stderr.on('data', onOut);
+  instance.on('close', onClose);
   await waitForBusyPort(4444);
   log('Selenium server started on port 4444');
 }
 
 async function startChromedriver() {
-  execFile(chromedriverPath);
+  const instance = execFile(chromedriverPath);
+  const onClose = () => log(`Chromedriver terminated`);
+  const onOut = chunk => log(`Chromedriver: ${chunk}`);
+  instance.stdout.on('data', onOut);
+  instance.stderr.on('data', onOut);
+  instance.on('close', onClose);
   log('Chromedriver started');
 }
 
