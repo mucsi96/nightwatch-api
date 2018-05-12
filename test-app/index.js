@@ -1,4 +1,4 @@
-require('chromedriver');
+const { path: chromedriverPath } = require('chromedriver');
 const http = require('http');
 const url = require('url');
 const path = require('path');
@@ -52,7 +52,13 @@ const server = http.createServer((req, res) => {
 });
 
 async function startSelenium() {
-  const instance = execFile('java', ['-jar', seleniumPath, '-port', 4444]);
+  const instance = execFile('java', [
+    `-Dwebdriver.chrome.driver=${path.relative(process.cwd(), chromedriverPath)}`,
+    '-jar',
+    path.relative(process.cwd(), seleniumPath),
+    '-port',
+    4444
+  ]);
   const onClose = () => log(`Selenium terminated`);
   const onOut = chunk => log(`Selenium: ${chunk}`);
   instance.stdout.on('data', onOut);
