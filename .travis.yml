@@ -1,8 +1,12 @@
+sudo: false
+dist: trusty
 language: node_js
 node_js:
   - "8"
 before_script:
   - jdk_switcher use oraclejdk8
+  - java -version
+  - chrome --version
 script: yarn lint && yarn ci
 cache:
   yarn: true
