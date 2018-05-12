@@ -1,0 +1,11 @@
+.vscode
+test
+test-app
+.eslintrc
+.gitignore
+.prettierrc
+jest.config.js
+nightwatch.json
+*.log
+yarn.lock
+.travis.yml
