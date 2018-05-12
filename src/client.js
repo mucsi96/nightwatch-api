@@ -30,6 +30,11 @@ async function createSession(env = 'default') {
     client.startSession();
   });
   log('Session created');
+
+  process.on('uncaughtException', err => {
+    console.log(err);
+  });
+
   return client.api;
 }
 
@@ -44,16 +49,24 @@ async function closeSession() {
 }
 
 async function runQueue() {
-  await new Promise((resolve, reject) => {
-    client.queue.run(err => {
-      if (!err) {
-        return resolve();
-      }
+  try {
+    await new Promise((resolve, reject) => {
+      client.queue.run(err => {
+        if (!err || !(err.abortOnFailure || err.abortOnFailure === undefined)) {
+          resolve();
+          return;
+        }
 
-      err.stack = [err.message, err.stack].join('\n');
-      return reject(err);
+        err.stack = [err.message, err.stack].join('\n');
+        reject(err);
+      });
     });
-  });
+  } catch (err) {
+    throw err;
+  } finally {
+    client.queue.empty();
+    client.queue.reset();
+  }
 }
 
 module.exports = {

@@ -33,7 +33,12 @@ module.exports = {
         path: ''
       },
       desiredCapabilities: {
-        browserName: 'chrome'
+        browserName: 'chrome',
+        javascriptEnabled: true,
+        acceptSslCerts: true,
+        chromeOptions: {
+          args: ['incognito', 'headless', 'no-sandbox', 'disable-gpu']
+        }
       }
     },
     firefox: {

@@ -12,7 +12,22 @@ function promisifyApi(api, runQueue) {
   };
 }
 
+function promisifyExpect(api, runQueue) {
+  if (!api.expect) return;
+  Object.keys(api.expect).forEach(field => {
+    const originalExpectation = api.expect[field];
+
+    api.expect[field] = function() {
+      const result = originalExpectation.apply(this, arguments);
+      promisifyApi(result, runQueue);
+      return result;
+    };
+  });
+}
+
 function promisifySection(section, runQueue) {
+  promisifyApi(section, runQueue);
+  promisifyExpect(section, runQueue);
   if (section.section) {
     Object.keys(section.section).forEach(key => {
       promisifySection(section.section[key], runQueue);
@@ -43,5 +58,6 @@ function promisifyPageObjects(api, runQueue) {
 
 module.exports = {
   promisifyApi,
+  promisifyExpect,
   promisifyPageObjects
 };
