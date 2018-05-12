@@ -1,5 +1,6 @@
 const { createSession, closeSession, runQueue } = require('./client');
 const { promisifyApi, promisifyExpect, promisifyPageObjects } = require('./promisify');
+const proxy = require('./proxy');
 
 let client;
 
@@ -11,10 +12,5 @@ module.exports = {
     promisifyPageObjects(client, runQueue);
   },
   closeSession: closeSession,
-  client: new Proxy(
-    {},
-    {
-      get: (target, name) => client[name]
-    }
-  )
+  client: proxy(() => client)
 };

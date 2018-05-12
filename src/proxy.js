@@ -1,32 +1,34 @@
-const client = require('./client');
-
-function getPageProxy(subPages) {
-  return new Proxy(() => getClientProxy(subPages), {
-    get: (target, pageName) => getPageProxy(subPages.concat([pageName]))
+function getPageProxy(getClient, subPages) {
+  return new Proxy(() => getClientProxy(getClient, subPages), {
+    get: (target, pageName) => getPageProxy(getClient, subPages.concat([pageName]))
   });
 }
 
-function getClientProxy(subPages) {
+function getClientProxy(getClient, subPages = []) {
   return new Proxy(
     {},
     {
       get: (target, name) => {
         if (name !== 'page') {
-          const api = client().api;
-
+          const client = getClient();
           if (!subPages.length) {
-            return api[name];
+            return client[name];
           }
 
           return subPages.reduce((api, pageName) => {
+            if (!(pageName in api)) {
+              throw new Error(
+                `Not existing page ${pageName}. Available pages are [${Object.keys(api)}]`
+              );
+            }
             return api[pageName];
-          }, api.page)()[name];
+          }, client.page)()[name];
         }
 
-        return getPageProxy([]);
+        return getPageProxy(getClient, []);
       }
     }
   );
 }
 
-module.exports.client = getClientProxy([]);
+module.exports = getClientProxy;
