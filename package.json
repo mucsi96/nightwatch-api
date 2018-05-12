@@ -9,7 +9,7 @@
   "author": "Igor Mucsicska <mucsi_96@yahoo.com>",
   "license": "MIT",
   "scripts": {
-    "test": "cross-env DEBUG=nightwatch-api jest --runInBand",
+    "test": "cross-env DEBUG=nightwatch-api jest",
     "debug":
       "cross-env DEBUG=nightwatch-api node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
     "lint": "eslint src",
