@@ -1,1 +1,1 @@
-# nightwatch-api
+# Cross-runner NightwatchJs API
