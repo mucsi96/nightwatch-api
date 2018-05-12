@@ -17,8 +17,6 @@ const mimeTypes = {
   css: 'text/css'
 };
 
-let chromedriver;
-
 const waitForBusyPort = port =>
   new Promise((resolve, reject) => {
     waitOn({ resources: [`tcp:127.0.0.1:${port}`] }, err => (err ? reject(err) : resolve()));
@@ -54,29 +52,19 @@ const server = http.createServer((req, res) => {
 });
 
 async function startSelenium() {
-  const selenium = execFile('java', ['-jar', seleniumPath, '-port', 4444]);
-  // const onClose = () => log(`selenium terminated`);
-  // const onOut = chunk => log(chunk);
-  // selenium.stdout.on('data', onOut);
-  // selenium.stderr.on('data', onOut);
-  // selenium.on('close', onClose);
+  execFile('java', ['-jar', seleniumPath, '-port', 4444]);
   await waitForBusyPort(4444);
   log('Selenium server started on port 4444');
 }
 
 async function startChromedriver() {
-  const chromedriver = execFile(chromedriverPath);
-  // const onClose = () => log(`chromedriver terminated`);
-  // const onOut = chunk => log(chunk);
-  // chromedriver.stdout.on('data', onOut);
-  // chromedriver.stderr.on('data', onOut);
-  // chromedriver.on('close', onClose);
+  execFile(chromedriverPath);
   log('Chromedriver started');
 }
 
 (async function() {
-  await startSelenium();
   await startChromedriver();
   server.listen(3000);
   log('test server started on port 3000');
+  await startSelenium();
 })().catch(err => log(err));
