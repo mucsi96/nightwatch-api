@@ -6,7 +6,7 @@ node_js:
 before_script:
   - jdk_switcher use oraclejdk8
   - java -version
-  - chrome --version
+  - google-chrome --product-version
 script: yarn lint && yarn ci
 cache:
   yarn: true
