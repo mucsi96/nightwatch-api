@@ -16,7 +16,7 @@ const commands = {
 };
 
 module.exports = {
-  url: `http://localhost:${process.env.TEST_APP_PORT}`,
+  url: `http://localhost:3000`,
   elements: {
     body: 'body',
     a: '#a',

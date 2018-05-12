@@ -3,6 +3,10 @@ const url = require('url');
 const path = require('path');
 const fs = require('fs');
 const { log } = require('../src/logger');
+const { path: chromedriverPath } = require('chromedriver');
+const { path: seleniumPath } = require('selenium-server');
+const waitOn = require('wait-on');
+const { execFile } = require('child_process');
 
 const mimeTypes = {
   html: 'text/html',
@@ -12,6 +16,21 @@ const mimeTypes = {
   js: 'text/javascript',
   css: 'text/css'
 };
+
+let chromedriver;
+
+const waitForBusyPort = port =>
+  new Promise((resolve, reject) => {
+    waitOn({ resources: [`tcp:127.0.0.1:${port}`] }, err => (err ? reject(err) : resolve()));
+  });
+
+const waitForFreePort = port =>
+  new Promise((resolve, reject) => {
+    waitOn(
+      { resources: [`tcp:127.0.0.1:${port}`], reverse: true },
+      err => (err ? reject(err) : resolve())
+    );
+  });
 
 const server = http.createServer((req, res) => {
   let uri = url.parse(req.url).pathname;
@@ -34,23 +53,30 @@ const server = http.createServer((req, res) => {
   });
 });
 
-async function startTestApp() {
-  const port = process.env.TEST_APP_PORT;
-  await new Promise(resolve => {
-    server.listen(port, resolve);
-  });
-  log(`Test app started on port ${port}`);
+async function startSelenium() {
+  const selenium = execFile('java', ['-jar', seleniumPath, '-port', 4444]);
+  // const onClose = () => log(`selenium terminated`);
+  // const onOut = chunk => log(chunk);
+  // selenium.stdout.on('data', onOut);
+  // selenium.stderr.on('data', onOut);
+  // selenium.on('close', onClose);
+  await waitForBusyPort(4444);
+  log('Selenium server started on port 4444');
 }
 
-async function stopTestApp() {
-  const port = process.env.TEST_APP_PORT;
-  await new Promise(resolve => {
-    server.close(resolve);
-  });
-  log(`Test app stoped on port ${port}`);
+async function startChromedriver() {
+  const chromedriver = execFile(chromedriverPath);
+  // const onClose = () => log(`chromedriver terminated`);
+  // const onOut = chunk => log(chunk);
+  // chromedriver.stdout.on('data', onOut);
+  // chromedriver.stderr.on('data', onOut);
+  // chromedriver.on('close', onClose);
+  log('Chromedriver started');
 }
 
-module.exports = {
-  startTestApp,
-  stopTestApp
-};
+(async function() {
+  await startSelenium();
+  await startChromedriver();
+  server.listen(3000);
+  log('test server started on port 3000');
+})().catch(err => log(err));

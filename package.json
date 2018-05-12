@@ -9,9 +9,11 @@
   "author": "Igor Mucsicska <mucsi_96@yahoo.com>",
   "license": "MIT",
   "scripts": {
+    "start": "cross-env DEBUG=nightwatch-api node test-app/index.js",
     "test": "cross-env DEBUG=nightwatch-api jest",
     "debug":
       "cross-env DEBUG=nightwatch-api node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
+    "ci": "start-server-and-test http://localhost:3000",
     "lint": "eslint src",
     "precommit": "lint-staged"
   },
@@ -31,9 +33,10 @@
     "husky": "^0.14.3",
     "jest": "^22.4.3",
     "lint-staged": "^7.1.0",
-    "portscanner": "^2.1.1",
     "prettier": "1.12.1",
-    "selenium-server": "^3.11.0"
+    "selenium-server": "^3.11.0",
+    "start-server-and-test": "^1.4.1",
+    "wait-on": "^2.1.0"
   },
   "lint-staged": {
     "*.{js,json,css,md}": ["prettier --write", "git add"]

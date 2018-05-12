@@ -21,8 +21,10 @@ function createRunner(env) {
 async function createSession(env = 'default') {
   createRunner(env);
   const settings = runner.test_settings;
-  await runner.startWebDriver();
-  log(`WebDriver started on port ${runner.test_settings.selenium_port}`);
+  if (settings.webdriver.start_process) {
+    await runner.startWebDriver();
+    log(`WebDriver started on port ${runner.test_settings.webdriver.port}`);
+  }
   client = createClient(settings);
   await new Promise(function(resolve, reject) {
     client.once('nightwatch:session.create', resolve).once('nightwatch:session.error', reject);
@@ -30,10 +32,6 @@ async function createSession(env = 'default') {
     client.startSession();
   });
   log('Session created');
-
-  process.on('uncaughtException', err => {
-    console.log(err);
-  });
 
   return client.api;
 }
@@ -44,8 +42,10 @@ async function closeSession() {
   client.session.close();
   await runQueue();
   log('Session closed');
-  await runner.stopWebDriver();
-  log(`WebDriver stopped on port ${runner.test_settings.selenium_port}`);
+  if (runner.test_settings.webdriver.start_process) {
+    await runner.stopWebDriver();
+    log(`WebDriver stopped on port ${runner.test_settings.webdriver.port}`);
+  }
 }
 
 async function runQueue() {
