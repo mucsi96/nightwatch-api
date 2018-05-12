@@ -58,6 +58,7 @@ function promisifyPageObjects(api, runQueue) {
 
 module.exports = {
   promisifyApi,
+  promisifySection,
   promisifyExpect,
   promisifyPageObjects
 };

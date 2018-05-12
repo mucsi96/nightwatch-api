@@ -10,7 +10,7 @@ const commands = {
     return this.click('@add');
   },
   checkResult: function(expectedResult) {
-    this.expect.section('@result').text.to.equal(expectedResult);
+    this.assert.containsText('@result', expectedResult);
     return this;
   }
 };
@@ -22,12 +22,8 @@ module.exports = {
     a: '#a',
     b: '#b',
     add: '#add',
+    result: '#result',
     searchBar: 'input[name="p"]'
-  },
-  sections: {
-    result: {
-      selector: '#result'
-    }
   },
   commands: [commands]
 };

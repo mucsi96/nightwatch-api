@@ -162,9 +162,9 @@ describe('Assertion features', () => {
       await calculatorWithSection
         .setA(4)
         .setB(5)
-        .pressAdd();
-      await calculatorWithSection.checkResult(9);
-      await calculatorWithSection.checkResult(-9);
+        .pressAdd()
+        .checkResult(9)
+        .checkResult(-9);
     } catch (err) {
       errorHandler(err.message);
     }

@@ -1,6 +1,12 @@
 const { createSession, closeSession, runQueue } = require('./client');
-const { promisifyApi, promisifyExpect, promisifyPageObjects } = require('./promisify');
+const {
+  promisifyApi,
+  promisifySection,
+  promisifyExpect,
+  promisifyPageObjects
+} = require('./promisify');
 const proxy = require('./proxy');
+const NightwatchSection = require('nightwatch/lib/page-object/section');
 
 let client;
 
@@ -12,5 +18,11 @@ module.exports = {
     promisifyPageObjects(client, runQueue);
   },
   closeSession: closeSession,
-  client: proxy(() => client)
+  client: proxy(() => client),
+  Section: class Section extends NightwatchSection {
+    constructor(definition, options) {
+      super(definition, options);
+      promisifySection(this.api, runQueue);
+    }
+  }
 };

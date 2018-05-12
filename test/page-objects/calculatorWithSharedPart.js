@@ -1,16 +1,21 @@
+const { client } = require('../../src');
+
+const shared = client.page.shared();
 const commands = {
   setA: function(value) {
-    return this.setValue('@a', value);
+    shared.setValue('@a', value);
+    return this;
   },
   setB: function(value) {
-    return this.setValue('@b', value);
+    shared.setValue('@b', value);
+    return this;
   },
   pressAdd: function() {
-    this.api.pause(1000);
-    return this.click('@add');
+    shared.click('@add');
+    return this;
   },
   checkResult: function(expectedResult) {
-    this.expect.section('@result').text.to.equal(expectedResult);
+    shared.assert.containsText('@result', expectedResult);
     return this;
   }
 };
@@ -19,15 +24,7 @@ module.exports = {
   url: `http://localhost:${process.env.TEST_APP_PORT}`,
   elements: {
     body: 'body',
-    a: '#a',
-    b: '#b',
-    add: '#add',
     searchBar: 'input[name="p"]'
-  },
-  sections: {
-    result: {
-      selector: '#result'
-    }
   },
   commands: [commands]
 };
