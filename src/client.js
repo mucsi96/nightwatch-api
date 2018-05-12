@@ -64,6 +64,7 @@ async function runQueue() {
   } catch (err) {
     throw err;
   } finally {
+    client.queue.removeAllListeners();
     client.queue.empty();
     client.queue.reset();
   }
