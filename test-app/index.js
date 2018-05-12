@@ -1,9 +1,9 @@
+require('chromedriver');
 const http = require('http');
 const url = require('url');
 const path = require('path');
 const fs = require('fs');
 const { log } = require('../src/logger');
-require('chromedriver');
 const { path: seleniumPath } = require('selenium-server');
 const waitOn = require('wait-on');
 const { execFile } = require('child_process');
