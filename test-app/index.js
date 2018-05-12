@@ -3,7 +3,7 @@ const url = require('url');
 const path = require('path');
 const fs = require('fs');
 const { log } = require('../src/logger');
-const { path: chromedriverPath } = require('chromedriver');
+require('chromedriver');
 const { path: seleniumPath } = require('selenium-server');
 const waitOn = require('wait-on');
 const { execFile } = require('child_process');
@@ -62,18 +62,7 @@ async function startSelenium() {
   log('Selenium server started on port 4444');
 }
 
-async function startChromedriver() {
-  const instance = execFile(chromedriverPath);
-  const onClose = () => log(`Chromedriver terminated`);
-  const onOut = chunk => log(`Chromedriver: ${chunk}`);
-  instance.stdout.on('data', onOut);
-  instance.stderr.on('data', onOut);
-  instance.on('close', onClose);
-  log('Chromedriver started');
-}
-
 (async function() {
-  await startChromedriver();
   server.listen(3000);
   log('test server started on port 3000');
   await startSelenium();
