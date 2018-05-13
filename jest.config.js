@@ -1,3 +1,4 @@
 module.exports = {
-  setupTestFrameworkScriptFile: './test/setup'
+  setupTestFrameworkScriptFile: './test/setup',
+  testPathIgnorePatterns: ['/node_modules/', '/examples/']
 };
