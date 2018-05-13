@@ -4,7 +4,7 @@
   "description": "Demonstration for using NightwatchJs from Jest test runner",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node test/selenium.js",
+    "start": "babel-node test/server.js",
     "test": "jest",
     "ci": "start-server-and-test http://localhost:4444"
   },
@@ -17,9 +17,10 @@
     "babel-jest": "^22.4.3",
     "babel-preset-env": "^1.7.0",
     "chromedriver": "^2.38.3",
+    "geckodriver": "^1.11.0",
     "jest": "^22.4.3",
     "nightwatch": "1.0.6",
-    "nightwatch-api": "^0.2.0",
+    "nightwatch-api": "^0.3.0",
     "selenium-server": "^3.12.0",
     "start-server-and-test": "^1.4.1"
   }

@@ -6,33 +6,39 @@ const { log } = require('./logger');
 let runner;
 let client;
 
-function createRunner(env) {
+function createRunner(env = 'default') {
   if (!runner) {
     const jsonConfigFile = './nightwatch.json';
     const jsConfigFie = path.resolve('./nightwatch.conf.js');
     const configFile = fs.existsSync(jsConfigFie) ? jsConfigFie : jsonConfigFile;
     runner = CliRunner({ config: configFile, env });
+    runner.isWebDriverManaged = function() {
+      this.baseSettings.selenium.start_process = true;
+      return true;
+    };
     runner.setup();
   }
 
   return runner;
 }
 
-async function createSession(env = 'default') {
+async function startWebDriver(env) {
+  createRunner(env);
+  await runner.startWebDriver();
+  log(`WebDriver started on port ${runner.test_settings.webdriver.port}`);
+}
+
+async function stopWebDriver() {
+  await runner.stopWebDriver();
+  log(`WebDriver stopped on port ${runner.test_settings.webdriver.port}`);
+}
+
+async function createSession(env) {
   createRunner(env);
   const settings = runner.test_settings;
-  if (settings.webdriver.start_process) {
-    await runner.startWebDriver();
-    log(`WebDriver started on port ${runner.test_settings.webdriver.port}`);
-  }
   client = createClient(settings);
-  await new Promise(function(resolve, reject) {
-    client.once('nightwatch:session.create', resolve).once('nightwatch:session.error', reject);
-
-    client.startSession();
-  });
+  await client.startSession();
   log('Session created');
-
   return client.api;
 }
 
@@ -42,10 +48,6 @@ async function closeSession() {
   client.session.close();
   await runQueue();
   log('Session closed');
-  if (runner.test_settings.webdriver.start_process) {
-    await runner.stopWebDriver();
-    log(`WebDriver stopped on port ${runner.test_settings.webdriver.port}`);
-  }
 }
 
 async function runQueue() {
@@ -71,6 +73,8 @@ async function runQueue() {
 }
 
 module.exports = {
+  startWebDriver,
+  stopWebDriver,
   createSession,
   closeSession,
   runQueue

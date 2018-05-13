@@ -1,12 +1,9 @@
-const { path: chromedriverPath } = require('chromedriver');
 const http = require('http');
 const url = require('url');
 const path = require('path');
 const fs = require('fs');
 const { log } = require('../src/logger');
-const { path: seleniumPath } = require('selenium-server');
-const waitOn = require('wait-on');
-const { execFile } = require('child_process');
+const { startWebDriver, stopWebDriver } = require('../src');
 
 const mimeTypes = {
   html: 'text/html',
@@ -16,19 +13,6 @@ const mimeTypes = {
   js: 'text/javascript',
   css: 'text/css'
 };
-
-const waitForBusyPort = port =>
-  new Promise((resolve, reject) => {
-    waitOn({ resources: [`tcp:127.0.0.1:${port}`] }, err => (err ? reject(err) : resolve()));
-  });
-
-const waitForFreePort = port =>
-  new Promise((resolve, reject) => {
-    waitOn(
-      { resources: [`tcp:127.0.0.1:${port}`], reverse: true },
-      err => (err ? reject(err) : resolve())
-    );
-  });
 
 const server = http.createServer((req, res) => {
   let uri = url.parse(req.url).pathname;
@@ -51,25 +35,30 @@ const server = http.createServer((req, res) => {
   });
 });
 
-async function startSelenium() {
-  const instance = execFile('java', [
-    `-Dwebdriver.chrome.driver=${path.relative(process.cwd(), chromedriverPath)}`,
-    '-jar',
-    path.relative(process.cwd(), seleniumPath),
-    '-port',
-    4444
-  ]);
-  const onClose = () => log(`Selenium terminated`);
-  const onOut = chunk => log(`Selenium: ${chunk}`);
-  instance.stdout.on('data', onOut);
-  instance.stderr.on('data', onOut);
-  instance.on('close', onClose);
-  await waitForBusyPort(4444);
-  log('Selenium server started on port 4444');
+if (process.platform === 'win32') {
+  var rl = require('readline').createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+
+  rl.on('SIGINT', function() {
+    process.emit('SIGINT');
+  });
 }
 
 (async function() {
   server.listen(3000);
-  log('test server started on port 3000');
-  await startSelenium();
+  log('Test server started on port 3000');
+  await startWebDriver();
 })().catch(err => log(err));
+
+process.on('SIGINT', async () => {
+  try {
+    server.close();
+    log('Test server stoped on port 3000');
+    await stopWebDriver();
+    process.exit();
+  } catch (err) {
+    process.exit(1);
+  }
+});
