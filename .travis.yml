@@ -13,7 +13,11 @@ before_script:
   - jdk_switcher use oraclejdk8
   - java -version
   - google-chrome --product-version
-script: yarn lint && yarn ci
+script: 
+  - yarn lint
+  - yarn ci
+  - cd examples/jest && yarn ci && cd ../..
+  - cd examples/cucumber && yarn ci && cd ../..
 cache:
   yarn: true
   directories:

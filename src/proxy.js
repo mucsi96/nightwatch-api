@@ -11,6 +11,13 @@ function getClientProxy(getClient, subPages = []) {
       get: (target, name) => {
         if (name !== 'page') {
           const client = getClient();
+
+          if (!client) {
+            throw new Error(
+              'Nightwatch client is not ready. Looks like function "createSession" did not succeed or was not called yet.'
+            );
+          }
+
           if (!subPages.length) {
             return client[name];
           }

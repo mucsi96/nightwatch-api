@@ -1,11 +1,12 @@
 {
-  "name": "nightwatch-jest",
+  "name": "nightwatch-cucumber",
   "version": "1.0.0",
-  "description": "Demonstration for using NightwatchJs from Jest test runner",
+  "description": "Demonstration for using NightwatchJs from CucumberJS test runner",
   "main": "index.js",
   "scripts": {
     "start": "babel-node test/selenium.js",
-    "test": "jest",
+    "test":
+      "cucumber-js --require-module babel-core/register --require test/support --require step-definitions",
     "ci": "start-server-and-test http://localhost:4444"
   },
   "repository": "git@github.com:mucsi96/nightwatch-api.git",
@@ -14,10 +15,9 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
-    "babel-jest": "^22.4.3",
     "babel-preset-env": "^1.7.0",
     "chromedriver": "^2.38.3",
-    "jest": "^22.4.3",
+    "cucumber": "^4.2.1",
     "nightwatch": "1.0.6",
     "nightwatch-api": "^0.1.0",
     "selenium-server": "^3.12.0",
