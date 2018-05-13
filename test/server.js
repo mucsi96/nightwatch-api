@@ -33,7 +33,7 @@ const waitForFreePort = port =>
 const server = http.createServer((req, res) => {
   let uri = url.parse(req.url).pathname;
 
-  if (uri === '/') uri = '/index.html';
+  if (uri === '/') uri = '/test-app.html';
 
   const filename = path.join(__dirname, uri);
   fs.exists(filename, exists => {
