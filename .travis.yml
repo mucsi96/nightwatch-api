@@ -9,6 +9,10 @@ addons:
 language: node_js
 node_js:
   - "8"
+install:
+  - yarn
+  - cd examples/jest && yarn && cd ../..
+  - cd examples/cucumber && yarn && cd ../..
 before_script:
   - jdk_switcher use oraclejdk8
   - java -version
@@ -21,7 +25,9 @@ script:
 cache:
   yarn: true
   directories:
-    - "node_modules"
+    - node_modules
+    - examples/jest/node_modules
+    - examples/cucumber/node_modules
 branches:
   except:
   - /^v\d+\.\d+\.\d+$/
