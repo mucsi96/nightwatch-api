@@ -1,6 +1,7 @@
 .vscode
 test
 test-app
+examples
 .eslintrc
 .gitignore
 .prettierrc
