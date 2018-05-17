@@ -1,9 +1,11 @@
-function promisifyApi(api, runQueue) {
-  let _successCb, _catchCb;
-  api.catch = catchCb => {
+export function promisifyApi(api, runQueue: Function) {
+  let _successCb: Function;
+  let _catchCb: Function;
+
+  api.catch = (catchCb: Function) => {
     if (catchCb) _catchCb = catchCb;
   };
-  api.then = (successCb, catchCb) => {
+  api.then = (successCb: Function, catchCb: Function) => {
     if (successCb) _successCb = successCb;
     if (catchCb) _catchCb = catchCb;
     return runQueue()
@@ -12,7 +14,7 @@ function promisifyApi(api, runQueue) {
   };
 }
 
-function promisifyExpect(api, runQueue) {
+export function promisifyExpect(api, runQueue: Function) {
   if (!api.expect) return;
   Object.keys(api.expect).forEach(field => {
     const originalExpectation = api.expect[field];
@@ -25,7 +27,7 @@ function promisifyExpect(api, runQueue) {
   });
 }
 
-function promisifySection(section, runQueue) {
+export function promisifySection(section, runQueue: Function) {
   promisifyApi(section, runQueue);
   promisifyExpect(section, runQueue);
   if (section.section) {
@@ -35,7 +37,7 @@ function promisifySection(section, runQueue) {
   }
 }
 
-function promisifyChildPageObjects(page, runQueue) {
+function promisifyChildPageObjects(page: object, runQueue: Function) {
   Object.keys(page).forEach(key => {
     if (typeof page[key] !== 'function') {
       promisifyChildPageObjects(page[key], runQueue);
@@ -50,15 +52,8 @@ function promisifyChildPageObjects(page, runQueue) {
   });
 }
 
-function promisifyPageObjects(api, runQueue) {
+export function promisifyPageObjects(api, runQueue: Function) {
   if (api.page) {
     return promisifyChildPageObjects(api.page, runQueue);
   }
 }
-
-module.exports = {
-  promisifyApi,
-  promisifySection,
-  promisifyExpect,
-  promisifyPageObjects
-};

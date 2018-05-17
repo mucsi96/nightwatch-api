@@ -1,10 +1,10 @@
-function getPageProxy(getClient, subPages) {
+function getPageProxy(getClient: Function, subPages) {
   return new Proxy(() => getClientProxy(getClient, subPages), {
     get: (target, pageName) => getPageProxy(getClient, subPages.concat([pageName]))
   });
 }
 
-function getClientProxy(getClient, subPages = []) {
+export default function getClientProxy(getClient: Function, subPages = []) {
   return new Proxy(
     {},
     {
@@ -37,5 +37,3 @@ function getClientProxy(getClient, subPages = []) {
     }
   );
 }
-
-module.exports = getClientProxy;

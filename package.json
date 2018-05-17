@@ -9,6 +9,8 @@
   "author": "Igor Mucsicska <mucsi_96@yahoo.com>",
   "license": "MIT",
   "scripts": {
+    "build": "tsc --emitDeclarationOnly && babel src --out-dir lib --extensions \".ts,.tsx\"",
+    "type-check": "tsc --noEmit",
     "start": "cross-env DEBUG=nightwatch-api node test/server.js",
     "test": "cross-env DEBUG=nightwatch-api jest",
     "debug":
@@ -18,17 +20,20 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
+    "@babel/cli": "^7.0.0-beta.47",
+    "@babel/core": "^7.0.0-beta.47",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.47",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.47",
+    "@babel/preset-env": "^7.0.0-beta.47",
+    "@babel/preset-typescript": "^7.0.0-beta.47",
     "debug": "^3.1.0",
-    "nightwatch": "^1.0.6"
+    "nightwatch": "^1.0.6",
+    "typescript": "^2.8.3"
   },
   "devDependencies": {
-    "babel-eslint": "^8.2.3",
     "chai": "^4.1.2",
     "chromedriver": "2.38.3",
     "cross-env": "^5.1.5",
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.11.0",
     "geckodriver": "1.11.0",
     "husky": "^0.14.3",
     "jest": "^22.4.3",

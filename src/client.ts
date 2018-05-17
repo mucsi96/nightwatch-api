@@ -1,10 +1,10 @@
-const { CliRunner, client: createClient } = require('nightwatch');
-const fs = require('fs');
-const path = require('path');
-const { log } = require('./logger');
+import { CliRunner, client as createClient } from 'nightwatch';
+import fs from 'fs';
+import path from 'path';
+import { log } from './logger';
 
-let runner;
-let client;
+let runner: object;
+let client: object;
 
 function createRunner(env = 'default') {
   if (!runner) {
@@ -22,18 +22,18 @@ function createRunner(env = 'default') {
   return runner;
 }
 
-async function startWebDriver(env) {
+export async function startWebDriver(env) {
   createRunner(env);
   await runner.startWebDriver();
   log(`WebDriver started on port ${runner.test_settings.webdriver.port}`);
 }
 
-async function stopWebDriver() {
+export async function stopWebDriver() {
   await runner.stopWebDriver();
   log(`WebDriver stopped on port ${runner.test_settings.webdriver.port}`);
 }
 
-async function createSession(env) {
+export async function createSession(env: string) {
   createRunner(env);
   const settings = runner.test_settings;
   client = createClient(settings);
@@ -42,7 +42,7 @@ async function createSession(env) {
   return client.api;
 }
 
-async function closeSession() {
+export async function closeSession() {
   client.queue.empty();
   client.queue.reset();
   client.session.close();
@@ -50,7 +50,7 @@ async function closeSession() {
   log('Session closed');
 }
 
-async function runQueue() {
+export async function runQueue() {
   try {
     await new Promise((resolve, reject) => {
       client.queue.run(err => {
@@ -71,11 +71,3 @@ async function runQueue() {
     client.queue.reset();
   }
 }
-
-module.exports = {
-  startWebDriver,
-  stopWebDriver,
-  createSession,
-  closeSession,
-  runQueue
-};
