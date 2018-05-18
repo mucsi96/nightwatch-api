@@ -20,17 +20,17 @@ export default function getClientProxy(getClient: () => Api, subPages: string[] 
         }
 
         if (!subPages.length) {
-          return client[name];
+          return (<any>client)[name];
         }
 
-        return subPages.reduce((api: Api, pageName: string) => {
+        return (<any>subPages.reduce((api: Page, pageName: string) => {
           if (!(pageName in api)) {
             throw new Error(
               `Not existing page ${pageName}. Available pages are [${Object.keys(api)}]`
             );
           }
-          return <Api>(<any>api)[pageName];
-        }, client.page)()[name];
+          return <Page>(<any>api)[pageName];
+        }, client.page)())[name];
       }
 
       return getPageProxy(getClient, []);

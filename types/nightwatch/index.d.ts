@@ -34,12 +34,10 @@ export interface Session {
 }
 
 export interface Page {
-
+  (): Api;
 }
 
-export interface Expect {
-  
-}
+export interface Expect {}
 
 export interface Api {
   catch: Function;
@@ -61,5 +59,5 @@ export function CliRunner(config: object): CliRunnerInstance;
 export function client(settings: object): Client;
 
 export interface AssertionError extends Error {
-    abortOnFailure: boolean;
+  abortOnFailure: boolean;
 }
