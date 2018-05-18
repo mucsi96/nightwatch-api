@@ -1,7 +1,8 @@
 {
   "name": "nightwatch-api",
   "version": "0.3.0",
-  "main": "lib/index.js",
+  "main": "./lib/index.js",
+  "types": "./lib/main.d.ts",
   "engines": {
     "node": ">= 8.0.0"
   },
@@ -11,7 +12,7 @@
   "scripts": {
     "clean": "del-cli lib",
     "build": "tsc --emitDeclarationOnly && babel src --out-dir lib --extensions \".ts,.tsx\"",
-    "type-check": "tsc --noEmit",
+    "type-check": "tsc --noEmit --traceResolution",
     "start": "cross-env DEBUG=nightwatch-api babel-node --extensions \".ts,.tsx\" test/server.ts",
     "test": "cross-env DEBUG=nightwatch-api jest --no-cache",
     "coverage": "jest --coverage",
@@ -24,6 +25,7 @@
   },
   "dependencies": {
     "debug": "^3.1.0",
+    "@types/debug": "^0.0.30",
     "nightwatch": "^1.0.6"
   },
   "devDependencies": {
@@ -35,7 +37,6 @@
     "@babel/preset-env": "^7.0.0-beta.47",
     "@babel/preset-typescript": "^7.0.0-beta.47",
     "@babel/register": "^7.0.0-beta.47",
-    "@types/debug": "^0.0.30",
     "@types/jest": "^22.2.3",
     "@types/node": "^10.1.1",
     "babel-core": "^7.0.0-bridge.0",
