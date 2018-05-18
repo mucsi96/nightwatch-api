@@ -1,4 +1,4 @@
-import Section, { Sections } from 'nightwatch/lib/page-object/section';
+import Section from 'nightwatch/lib/page-object/section';
 
 interface SeleniumSettings {
   start_process: boolean;
@@ -43,6 +43,10 @@ export interface Expect {
 
 export interface Pages {
   [key: string]: Page | Pages;
+}
+
+export interface Sections {
+  [key: string]: Api;
 }
 
 export interface Api {
