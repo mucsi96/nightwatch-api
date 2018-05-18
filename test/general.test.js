@@ -1,4 +1,4 @@
-const { client } = require('../src');
+import { client } from '../src';
 
 describe('General features', () => {
   test('Handles basic commands', async () => {

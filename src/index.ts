@@ -15,9 +15,7 @@ export async function createSession(env: string) {
   promisifyPageObjects(nightwatchClient, runQueue);
 }
 
-export function client() {
-  return proxy(() => nightwatchClient);
-}
+export const client = proxy(() => nightwatchClient);
 
 export class Section extends section {
   constructor(definition: object, options: object) {

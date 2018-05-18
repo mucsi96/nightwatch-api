@@ -1,6 +1,6 @@
 require('chai').should();
 
-const { client } = require('../src');
+import { client } from '../src';
 
 const calculatorWithResult = client.page.calculatorWithResult();
 const nestedCalculator = client.page.nested.calculator();
