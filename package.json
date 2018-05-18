@@ -13,7 +13,7 @@
     "build": "tsc --emitDeclarationOnly && babel src --out-dir lib --extensions \".ts,.tsx\"",
     "type-check": "tsc --noEmit",
     "start": "cross-env DEBUG=nightwatch-api babel-node --extensions \".ts,.tsx\" test/server.ts",
-    "test": "cross-env DEBUG=nightwatch-api jest",
+    "test": "cross-env DEBUG=nightwatch-api jest --no-cache",
     "coverage": "jest --coverage",
     "prepublishOnly": "yarn build",
     "debug":
@@ -25,9 +25,6 @@
   "dependencies": {
     "debug": "^3.1.0",
     "nightwatch": "^1.0.6"
-  },
-  "resolutions": {
-    "babel-core": "^7.0.0-bridge.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.47",
@@ -42,7 +39,7 @@
     "@types/jest": "^22.2.3",
     "@types/node": "^10.1.1",
     "babel-core": "^7.0.0-bridge.0",
-    "babel-plugin-module-resolver": "^3.1.1",
+    "babel-jest": "^22.4.4",
     "chai": "^4.1.2",
     "chromedriver": "2.38.3",
     "cross-env": "^5.1.5",
@@ -58,7 +55,6 @@
     "tslint-config-airbnb": "^5.8.0",
     "tslint-config-prettier": "^1.12.0",
     "typescript": "^2.8.3",
-    "typescript-babel-jest": "^1.0.5",
     "wait-on": "^2.1.0"
   }
 }

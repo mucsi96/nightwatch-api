@@ -3,6 +3,6 @@ module.exports = {
   testPathIgnorePatterns: ['/node_modules/', '/examples/'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   transform: {
-    '^.+\\.(js|jsx|ts|tsx)$': 'typescript-babel-jest'
+    '^.+\\.(js|jsx|ts|tsx)$': 'babel-jest'
   }
 };
