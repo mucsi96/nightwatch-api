@@ -12,7 +12,7 @@
   "scripts": {
     "clean": "del-cli lib",
     "build": "tsc --emitDeclarationOnly && babel src --out-dir lib --extensions \".ts,.tsx\"",
-    "type-check": "tsc --noEmit --traceResolution",
+    "type-check": "tsc --noEmit",
     "start": "cross-env DEBUG=nightwatch-api babel-node --extensions \".ts,.tsx\" test/server.ts",
     "test": "cross-env DEBUG=nightwatch-api jest --no-cache",
     "coverage": "jest --coverage",
