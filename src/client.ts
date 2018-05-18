@@ -1,19 +1,21 @@
-import { CliRunner, client as createClient } from 'nightwatch';
+import { CliRunner, CliRunnerInstance, client as createClient, Client, AssertionError, Api } from 'nightwatch';
 import fs from 'fs';
 import path from 'path';
 import { log } from './logger';
 
-let runner: object;
-let client: object;
+let runner: CliRunnerInstance;
+let client: Client;
 
-function createRunner(env = 'default') {
+function createRunner(env: string = 'default') {
   if (!runner) {
     const jsonConfigFile = './nightwatch.json';
     const jsConfigFie = path.resolve('./nightwatch.conf.js');
     const configFile = fs.existsSync(jsConfigFie) ? jsConfigFie : jsonConfigFile;
-    runner = CliRunner({ config: configFile, env });
+    runner = CliRunner({ env, config: configFile });
     runner.isWebDriverManaged = function() {
-      this.baseSettings.selenium.start_process = true;
+      if (this.baseSettings.selenium) {
+        this.baseSettings.selenium.start_process = true;
+      }
       return true;
     };
     runner.setup();
@@ -22,7 +24,7 @@ function createRunner(env = 'default') {
   return runner;
 }
 
-export async function startWebDriver(env) {
+export async function startWebDriver(env?: string) {
   createRunner(env);
   await runner.startWebDriver();
   log(`WebDriver started on port ${runner.test_settings.webdriver.port}`);
@@ -33,7 +35,7 @@ export async function stopWebDriver() {
   log(`WebDriver stopped on port ${runner.test_settings.webdriver.port}`);
 }
 
-export async function createSession(env: string) {
+export async function createSession(env?: string): Promise<Api> {
   createRunner(env);
   const settings = runner.test_settings;
   client = createClient(settings);
@@ -53,7 +55,7 @@ export async function closeSession() {
 export async function runQueue() {
   try {
     await new Promise((resolve, reject) => {
-      client.queue.run(err => {
+      client.queue.run((err: AssertionError) => {
         if (!err || !(err.abortOnFailure || err.abortOnFailure === undefined)) {
           resolve();
           return;

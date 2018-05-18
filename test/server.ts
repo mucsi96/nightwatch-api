@@ -1,9 +1,9 @@
-const http = require('http');
-const url = require('url');
-const path = require('path');
-const fs = require('fs');
-const { log } = require('../src/logger');
-const { startWebDriver, stopWebDriver } = require('../src');
+import http from 'http';
+import url from 'url';
+import path from 'path';
+import fs from 'fs';
+import { log } from '../src/logger';
+import { startWebDriver, stopWebDriver } from '../src';
 
 const mimeTypes = {
   html: 'text/html',
@@ -15,19 +15,27 @@ const mimeTypes = {
 };
 
 const server = http.createServer((req, res) => {
+  if (!req.url) {
+    return;
+  }
+
   let uri = url.parse(req.url).pathname;
+
+  if (!uri) {
+    return;
+  }
 
   if (uri === '/') uri = '/test-app.html';
 
   const filename = path.join(__dirname, uri);
-  fs.exists(filename, exists => {
+  fs.exists(filename, (exists: boolean) => {
     if (!exists) {
       res.writeHead(404, { 'Content-Type': 'text/plain' });
       res.write('404 Not Found\n');
       res.end();
       return;
     }
-    const mimeType = mimeTypes[path.extname(filename).split('.')[1]];
+    const mimeType = (<any>mimeTypes)[path.extname(filename).split('.')[1]];
     res.writeHead(200, { 'Content-Type': mimeType });
 
     const fileStream = fs.createReadStream(filename);

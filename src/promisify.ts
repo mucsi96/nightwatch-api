@@ -1,4 +1,7 @@
-export function promisifyApi(api, runQueue: Function) {
+import { Api } from 'nightwatch';
+import NightwatchSection from 'nightwatch/lib/page-object/section';
+
+export function promisifyApi(api: Api, runQueue: Function) {
   let _successCb: Function;
   let _catchCb: Function;
 
@@ -14,12 +17,12 @@ export function promisifyApi(api, runQueue: Function) {
   };
 }
 
-export function promisifyExpect(api, runQueue: Function) {
+export function promisifyExpect(api: Api, runQueue: Function) {
   if (!api.expect) return;
   Object.keys(api.expect).forEach(field => {
-    const originalExpectation = api.expect[field];
+    const originalExpectation = (<any>api.expect)[field];
 
-    api.expect[field] = function() {
+    (<any>api.expect)[field] = function() {
       const result = originalExpectation.apply(this, arguments);
       promisifyApi(result, runQueue);
       return result;
@@ -27,23 +30,23 @@ export function promisifyExpect(api, runQueue: Function) {
   });
 }
 
-export function promisifySection(section, runQueue: Function) {
+export function promisifySection(section: Api, runQueue: Function) {
   promisifyApi(section, runQueue);
   promisifyExpect(section, runQueue);
   if (section.section) {
     Object.keys(section.section).forEach(key => {
-      promisifySection(section.section[key], runQueue);
+      promisifySection((<any>section.section)[key], runQueue);
     });
   }
 }
 
 function promisifyChildPageObjects(page: object, runQueue: Function) {
   Object.keys(page).forEach(key => {
-    if (typeof page[key] !== 'function') {
-      promisifyChildPageObjects(page[key], runQueue);
+    if (typeof (<any>page)[key] !== 'function') {
+      promisifyChildPageObjects((<any>page)[key], runQueue);
     } else {
-      const originalPageCreator = page[key];
-      page[key] = function() {
+      const originalPageCreator = (<any>page)[key];
+      (<any>page)[key] = function() {
         const page = originalPageCreator.call(this);
         promisifySection(page, runQueue);
         return page;
@@ -52,7 +55,7 @@ function promisifyChildPageObjects(page: object, runQueue: Function) {
   });
 }
 
-export function promisifyPageObjects(api, runQueue: Function) {
+export function promisifyPageObjects(api: Api, runQueue: Function) {
   if (api.page) {
     return promisifyChildPageObjects(api.page, runQueue);
   }
