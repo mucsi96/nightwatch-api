@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@types/debug@^0.0.30":
+  version "0.0.30"
+  resolved "https://registry.yarnpkg.com/@types/debug/-/debug-0.0.30.tgz#dc1e40f7af3b9c815013a7860e6252f6352a84df"
+
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
@@ -1927,10 +1931,11 @@ nice-try@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.4.tgz#d93962f6c52f2c1558c0fbda6d512819f1efe1c4"
 
-nightwatch-api@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/nightwatch-api/-/nightwatch-api-0.3.0.tgz#5d7d2d700fc892a18644616cc6bc56f6cddc8914"
+nightwatch-api@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/nightwatch-api/-/nightwatch-api-0.4.0.tgz#feb62d41f81d1fa9f37e6d217bdcd8c9e300dd19"
   dependencies:
+    "@types/debug" "^0.0.30"
     debug "^3.1.0"
     nightwatch "^1.0.6"
 

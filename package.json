@@ -1,6 +1,6 @@
 {
   "name": "nightwatch-api",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "main": "./lib/index.js",
   "types": "./lib/main.d.ts",
   "engines": {
@@ -16,7 +16,7 @@
     "start": "cross-env DEBUG=nightwatch-api babel-node --extensions \".ts,.tsx\" test/server.ts",
     "test": "cross-env DEBUG=nightwatch-api jest --no-cache",
     "coverage": "jest --coverage",
-    "prepublishOnly": "yarn build",
+    "prepublishOnly": "yarn clean && yarn build",
     "debug":
       "cross-env DEBUG=nightwatch-api babel-node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
     "ci": "start-server-and-test http://localhost:3000",
