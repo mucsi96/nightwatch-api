@@ -1,4 +1,4 @@
-import { Page, Api } from 'nightwatch';
+import { Page, Pages, Api } from 'nightwatch';
 
 function getPageProxy(getClient: () => Api, subPages: string[]): () => Api {
   return new Proxy<() => Api>(() => getClientProxy(getClient, subPages), {
@@ -20,17 +20,24 @@ export default function getClientProxy(getClient: () => Api, subPages: string[] 
         }
 
         if (!subPages.length) {
-          return (<any>client)[name];
+          return client[name];
         }
 
-        return (<any>subPages.reduce((api: Page, pageName: string) => {
-          if (!(pageName in api)) {
+        const page: Page = <Page>subPages.reduce((pages: Page | Pages, pageName: string) => {
+          if (!(pageName in pages)) {
             throw new Error(
-              `Not existing page ${pageName}. Available pages are [${Object.keys(api)}]`
+              `Not existing page ${pageName}. Available pages are [${Object.keys(pages)}]`
             );
           }
-          return <Page>(<any>api)[pageName];
-        }, client.page)())[name];
+
+          if (typeof pages === 'function') {
+            return page;
+          }
+
+          return pages[pageName];
+        }, client.page);
+
+        return page()[name];
       }
 
       return getPageProxy(getClient, []);

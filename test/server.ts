@@ -5,7 +5,11 @@ import fs from 'fs';
 import { log } from '../src/logger';
 import { startWebDriver, stopWebDriver } from '../src';
 
-const mimeTypes = {
+type MimeTypes = {
+  [key: string]: string;
+};
+
+const mimeTypes: MimeTypes = {
   html: 'text/html',
   jpeg: 'image/jpeg',
   jpg: 'image/jpeg',
@@ -35,7 +39,7 @@ const server = http.createServer((req, res) => {
       res.end();
       return;
     }
-    const mimeType = (<any>mimeTypes)[path.extname(filename).split('.')[1]];
+    const mimeType = mimeTypes[path.extname(filename).split('.')[1]];
     res.writeHead(200, { 'Content-Type': mimeType });
 
     const fileStream = fs.createReadStream(filename);
@@ -44,14 +48,12 @@ const server = http.createServer((req, res) => {
 });
 
 if (process.platform === 'win32') {
-  var rl = require('readline').createInterface({
+  const rl = require('readline').createInterface({
     input: process.stdin,
     output: process.stdout
   });
 
-  rl.on('SIGINT', function() {
-    process.emit('SIGINT');
-  });
+  rl.on('SIGINT', () => process.emit('SIGINT'));
 }
 
 (async function() {

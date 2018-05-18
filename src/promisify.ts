@@ -1,4 +1,4 @@
-import { Api } from 'nightwatch';
+import { Api, Page, Pages } from 'nightwatch';
 
 export function promisifyApi(api: Api, runQueue: Function) {
   let onSuccess: Function;
@@ -19,9 +19,9 @@ export function promisifyApi(api: Api, runQueue: Function) {
 export function promisifyExpect(api: Api, runQueue: Function) {
   if (!api.expect) return;
   Object.keys(api.expect).forEach(field => {
-    const originalExpectation = (<any>api.expect)[field];
+    const originalExpectation = api.expect[field];
 
-    (<any>api.expect)[field] = function() {
+    api.expect[field] = function() {
       const result = originalExpectation.apply(this, arguments);
       promisifyApi(result, runQueue);
       return result;
@@ -34,18 +34,18 @@ export function promisifySection(section: Api, runQueue: Function) {
   promisifyExpect(section, runQueue);
   if (section.section) {
     Object.keys(section.section).forEach(key => {
-      promisifySection((<any>section.section)[key], runQueue);
+      promisifySection(section.section[key], runQueue);
     });
   }
 }
 
-function promisifyChildPageObjects(page: object, runQueue: Function) {
+function promisifyChildPageObjects(page: Pages, runQueue: Function) {
   Object.keys(page).forEach(key => {
-    if (typeof (<any>page)[key] !== 'function') {
-      promisifyChildPageObjects((<any>page)[key], runQueue);
+    if (typeof page[key] !== 'function') {
+      promisifyChildPageObjects(<Pages>page[key], runQueue);
     } else {
-      const originalPageCreator = (<any>page)[key];
-      (<any>page)[key] = function() {
+      const originalPageCreator = <Page>page[key];
+      page[key] = function() {
         const page = originalPageCreator.call(this);
         promisifySection(page, runQueue);
         return page;
