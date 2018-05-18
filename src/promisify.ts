@@ -1,19 +1,18 @@
 import { Api } from 'nightwatch';
-import NightwatchSection from 'nightwatch/lib/page-object/section';
 
 export function promisifyApi(api: Api, runQueue: Function) {
-  let _successCb: Function;
-  let _catchCb: Function;
+  let onSuccess: Function;
+  let onCatch: Function;
 
   api.catch = (catchCb: Function) => {
-    if (catchCb) _catchCb = catchCb;
+    if (catchCb) onCatch = catchCb;
   };
   api.then = (successCb: Function, catchCb: Function) => {
-    if (successCb) _successCb = successCb;
-    if (catchCb) _catchCb = catchCb;
+    if (successCb) onSuccess = successCb;
+    if (catchCb) onCatch = catchCb;
     return runQueue()
-      .then(_successCb)
-      .catch(_catchCb);
+      .then(onSuccess)
+      .catch(onCatch);
   };
 }
 
