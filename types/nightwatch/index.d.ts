@@ -1,4 +1,4 @@
-import Section from 'nightwatch/lib/page-object/section';
+import Section from './lib/page-object/section';
 
 interface SeleniumSettings {
   start_process: boolean;

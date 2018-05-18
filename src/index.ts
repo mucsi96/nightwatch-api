@@ -1,8 +1,8 @@
 import { createSession as createNightwatchSession, runQueue } from './client';
 import { promisifyApi, promisifySection, promisifyExpect, promisifyPageObjects } from './promisify';
 import proxy from './proxy';
-import section from 'nightwatch/lib/page-object/section';
 import { Api } from 'nightwatch';
+import section from 'nightwatch/lib/page-object/section';
 
 let nightwatchClient: Api;
 
