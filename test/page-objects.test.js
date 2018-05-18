@@ -1,4 +1,4 @@
-const { client } = require('../src');
+import { client } from '../src';
 
 const notExistingPage = client.page.notExistingPage();
 const calculatorWithClientInCustomCommand = client.page.calculatorWithClientInCustomCommand();

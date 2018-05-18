@@ -1,7 +1,8 @@
 {
   "name": "nightwatch-api",
-  "version": "0.3.0",
-  "main": "src/index.js",
+  "version": "0.4.0",
+  "main": "./lib/index.js",
+  "types": "./lib/main.d.ts",
   "engines": {
     "node": ">= 8.0.0"
   },
@@ -9,36 +10,52 @@
   "author": "Igor Mucsicska <mucsi_96@yahoo.com>",
   "license": "MIT",
   "scripts": {
-    "start": "cross-env DEBUG=nightwatch-api node test/server.js",
-    "test": "cross-env DEBUG=nightwatch-api jest",
+    "clean": "del-cli lib",
+    "build": "tsc --emitDeclarationOnly && babel src --out-dir lib --extensions \".ts,.tsx\"",
+    "type-check": "tsc --noEmit",
+    "start": "cross-env DEBUG=nightwatch-api babel-node --extensions \".ts,.tsx\" test/server.ts",
+    "test": "cross-env DEBUG=nightwatch-api jest --no-cache",
+    "coverage": "jest --coverage",
+    "prepublishOnly": "yarn clean && yarn build",
     "debug":
-      "cross-env DEBUG=nightwatch-api node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
+      "cross-env DEBUG=nightwatch-api babel-node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
     "ci": "start-server-and-test http://localhost:3000",
-    "lint": "eslint src",
-    "precommit": "lint-staged"
+    "lint": "tslint 'src/**/*.{ts,tsx}'",
+    "precommit": "pretty-quick --staged"
   },
   "dependencies": {
     "debug": "^3.1.0",
+    "@types/debug": "^0.0.30",
     "nightwatch": "^1.0.6"
   },
   "devDependencies": {
-    "babel-eslint": "^8.2.3",
+    "@babel/cli": "^7.0.0-beta.47",
+    "@babel/core": "^7.0.0-beta.47",
+    "@babel/node": "^7.0.0-beta.47",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.47",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.47",
+    "@babel/preset-env": "^7.0.0-beta.47",
+    "@babel/preset-typescript": "^7.0.0-beta.47",
+    "@babel/register": "^7.0.0-beta.47",
+    "@types/jest": "^22.2.3",
+    "@types/node": "^10.1.1",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^22.4.4",
     "chai": "^4.1.2",
     "chromedriver": "2.38.3",
     "cross-env": "^5.1.5",
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.11.0",
+    "del-cli": "^1.1.0",
     "geckodriver": "1.11.0",
     "husky": "^0.14.3",
-    "jest": "^22.4.3",
-    "lint-staged": "^7.1.0",
+    "jest": "^22.4.4",
     "prettier": "1.12.1",
-    "selenium-server": "3.11.0",
+    "pretty-quick": "^1.5.0",
+    "selenium-server": "3.12.0",
     "start-server-and-test": "^1.4.1",
+    "tslint": "^5.10.0",
+    "tslint-config-airbnb": "^5.8.0",
+    "tslint-config-prettier": "^1.12.0",
+    "typescript": "^2.8.3",
     "wait-on": "^2.1.0"
-  },
-  "lint-staged": {
-    "*.{js,json,css,md}": ["prettier --write", "git add"]
   }
 }

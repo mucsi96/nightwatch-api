@@ -1,11 +1,15 @@
-const http = require('http');
-const url = require('url');
-const path = require('path');
-const fs = require('fs');
-const { log } = require('../src/logger');
-const { startWebDriver, stopWebDriver } = require('../src');
+import http from 'http';
+import url from 'url';
+import path from 'path';
+import fs from 'fs';
+import { log } from '../src/logger';
+import { startWebDriver, stopWebDriver } from '../src';
 
-const mimeTypes = {
+type MimeTypes = {
+  [key: string]: string;
+};
+
+const mimeTypes: MimeTypes = {
   html: 'text/html',
   jpeg: 'image/jpeg',
   jpg: 'image/jpeg',
@@ -15,12 +19,20 @@ const mimeTypes = {
 };
 
 const server = http.createServer((req, res) => {
+  if (!req.url) {
+    return;
+  }
+
   let uri = url.parse(req.url).pathname;
+
+  if (!uri) {
+    return;
+  }
 
   if (uri === '/') uri = '/test-app.html';
 
   const filename = path.join(__dirname, uri);
-  fs.exists(filename, exists => {
+  fs.exists(filename, (exists: boolean) => {
     if (!exists) {
       res.writeHead(404, { 'Content-Type': 'text/plain' });
       res.write('404 Not Found\n');
@@ -36,14 +48,12 @@ const server = http.createServer((req, res) => {
 });
 
 if (process.platform === 'win32') {
-  var rl = require('readline').createInterface({
+  const rl = require('readline').createInterface({
     input: process.stdin,
     output: process.stdout
   });
 
-  rl.on('SIGINT', function() {
-    process.emit('SIGINT');
-  });
+  rl.on('SIGINT', () => process.emit('SIGINT'));
 }
 
 (async function() {

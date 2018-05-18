@@ -1,18 +1,22 @@
-function promisifyApi(api, runQueue) {
-  let _successCb, _catchCb;
-  api.catch = catchCb => {
-    if (catchCb) _catchCb = catchCb;
+import { Api, Page, Pages } from 'nightwatch';
+
+export function promisifyApi(api: Api, runQueue: Function) {
+  let onSuccess: Function;
+  let onCatch: Function;
+
+  api.catch = (catchCb: Function) => {
+    if (catchCb) onCatch = catchCb;
   };
-  api.then = (successCb, catchCb) => {
-    if (successCb) _successCb = successCb;
-    if (catchCb) _catchCb = catchCb;
+  api.then = (successCb: Function, catchCb: Function) => {
+    if (successCb) onSuccess = successCb;
+    if (catchCb) onCatch = catchCb;
     return runQueue()
-      .then(_successCb)
-      .catch(_catchCb);
+      .then(onSuccess)
+      .catch(onCatch);
   };
 }
 
-function promisifyExpect(api, runQueue) {
+export function promisifyExpect(api: Api, runQueue: Function) {
   if (!api.expect) return;
   Object.keys(api.expect).forEach(field => {
     const originalExpectation = api.expect[field];
@@ -25,7 +29,7 @@ function promisifyExpect(api, runQueue) {
   });
 }
 
-function promisifySection(section, runQueue) {
+export function promisifySection(section: Api, runQueue: Function) {
   promisifyApi(section, runQueue);
   promisifyExpect(section, runQueue);
   if (section.section) {
@@ -35,12 +39,12 @@ function promisifySection(section, runQueue) {
   }
 }
 
-function promisifyChildPageObjects(page, runQueue) {
+function promisifyChildPageObjects(page: Pages, runQueue: Function) {
   Object.keys(page).forEach(key => {
     if (typeof page[key] !== 'function') {
-      promisifyChildPageObjects(page[key], runQueue);
+      promisifyChildPageObjects(<Pages>page[key], runQueue);
     } else {
-      const originalPageCreator = page[key];
+      const originalPageCreator = <Page>page[key];
       page[key] = function() {
         const page = originalPageCreator.call(this);
         promisifySection(page, runQueue);
@@ -50,15 +54,8 @@ function promisifyChildPageObjects(page, runQueue) {
   });
 }
 
-function promisifyPageObjects(api, runQueue) {
+export function promisifyPageObjects(api: Api, runQueue: Function) {
   if (api.page) {
     return promisifyChildPageObjects(api.page, runQueue);
   }
 }
-
-module.exports = {
-  promisifyApi,
-  promisifySection,
-  promisifyExpect,
-  promisifyPageObjects
-};
