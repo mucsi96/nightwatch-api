@@ -2,25 +2,27 @@ const path = require('path');
 const webpack = require('webpack');
 const StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin');
 
+const entryPath = path.resolve(__dirname, 'index.js');
+const distPath = path.resolve(__dirname, '../site-dist');
+
 module.exports = {
   mode: process.env.WEBPACK_SERVE ? 'development' : 'production',
-  entry: path.resolve(__dirname, 'index.js'),
+  entry: entryPath,
   output: {
     filename: 'index.js',
-    path: path.resolve(__dirname, '../site-dist'),
+    path: distPath,
     libraryTarget: 'umd',
     globalObject: 'this'
   },
   serve: {
-    content: path.resolve(__dirname, '../site-dist'),
+    content: distPath,
     hot: false
   },
   plugins: [
-    new webpack.NamedModulesPlugin(),
     new StaticSiteGeneratorPlugin({
       crawl: true,
       locals: {
-        title: 'Hello'
+        title: 'nightwatch-api'
       }
     })
   ],
