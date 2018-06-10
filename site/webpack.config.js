@@ -11,8 +11,7 @@ module.exports = {
   output: {
     filename: 'index.js',
     path: distPath,
-    libraryTarget: 'umd',
-    globalObject: 'this'
+    libraryTarget: 'commonjs2'
   },
   serve: {
     content: distPath,
