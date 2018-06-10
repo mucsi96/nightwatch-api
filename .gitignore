@@ -59,5 +59,6 @@ typings/
 # dotenv environment variables file
 .env
 
-doc
+/doc
+/site-dist
 

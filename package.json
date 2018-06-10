@@ -22,7 +22,9 @@
     "ci": "start-server-and-test http://localhost:3000",
     "lint": "tslint 'src/**/*.{ts,tsx}'",
     "precommit": "pretty-quick --staged",
-    "build:doc": "typedoc --json typedoc.json --mode modules src/index.ts"
+    "build:doc": "typedoc --json typedoc.json --mode modules src/index.ts",
+    "build:site":
+      "babel-node ./node_modules/webpack/bin/webpack.js --config ./site/webpack.config.js --mode=production"
   },
   "dependencies": {
     "debug": "^3.1.0",
@@ -36,12 +38,14 @@
     "@babel/plugin-proposal-class-properties": "^7.0.0-beta.47",
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.47",
     "@babel/preset-env": "^7.0.0-beta.47",
+    "@babel/preset-react": "^7.0.0-beta.49",
     "@babel/preset-typescript": "^7.0.0-beta.47",
     "@babel/register": "^7.0.0-beta.47",
     "@types/jest": "^22.2.3",
     "@types/node": "^10.1.1",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^22.4.4",
+    "babel-loader": "^8.0.0-beta.3",
     "chai": "^4.1.2",
     "chromedriver": "2.38.3",
     "cross-env": "^5.1.5",
@@ -51,13 +55,19 @@
     "jest": "^22.4.4",
     "prettier": "1.12.1",
     "pretty-quick": "^1.5.0",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "react-router": "^4.3.1",
     "selenium-server": "3.12.0",
     "start-server-and-test": "^1.4.1",
+    "static-site-generator-webpack-plugin": "^3.4.1",
     "tslint": "^5.10.0",
     "tslint-config-airbnb": "^5.8.0",
     "tslint-config-prettier": "^1.12.0",
     "typedoc": "^0.11.1",
     "typescript": "^2.8.3",
-    "wait-on": "^2.1.0"
+    "wait-on": "^2.1.0",
+    "webpack": "^4.12.0",
+    "webpack-cli": "^3.0.3"
   }
 }
