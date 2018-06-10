@@ -1,0 +1,1204 @@
+{
+  "id": 0,
+  "name": "nightwatch-api",
+  "kind": 0,
+  "flags": {},
+  "children": [
+    {
+      "id": 3,
+      "name": "\"client\"",
+      "kind": 1,
+      "kindString": "External module",
+      "flags": {
+        "isExported": true,
+        "isExternal": true
+      },
+      "originalName": "C:/Users/Igor/repos/nightwatch-api/src/client.ts",
+      "children": [
+        {
+          "id": 5,
+          "name": "client",
+          "kind": 32,
+          "kindString": "Variable",
+          "flags": {
+            "isExternal": true,
+            "isLet": true
+          },
+          "sources": [
+            {
+              "fileName": "client.ts",
+              "line": 7,
+              "character": 10
+            }
+          ],
+          "type": {
+            "type": "reference",
+            "name": "Client"
+          }
+        },
+        {
+          "id": 4,
+          "name": "runner",
+          "kind": 32,
+          "kindString": "Variable",
+          "flags": {
+            "isExternal": true,
+            "isLet": true
+          },
+          "sources": [
+            {
+              "fileName": "client.ts",
+              "line": 6,
+              "character": 10
+            }
+          ],
+          "type": {
+            "type": "reference",
+            "name": "CliRunnerInstance"
+          }
+        },
+        {
+          "id": 17,
+          "name": "closeSession",
+          "kind": 64,
+          "kindString": "Function",
+          "flags": {
+            "isExported": true,
+            "isExternal": true
+          },
+          "signatures": [
+            {
+              "id": 18,
+              "name": "closeSession",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "type": {
+                "type": "reference",
+                "name": "Promise",
+                "typeArguments": [
+                  {
+                    "type": "intrinsic",
+                    "name": "void"
+                  }
+                ]
+              }
+            }
+          ],
+          "sources": [
+            {
+              "fileName": "client.ts",
+              "line": 51,
+              "character": 34
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "name": "createRunner",
+          "kind": 64,
+          "kindString": "Function",
+          "flags": {
+            "isExternal": true
+          },
+          "signatures": [
+            {
+              "id": 7,
+              "name": "createRunner",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "parameters": [
+                {
+                  "id": 8,
+                  "name": "env",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {},
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  },
+                  "defaultValue": "\"default\""
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "name": "CliRunnerInstance"
+              }
+            }
+          ],
+          "sources": [
+            {
+              "fileName": "client.ts",
+              "line": 9,
+              "character": 21
+            }
+          ]
+        },
+        {
+          "id": 14,
+          "name": "createSession",
+          "kind": 64,
+          "kindString": "Function",
+          "flags": {
+            "isExported": true,
+            "isExternal": true
+          },
+          "signatures": [
+            {
+              "id": 15,
+              "name": "createSession",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "parameters": [
+                {
+                  "id": 16,
+                  "name": "env",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "type": {
+                    "type": "union",
+                    "types": [
+                      {
+                        "type": "intrinsic",
+                        "name": "undefined"
+                      },
+                      {
+                        "type": "intrinsic",
+                        "name": "string"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "name": "Promise",
+                "typeArguments": [
+                  {
+                    "type": "reference",
+                    "name": "Api"
+                  }
+                ]
+              }
+            }
+          ],
+          "sources": [
+            {
+              "fileName": "client.ts",
+              "line": 42,
+              "character": 35
+            }
+          ]
+        },
+        {
+          "id": 19,
+          "name": "runQueue",
+          "kind": 64,
+          "kindString": "Function",
+          "flags": {
+            "isExported": true,
+            "isExternal": true
+          },
+          "signatures": [
+            {
+              "id": 20,
+              "name": "runQueue",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "type": {
+                "type": "reference",
+                "name": "Promise",
+                "typeArguments": [
+                  {
+                    "type": "intrinsic",
+                    "name": "void"
+                  }
+                ]
+              }
+            }
+          ],
+          "sources": [
+            {
+              "fileName": "client.ts",
+              "line": 59,
+              "character": 30
+            }
+          ]
+        },
+        {
+          "id": 9,
+          "name": "startWebDriver",
+          "kind": 64,
+          "kindString": "Function",
+          "flags": {
+            "isExported": true,
+            "isExternal": true
+          },
+          "signatures": [
+            {
+              "id": 10,
+              "name": "startWebDriver",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "comment": {
+                "shortText": "Start WebDriver"
+              },
+              "parameters": [
+                {
+                  "id": 11,
+                  "name": "env",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {
+                    "isOptional": true
+                  },
+                  "comment": {
+                    "text": "Nightwatch environment\n"
+                  },
+                  "type": {
+                    "type": "union",
+                    "types": [
+                      {
+                        "type": "intrinsic",
+                        "name": "undefined"
+                      },
+                      {
+                        "type": "intrinsic",
+                        "name": "string"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "name": "Promise",
+                "typeArguments": [
+                  {
+                    "type": "intrinsic",
+                    "name": "void"
+                  }
+                ]
+              }
+            }
+          ],
+          "sources": [
+            {
+              "fileName": "client.ts",
+              "line": 31,
+              "character": 36
+            }
+          ]
+        },
+        {
+          "id": 12,
+          "name": "stopWebDriver",
+          "kind": 64,
+          "kindString": "Function",
+          "flags": {
+            "isExported": true,
+            "isExternal": true
+          },
+          "signatures": [
+            {
+              "id": 13,
+              "name": "stopWebDriver",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "type": {
+                "type": "reference",
+                "name": "Promise",
+                "typeArguments": [
+                  {
+                    "type": "intrinsic",
+                    "name": "void"
+                  }
+                ]
+              }
+            }
+          ],
+          "sources": [
+            {
+              "fileName": "client.ts",
+              "line": 37,
+              "character": 35
+            }
+          ]
+        }
+      ],
+      "groups": [
+        {
+          "title": "Variables",
+          "kind": 32,
+          "children": [5, 4]
+        },
+        {
+          "title": "Functions",
+          "kind": 64,
+          "children": [17, 6, 14, 19, 9, 12]
+        }
+      ],
+      "sources": [
+        {
+          "fileName": "client.ts",
+          "line": 1,
+          "character": 0
+        }
+      ]
+    },
+    {
+      "id": 57,
+      "name": "\"index\"",
+      "kind": 1,
+      "kindString": "External module",
+      "flags": {
+        "isExported": true
+      },
+      "originalName": "C:/Users/Igor/repos/nightwatch-api/src/index.ts",
+      "children": [
+        {
+          "id": 58,
+          "name": "Section",
+          "kind": 128,
+          "kindString": "Class",
+          "flags": {
+            "isExported": true
+          },
+          "indexSignature": {
+            "id": 64,
+            "name": "__index",
+            "kind": 8192,
+            "kindString": "Index signature",
+            "flags": {},
+            "parameters": [
+              {
+                "id": 65,
+                "name": "key",
+                "kind": 32768,
+                "kindString": "Parameter",
+                "flags": {},
+                "type": {
+                  "type": "intrinsic",
+                  "name": "string"
+                }
+              }
+            ],
+            "type": {
+              "type": "reference",
+              "name": "Api"
+            }
+          },
+          "children": [
+            {
+              "id": 59,
+              "name": "constructor",
+              "kind": 512,
+              "kindString": "Constructor",
+              "flags": {
+                "isExported": true
+              },
+              "signatures": [
+                {
+                  "id": 60,
+                  "name": "new Section",
+                  "kind": 16384,
+                  "kindString": "Constructor signature",
+                  "flags": {},
+                  "parameters": [
+                    {
+                      "id": 61,
+                      "name": "definition",
+                      "kind": 32768,
+                      "kindString": "Parameter",
+                      "flags": {},
+                      "type": {
+                        "type": "intrinsic",
+                        "name": "object"
+                      }
+                    },
+                    {
+                      "id": 62,
+                      "name": "options",
+                      "kind": 32768,
+                      "kindString": "Parameter",
+                      "flags": {},
+                      "type": {
+                        "type": "intrinsic",
+                        "name": "object"
+                      }
+                    }
+                  ],
+                  "type": {
+                    "type": "reference",
+                    "name": "Section",
+                    "id": 58
+                  },
+                  "overwrites": {
+                    "type": "reference",
+                    "name": "Section.__constructor"
+                  }
+                }
+              ],
+              "sources": [
+                {
+                  "fileName": "index.ts",
+                  "line": 20,
+                  "character": 38
+                }
+              ],
+              "overwrites": {
+                "type": "reference",
+                "name": "Section.__constructor"
+              }
+            },
+            {
+              "id": 63,
+              "name": "api",
+              "kind": 1024,
+              "kindString": "Property",
+              "flags": {
+                "isExported": true
+              },
+              "sources": [
+                {
+                  "fileName":
+                    "C:/Users/Igor/repos/nightwatch-api/types/nightwatch/lib/page-object/section.d.ts",
+                  "line": 5,
+                  "character": 5
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "name": "Api"
+              },
+              "inheritedFrom": {
+                "type": "reference",
+                "name": "Section.api"
+              }
+            }
+          ],
+          "groups": [
+            {
+              "title": "Constructors",
+              "kind": 512,
+              "children": [59]
+            },
+            {
+              "title": "Properties",
+              "kind": 1024,
+              "children": [63]
+            }
+          ],
+          "sources": [
+            {
+              "fileName": "index.ts",
+              "line": 20,
+              "character": 20
+            }
+          ],
+          "extendedTypes": [
+            {
+              "type": "reference",
+              "name": "Section"
+            }
+          ]
+        },
+        {
+          "id": 70,
+          "name": "client",
+          "kind": 32,
+          "kindString": "Variable",
+          "flags": {
+            "isExported": true,
+            "isConst": true
+          },
+          "sources": [
+            {
+              "fileName": "index.ts",
+              "line": 18,
+              "character": 19
+            }
+          ],
+          "type": {
+            "type": "reference",
+            "name": "Api"
+          },
+          "defaultValue": " proxy(() => nightwatchClient)"
+        },
+        {
+          "id": 66,
+          "name": "nightwatchClient",
+          "kind": 32,
+          "kindString": "Variable",
+          "flags": {
+            "isLet": true
+          },
+          "sources": [
+            {
+              "fileName": "index.ts",
+              "line": 7,
+              "character": 20
+            }
+          ],
+          "type": {
+            "type": "reference",
+            "name": "Api"
+          }
+        },
+        {
+          "id": 67,
+          "name": "createSession",
+          "kind": 64,
+          "kindString": "Function",
+          "flags": {
+            "isExported": true
+          },
+          "signatures": [
+            {
+              "id": 68,
+              "name": "createSession",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "parameters": [
+                {
+                  "id": 69,
+                  "name": "env",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {},
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "name": "Promise",
+                "typeArguments": [
+                  {
+                    "type": "intrinsic",
+                    "name": "void"
+                  }
+                ]
+              }
+            }
+          ],
+          "sources": [
+            {
+              "fileName": "index.ts",
+              "line": 11,
+              "character": 35
+            }
+          ]
+        }
+      ],
+      "groups": [
+        {
+          "title": "Classes",
+          "kind": 128,
+          "children": [58]
+        },
+        {
+          "title": "Variables",
+          "kind": 32,
+          "children": [70, 66]
+        },
+        {
+          "title": "Functions",
+          "kind": 64,
+          "children": [67]
+        }
+      ],
+      "sources": [
+        {
+          "fileName": "index.ts",
+          "line": 1,
+          "character": 0
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "name": "\"logger\"",
+      "kind": 1,
+      "kindString": "External module",
+      "flags": {
+        "isExported": true,
+        "isExternal": true
+      },
+      "originalName": "C:/Users/Igor/repos/nightwatch-api/src/logger.ts",
+      "children": [
+        {
+          "id": 2,
+          "name": "log",
+          "kind": 32,
+          "kindString": "Variable",
+          "flags": {
+            "isExported": true,
+            "isExternal": true,
+            "isConst": true
+          },
+          "sources": [
+            {
+              "fileName": "logger.ts",
+              "line": 3,
+              "character": 16
+            }
+          ],
+          "type": {
+            "type": "reference",
+            "name": "IDebugger"
+          },
+          "defaultValue": " debug('nightwatch-api')"
+        }
+      ],
+      "groups": [
+        {
+          "title": "Variables",
+          "kind": 32,
+          "children": [2]
+        }
+      ],
+      "sources": [
+        {
+          "fileName": "logger.ts",
+          "line": 1,
+          "character": 0
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "name": "\"promisify\"",
+      "kind": 1,
+      "kindString": "External module",
+      "flags": {
+        "isExported": true,
+        "isExternal": true
+      },
+      "originalName": "C:/Users/Igor/repos/nightwatch-api/src/promisify.ts",
+      "children": [
+        {
+          "id": 22,
+          "name": "promisifyApi",
+          "kind": 64,
+          "kindString": "Function",
+          "flags": {
+            "isExported": true,
+            "isExternal": true
+          },
+          "signatures": [
+            {
+              "id": 23,
+              "name": "promisifyApi",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "parameters": [
+                {
+                  "id": 24,
+                  "name": "api",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {},
+                  "type": {
+                    "type": "reference",
+                    "name": "Api"
+                  }
+                },
+                {
+                  "id": 25,
+                  "name": "runQueue",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {},
+                  "type": {
+                    "type": "reference",
+                    "name": "Function"
+                  }
+                }
+              ],
+              "type": {
+                "type": "intrinsic",
+                "name": "void"
+              }
+            }
+          ],
+          "sources": [
+            {
+              "fileName": "promisify.ts",
+              "line": 3,
+              "character": 28
+            }
+          ]
+        },
+        {
+          "id": 34,
+          "name": "promisifyChildPageObjects",
+          "kind": 64,
+          "kindString": "Function",
+          "flags": {
+            "isExternal": true
+          },
+          "signatures": [
+            {
+              "id": 35,
+              "name": "promisifyChildPageObjects",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "parameters": [
+                {
+                  "id": 36,
+                  "name": "page",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {},
+                  "type": {
+                    "type": "reference",
+                    "name": "Pages"
+                  }
+                },
+                {
+                  "id": 37,
+                  "name": "runQueue",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {},
+                  "type": {
+                    "type": "reference",
+                    "name": "Function"
+                  }
+                }
+              ],
+              "type": {
+                "type": "intrinsic",
+                "name": "void"
+              }
+            }
+          ],
+          "sources": [
+            {
+              "fileName": "promisify.ts",
+              "line": 42,
+              "character": 34
+            }
+          ]
+        },
+        {
+          "id": 26,
+          "name": "promisifyExpect",
+          "kind": 64,
+          "kindString": "Function",
+          "flags": {
+            "isExported": true,
+            "isExternal": true
+          },
+          "signatures": [
+            {
+              "id": 27,
+              "name": "promisifyExpect",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "parameters": [
+                {
+                  "id": 28,
+                  "name": "api",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {},
+                  "type": {
+                    "type": "reference",
+                    "name": "Api"
+                  }
+                },
+                {
+                  "id": 29,
+                  "name": "runQueue",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {},
+                  "type": {
+                    "type": "reference",
+                    "name": "Function"
+                  }
+                }
+              ],
+              "type": {
+                "type": "intrinsic",
+                "name": "void"
+              }
+            }
+          ],
+          "sources": [
+            {
+              "fileName": "promisify.ts",
+              "line": 19,
+              "character": 31
+            }
+          ]
+        },
+        {
+          "id": 38,
+          "name": "promisifyPageObjects",
+          "kind": 64,
+          "kindString": "Function",
+          "flags": {
+            "isExported": true,
+            "isExternal": true
+          },
+          "signatures": [
+            {
+              "id": 39,
+              "name": "promisifyPageObjects",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "parameters": [
+                {
+                  "id": 40,
+                  "name": "api",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {},
+                  "type": {
+                    "type": "reference",
+                    "name": "Api"
+                  }
+                },
+                {
+                  "id": 41,
+                  "name": "runQueue",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {},
+                  "type": {
+                    "type": "reference",
+                    "name": "Function"
+                  }
+                }
+              ],
+              "type": {
+                "type": "intrinsic",
+                "name": "void"
+              }
+            }
+          ],
+          "sources": [
+            {
+              "fileName": "promisify.ts",
+              "line": 57,
+              "character": 36
+            }
+          ]
+        },
+        {
+          "id": 30,
+          "name": "promisifySection",
+          "kind": 64,
+          "kindString": "Function",
+          "flags": {
+            "isExported": true,
+            "isExternal": true
+          },
+          "signatures": [
+            {
+              "id": 31,
+              "name": "promisifySection",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "parameters": [
+                {
+                  "id": 32,
+                  "name": "section",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {},
+                  "type": {
+                    "type": "reference",
+                    "name": "Api"
+                  }
+                },
+                {
+                  "id": 33,
+                  "name": "runQueue",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {},
+                  "type": {
+                    "type": "reference",
+                    "name": "Function"
+                  }
+                }
+              ],
+              "type": {
+                "type": "intrinsic",
+                "name": "void"
+              }
+            }
+          ],
+          "sources": [
+            {
+              "fileName": "promisify.ts",
+              "line": 32,
+              "character": 32
+            }
+          ]
+        }
+      ],
+      "groups": [
+        {
+          "title": "Functions",
+          "kind": 64,
+          "children": [22, 34, 26, 38, 30]
+        }
+      ],
+      "sources": [
+        {
+          "fileName": "promisify.ts",
+          "line": 1,
+          "character": 0
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "name": "\"proxy\"",
+      "kind": 1,
+      "kindString": "External module",
+      "flags": {
+        "isExported": true,
+        "isExternal": true
+      },
+      "originalName": "C:/Users/Igor/repos/nightwatch-api/src/proxy.ts",
+      "children": [
+        {
+          "id": 51,
+          "name": "getClientProxy",
+          "kind": 64,
+          "kindString": "Function",
+          "flags": {
+            "isExported": true,
+            "isExternal": true
+          },
+          "signatures": [
+            {
+              "id": 52,
+              "name": "getClientProxy",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "parameters": [
+                {
+                  "id": 53,
+                  "name": "getClient",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {},
+                  "type": {
+                    "type": "reflection",
+                    "declaration": {
+                      "id": 54,
+                      "name": "__type",
+                      "kind": 65536,
+                      "kindString": "Type literal",
+                      "flags": {},
+                      "signatures": [
+                        {
+                          "id": 55,
+                          "name": "__call",
+                          "kind": 4096,
+                          "kindString": "Call signature",
+                          "flags": {},
+                          "type": {
+                            "type": "reference",
+                            "name": "Api"
+                          }
+                        }
+                      ],
+                      "sources": [
+                        {
+                          "fileName": "proxy.ts",
+                          "line": 9,
+                          "character": 49
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "id": 56,
+                  "name": "subPages",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {},
+                  "type": {
+                    "type": "array",
+                    "elementType": {
+                      "type": "intrinsic",
+                      "name": "string"
+                    }
+                  },
+                  "defaultValue": " []"
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "name": "Api"
+              }
+            }
+          ],
+          "sources": [
+            {
+              "fileName": "proxy.ts",
+              "line": 9,
+              "character": 38
+            }
+          ]
+        },
+        {
+          "id": 43,
+          "name": "getPageProxy",
+          "kind": 64,
+          "kindString": "Function",
+          "flags": {
+            "isExternal": true
+          },
+          "signatures": [
+            {
+              "id": 44,
+              "name": "getPageProxy",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "parameters": [
+                {
+                  "id": 45,
+                  "name": "getClient",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {},
+                  "type": {
+                    "type": "reflection",
+                    "declaration": {
+                      "id": 46,
+                      "name": "__type",
+                      "kind": 65536,
+                      "kindString": "Type literal",
+                      "flags": {},
+                      "signatures": [
+                        {
+                          "id": 47,
+                          "name": "__call",
+                          "kind": 4096,
+                          "kindString": "Call signature",
+                          "flags": {},
+                          "type": {
+                            "type": "reference",
+                            "name": "Api"
+                          }
+                        }
+                      ],
+                      "sources": [
+                        {
+                          "fileName": "proxy.ts",
+                          "line": 3,
+                          "character": 32
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "id": 48,
+                  "name": "subPages",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {},
+                  "type": {
+                    "type": "array",
+                    "elementType": {
+                      "type": "intrinsic",
+                      "name": "string"
+                    }
+                  }
+                }
+              ],
+              "type": {
+                "type": "reflection",
+                "declaration": {
+                  "id": 49,
+                  "name": "__type",
+                  "kind": 65536,
+                  "kindString": "Type literal",
+                  "flags": {},
+                  "signatures": [
+                    {
+                      "id": 50,
+                      "name": "__call",
+                      "kind": 4096,
+                      "kindString": "Call signature",
+                      "flags": {},
+                      "type": {
+                        "type": "reference",
+                        "name": "Api"
+                      }
+                    }
+                  ],
+                  "sources": [
+                    {
+                      "fileName": "proxy.ts",
+                      "line": 3,
+                      "character": 64
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "sources": [
+            {
+              "fileName": "proxy.ts",
+              "line": 3,
+              "character": 21
+            }
+          ]
+        }
+      ],
+      "groups": [
+        {
+          "title": "Functions",
+          "kind": 64,
+          "children": [51, 43]
+        }
+      ],
+      "sources": [
+        {
+          "fileName": "proxy.ts",
+          "line": 1,
+          "character": 0
+        }
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "title": "External modules",
+      "kind": 1,
+      "children": [3, 57, 1, 21, 42]
+    }
+  ]
+}

@@ -1,4 +1,11 @@
-import { CliRunner, CliRunnerInstance, client as createClient, Client, AssertionError, Api } from 'nightwatch';
+import {
+  CliRunner,
+  CliRunnerInstance,
+  client as createClient,
+  Client,
+  AssertionError,
+  Api
+} from 'nightwatch';
 import fs from 'fs';
 import path from 'path';
 import { log } from './logger';
@@ -24,6 +31,10 @@ function createRunner(env: string = 'default') {
   return runner;
 }
 
+/**
+ * Start WebDriver
+ * @param env Nightwatch environment
+ */
 export async function startWebDriver(env?: string) {
   createRunner(env);
   await runner.startWebDriver();

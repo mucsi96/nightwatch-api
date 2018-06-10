@@ -21,7 +21,8 @@
       "cross-env DEBUG=nightwatch-api babel-node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
     "ci": "start-server-and-test http://localhost:3000",
     "lint": "tslint 'src/**/*.{ts,tsx}'",
-    "precommit": "pretty-quick --staged"
+    "precommit": "pretty-quick --staged",
+    "build:doc": "typedoc --json typedoc.json --mode modules src/index.ts"
   },
   "dependencies": {
     "debug": "^3.1.0",
@@ -55,6 +56,7 @@
     "tslint": "^5.10.0",
     "tslint-config-airbnb": "^5.8.0",
     "tslint-config-prettier": "^1.12.0",
+    "typedoc": "^0.11.1",
     "typescript": "^2.8.3",
     "wait-on": "^2.1.0"
   }
