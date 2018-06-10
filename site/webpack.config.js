@@ -1,7 +1,9 @@
-import StaticSiteGeneratorPlugin from 'static-site-generator-webpack-plugin';
-import path from 'path';
+const path = require('path');
+const webpack = require('webpack');
+const StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin');
 
-export default {
+module.exports = {
+  mode: process.env.WEBPACK_SERVE ? 'development' : 'production',
   entry: path.resolve(__dirname, 'index.js'),
   output: {
     filename: 'index.js',
@@ -9,9 +11,14 @@ export default {
     libraryTarget: 'umd',
     globalObject: 'this'
   },
+  serve: {
+    content: path.resolve(__dirname, '../site-dist'),
+    hot: false
+  },
   plugins: [
+    new webpack.NamedModulesPlugin(),
     new StaticSiteGeneratorPlugin({
-      paths: ['/hello/', '/world/'],
+      crawl: true,
       locals: {
         title: 'Hello'
       }
