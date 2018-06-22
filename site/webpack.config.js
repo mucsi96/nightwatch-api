@@ -36,6 +36,13 @@ module.exports = {
             cacheDirectory: true
           }
         }
+      },
+      {
+        test: /\.md$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: path.resolve(__dirname, 'markdown-loader.js')
+        }
       }
     ]
   }
