@@ -4,18 +4,22 @@ import Heading from '../components/Heading';
 import Link from '../components/Link';
 import Code from '../components/Code';
 import Image from '../components/Image';
+import InlineCode from '../components/InlineCode';
 
 const Article = ({ markdown }) => (
-  <Markdown
-    escapeHtml={true}
-    source={markdown}
-    renderers={{
-      heading: Heading,
-      link: Link,
-      code: Code,
-      image: Image
-    }}
-  />
+  <article>
+    <Markdown
+      escapeHtml={true}
+      source={markdown}
+      renderers={{
+        heading: Heading,
+        link: Link,
+        inlineCode: InlineCode,
+        code: Code,
+        image: Image
+      }}
+    />
+  </article>
 );
 
 export default Article;

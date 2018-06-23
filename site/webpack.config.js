@@ -21,7 +21,15 @@ module.exports = {
     new StaticSiteGeneratorPlugin({
       crawl: true,
       locals: {
-        title: 'nightwatch-api'
+        title: 'Nightwatch API',
+        description: 'Cucumber.js plugin for Nightwatch.js.',
+        url: 'http://mucsi96.github.io/nightwatch-cucumber/',
+        img: 'http://mucsi96.github.io/nightwatch-cucumber/res/img/opengraph.png',
+        githubId: 'mucsi96/nightwatch-api',
+        github: 'https://github.com/mucsi96/nightwatch-api',
+        npm: 'https://www.npmjs.com/package/nightwatch-api',
+        twitterId: 'mucsi96',
+        twitter: 'https://twitter.com/mucsi96'
       }
     })
   ],

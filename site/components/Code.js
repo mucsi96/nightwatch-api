@@ -13,10 +13,7 @@ const Code = ({ language, value, className }) => {
 
 const StyledCode = styled(Code)`
   border-radius: 4px;
-
-  code {
-    padding: 2px 4px;
-  }
+  padding: 1em !important;
 
   @media (max-width: 769px) {
     margin-left: -15px;
