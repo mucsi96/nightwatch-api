@@ -1,7 +1,7 @@
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { ServerStyleSheet } from 'styled-components';
-import Root from './components/Root';
+import Root from './sections/Root';
 
 const render = locals => {
   const sheet = new ServerStyleSheet();

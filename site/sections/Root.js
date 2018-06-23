@@ -3,8 +3,8 @@ import { Link, Route } from 'react-router-dom';
 import { StaticRouter } from 'react-router';
 import Home from './Home';
 import Api from './Api';
-import Body from './Body';
-import Main from './Main';
+import Body from '../components/Body';
+import Main from '../components/Main';
 
 const Root = ({ path, title }) => (
   <StaticRouter location={path} context={{}}>
