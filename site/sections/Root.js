@@ -4,8 +4,13 @@ import { StaticRouter } from 'react-router';
 import Home from './Home';
 import Api from './Api';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 import Body from '../components/Body';
 import Main from '../components/Main';
+import GitHubStarts from '../components/GitHubStarts';
+import TwitterFollowers from '../components/TwitterFollowers';
+import TableOfContentsProvider from '../components/TableOfContentsProvider';
+import TableOfContents from '../components/TableOfContents';
 
 const Root = ({
   path,
@@ -37,49 +42,55 @@ const Root = ({
         <meta name="theme-color" content="#7ac35f" />
       </head>
       <Body>
-        <Header
-          renderHomeLink={() => <Link to="/">{title}</Link>}
-          renderMenu={() => (
-            <ul>
-              <li>
-                <a href={github}>Github</a>
-              </li>
-              <li>
-                <a href={npm}>NPM</a>
-              </li>
-              <li>
-                <a
-                  href={github}
-                  className="github-button"
-                  data-icon="octicon-star"
-                  data-show-count="true"
-                  aria-label={`Star ${githubId} on GitHub`}
-                >
-                  Star
-                </a>
-              </li>
-              <li>
-                <a
-                  href={twitter}
-                  className="twitter-follow-button"
-                  data-show-screen-name="false"
-                  data-show-count="true"
-                >
-                  {`Follow @${twitterId}`}
-                </a>
-              </li>
-              <li>
-                <Link to="/api">Api</Link>
-              </li>
-            </ul>
-          )}
-        />
-        <Main>
-          <Route exact path="/" component={Home} />
-          <Route path="/api" component={Api} />
-        </Main>
-        <script async defer src="https://buttons.github.io/buttons.js" />
-        <script async defer src="https://platform.twitter.com/widgets.js" />
+        <TableOfContentsProvider>
+          <Header
+            renderHomeLink={() => <Link to="/">{title}</Link>}
+            renderMenu={() => (
+              <ul>
+                <li>
+                  <a href={github}>Github</a>
+                </li>
+                <li>
+                  <a href={npm}>NPM</a>
+                </li>
+                <li>
+                  <GitHubStarts id={githubId} url={github} />
+                </li>
+                <li>
+                  <TwitterFollowers id={twitterId} url={twitter} />
+                </li>
+                <li>
+                  <Link to="/api">Api</Link>
+                </li>
+              </ul>
+            )}
+          />
+          <Main>
+            <Route exact path="/" component={Home} />
+            <Route path="/api" component={Api} />
+          </Main>
+          <TableOfContents maxLevel={2} />
+          <Footer
+            renderNav={() => (
+              <ul>
+                <li>
+                  <a href={github}>:github.svg:</a>
+                </li>
+                <li>
+                  <a href={npm}>:npm.svg:</a>
+                </li>
+                <li>
+                  <GitHubStarts id={githubId} url={github} />
+                </li>
+                <li>
+                  <TwitterFollowers id={twitterId} url={twitter} />
+                </li>
+              </ul>
+            )}
+          />
+          <script async defer src="https://buttons.github.io/buttons.js" />
+          <script async defer src="https://platform.twitter.com/widgets.js" />
+        </TableOfContentsProvider>
       </Body>
     </html>
   </StaticRouter>

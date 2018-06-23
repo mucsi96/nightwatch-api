@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import styled from 'styled-components';
+import slug from 'slug';
+import TableOfContentsCollector from './TableOfContentsCollector';
 
 const StyledHeading1 = styled.h1`
   padding: 20px 0;
@@ -10,7 +12,13 @@ const StyledHeading1 = styled.h1`
 
 const Heading = ({ level, children }) => {
   const Container = level === 1 ? StyledHeading1 : `h${level}`;
-  return <Container>{children}</Container>;
+  const id = slug(children).toLowerCase();
+  return (
+    <Fragment>
+      <TableOfContentsCollector id={id} level={level} title={children} />
+      <Container id={id}>{children}</Container>
+    </Fragment>
+  );
 };
 
 export default Heading;

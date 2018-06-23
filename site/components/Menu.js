@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Menu = ({ className, children }) => (
+const Menu = styled(({ className, children }) => (
   <div className={className}>
     <input type="checkbox" />
     <span />
@@ -9,9 +9,7 @@ const Menu = ({ className, children }) => (
     <span />
     {children}
   </div>
-);
-
-const StyledMenu = styled(Menu)`
+))`
   padding: 10px 0 10px 10px;
 
   input {
@@ -107,4 +105,4 @@ const StyledMenu = styled(Menu)`
   }
 `;
 
-export default StyledMenu;
+export default Menu;

@@ -85,4 +85,4 @@ Run the tests by executing.
 npm run e2e-test
 ```
 
-![alt-tag](res/img/nightwatch-cucumber-output.png)
+![Nightwatch Cucumber output](res/img/nightwatch-cucumber-output.png)

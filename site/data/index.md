@@ -71,5 +71,3 @@ This software is released under the terms of the
 * [CucumberJS](https://github.com/cucumber/cucumber-js)
 * [cucumber-html-reporter](https://github.com/gkushang/cucumber-html-reporter)
 * [cucumber-junit](https://github.com/stjohnjohnson/cucumber-junit)
-
-[[toc]]

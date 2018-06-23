@@ -3,15 +3,11 @@ import styled from 'styled-components';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { gruvboxDark } from 'react-syntax-highlighter/styles/hljs';
 
-const Code = ({ language, value, className }) => {
-  return (
-    <SyntaxHighlighter language={language} style={gruvboxDark} className={className}>
-      {value}
-    </SyntaxHighlighter>
-  );
-};
-
-const StyledCode = styled(Code)`
+const Code = styled(({ language, value, className }) => (
+  <SyntaxHighlighter language={language} style={gruvboxDark} className={className}>
+    {value}
+  </SyntaxHighlighter>
+))`
   border-radius: 4px;
   padding: 1em !important;
 
@@ -22,4 +18,4 @@ const StyledCode = styled(Code)`
   }
 `;
 
-export default StyledCode;
+export default Code;

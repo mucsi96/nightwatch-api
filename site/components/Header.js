@@ -2,16 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import Menu from './Menu';
 
-const Header = ({ renderHomeLink, renderMenu, className }) => (
+const Header = styled(({ renderHomeLink, renderMenu, className }) => (
   <header className={className}>
     <nav>
       {renderHomeLink()}
       <Menu>{renderMenu()}</Menu>
     </nav>
   </header>
-);
-
-const StyledHeader = styled(Header)`
+))`
   box-sizing: border-box;
   padding: 10px 30px;
   margin-right: auto;
@@ -98,4 +96,4 @@ const StyledHeader = styled(Header)`
   }
 `;
 
-export default StyledHeader;
+export default Header;

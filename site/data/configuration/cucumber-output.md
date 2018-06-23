@@ -24,4 +24,4 @@ module.exports = {
 }
 ```
 
-![alt-tag](res/img/nightwatch-cucumber-pretty-output.png)
+![Nightwatch-Cucumber pretty output](res/img/nightwatch-cucumber-pretty-output.png)

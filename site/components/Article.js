@@ -5,6 +5,7 @@ import Link from '../components/Link';
 import Code from '../components/Code';
 import Image from '../components/Image';
 import InlineCode from '../components/InlineCode';
+import Emoji from '../components/Emoji';
 
 const Article = ({ markdown }) => (
   <article>
@@ -16,7 +17,8 @@ const Article = ({ markdown }) => (
         link: Link,
         inlineCode: InlineCode,
         code: Code,
-        image: Image
+        image: Image,
+        html: Emoji
       }}
     />
   </article>
