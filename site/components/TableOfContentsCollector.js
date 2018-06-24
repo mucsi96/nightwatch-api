@@ -1,16 +1,8 @@
-import React from 'react';
-import { Context } from './TableOfContentsProvider';
+import { withTableOfContents } from './TableOfContentsProvider';
 
-const TableOfContentsCollector = ({ id, level, title }) => {
-  const { Consumer } = Context;
-  return (
-    <Consumer>
-      {({ addItem }) => {
-        addItem({ id, level, title });
-        return null;
-      }}
-    </Consumer>
-  );
+const TableOfContentsCollector = ({ id, level, title, addTableOfContentsItem }) => {
+  addTableOfContentsItem({ id, level, title });
+  return null;
 };
 
-export default TableOfContentsCollector;
+export default withTableOfContents(TableOfContentsCollector);

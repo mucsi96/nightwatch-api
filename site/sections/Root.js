@@ -9,10 +9,14 @@ import Body from '../components/Body';
 import Main from '../components/Main';
 import GitHubStarts from '../components/GitHubStarts';
 import TwitterFollowers from '../components/TwitterFollowers';
-import TableOfContentsProvider from '../components/TableOfContentsProvider';
+import TableOfContentsProvider, {
+  withTableOfContents
+} from '../components/TableOfContentsProvider';
 import TableOfContents from '../components/TableOfContents';
 import GitHubLogo from 'simple-icons/icons/github.svg';
 import NPMLogo from 'simple-icons/icons/npm.svg';
+
+const TableOfContentsContainer = withTableOfContents(TableOfContents);
 
 const Root = ({
   path,
@@ -71,7 +75,7 @@ const Root = ({
             <Route exact path="/" component={Home} />
             <Route path="/api" component={Api} />
           </Main>
-          <TableOfContents maxLevel={2} />
+          <TableOfContentsContainer maxLevel={2} data-react-rehydrate-key="table-of-contents" />
           <Footer
             renderNav={() => (
               <ul>
@@ -96,6 +100,7 @@ const Root = ({
           />
           <script async defer src="https://buttons.github.io/buttons.js" />
           <script async defer src="https://platform.twitter.com/widgets.js" />
+          <script async defer src="site-client.js" />
         </TableOfContentsProvider>
       </Body>
     </html>

@@ -1,16 +1,18 @@
 const path = require('path');
 const StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin');
 
-const entryPath = path.resolve(__dirname, 'index.js');
 const distPath = path.resolve(__dirname, '../site-dist');
 
 module.exports = {
   mode: process.env.WEBPACK_SERVE ? 'development' : 'production',
-  entry: entryPath,
+  entry: {
+    'site-server-renderer': path.resolve(__dirname, 'site-server-renderer.js'),
+    'site-client': path.resolve(__dirname, 'site-client.js')
+  },
   output: {
-    filename: 'index.js',
+    filename: '[name].js',
     path: distPath,
-    libraryTarget: 'commonjs2'
+    libraryTarget: 'umd'
   },
   serve: {
     content: distPath,
@@ -18,7 +20,11 @@ module.exports = {
   },
   plugins: [
     new StaticSiteGeneratorPlugin({
+      entry: 'site-server-renderer',
       crawl: true,
+      globals: {
+        window: {}
+      },
       locals: {
         title: 'Nightwatch API',
         description: 'Cucumber.js plugin for Nightwatch.js.',

@@ -17,6 +17,7 @@ const Header = styled(({ renderHomeLink, renderMenu, className }) => (
 
   a {
     text-decoration: none;
+    color: inherit;
   }
 
   @media (min-width: 768px) {

@@ -1,6 +1,6 @@
 import React, { Component, createContext } from 'react';
 
-export const Context = createContext('TableOfContents');
+const Context = createContext('TableOfContents');
 
 class TableOfContentsProvider extends Component {
   toc = [];
@@ -23,5 +23,20 @@ class TableOfContentsProvider extends Component {
     );
   }
 }
+
+export const withTableOfContents = WrappedComponent => props => {
+  const { Consumer } = Context;
+  return (
+    <Consumer>
+      {({ getItems, addItem }) => (
+        <WrappedComponent
+          {...props}
+          tableOfContentsItems={getItems()}
+          addTableOfContentsItem={addItem}
+        />
+      )}
+    </Consumer>
+  );
+};
 
 export default TableOfContentsProvider;

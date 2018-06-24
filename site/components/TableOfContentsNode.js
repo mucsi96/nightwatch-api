@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
+import omit from 'lodash.omit';
 
 class TableOfContentsNode extends Component {
   renderChildren() {
-    const { level, children, className } = this.props;
+    const { level, children, className, ...restProps } = this.props;
 
     if (!children.length) {
       return null;
     }
 
     return (
-      <ul className={className}>
+      <ul className={className} {...(level === 0 ? omit(restProps, ['id', 'title']) : {})}>
         {children
           .reduce((acc, child) => {
             if (child.level === level + 1) {
@@ -34,7 +35,9 @@ class TableOfContentsNode extends Component {
     if (id) {
       return (
         <li>
-          <a href={`#${id}`}>{title}</a>
+          <a href={`#${id}`} onClick={() => window.alert('asdasda')}>
+            {title}
+          </a>
           {this.renderChildren()}
         </li>
       );

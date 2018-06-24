@@ -1,20 +1,28 @@
-import React, { Component, createContext } from 'react';
+import React, { Fragment } from 'react';
 import styled from 'styled-components';
-import { Context } from './TableOfContentsProvider';
 import TableOfContentsNode from './TableOfContentsNode';
+import omit from 'lodash.omit';
 
-const TableOfContents = styled(({ maxLevel, className }) => {
-  const { Consumer } = Context;
-  return (
-    <Consumer>
-      {({ getItems }) => (
-        <TableOfContentsNode level={0} className={className}>
-          {getItems().filter(({ level }) => level <= maxLevel)}
-        </TableOfContentsNode>
-      )}
-    </Consumer>
-  );
-})`
+const TableOfContents = styled(
+  ({ tableOfContentsItems: items, maxLevel, className, ...restProps }) => (
+    <Fragment>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `window.__INITIAL_STATE__ = window.__INITIAL_STATE__ || {};window.__INITIAL_STATE__['table-of-contents'] = JSON.parse('${JSON.stringify(
+            { tableOfContentsItems: items, maxLevel, className }
+          )}')`
+        }}
+      />
+      <TableOfContentsNode
+        level={0}
+        className={className}
+        {...omit(restProps, ['addTableOfContentsItem'])}
+      >
+        {items.filter(({ level }) => level <= maxLevel)}
+      </TableOfContentsNode>
+    </Fragment>
+  )
+)`
   box-sizing: border-box;
 
   > li > ul > li a {
