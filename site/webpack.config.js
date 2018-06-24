@@ -1,5 +1,4 @@
 const path = require('path');
-const webpack = require('webpack');
 const StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin');
 
 const entryPath = path.resolve(__dirname, 'index.js');
@@ -50,6 +49,14 @@ module.exports = {
         use: {
           loader: path.resolve(__dirname, 'markdown-loader.js')
         }
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: 'react-svg-loader'
+          }
+        ]
       }
     ]
   }

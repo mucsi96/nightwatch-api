@@ -1,9 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import Heart from 'twemoji/2/svg/2764.svg';
+import CH from 'twemoji/2/svg/1F1E8-1F1ED.svg';
 
 const Footer = styled(({ renderNav, className }) => (
   <footer className={className}>
-    <span>Created with ❤️ in 🇨🇭</span>
+    <span>
+      Created with <Heart width={21} /> in <CH width={32} />
+    </span>
     <nav>{renderNav()}</nav>
   </footer>
 ))`
@@ -14,6 +18,18 @@ const Footer = styled(({ renderNav, className }) => (
   color: white;
   position: relative;
   z-index: 1;
+
+  padding: 0 30px;
+
+  @media (max-width: 769px) {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+  svg {
+    fill: white;
+    vertical-align: middle;
+  }
 
   nav {
     width: 100%;

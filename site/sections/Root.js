@@ -11,6 +11,8 @@ import GitHubStarts from '../components/GitHubStarts';
 import TwitterFollowers from '../components/TwitterFollowers';
 import TableOfContentsProvider from '../components/TableOfContentsProvider';
 import TableOfContents from '../components/TableOfContents';
+import GitHubLogo from 'simple-icons/icons/github.svg';
+import NPMLogo from 'simple-icons/icons/npm.svg';
 
 const Root = ({
   path,
@@ -74,10 +76,14 @@ const Root = ({
             renderNav={() => (
               <ul>
                 <li>
-                  <a href={github}>:github.svg:</a>
+                  <a href={github} alt="GitHub">
+                    <GitHubLogo width={35} />
+                  </a>
                 </li>
                 <li>
-                  <a href={npm}>:npm.svg:</a>
+                  <a href={npm} alt="NPM">
+                    <NPMLogo width={105} />
+                  </a>
                 </li>
                 <li>
                   <GitHubStarts id={githubId} url={github} />
