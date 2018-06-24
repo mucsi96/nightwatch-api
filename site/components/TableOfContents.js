@@ -1,20 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import TableOfContentsNode from './TableOfContentsNode';
-import omit from 'lodash.omit';
 
-const TableOfContents = styled(
-  ({ tableOfContentsItems: items, maxLevel, className, ...restProps }) => (
-    <TableOfContentsNode
-      level={0}
-      className={className}
-      {...omit(restProps, ['addTableOfContentsItem'])}
-    >
-      {items.filter(({ level }) => level <= maxLevel)}
-    </TableOfContentsNode>
-  )
-)`
-  box-sizing: border-box;
+const TableOfContents = styled(({ tableOfContentsItems: items, className }) => (
+  <TableOfContentsNode level={0} className={className}>
+    {items}
+  </TableOfContentsNode>
+))`
+  padding: 0px;
+  margin: 0px;
 
   > li > ul > li a {
     padding-left: 25px;

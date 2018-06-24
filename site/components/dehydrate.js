@@ -10,10 +10,10 @@ const InitialStateCollectorContainer = withDehydration(InitialStateCollector);
 
 const dehydrate = key => WrappedComponent => props => {
   return (
-    <Fragment>
+    <div data-react-rehydrate-key={key}>
       <InitialStateCollectorContainer initialStateKey={key} {...props} />
-      <WrappedComponent {...props} data-react-rehydrate-key={key} />
-    </Fragment>
+      <WrappedComponent {...props} />
+    </div>
   );
 };
 

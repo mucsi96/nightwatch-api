@@ -1,8 +1,6 @@
 import React from 'react';
 import { hydrate } from 'react-dom';
 
-console.log(window.__REHYDRATION_INITIAL_STATE__['table-of-contents']);
-
 const rehydrate = (Component, key) =>
   hydrate(
     <Component {...window.__REHYDRATION_INITIAL_STATE__[key]} />,

@@ -11,11 +11,12 @@ const StyledHeading1 = styled.h1`
 `;
 
 const Heading = ({ level, children }) => {
+  const title = Array.isArray(children) ? children[0] : children.toString();
   const Container = level === 1 ? StyledHeading1 : `h${level}`;
-  const id = slug(children).toLowerCase();
+  const id = slug(title).toLowerCase();
   return (
     <Fragment>
-      <TableOfContentsCollector id={id} level={level} title={children} />
+      {level <= 2 ? <TableOfContentsCollector id={id} level={level} title={title} /> : null}
       <Container id={id}>{children}</Container>
     </Fragment>
   );

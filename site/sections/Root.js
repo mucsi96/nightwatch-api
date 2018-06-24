@@ -80,8 +80,8 @@ const Root = ({
             <Main>
               <Route exact path="/" component={Home} />
               <Route path="/api" component={Api} />
+              <TableOfContentsContainer />
             </Main>
-            <TableOfContentsContainer maxLevel={2} />
             <Footer
               renderNav={() => (
                 <ul>
