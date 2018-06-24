@@ -1,9 +1,13 @@
 import React, { Component, createContext } from 'react';
 
-const Context = createContext('TableOfContents');
+const Context = createContext();
 
 class TableOfContentsProvider extends Component {
   toc = [];
+
+  addItem = ({ id, level, title }) => this.toc.push({ id, level, title });
+
+  getItems = () => this.toc;
 
   render() {
     const { Provider } = Context;
@@ -11,14 +15,7 @@ class TableOfContentsProvider extends Component {
 
     return (
       <div>
-        <Provider
-          value={{
-            addItem: ({ id, level, title }) => this.toc.push({ id, level, title }),
-            getItems: () => this.toc
-          }}
-        >
-          {children}
-        </Provider>
+        <Provider value={{ addItem: this.addItem, getItems: this.getItems }}>{children}</Provider>
       </div>
     );
   }

@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link, Route } from 'react-router-dom';
 import { StaticRouter } from 'react-router';
+import DehydrationProvider from '../components/DehydrationProvider';
+import dehydrate from '../components/dehydrate';
+import RehydrationInitialState from '../components/RehydrationInitialState';
 import Home from './Home';
 import Api from './Api';
 import Header from '../components/Header';
@@ -16,7 +19,9 @@ import TableOfContents from '../components/TableOfContents';
 import GitHubLogo from 'simple-icons/icons/github.svg';
 import NPMLogo from 'simple-icons/icons/npm.svg';
 
-const TableOfContentsContainer = withTableOfContents(TableOfContents);
+const TableOfContentsContainer = withTableOfContents(
+  dehydrate('table-of-contents')(TableOfContents)
+);
 
 const Root = ({
   path,
@@ -48,60 +53,63 @@ const Root = ({
         <meta name="theme-color" content="#7ac35f" />
       </head>
       <Body>
-        <TableOfContentsProvider>
-          <Header
-            renderHomeLink={() => <Link to="/">{title}</Link>}
-            renderMenu={() => (
-              <ul>
-                <li>
-                  <a href={github}>Github</a>
-                </li>
-                <li>
-                  <a href={npm}>NPM</a>
-                </li>
-                <li>
-                  <GitHubStarts id={githubId} url={github} />
-                </li>
-                <li>
-                  <TwitterFollowers id={twitterId} url={twitter} />
-                </li>
-                <li>
-                  <Link to="/api">Api</Link>
-                </li>
-              </ul>
-            )}
-          />
-          <Main>
-            <Route exact path="/" component={Home} />
-            <Route path="/api" component={Api} />
-          </Main>
-          <TableOfContentsContainer maxLevel={2} data-react-rehydrate-key="table-of-contents" />
-          <Footer
-            renderNav={() => (
-              <ul>
-                <li>
-                  <a href={github} alt="GitHub">
-                    <GitHubLogo width={35} />
-                  </a>
-                </li>
-                <li>
-                  <a href={npm} alt="NPM">
-                    <NPMLogo width={105} />
-                  </a>
-                </li>
-                <li>
-                  <GitHubStarts id={githubId} url={github} />
-                </li>
-                <li>
-                  <TwitterFollowers id={twitterId} url={twitter} />
-                </li>
-              </ul>
-            )}
-          />
-          <script async defer src="https://buttons.github.io/buttons.js" />
-          <script async defer src="https://platform.twitter.com/widgets.js" />
-          <script async defer src="site-client.js" />
-        </TableOfContentsProvider>
+        <DehydrationProvider>
+          <TableOfContentsProvider>
+            <Header
+              renderHomeLink={() => <Link to="/">{title}</Link>}
+              renderMenu={() => (
+                <ul>
+                  <li>
+                    <a href={github}>Github</a>
+                  </li>
+                  <li>
+                    <a href={npm}>NPM</a>
+                  </li>
+                  <li>
+                    <GitHubStarts id={githubId} url={github} />
+                  </li>
+                  <li>
+                    <TwitterFollowers id={twitterId} url={twitter} />
+                  </li>
+                  <li>
+                    <Link to="/api">Api</Link>
+                  </li>
+                </ul>
+              )}
+            />
+            <Main>
+              <Route exact path="/" component={Home} />
+              <Route path="/api" component={Api} />
+            </Main>
+            <TableOfContentsContainer maxLevel={2} />
+            <Footer
+              renderNav={() => (
+                <ul>
+                  <li>
+                    <a href={github} alt="GitHub">
+                      <GitHubLogo width={35} />
+                    </a>
+                  </li>
+                  <li>
+                    <a href={npm} alt="NPM">
+                      <NPMLogo width={105} />
+                    </a>
+                  </li>
+                  <li>
+                    <GitHubStarts id={githubId} url={github} />
+                  </li>
+                  <li>
+                    <TwitterFollowers id={twitterId} url={twitter} />
+                  </li>
+                </ul>
+              )}
+            />
+            <RehydrationInitialState />
+            <script async defer src="https://buttons.github.io/buttons.js" />
+            <script async defer src="https://platform.twitter.com/widgets.js" />
+            <script async defer src="site-client.js" />
+          </TableOfContentsProvider>
+        </DehydrationProvider>
       </Body>
     </html>
   </StaticRouter>

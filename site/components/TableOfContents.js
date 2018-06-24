@@ -1,26 +1,17 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import TableOfContentsNode from './TableOfContentsNode';
 import omit from 'lodash.omit';
 
 const TableOfContents = styled(
   ({ tableOfContentsItems: items, maxLevel, className, ...restProps }) => (
-    <Fragment>
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `window.__INITIAL_STATE__ = window.__INITIAL_STATE__ || {};window.__INITIAL_STATE__['table-of-contents'] = JSON.parse('${JSON.stringify(
-            { tableOfContentsItems: items, maxLevel, className }
-          )}')`
-        }}
-      />
-      <TableOfContentsNode
-        level={0}
-        className={className}
-        {...omit(restProps, ['addTableOfContentsItem'])}
-      >
-        {items.filter(({ level }) => level <= maxLevel)}
-      </TableOfContentsNode>
-    </Fragment>
+    <TableOfContentsNode
+      level={0}
+      className={className}
+      {...omit(restProps, ['addTableOfContentsItem'])}
+    >
+      {items.filter(({ level }) => level <= maxLevel)}
+    </TableOfContentsNode>
   )
 )`
   box-sizing: border-box;
