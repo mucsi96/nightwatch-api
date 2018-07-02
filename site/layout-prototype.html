@@ -13,7 +13,10 @@
         ***********************************************************************/
 
         :root {
+            --header-height: 40px;
             --horizontal-padding: 20px;
+            --sidebar-width: 200px;
+            --sidebar-gutter: 40px;
         }
 
         /***********************************************************************
@@ -35,27 +38,27 @@
         ***********************************************************************/
 
         #site-header {
-            --height: 40px;
             --spacing: 20px;
             --home-logo-size: 23px;
-            line-height: var(--height);
+            line-height: var(--header-height);
             background-color: lightgreen;
             display: flex;
+            width: 100%;
             align-items: center;
-            /* justify-content: center; */
             padding: 0 var(--horizontal-padding);
+            position: fixed;
+            top: 0;
         }
 
         @media(min-width: 600px) {
-            #site-header {
-                --height: 50px;
+            :root {
+                --header-height: 50px;
             }
         }
 
         #site-header a {
             text-decoration: none;
             color: inherit;
-            /* line-height: 1px; */
         }
 
         #site-header .home {
@@ -95,36 +98,93 @@
         ***********************************************************************/
 
         #main {
-            overflow: hidden;
             padding: 0 var(--horizontal-padding);
-            line-height: 1.7;
-            overflow: hidden;
+            margin-top: var(--header-height);
+            display: flex;
         }
 
-        #main h1 {
+        #main .sidenav {
+            display: none;
+            order: 1;
+            flex: 0 0 var(--sidebar-width);
+            margin-left: var(--sidebar-gutter);
+        }
+
+        #main .sidenav ol {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #main .sidenav li {
+            margin: 0;
+            padding: 0;
+            padding: 4px 0;
+        }
+
+        #main .sidenav li a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        #main .sidenav>ol {
+            padding: 10px 20px;
+            background-color: lightgoldenrodyellow;
+            border-left: 1px solid yellow;
+            height: calc(100vh - var(--header-height));
+            position: fixed;
+            z-index: 1;
+            overflow-y: auto;
+        }
+
+        @media(min-width: 600px) {
+            #main .sidenav {
+                display: initial;
+            }
+        }
+
+        #main main {
+            line-height: 1.7;
+            flex: 1 1 auto;
+        }
+
+        #main main h1 {
             font-size: 40px;
             line-height: 1.125;
             margin: 40px 0;
             color: #282c34;
         }
 
-        #main h2 {
+        #main main h2 {
             font-size: 20px;
             margin: 40px 0;
         }
 
-        #main p {
+        #main main p {
             max-width: 42em;
         }
 
-        #main pre {
-            margin: 0 -30px;
-            padding: 16px 30px;
-            border-radius: 10px;
-            font-size: 14px;
-            overflow-y: auto;
+        #main main .code {
+            margin: 25px -30px;
+            padding: 0 15px;
             color: white;
             background-color: #282c34;
+            font-size: 14px;
+            overflow: auto;
+        }
+
+        @media(min-width: 600px) {
+            #main main .code {
+                border-radius: 10px;
+            }
+        }
+
+        #main main pre {
+            margin: 1rem;
+            font-size: 14px;
+            line-height: 20px;
+            white-space: pre-wrap;
+            word-break: break-word;
         }
 
         /***********************************************************************
@@ -152,6 +212,11 @@
             font-weight: 700;
             flex-wrap: wrap;
             margin-bottom: 40px;
+        }
+
+        #site-footer>ul,
+        #site-footer>div {
+            padding-right: calc(var(--sidebar-width));
         }
 
         #site-footer li {
@@ -194,12 +259,12 @@
             </ul>
         </nav>
     </header>
-    <div>
+    <section id="main">
         <nav class="sidenav" aria-label="Secondary">
-            <ul>
+            <ol>
                 <li>
                     <a href="#a">In eiusmod</a>
-                    <ul>
+                    <ol>
                         <li>
                             <a href="#aa">Aliqua in labore</a>
                         </li>
@@ -215,18 +280,18 @@
                         <li>
                             <a href="#ae">Nostrud laborum culpa nisi duis labore sit</a>
                         </li>
-                    </ul>
+                    </ol>
                 </li>
                 <li>
                     <a href="#b">Pariatur</a>
-                    <ul>
+                    <ol>
                         <li>
                             <a href="#ba">Cupidatat tempor quis ea</a>
                         </li>
                         <li>
                             <a href="#bb">Qui ut esse tempor</a>
                         </li>
-                    </ul>
+                    </ol>
                 </li>
                 <li>
                     <a href="#c">Adipisicing</a>
@@ -237,9 +302,9 @@
                 <li>
                     <a href="#e">Nisi nisi</a>
                 </li>
-            </ul>
+            </ol>
         </nav>
-        <main id="main">
+        <main>
             <h1>Laboris do enim mollit</h1>
 
             <p>Est Lorem minim sint deserunt. Ad labore esse non mollit exercitation incididunt quis labore enim fugiat eiusmod
@@ -249,15 +314,18 @@
 
             <p>Deserunt et aliqua eu aliqua in adipisicing sit velit id veniam in non nostrud Lorem.</p>
 
-            <pre><code>import rehydrate from './components/rehydrate';
+            <div class="code">
+                <pre><code>import rehydrate from './components/rehydrate';
     import TableOfContents from './components/TableOfContents';
     
     rehydrate(TableOfContents, 'table-of-contents');</code></pre>
+            </div>
 
             <p>Magna exercitation fugiat ea adipisicing nisi cillum qui anim non sint ex deserunt labore. Cillum ipsum fugiat
                 sit sunt aliquip minim officia sint duis cupidatat occaecat.</p>
         </main>
-    </div>
+    </section>
+
     <footer id="site-footer">
         <ul>
             <li>
