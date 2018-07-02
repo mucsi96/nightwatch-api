@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charSet="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        /***********************************************************************
+        *
+        *                              VARIABLES
+        *
+        ***********************************************************************/
+
+        :root {
+            --horizontal-padding: 20px;
+        }
+
+        /***********************************************************************
+        *
+        *                                RESET
+        *
+        ***********************************************************************/
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+        }
+
+        /***********************************************************************
+        *
+        *                                HEADER
+        *
+        ***********************************************************************/
+
+        #site-header {
+            --height: 40px;
+            --spacing: 20px;
+            --home-logo-size: 23px;
+            line-height: var(--height);
+            background-color: lightgreen;
+            display: flex;
+            align-items: center;
+            /* justify-content: center; */
+            padding: 0 var(--horizontal-padding);
+        }
+
+        @media(min-width: 600px) {
+            #site-header {
+                --height: 50px;
+            }
+        }
+
+        #site-header a {
+            text-decoration: none;
+            color: inherit;
+            /* line-height: 1px; */
+        }
+
+        #site-header .home {
+            display: flex;
+            align-items: center;
+            margin-right: calc(var(--spacing) / 2);
+        }
+
+        #site-header .home svg {
+            width: var(--home-logo-size);
+            height: var(--home-logo-size);
+            margin-right: calc(var(--spacing) / 2);
+        }
+
+        #site-header .mainnav {
+            overflow: hidden;
+            white-space: nowrap;
+            margin-right: 18px;
+        }
+
+        #site-header .mainnav ul {
+            list-style: none;
+            display: flex;
+            padding: 0;
+            margin: 0;
+        }
+
+        #site-header .mainnav li {
+            display: inline;
+            padding: 0 calc(var(--spacing) / 2);
+        }
+
+        /***********************************************************************
+        *
+        *                                MAIN
+        *
+        ***********************************************************************/
+
+        #main {
+            overflow: hidden;
+            padding: 0 var(--horizontal-padding);
+            line-height: 1.7;
+            overflow: hidden;
+        }
+
+        #main h1 {
+            font-size: 40px;
+            line-height: 1.125;
+            margin: 40px 0;
+            color: #282c34;
+        }
+
+        #main h2 {
+            font-size: 20px;
+            margin: 40px 0;
+        }
+
+        #main p {
+            max-width: 42em;
+        }
+
+        #main pre {
+            margin: 0 -30px;
+            padding: 16px 30px;
+            border-radius: 10px;
+            font-size: 14px;
+            overflow-y: auto;
+            color: white;
+            background-color: #282c34;
+        }
+
+        /***********************************************************************
+        *
+        *                                FOOTER
+        *
+        ***********************************************************************/
+
+        #site-footer {
+            padding: 50px var(--horizontal-padding);
+            background-color: lightgreen;
+        }
+
+        #site-footer a {
+            text-decoration: none;
+            color: inherit;
+            line-height: 2;
+        }
+
+        #site-footer ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            font-weight: 700;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        #site-footer li {
+            flex-basis: 50%;
+        }
+
+        #site-footer .about {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header id="site-header">
+        <a href="#" class="home">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="50" fill="red" />
+            </svg>
+            <span>Home</span>
+        </a>
+        <nav class="mainnav" aria-label="Main">
+            <ul>
+                <li>
+                    <a href="#a">In eiusmod</a>
+                </li>
+                <li>
+                    <a href="#b">Pariatur</a>
+                </li>
+                <li>
+                    <a href="#c">Adipisicing</a>
+                </li>
+                <li>
+                    <a href="#d">Non sit culpa</a>
+                </li>
+                <li>
+                    <a href="#e">Nisi nisi</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div>
+        <nav class="sidenav" aria-label="Secondary">
+            <ul>
+                <li>
+                    <a href="#a">In eiusmod</a>
+                    <ul>
+                        <li>
+                            <a href="#aa">Aliqua in labore</a>
+                        </li>
+                        <li>
+                            <a href="#ab">Proident dolore labore</a>
+                        </li>
+                        <li>
+                            <a href="#ad">Voluptate amet occaecat</a>
+                        </li>
+                        <li>
+                            <a href="#ac">Occaecat eiusmod id</a>
+                        </li>
+                        <li>
+                            <a href="#ae">Nostrud laborum culpa nisi duis labore sit</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#b">Pariatur</a>
+                    <ul>
+                        <li>
+                            <a href="#ba">Cupidatat tempor quis ea</a>
+                        </li>
+                        <li>
+                            <a href="#bb">Qui ut esse tempor</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#c">Adipisicing</a>
+                </li>
+                <li>
+                    <a href="#d">Non sit culpa</a>
+                </li>
+                <li>
+                    <a href="#e">Nisi nisi</a>
+                </li>
+            </ul>
+        </nav>
+        <main id="main">
+            <h1>Laboris do enim mollit</h1>
+
+            <p>Est Lorem minim sint deserunt. Ad labore esse non mollit exercitation incididunt quis labore enim fugiat eiusmod
+                exercitation deserunt occaecat.</p>
+
+            <h2>Fugiat dolore id Lorem</h2>
+
+            <p>Deserunt et aliqua eu aliqua in adipisicing sit velit id veniam in non nostrud Lorem.</p>
+
+            <pre><code>import rehydrate from './components/rehydrate';
+    import TableOfContents from './components/TableOfContents';
+    
+    rehydrate(TableOfContents, 'table-of-contents');</code></pre>
+
+            <p>Magna exercitation fugiat ea adipisicing nisi cillum qui anim non sint ex deserunt labore. Cillum ipsum fugiat
+                sit sunt aliquip minim officia sint duis cupidatat occaecat.</p>
+        </main>
+    </div>
+    <footer id="site-footer">
+        <ul>
+            <li>
+                <a href="#a">In eiusmod</a>
+            </li>
+            <li>
+                <a href="#b">Pariatur</a>
+            </li>
+            <li>
+                <a href="#c">Adipisicing</a>
+            </li>
+            <li>
+                <a href="#d">Non sit culpa</a>
+            </li>
+        </ul>
+        <div class="about">Do pariatur culpa</div>
+    </footer>
+</body>
+
+</html>
