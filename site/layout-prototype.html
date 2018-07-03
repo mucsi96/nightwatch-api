@@ -14,9 +14,14 @@
 
         :root {
             --header-height: 40px;
-            --horizontal-padding: 20px;
             --sidebar-width: 200px;
             --sidebar-gutter: 40px;
+        }
+
+        @media(min-width: 600px) {
+            :root {
+                --header-height: 50px;
+            }
         }
 
         /***********************************************************************
@@ -33,27 +38,44 @@
 
         /***********************************************************************
         *
+        *                                LAYOUT
+        *
+        ***********************************************************************/
+
+        .container {
+            box-sizing: border-box;
+            width: 100%;
+            padding-right: 20px;
+            padding-left: 20px;
+            margin: 0 auto;
+        }
+
+        @media(min-width: 780px) {
+            .container {
+                width: 90%;
+            }
+        }
+
+        /***********************************************************************
+        *
         *                                HEADER
         *
         ***********************************************************************/
 
         #site-header {
+            background-color: lightgreen;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
             --spacing: 20px;
             --home-logo-size: 23px;
             line-height: var(--header-height);
-            background-color: lightgreen;
-            display: flex;
-            width: 100%;
-            align-items: center;
-            padding: 0 var(--horizontal-padding);
-            position: fixed;
-            top: 0;
         }
 
-        @media(min-width: 600px) {
-            :root {
-                --header-height: 50px;
-            }
+        #site-header .container {
+            display: flex;
+            align-items: center;
         }
 
         #site-header a {
@@ -93,15 +115,9 @@
 
         /***********************************************************************
         *
-        *                                MAIN
+        *                                SIDENAV
         *
         ***********************************************************************/
-
-        #main {
-            padding: 0 var(--horizontal-padding);
-            margin-top: var(--header-height);
-            display: flex;
-        }
 
         #main .sidenav {
             display: none;
@@ -128,6 +144,7 @@
         }
 
         #main .sidenav>ol {
+            box-sizing: border-box;
             padding: 10px 20px;
             background-color: lightgoldenrodyellow;
             border-left: 1px solid yellow;
@@ -135,12 +152,33 @@
             position: fixed;
             z-index: 1;
             overflow-y: auto;
+            margin-right: -999px;
+            padding-right: 999px;
+        }
+
+        @media(min-width: 780px) {
+            #main .sidenav>ol {
+                padding-top: 60px;
+            }
         }
 
         @media(min-width: 600px) {
             #main .sidenav {
                 display: initial;
             }
+        }
+
+
+        /***********************************************************************
+        *
+        *                                MAIN
+        *
+        ***********************************************************************/
+
+        #main .container {
+            margin-top: var(--header-height);
+            display: flex;
+            padding-bottom: 50px;
         }
 
         #main main {
@@ -153,6 +191,13 @@
             line-height: 1.125;
             margin: 40px 0;
             color: #282c34;
+        }
+
+        @media(min-width: 780px) {
+            #main main h1 {
+                font-size: 60px;
+                margin: 50px 0;
+            }
         }
 
         #main main h2 {
@@ -194,8 +239,12 @@
         ***********************************************************************/
 
         #site-footer {
-            padding: 50px var(--horizontal-padding);
             background-color: lightgreen;
+        }
+
+        #site-footer .container {
+            padding-top: 50px;
+            padding-bottom: 50px;
         }
 
         #site-footer a {
@@ -214,9 +263,11 @@
             margin-bottom: 40px;
         }
 
-        #site-footer>ul,
-        #site-footer>div {
-            padding-right: calc(var(--sidebar-width));
+        @media(min-width: 600px) {
+            #site-footer>ul,
+            #site-footer>div {
+                padding-right: calc(var(--sidebar-width) + var(--sidebar-gutter));
+            }
         }
 
         #site-footer li {
@@ -233,13 +284,155 @@
 
 <body>
     <header id="site-header">
-        <a href="#" class="home">
-            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="50" cy="50" r="50" fill="red" />
-            </svg>
-            <span>Home</span>
-        </a>
-        <nav class="mainnav" aria-label="Main">
+        <div class="container">
+            <a href="#" class="home">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="50" fill="red" />
+                </svg>
+                <span>Home</span>
+            </a>
+            <nav class="mainnav" aria-label="Main">
+                <ul>
+                    <li>
+                        <a href="#a">In eiusmod</a>
+                    </li>
+                    <li>
+                        <a href="#b">Pariatur</a>
+                    </li>
+                    <li>
+                        <a href="#c">Adipisicing</a>
+                    </li>
+                    <li>
+                        <a href="#d">Non sit culpa</a>
+                    </li>
+                    <li>
+                        <a href="#e">Nisi nisi</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section id="main">
+        <div class="container">
+            <nav class="sidenav" aria-label="Secondary">
+                <ol>
+                    <li>
+                        <a href="#a">In eiusmod</a>
+                        <ol>
+                            <li>
+                                <a href="#aa">Aliqua in labore</a>
+                            </li>
+                            <li>
+                                <a href="#ab">Proident dolore labore</a>
+                            </li>
+                            <li>
+                                <a href="#ad">Voluptate amet occaecat</a>
+                            </li>
+                            <li>
+                                <a href="#ac">Occaecat eiusmod id</a>
+                            </li>
+                            <li>
+                                <a href="#ae">Nostrud laborum culpa nisi duis labore sit</a>
+                            </li>
+                        </ol>
+                    </li>
+                    <li>
+                        <a href="#b">Pariatur</a>
+                        <ol>
+                            <li>
+                                <a href="#ba">Cupidatat tempor quis ea</a>
+                            </li>
+                            <li>
+                                <a href="#bb">Qui ut esse tempor</a>
+                            </li>
+                            <li>
+                                <a href="#bc">Ipsum deserunt incididunt</a>
+                            </li>
+                            <li>
+                                <a href="#bd">Voluptate dolor deserunt</a>
+                            </li>
+                            <li>
+                                <a href="#be">Quis eiusmod mollit sint</a>
+                            </li>
+                            <li>
+                                <a href="#bf">Tempor enim eiusmod tempor</a>
+                            </li>
+                            <li>
+                                <a href="#bg">Fugiat Lorem deserunt culpa</a>
+                            </li>
+                            <li>
+                                <a href="#bg">Tempor consequat nulla dolor</a>
+                            </li>
+                            <li>
+                                <a href="#bg">In adipisicing commodo dolor aliquip qui eu.</a>
+                            </li>
+                        </ol>
+                    </li>
+                    <li>
+                        <a href="#c">Adipisicing</a>
+                        <ol>
+                            <li>
+                                <a href="#ba">Cupidatat tempor quis ea</a>
+                            </li>
+                            <li>
+                                <a href="#bb">Qui ut esse tempor</a>
+                            </li>
+                            <li>
+                                <a href="#bc">Ipsum deserunt incididunt</a>
+                            </li>
+                            <li>
+                                <a href="#bd">Voluptate dolor deserunt</a>
+                            </li>
+                            <li>
+                                <a href="#be">Quis eiusmod mollit sint</a>
+                            </li>
+                            <li>
+                                <a href="#bf">Tempor enim eiusmod tempor</a>
+                            </li>
+                            <li>
+                                <a href="#bg">Fugiat Lorem deserunt culpa</a>
+                            </li>
+                            <li>
+                                <a href="#bg">Tempor consequat nulla dolor</a>
+                            </li>
+                            <li>
+                                <a href="#bg">In adipisicing commodo dolor aliquip qui eu.</a>
+                            </li>
+                        </ol>
+                    </li>
+                    <li>
+                        <a href="#d">Non sit culpa</a>
+                    </li>
+                    <li>
+                        <a href="#e">Nisi nisi</a>
+                    </li>
+                </ol>
+            </nav>
+            <main>
+                <h1>Laboris do enim mollit</h1>
+
+                <p>Est Lorem minim sint deserunt. Ad labore esse non mollit exercitation incididunt quis labore enim fugiat
+                    eiusmod exercitation deserunt occaecat.</p>
+
+                <h2>Fugiat dolore id Lorem</h2>
+
+                <p>Deserunt et aliqua eu aliqua in adipisicing sit velit id veniam in non nostrud Lorem.</p>
+
+                <div class="code">
+                    <pre><code>import rehydrate from './components/rehydrate';
+        import TableOfContents from './components/TableOfContents';
+        
+        rehydrate(TableOfContents, 'table-of-contents');</code></pre>
+                </div>
+
+                <p>Magna exercitation fugiat ea adipisicing nisi cillum qui anim non sint ex deserunt labore. Cillum ipsum fugiat
+                    sit sunt aliquip minim officia sint duis cupidatat occaecat.</p>
+            </main>
+        </div>
+    </section>
+
+    <footer id="site-footer">
+        <div class="container">
             <ul>
                 <li>
                     <a href="#a">In eiusmod</a>
@@ -253,95 +446,9 @@
                 <li>
                     <a href="#d">Non sit culpa</a>
                 </li>
-                <li>
-                    <a href="#e">Nisi nisi</a>
-                </li>
             </ul>
-        </nav>
-    </header>
-    <section id="main">
-        <nav class="sidenav" aria-label="Secondary">
-            <ol>
-                <li>
-                    <a href="#a">In eiusmod</a>
-                    <ol>
-                        <li>
-                            <a href="#aa">Aliqua in labore</a>
-                        </li>
-                        <li>
-                            <a href="#ab">Proident dolore labore</a>
-                        </li>
-                        <li>
-                            <a href="#ad">Voluptate amet occaecat</a>
-                        </li>
-                        <li>
-                            <a href="#ac">Occaecat eiusmod id</a>
-                        </li>
-                        <li>
-                            <a href="#ae">Nostrud laborum culpa nisi duis labore sit</a>
-                        </li>
-                    </ol>
-                </li>
-                <li>
-                    <a href="#b">Pariatur</a>
-                    <ol>
-                        <li>
-                            <a href="#ba">Cupidatat tempor quis ea</a>
-                        </li>
-                        <li>
-                            <a href="#bb">Qui ut esse tempor</a>
-                        </li>
-                    </ol>
-                </li>
-                <li>
-                    <a href="#c">Adipisicing</a>
-                </li>
-                <li>
-                    <a href="#d">Non sit culpa</a>
-                </li>
-                <li>
-                    <a href="#e">Nisi nisi</a>
-                </li>
-            </ol>
-        </nav>
-        <main>
-            <h1>Laboris do enim mollit</h1>
-
-            <p>Est Lorem minim sint deserunt. Ad labore esse non mollit exercitation incididunt quis labore enim fugiat eiusmod
-                exercitation deserunt occaecat.</p>
-
-            <h2>Fugiat dolore id Lorem</h2>
-
-            <p>Deserunt et aliqua eu aliqua in adipisicing sit velit id veniam in non nostrud Lorem.</p>
-
-            <div class="code">
-                <pre><code>import rehydrate from './components/rehydrate';
-    import TableOfContents from './components/TableOfContents';
-    
-    rehydrate(TableOfContents, 'table-of-contents');</code></pre>
-            </div>
-
-            <p>Magna exercitation fugiat ea adipisicing nisi cillum qui anim non sint ex deserunt labore. Cillum ipsum fugiat
-                sit sunt aliquip minim officia sint duis cupidatat occaecat.</p>
-        </main>
-    </section>
-
-    <footer id="site-footer">
-        <ul>
-            <li>
-                <a href="#a">In eiusmod</a>
-            </li>
-            <li>
-                <a href="#b">Pariatur</a>
-            </li>
-            <li>
-                <a href="#c">Adipisicing</a>
-            </li>
-            <li>
-                <a href="#d">Non sit culpa</a>
-            </li>
-        </ul>
-        <div class="about">Do pariatur culpa</div>
+            <div class="about">Do pariatur culpa</div>
+        </div>
     </footer>
 </body>
 
