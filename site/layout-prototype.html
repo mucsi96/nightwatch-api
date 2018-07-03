@@ -14,6 +14,7 @@
 
         :root {
             --header-height: 40px;
+            --horizontal-padding: 20px;
             --sidebar-width: 200px;
             --sidebar-gutter: 40px;
         }
@@ -21,6 +22,24 @@
         @media(min-width: 600px) {
             :root {
                 --header-height: 50px;
+            }
+        }
+
+        @media(min-width: 980px) {
+            :root {
+                --sidebar-gutter: 80px;
+            }
+        }
+
+        @media(min-width: 1100px) {
+            :root {
+                --sidebar-width: 300px;
+            }
+        }
+
+        @media(min-width: 1280px) {
+            :root {
+                --header-height: 60px;
             }
         }
 
@@ -45,14 +64,20 @@
         .container {
             box-sizing: border-box;
             width: 100%;
-            padding-right: 20px;
-            padding-left: 20px;
+            padding-right: var(--horizontal-padding);
+            padding-left: var(--horizontal-padding);
             margin: 0 auto;
         }
 
         @media(min-width: 780px) {
             .container {
                 width: 90%;
+            }
+        }
+
+        @media (min-width: 1340px) {
+            .container {
+                max-width: 1260px;
             }
         }
 
@@ -71,6 +96,12 @@
             --spacing: 20px;
             --home-logo-size: 23px;
             line-height: var(--header-height);
+        }
+
+        @media(min-width: 1280px) {
+            #site-header {
+                font-size: 18px;
+            }
         }
 
         #site-header .container {
@@ -145,15 +176,14 @@
 
         #main .sidenav>ol {
             box-sizing: border-box;
-            padding: 10px 20px;
+            margin-right: -999px;
+            padding: 10px 999px 10px 20px;
             background-color: lightgoldenrodyellow;
             border-left: 1px solid yellow;
             height: calc(100vh - var(--header-height));
             position: fixed;
             z-index: 1;
             overflow-y: auto;
-            margin-right: -999px;
-            padding-right: 999px;
         }
 
         @media(min-width: 780px) {
@@ -168,6 +198,30 @@
             }
         }
 
+        @media(min-width: 1100px) {
+            #main .sidenav>ol {
+                padding-left: 40px;
+            }
+        }
+
+        @media(min-width: 1280px) {
+            #main .sidenav>ol {
+                padding-top: 70px;
+            }
+        }
+
+        @media(min-width: 2000px) {
+            #main .sidenav {
+                position: fixed;
+                right: 0;
+                width: var(--sidebar-width);
+                margin-left: 0;
+            }
+
+            #main .sidenav>ol {
+                position: static;
+            }
+        }
 
         /***********************************************************************
         *
@@ -181,9 +235,21 @@
             padding-bottom: 50px;
         }
 
+        @media (min-width: 2000px) {
+            #main .container {
+                max-width: calc(840px + 2 * var(--horizontal-padding));
+            }
+        }
+
         #main main {
             line-height: 1.7;
             flex: 1 1 auto;
+        }
+
+        @media(min-width: 980px) {
+            #main main {
+                font-size: 17px;
+            }
         }
 
         #main main h1 {
@@ -200,9 +266,27 @@
             }
         }
 
+        @media(min-width: 980px) {
+            #main main h1 {
+                margin-top: 80px;
+            }
+        }
+
         #main main h2 {
             font-size: 20px;
             margin: 40px 0;
+        }
+
+        @media(min-width: 980px) {
+            #main main h2 {
+                font-size: 24px;
+            }
+        }
+
+        @media(min-width: 1280px) {
+            #main main h2 {
+                font-size: 35px;
+            }
         }
 
         #main main p {
@@ -266,7 +350,7 @@
         @media(min-width: 600px) {
             #site-footer>ul,
             #site-footer>div {
-                padding-right: calc(var(--sidebar-width) + var(--sidebar-gutter));
+                padding-right: calc(var(--sidebar-width) + var(--sidebar-gutter) + var(--horizontal-padding));
             }
         }
 
