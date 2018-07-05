@@ -6,6 +6,7 @@ import Code from '../components/Code';
 import Image from '../components/Image';
 import InlineCode from '../components/InlineCode';
 import Emoji from '../components/Emoji';
+import Paragraph from './Paragraph';
 
 const EMOJI_MAP_REGEX = /<--EMOJI-MAP--(.*)--EMOJI-MAP-->/;
 
@@ -27,7 +28,8 @@ const Article = ({ markdown }) => {
           },
           inlineCode: InlineCode,
           code: Code,
-          image: Image
+          image: Image,
+          paragraph: Paragraph
         }}
       />
     </article>

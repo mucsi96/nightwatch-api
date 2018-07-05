@@ -3,41 +3,51 @@ import styled from 'styled-components';
 import TableOfContentsNode from './TableOfContentsNode';
 
 const TableOfContents = styled(({ tableOfContentsItems: items, className }) => (
-  <TableOfContentsNode level={0} className={className}>
-    {items}
-  </TableOfContentsNode>
+  <nav aria-label="Secondary" className={className}>
+    <TableOfContentsNode level={0}>{items}</TableOfContentsNode>
+  </nav>
 ))`
-  padding: 0px;
-  margin: 0px;
+  box-sizing: border-box;
+  margin-right: -999px;
+  padding: 10px 999px 10px 20px;
+  background-color: lightgoldenrodyellow;
+  border-left: 1px solid yellow;
+  height: calc(100vh - var(--header-height));
+  position: fixed;
+  z-index: 1;
+  overflow-y: auto;
 
-  > li > ul > li a {
-    padding-left: 25px;
+  @media (min-width: 780px) {
+    padding-top: 60px;
+  }
+
+  @media (min-width: 1100px) {
+    padding-left: 40px;
+  }
+
+  @media (min-width: 1280px) {
+    padding-top: 70px;
+  }
+
+  @media (min-width: 2000px) {
+    position: static;
+  }
+
+  ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
 
   li {
-    list-style: none;
-    padding-left: 0;
+    margin: 0;
+    padding: 0;
+    padding: 4px 0;
   }
 
   li a {
-    color: #777;
-    font-size: 90%;
-    padding: 5px 10px;
     text-decoration: none;
-    display: block;
-  }
-
-  li a:hover {
-    background-color: #f1ffe6;
-  }
-
-  li a.active {
-    border-left: 3px solid #38932c;
-    font-weight: 700;
-  }
-
-  ul {
-    padding-left: 0;
+    color: inherit;
   }
 `;
 

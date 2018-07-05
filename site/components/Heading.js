@@ -4,15 +4,42 @@ import slug from 'slug';
 import TableOfContentsCollector from './TableOfContentsCollector';
 
 const StyledHeading1 = styled.h1`
-  padding: 20px 0;
-  margin-top: 0;
-  margin-bottom: 20px;
-  border-bottom: 1px solid #7ac35f;
+  font-size: 40px;
+  line-height: 1.125;
+  margin: 40px 0;
+  color: #282c34;
+
+  @media (min-width: 780px) {
+    font-size: 60px;
+    margin: 50px 0;
+  }
+
+  @media (min-width: 980px) {
+    margin-top: 80px;
+  }
 `;
+
+const StyledHeading2 = styled.h2`
+  font-size: 20px;
+  margin: 40px 0;
+
+  @media (min-width: 980px) {
+    font-size: 24px;
+  }
+
+  @media (min-width: 1280px) {
+    font-size: 35px;
+  }
+`;
+
+const styledLevels = {
+  '1': StyledHeading1,
+  '2': StyledHeading2
+};
 
 const Heading = ({ level, children }) => {
   const title = Array.isArray(children) ? children[0] : children.toString();
-  const Container = level === 1 ? StyledHeading1 : `h${level}`;
+  const Container = styledLevels[level] || `h${level}`;
   const id = slug(title).toLowerCase();
   return (
     <Fragment>

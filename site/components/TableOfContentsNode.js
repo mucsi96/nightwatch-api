@@ -9,7 +9,7 @@ class TableOfContentsNode extends Component {
     }
 
     return (
-      <ul className={className}>
+      <ol className={className}>
         {children
           .reduce((acc, child) => {
             if (child.level === level + 1) {
@@ -24,7 +24,7 @@ class TableOfContentsNode extends Component {
               {children}
             </TableOfContentsNode>
           ))}
-      </ul>
+      </ol>
     );
   }
 

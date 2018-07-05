@@ -2,7 +2,6 @@ import React from 'react';
 import { Link, Route } from 'react-router-dom';
 import { StaticRouter } from 'react-router';
 import DehydrationProvider from '../components/DehydrationProvider';
-import dehydrate from '../components/dehydrate';
 import RehydrationInitialState from '../components/RehydrationInitialState';
 import Home from './Home';
 import Api from './Api';
@@ -12,16 +11,9 @@ import Body from '../components/Body';
 import Main from '../components/Main';
 import GitHubStarts from '../components/GitHubStarts';
 import TwitterFollowers from '../components/TwitterFollowers';
-import TableOfContentsProvider, {
-  withTableOfContents
-} from '../components/TableOfContentsProvider';
-import TableOfContents from '../components/TableOfContents';
 import GitHubLogo from 'simple-icons/icons/github.svg';
 import NPMLogo from 'simple-icons/icons/npm.svg';
-
-const TableOfContentsContainer = withTableOfContents(
-  dehydrate('table-of-contents')(TableOfContents)
-);
+import TableOfContentsProvider from '../components/TableOfContentsProvider';
 
 const Root = ({
   path,
@@ -80,7 +72,6 @@ const Root = ({
             <Main>
               <Route exact path="/" component={Home} />
               <Route path="/api" component={Api} />
-              <TableOfContentsContainer />
             </Main>
             <Footer
               renderNav={() => (

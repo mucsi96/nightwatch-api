@@ -8,13 +8,23 @@ const Code = styled(({ language, value, className }) => (
     {value}
   </SyntaxHighlighter>
 ))`
-  border-radius: 4px;
-  padding: 1em !important;
+  padding: 0 15px;
+  margin: 25px -30px;
+  color: white;
+  background-color: #282c34;
+  font-size: 14px;
+  overflow: auto;
 
-  @media (max-width: 769px) {
-    margin-left: -15px;
-    margin-right: -15px;
-    border-radius: 0;
+  @media (min-width: 600px) {
+    border-radius: 10px;
+  }
+
+  pre {
+    margin: 1rem;
+    font-size: 14px;
+    line-height: 20px;
+    white-space: pre-wrap;
+    word-break: break-word;
   }
 `;
 
