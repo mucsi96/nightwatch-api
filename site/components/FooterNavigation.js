@@ -1,5 +1,5 @@
 import React from 'react';
-import { withMainContext } from './MainProvider';
+import { withSiteConfig } from './SiteConfigProvider';
 import GitHubStarts from '../components/GitHubStarts';
 import TwitterFollowers from '../components/TwitterFollowers';
 import GitHubLogo from 'simple-icons/icons/github.svg';
@@ -28,4 +28,4 @@ const FooterNavigation = ({ className, github, npm, githubId, twitterId, twitter
   </nav>
 );
 
-export default withMainContext(FooterNavigation);
+export default withSiteConfig(FooterNavigation);

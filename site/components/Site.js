@@ -5,21 +5,23 @@ import Footer from '../components/Footer';
 import Body from '../components/Body';
 import Main from '../components/Main';
 import TableOfContentsProvider from '../components/TableOfContentsProvider';
-import MainNavigation from '../components/HeaderNavigation';
 import Header from '../components/Header';
 import FooterNavigation from '../components/FooterNavigation';
 import Router from '../components/Router';
 import Head from '../components/Head';
 import SiteContent from '../pages';
+import dehydrate from '../components/dehydrate';
 
-const Site = () => (
-  <Router>
+const DehydratedHeader = dehydrate('header')(Header);
+
+const Site = ({ path }) => (
+  <Router path={path}>
     <html>
       <Head />
       <Body>
         <DehydrationProvider>
           <TableOfContentsProvider>
-            <Header renderNavigation={() => <MainNavigation />} />
+            <DehydratedHeader />
             <Main>
               <SiteContent />
             </Main>

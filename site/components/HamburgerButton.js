@@ -8,7 +8,7 @@ const HamburgerInner = styled.div`
   position: absolute;
   width: 40px;
   height: 4px;
-  transition: transform 0.15s ease;
+  transition: transform 0.15s ease, opacity 0.15s ease;
   background-color: currentColor;
   border-radius: 4px;
 
@@ -19,7 +19,7 @@ const HamburgerInner = styled.div`
     position: absolute;
     width: 40px;
     height: 4px;
-    transition: transform, opacity 0.15s ease;
+    transition: transform 0.15s ease, opacity 0.15s ease;
     border-radius: 4px;
     background-color: currentColor;
   }

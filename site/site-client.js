@@ -1,6 +1,6 @@
 import rehydrate from './components/rehydrate';
 import TableOfContents from './components/TableOfContents';
-import HamburgerMenu from './components/HamburgerMenu';
+import Header from './components/Header';
 
 rehydrate(TableOfContents, 'table-of-contents');
-rehydrate(HamburgerMenu, 'hamburger-menu');
+rehydrate(Header, 'header');

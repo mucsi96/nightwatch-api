@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import WidthLimiter from './WidthLimiter';
-import { withMainContext } from './MainProvider';
+import { withSiteConfig } from './SiteConfigProvider';
 import { Link } from 'react-router-dom';
 import HomeIcon from '../images/nightwatch-api-logo.svg';
-import HamburgerMenu from './HamburgerMenu';
+import HamburgerButton from './HamburgerButton';
 import dehydrate from './dehydrate';
+import HeaderNavigation from './HeaderNavigation';
 
-const DehydratedHamburgerMenu = dehydrate('hamburger-menu')(HamburgerMenu);
-const StyledDehydratedHamburgerMenu = styled(DehydratedHamburgerMenu)`
+const StyledDehydratedHamburgerButton = styled(HamburgerButton)`
   @media (min-width: 600px) {
     display: none;
   }
@@ -42,26 +42,41 @@ const HeaderWidthLimiter = styled(WidthLimiter)`
   }
 `;
 
-const Header = ({ title, renderNavigation, className }) => (
-  <header className={className}>
-    <HeaderWidthLimiter>
-      <HomeLink to="/">
-        <StyledHomeIcon />
-        <span>{title}</span>
-      </HomeLink>
-      {renderNavigation()}
-      <StyledDehydratedHamburgerMenu />
-    </HeaderWidthLimiter>
-  </header>
-);
+class Header extends Component {
+  state = {
+    open: false
+  };
+
+  handleButtonClick = () => {
+    this.setState(({ open }) => ({
+      open: !open
+    }));
+  };
+
+  render() {
+    const { title, className } = this.props;
+    const { open } = this.state;
+    return (
+      <header className={className}>
+        <HeaderWidthLimiter>
+          <HomeLink to="/">
+            <StyledHomeIcon />
+            <span>{title}</span>
+          </HomeLink>
+          <HeaderNavigation />
+          <StyledDehydratedHamburgerButton active={open} />
+        </HeaderWidthLimiter>
+      </header>
+    );
+  }
+}
 
 const StyledHeader = styled(Header)`
   --spacing: 20px;
   --icon-size: 50px;
   --bottom-border: 3px;
 
-  background-color: #50516b;
-  color: white;
+  background-color: white;
   position: fixed;
   top: 0;
   left: 0;
@@ -112,4 +127,4 @@ const StyledHeader = styled(Header)`
   }
 `;
 
-export default withMainContext(StyledHeader);
+export default withSiteConfig(StyledHeader);

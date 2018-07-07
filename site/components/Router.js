@@ -1,6 +1,5 @@
 import React from 'react';
 import { StaticRouter } from 'react-router';
-import { withMainContext } from './MainProvider';
 
 const Router = ({ path, children }) => (
   <StaticRouter location={path} context={{}}>
@@ -8,4 +7,4 @@ const Router = ({ path, children }) => (
   </StaticRouter>
 );
 
-export default withMainContext(Router);
+export default Router;

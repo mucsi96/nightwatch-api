@@ -1,5 +1,5 @@
 import React from 'react';
-import { withMainContext } from './MainProvider';
+import { withSiteConfig } from './SiteConfigProvider';
 import GitHubStarts from './GitHubStarts';
 import TwitterFollowers from './TwitterFollowers';
 import { Link } from 'react-router-dom';
@@ -26,4 +26,4 @@ const MainNavigation = ({ className, github, npm, githubId, twitterId, twitter }
   </nav>
 );
 
-export default withMainContext(MainNavigation);
+export default withSiteConfig(MainNavigation);

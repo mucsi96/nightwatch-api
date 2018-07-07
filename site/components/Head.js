@@ -1,5 +1,5 @@
 import React from 'react';
-import { withMainContext } from './MainProvider';
+import { withSiteConfig } from './SiteConfigProvider';
 
 const Head = ({ title, description, url, img }) => (
   <head>
@@ -19,4 +19,4 @@ const Head = ({ title, description, url, img }) => (
   </head>
 );
 
-export default withMainContext(Head);
+export default withSiteConfig(Head);

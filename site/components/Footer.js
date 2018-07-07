@@ -21,9 +21,6 @@ const Footer = ({ renderNavigation, className }) => (
 );
 
 const StyledFooter = styled(Footer)`
-  background-color: #50516b;
-  color: white;
-
   a {
     text-decoration: none;
     color: inherit;
