@@ -8,6 +8,9 @@ const MainNavigation = ({ className, github, npm, githubId, twitterId, twitter }
   <nav className={className} aria-label="Main">
     <ul>
       <li>
+        <Link to="/api">Api</Link>
+      </li>
+      <li>
         <a href={github}>Github</a>
       </li>
       <li>
@@ -18,9 +21,6 @@ const MainNavigation = ({ className, github, npm, githubId, twitterId, twitter }
       </li>
       <li>
         <TwitterFollowers id={twitterId} url={twitter} />
-      </li>
-      <li>
-        <Link to="/api">Api</Link>
       </li>
     </ul>
   </nav>

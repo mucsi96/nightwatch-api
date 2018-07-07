@@ -9,7 +9,7 @@ const FooterWidthLimiter = styled(WidthLimiter)`
   padding-bottom: 50px;
 `;
 
-const Footer = styled(({ renderNavigation, className }) => (
+const Footer = ({ renderNavigation, className }) => (
   <footer className={className}>
     <FooterWidthLimiter>
       <span>
@@ -18,8 +18,11 @@ const Footer = styled(({ renderNavigation, className }) => (
       {renderNavigation()}
     </FooterWidthLimiter>
   </footer>
-))`
-  background-color: lightgreen;
+);
+
+const StyledFooter = styled(Footer)`
+  background-color: #50516b;
+  color: white;
 
   a {
     text-decoration: none;
@@ -55,4 +58,4 @@ const Footer = styled(({ renderNavigation, className }) => (
   }
 `;
 
-export default Footer;
+export default StyledFooter;

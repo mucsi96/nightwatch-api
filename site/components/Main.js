@@ -5,9 +5,9 @@ import { withTableOfContents } from '../components/TableOfContentsProvider';
 import dehydrate from '../components/dehydrate';
 import TableOfContents from '../components/TableOfContents';
 
-const TableOfContentsContainer = styled(
-  withTableOfContents(dehydrate('table-of-contents')(TableOfContents))
-)`
+const DehydratedTableOfContents = dehydrate('table-of-contents')(TableOfContents);
+
+const TableOfContentsContainer = styled(withTableOfContents(DehydratedTableOfContents))`
   margin-left: var(--sidebar-gutter);
   flex: 0 0 var(--sidebar-width);
   display: none;
@@ -29,24 +29,26 @@ const MainWidthLimiter = styled(WidthLimiter)`
   }
 `;
 
-const StyledMain = styled.main`
-  main {
-    line-height: 1.7;
-    flex: 1 1 auto;
+const Content = styled.main`
+  line-height: 1.7;
+  flex: 1 1 auto;
 
-    @media (min-width: 980px) {
-      font-size: 17px;
-    }
+  @media (min-width: 980px) {
+    font-size: 17px;
   }
 `;
 
-const Main = ({ children }) => (
-  <section>
+const Main = ({ children, className }) => (
+  <section className={className}>
     <MainWidthLimiter>
       <TableOfContentsContainer />
-      <StyledMain>{children}</StyledMain>
+      <Content>{children}</Content>
     </MainWidthLimiter>
   </section>
 );
 
-export default Main;
+const StyledMain = styled(Main)`
+  overflow: hidden;
+`;
+
+export default StyledMain;

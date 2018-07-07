@@ -2,11 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import TableOfContentsNode from './TableOfContentsNode';
 
-const TableOfContents = styled(({ tableOfContentsItems: items, className }) => (
+const TableOfContents = ({ tableOfContentsItems: items, className }) => (
   <nav aria-label="Secondary" className={className}>
     <TableOfContentsNode level={0}>{items}</TableOfContentsNode>
   </nav>
-))`
+);
+
+const StyledTableOfContents = styled(TableOfContents)`
   box-sizing: border-box;
   margin-right: -999px;
   padding: 10px 999px 10px 20px;
@@ -51,4 +53,4 @@ const TableOfContents = styled(({ tableOfContentsItems: items, className }) => (
   }
 `;
 
-export default TableOfContents;
+export default StyledTableOfContents;
