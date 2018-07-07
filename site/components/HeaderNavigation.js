@@ -2,13 +2,12 @@ import React from 'react';
 import { withSiteConfig } from './SiteConfigProvider';
 import GitHubStarts from './GitHubStarts';
 import TwitterFollowers from './TwitterFollowers';
-import { Link } from 'react-router-dom';
 
 const MainNavigation = ({ className, github, npm, githubId, twitterId, twitter }) => (
   <nav className={className} aria-label="Main">
     <ul>
       <li>
-        <Link to="/api">Api</Link>
+        <a href="/api">Api</a>
       </li>
       <li>
         <a href={github}>Github</a>

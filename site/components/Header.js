@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import WidthLimiter from './WidthLimiter';
 import { withSiteConfig } from './SiteConfigProvider';
-import { Link } from 'react-router-dom';
 import HomeIcon from '../images/nightwatch-api-logo.svg';
 import HamburgerButton from './HamburgerButton';
-import dehydrate from './dehydrate';
 import HeaderNavigation from './HeaderNavigation';
 
 const StyledDehydratedHamburgerButton = styled(HamburgerButton)`
@@ -14,7 +12,7 @@ const StyledDehydratedHamburgerButton = styled(HamburgerButton)`
   }
 `;
 
-const HomeLink = styled(Link)`
+const HomeLink = styled.a`
   display: flex;
   align-items: center;
   margin-right: calc(var(--spacing) / 2);
@@ -59,7 +57,7 @@ class Header extends Component {
     return (
       <header className={className}>
         <HeaderWidthLimiter>
-          <HomeLink to="/">
+          <HomeLink href="/">
             <StyledHomeIcon />
             <span>{title}</span>
           </HomeLink>
