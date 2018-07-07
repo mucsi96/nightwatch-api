@@ -8,11 +8,11 @@ const InitialStateCollector = ({ initialStateKey, addToInitialState, ...props })
 
 const InitialStateCollectorContainer = withDehydration(InitialStateCollector);
 
-const dehydrate = key => WrappedComponent => props => {
+const dehydrate = key => WrappedComponent => ({ className, innerClassName, ...props }) => {
   return (
-    <div data-react-rehydrate-key={key}>
+    <div data-react-rehydrate-key={key} className={className}>
       <InitialStateCollectorContainer initialStateKey={key} {...props} />
-      <WrappedComponent {...props} />
+      <WrappedComponent className={innerClassName} {...props} />
     </div>
   );
 };

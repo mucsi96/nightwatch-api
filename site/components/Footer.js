@@ -4,22 +4,22 @@ import Heart from 'twemoji/2/svg/2764.svg';
 import CH from 'twemoji/2/svg/1F1E8-1F1ED.svg';
 import WidthLimiter from './WidthLimiter';
 
-const Footer = styled(({ renderNav, className }) => (
+const FooterWidthLimiter = styled(WidthLimiter)`
+  padding-top: 50px;
+  padding-bottom: 50px;
+`;
+
+const Footer = styled(({ renderNavigation, className }) => (
   <footer className={className}>
-    <WidthLimiter>
+    <FooterWidthLimiter>
       <span>
         Created with <Heart width={21} /> in <CH width={32} />
       </span>
-      <nav>{renderNav()}</nav>
-    </WidthLimiter>
+      {renderNavigation()}
+    </FooterWidthLimiter>
   </footer>
 ))`
   background-color: lightgreen;
-
-  > div {
-    padding-top: 50px;
-    padding-bottom: 50px;
-  }
 
   a {
     text-decoration: none;

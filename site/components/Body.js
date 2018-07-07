@@ -1,15 +1,10 @@
-import React from 'react';
 import styled from 'styled-components';
 
 const Body = styled.body`
-  --header-height: 40px;
+  --header-height: 75px;
   --horizontal-padding: 20px;
   --sidebar-width: 200px;
   --sidebar-gutter: 40px;
-
-  @media (min-width: 600px) {
-    --header-height: 50px;
-  }
 
   @media (min-width: 980px) {
     --sidebar-gutter: 80px;
@@ -17,10 +12,6 @@ const Body = styled.body`
 
   @media (min-width: 1100px) {
     --sidebar-width: 300px;
-  }
-
-  @media (min-width: 1280px) {
-    --header-height: 60px;
   }
 
   margin: 0;
