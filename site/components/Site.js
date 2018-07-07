@@ -10,7 +10,7 @@ import Header from '../components/Header';
 import FooterNavigation from '../components/FooterNavigation';
 import Router from '../components/Router';
 import Head from '../components/Head';
-import SiteContent from '../sections';
+import SiteContent from '../pages';
 
 const Site = () => (
   <Router>
