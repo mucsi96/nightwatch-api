@@ -53,6 +53,7 @@
     "chromedriver": "2.38.3",
     "cross-env": "^5.1.5",
     "del-cli": "^1.1.0",
+    "file-loader": "^1.1.11",
     "geckodriver": "1.11.0",
     "highlight.js": "^9.12.0",
     "husky": "^0.14.3",

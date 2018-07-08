@@ -25,6 +25,17 @@ const commonConfig = {
         use: {
           loader: path.resolve(__dirname, 'markdown-loader.js')
         }
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name]-[hash].[ext]'
+            }
+          }
+        ]
       }
     ]
   }
