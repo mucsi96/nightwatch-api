@@ -1,38 +1,9 @@
-import React, { Component } from 'react';
-import styled, { css } from 'styled-components';
+import React from 'react';
+import styled from 'styled-components';
 import WidthLimiter from './WidthLimiter';
 import { withSiteConfig } from './SiteConfigProvider';
 import HomeIcon from '../images/nightwatch-api-logo.svg';
-import HamburgerButton from './HamburgerButton';
 import HeaderNavigation from './HeaderNavigation';
-import TableOfContents from '../components/TableOfContents';
-
-const StyledHamburgerButton = styled(HamburgerButton)`
-  @media (min-width: 600px) {
-    display: none;
-  }
-`;
-
-const StyledTableOfContents = styled(TableOfContents)`
-  display: none;
-  padding: 0;
-  margin: 0;
-  border: none;
-  position: initial;
-  height: initial;
-  background: transparent;
-
-  ol {
-    display: flex;
-    flex-direction: column;
-  }
-
-  ${({ show }) =>
-    show &&
-    css`
-      display: initial;
-    `};
-`;
 
 const HomeLink = styled.a`
   display: flex;
@@ -55,16 +26,6 @@ const HeaderWidthLimiter = styled(WidthLimiter)`
   display: flex;
   align-items: center;
   position: relative;
-  justify-content: space-between;
-  height: 100%;
-
-  ${({ open }) =>
-    open &&
-    css`
-      align-items: initial;
-    `} @media (min-width: 600px) {
-    justify-content: normal;
-  }
 `;
 
 const StyledHeader = styled.header`
@@ -77,17 +38,8 @@ const StyledHeader = styled.header`
   top: 0;
   left: 0;
   right: 0;
-  height: calc(var(--header-height) - var(--bottom-border));
+  line-height: calc(var(--header-height) - var(--bottom-border));
   border-bottom: var(--bottom-border) solid #512d14;
-  transition: height 1s ease;
-
-  ${({ open }) =>
-    open &&
-    css`
-      --header-height: 100vh;
-    `} @media (min-width: 1280px) {
-    font-size: 18px;
-  }
 
   a {
     text-decoration: none;
@@ -101,11 +53,7 @@ const StyledHeader = styled.header`
     display: none;
     margin-left: var(--sidebar-gutter);
 
-    ${({ open }) =>
-      open &&
-      css`
-        display: initial;
-      `} @media (min-width: 600px) {
+    @media (min-width: 600px) {
       display: initial;
     }
 
@@ -122,12 +70,6 @@ const StyledHeader = styled.header`
     display: flex;
     padding: 0;
     margin: 0;
-
-    ${({ open }) =>
-      open &&
-      css`
-        flex-direction: column;
-      `};
   }
 
   li {
@@ -137,34 +79,16 @@ const StyledHeader = styled.header`
   }
 `;
 
-class Header extends Component {
-  state = {
-    open: false
-  };
-
-  handleButtonClick = () => {
-    this.setState(({ open }) => ({
-      open: !open
-    }));
-  };
-
-  render() {
-    const { title, tableOfContentsItems } = this.props;
-    const { open } = this.state;
-    return (
-      <StyledHeader open={open}>
-        <HeaderWidthLimiter open={open} onClick={open && this.handleButtonClick}>
-          <HomeLink href="/">
-            <StyledHomeIcon />
-            <span>{title}</span>
-          </HomeLink>
-          <StyledTableOfContents tableOfContentsItems={tableOfContentsItems} show={open} />
-          <HeaderNavigation />
-          <StyledHamburgerButton active={open} onClick={this.handleButtonClick} />
-        </HeaderWidthLimiter>
-      </StyledHeader>
-    );
-  }
-}
+const Header = ({ title }) => (
+  <StyledHeader>
+    <HeaderWidthLimiter>
+      <HomeLink href="/">
+        <StyledHomeIcon />
+        <span>{title}</span>
+      </HomeLink>
+      <HeaderNavigation />
+    </HeaderWidthLimiter>
+  </StyledHeader>
+);
 
 export default withSiteConfig(Header);
