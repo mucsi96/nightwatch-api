@@ -1,15 +1,37 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import WidthLimiter from './WidthLimiter';
 import { withSiteConfig } from './SiteConfigProvider';
 import HomeIcon from '../images/nightwatch-api-logo.svg';
 import HamburgerButton from './HamburgerButton';
 import HeaderNavigation from './HeaderNavigation';
+import TableOfContents from '../components/TableOfContents';
 
-const StyledDehydratedHamburgerButton = styled(HamburgerButton)`
+const StyledHamburgerButton = styled(HamburgerButton)`
   @media (min-width: 600px) {
     display: none;
   }
+`;
+
+const StyledTableOfContents = styled(TableOfContents)`
+  display: none;
+  padding: 0;
+  margin: 0;
+  border: none;
+  position: initial;
+  height: initial;
+  background: transparent;
+
+  ol {
+    display: flex;
+    flex-direction: column;
+  }
+
+  ${({ show }) =>
+    show &&
+    css`
+      display: initial;
+    `};
 `;
 
 const HomeLink = styled.a`
@@ -34,42 +56,18 @@ const HeaderWidthLimiter = styled(WidthLimiter)`
   align-items: center;
   position: relative;
   justify-content: space-between;
+  height: 100%;
 
-  @media (min-width: 600px) {
+  ${({ open }) =>
+    open &&
+    css`
+      align-items: initial;
+    `} @media (min-width: 600px) {
     justify-content: normal;
   }
 `;
 
-class Header extends Component {
-  state = {
-    open: false
-  };
-
-  handleButtonClick = () => {
-    this.setState(({ open }) => ({
-      open: !open
-    }));
-  };
-
-  render() {
-    const { title, className } = this.props;
-    const { open } = this.state;
-    return (
-      <header className={className}>
-        <HeaderWidthLimiter>
-          <HomeLink href="/">
-            <StyledHomeIcon />
-            <span>{title}</span>
-          </HomeLink>
-          <HeaderNavigation />
-          <StyledDehydratedHamburgerButton active={open} />
-        </HeaderWidthLimiter>
-      </header>
-    );
-  }
-}
-
-const StyledHeader = styled(Header)`
+const StyledHeader = styled.header`
   --spacing: 20px;
   --icon-size: 50px;
   --bottom-border: 3px;
@@ -79,10 +77,15 @@ const StyledHeader = styled(Header)`
   top: 0;
   left: 0;
   right: 0;
-  line-height: calc(var(--header-height) - var(--bottom-border));
+  height: calc(var(--header-height) - var(--bottom-border));
   border-bottom: var(--bottom-border) solid #512d14;
+  transition: height 1s ease;
 
-  @media (min-width: 1280px) {
+  ${({ open }) =>
+    open &&
+    css`
+      --header-height: 100vh;
+    `} @media (min-width: 1280px) {
     font-size: 18px;
   }
 
@@ -98,7 +101,11 @@ const StyledHeader = styled(Header)`
     display: none;
     margin-left: var(--sidebar-gutter);
 
-    @media (min-width: 600px) {
+    ${({ open }) =>
+      open &&
+      css`
+        display: initial;
+      `} @media (min-width: 600px) {
       display: initial;
     }
 
@@ -115,14 +122,49 @@ const StyledHeader = styled(Header)`
     display: flex;
     padding: 0;
     margin: 0;
+
+    ${({ open }) =>
+      open &&
+      css`
+        flex-direction: column;
+      `};
   }
 
   li {
-    line-height: 0;
     display: flex;
     align-items: center;
     padding: 0 calc(var(--spacing) / 2);
   }
 `;
 
-export default withSiteConfig(StyledHeader);
+class Header extends Component {
+  state = {
+    open: false
+  };
+
+  handleButtonClick = () => {
+    this.setState(({ open }) => ({
+      open: !open
+    }));
+  };
+
+  render() {
+    const { title, tableOfContentsItems } = this.props;
+    const { open } = this.state;
+    return (
+      <StyledHeader open={open}>
+        <HeaderWidthLimiter open={open} onClick={open && this.handleButtonClick}>
+          <HomeLink href="/">
+            <StyledHomeIcon />
+            <span>{title}</span>
+          </HomeLink>
+          <StyledTableOfContents tableOfContentsItems={tableOfContentsItems} show={open} />
+          <HeaderNavigation />
+          <StyledHamburgerButton active={open} onClick={this.handleButtonClick} />
+        </HeaderWidthLimiter>
+      </StyledHeader>
+    );
+  }
+}
+
+export default withSiteConfig(Header);

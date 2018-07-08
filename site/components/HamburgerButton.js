@@ -33,8 +33,8 @@ const HamburgerInner = styled.div`
     bottom: -10px;
   }
 
-  ${props =>
-    props.active &&
+  ${({ active }) =>
+    active &&
     css`
       transform: translate3d(0, 10px, 0) rotate(45deg);
 

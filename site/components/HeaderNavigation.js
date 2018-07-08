@@ -3,7 +3,7 @@ import { withSiteConfig } from './SiteConfigProvider';
 import GitHubStarts from './GitHubStarts';
 import TwitterFollowers from './TwitterFollowers';
 
-const MainNavigation = ({ className, github, npm, githubId, twitterId, twitter }) => (
+const HeaderNavigation = ({ className, github, npm, githubId, twitterId, twitter }) => (
   <nav className={className} aria-label="Main">
     <ul>
       <li>
@@ -25,4 +25,4 @@ const MainNavigation = ({ className, github, npm, githubId, twitterId, twitter }
   </nav>
 );
 
-export default withSiteConfig(MainNavigation);
+export default withSiteConfig(HeaderNavigation);

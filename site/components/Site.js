@@ -4,7 +4,9 @@ import RehydrationInitialState from '../components/RehydrationInitialState';
 import Footer from '../components/Footer';
 import Body from '../components/Body';
 import Main from '../components/Main';
-import TableOfContentsProvider from '../components/TableOfContentsProvider';
+import TableOfContentsProvider, {
+  withTableOfContents
+} from '../components/TableOfContentsProvider';
 import Header from '../components/Header';
 import FooterNavigation from '../components/FooterNavigation';
 import Router from '../components/Router';
@@ -12,7 +14,7 @@ import Head from '../components/Head';
 import SiteContent from '../pages';
 import dehydrate from '../components/dehydrate';
 
-const DehydratedHeader = dehydrate('header')(Header);
+const DehydratedHeader = withTableOfContents(dehydrate('header')(Header));
 
 const Site = ({ path }) => (
   <Router path={path}>
