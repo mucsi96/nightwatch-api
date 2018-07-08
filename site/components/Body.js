@@ -5,8 +5,9 @@ const Body = styled.body`
   --horizontal-padding: 20px;
   --sidebar-width: 200px;
   --sidebar-gutter: 40px;
+  --animation-duration: 0.15s;
 
-  @media (min-width: 600px) {
+  @media (min-width: 720px) {
     --header-height: 50px;
   }
 

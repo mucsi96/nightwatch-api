@@ -17,7 +17,7 @@ const StyledCode = styled(Code)`
   font-size: 14px;
   overflow: auto;
 
-  @media (min-width: 600px) {
+  @media (min-width: 720px) {
     border-radius: 10px;
   }
 

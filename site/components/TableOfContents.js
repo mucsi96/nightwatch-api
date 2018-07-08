@@ -1,23 +1,51 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import TableOfContentsNode from './TableOfContentsNode';
+import HeaderNavigation from './HeaderNavigation';
 
-const TableOfContents = ({ tableOfContentsItems: items, className }) => (
-  <nav aria-label="Secondary" className={className}>
-    <TableOfContentsNode level={0}>{items}</TableOfContentsNode>
-  </nav>
-);
+const StyledHeaderNavigation = styled(HeaderNavigation)`
+  :after {
+    display: block;
+    content: ' ';
+    margin: 20px 20px 20px 0;
+    border-bottom: 1px solid #7ac35f;
+  }
+`;
 
-const StyledTableOfContents = styled(TableOfContents)`
+const Wrapper = styled.div`
+  @media (min-width: 720px) {
+    margin-left: var(--sidebar-gutter);
+    width: var(--sidebar-width);
+  }
+`;
+
+const Navigation = styled.nav`
   box-sizing: border-box;
   margin-right: -999px;
   padding: 10px 999px 10px 20px;
-  background-color: lightgoldenrodyellow;
-  border-left: 1px solid yellow;
+  background-color: white;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   height: calc(100vh - var(--header-height));
   position: fixed;
   z-index: 1;
   overflow-y: auto;
+  right: 0;
+  left: 20%;
+  transition: transform var(--animation-duration) ease;
+  transform: translateX(100%);
+
+  ${({ show }) =>
+    show &&
+    css`
+      transform: none;
+    `};
+
+  @media (min-width: 720px) {
+    box-shadow: none;
+    right: initial;
+    left: initial;
+    transform: none;
+  }
 
   @media (min-width: 780px) {
     padding-top: 60px;
@@ -35,7 +63,8 @@ const StyledTableOfContents = styled(TableOfContents)`
     position: static;
   }
 
-  ol {
+  ol,
+  ul {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -53,4 +82,13 @@ const StyledTableOfContents = styled(TableOfContents)`
   }
 `;
 
-export default StyledTableOfContents;
+const TableOfContents = ({ onClick, show, tableOfContentsItems: items }) => (
+  <Wrapper>
+    <Navigation aria-label="Secondary" show={show} onClick={onClick}>
+      {show && <StyledHeaderNavigation />}
+      <TableOfContentsNode level={0}>{items}</TableOfContentsNode>
+    </Navigation>
+  </Wrapper>
+);
+
+export default TableOfContents;

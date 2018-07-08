@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled, { css } from 'styled-components';
 
 const HamburgerInner = styled.div`
@@ -8,7 +8,7 @@ const HamburgerInner = styled.div`
   position: absolute;
   width: 40px;
   height: 4px;
-  transition: transform 0.15s ease, opacity 0.15s ease;
+  transition: transform var(--animation-duration) ease, opacity var(--animation-duration) ease;
   background-color: currentColor;
   border-radius: 4px;
 
@@ -19,7 +19,7 @@ const HamburgerInner = styled.div`
     position: absolute;
     width: 40px;
     height: 4px;
-    transition: transform 0.15s ease, opacity 0.15s ease;
+    transition: transform var(--animation-duration) ease, opacity var(--animation-duration) ease;
     border-radius: 4px;
     background-color: currentColor;
   }
@@ -55,6 +55,32 @@ const HamburgerBox = styled.div`
   height: 24px;
 `;
 
+// class HamburgerButton extends Component {
+//   state = {
+//     active: false
+//   };
+
+//   handleClick = () => {
+//     document.body.classList.toggle('hamburger-button-active', !this.state.active);
+//     this.setState(({ active }) => ({
+//       active: !active
+//     }));
+//   };
+
+//   render() {
+//     const { className, ...props } = this.props;
+//     const { active } = this.state;
+
+//     return (
+//       <div className={className} {...props} aria-hidden={true} onClick={this.handleClick}>
+//         <HamburgerBox>
+//           <HamburgerInner active={active} />
+//         </HamburgerBox>
+//       </div>
+//     );
+//   }
+// }
+
 const HamburgerButton = ({ className, active, ...props }) => (
   <div className={className} {...props} aria-hidden={true}>
     <HamburgerBox>
@@ -65,7 +91,7 @@ const HamburgerButton = ({ className, active, ...props }) => (
 
 const StyledHamburgerButton = styled(HamburgerButton)`
   overflow: visible;
-  transition: opacity 0.15s linear;
+  transition: opacity var(--animation-duration) linear;
 
   :hover {
     opacity: 0.7;

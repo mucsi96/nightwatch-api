@@ -34,9 +34,7 @@ class TableOfContentsNode extends Component {
     if (id) {
       return (
         <li>
-          <a href={`#${id}`} onClick={() => window.alert('asdasda')}>
-            {title}
-          </a>
+          <a href={`#${id}`}>{title}</a>
           {this.renderChildren()}
         </li>
       );

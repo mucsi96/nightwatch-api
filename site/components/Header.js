@@ -4,6 +4,15 @@ import WidthLimiter from './WidthLimiter';
 import { withSiteConfig } from './SiteConfigProvider';
 import HomeIcon from '../images/nightwatch-api-logo.svg';
 import HeaderNavigation from './HeaderNavigation';
+import HamburgerButton from './HamburgerButton';
+import dehydrate from './dehydrate';
+
+const DehydratedHamburgerButton = dehydrate('hamburger-button')(HamburgerButton);
+const StyledDehydratedHamburgerButton = styled(DehydratedHamburgerButton)`
+  @media (min-width: 720px) {
+    display: none;
+  }
+`;
 
 const HomeLink = styled.a`
   display: flex;
@@ -18,28 +27,36 @@ const StyledHomeIcon = styled(HomeIcon)`
   height: var(--icon-size);
   margin-right: calc(var(--spacing) / 2);
   position: absolute;
-  bottom: -3px;
   left: var(--horizontal-padding);
+  bottom: -2px;
 `;
 
 const HeaderWidthLimiter = styled(WidthLimiter)`
   display: flex;
   align-items: center;
   position: relative;
+  justify-content: space-between;
+
+  @media (min-width: 720px) {
+    justify-content: initial;
+  }
 `;
 
 const StyledHeader = styled.header`
   --spacing: 20px;
   --icon-size: 50px;
-  --bottom-border: 3px;
 
   background-color: white;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  line-height: calc(var(--header-height) - var(--bottom-border));
-  border-bottom: var(--bottom-border) solid #512d14;
+  line-height: var(--header-height);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+
+  @media (min-width: 720px) {
+    z-index: 2;
+  }
 
   a {
     text-decoration: none;
@@ -53,7 +70,7 @@ const StyledHeader = styled.header`
     display: none;
     margin-left: var(--sidebar-gutter);
 
-    @media (min-width: 600px) {
+    @media (min-width: 720px) {
       display: initial;
     }
 
@@ -87,6 +104,7 @@ const Header = ({ title }) => (
         <span>{title}</span>
       </HomeLink>
       <HeaderNavigation />
+      <StyledDehydratedHamburgerButton />
     </HeaderWidthLimiter>
   </StyledHeader>
 );

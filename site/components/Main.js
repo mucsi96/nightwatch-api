@@ -8,13 +8,7 @@ import TableOfContents from '../components/TableOfContents';
 const DehydratedTableOfContents = dehydrate('table-of-contents')(TableOfContents);
 
 const TableOfContentsContainer = styled(withTableOfContents(DehydratedTableOfContents))`
-  margin-left: var(--sidebar-gutter);
-  flex: 0 0 var(--sidebar-width);
-  display: none;
-
-  @media (min-width: 600px) {
-    display: initial;
-  }
+  display: flex;
 `;
 
 const MainWidthLimiter = styled(WidthLimiter)`
