@@ -1,6 +1,6 @@
 import rehydrate from './components/rehydrate';
 import React, { Component, Fragment } from 'react';
-import { hydrate } from 'react-dom';
+import { render } from 'react-dom';
 import TableOfContents from './components/TableOfContents';
 import HamburgerButton from './components/HamburgerButton';
 
@@ -44,4 +44,4 @@ class App extends Component {
   }
 }
 
-hydrate(<App />, document.getElementById('app'));
+render(<App />, document.getElementById('app'));

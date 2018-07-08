@@ -6,7 +6,6 @@ import Body from '../components/Body';
 import Main from '../components/Main';
 import TableOfContentsProvider from '../components/TableOfContentsProvider';
 import Header from '../components/Header';
-import FooterNavigation from '../components/FooterNavigation';
 import Router from '../components/Router';
 import Head from '../components/Head';
 import SiteContent from '../pages';

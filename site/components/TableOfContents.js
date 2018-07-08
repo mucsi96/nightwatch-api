@@ -33,6 +33,7 @@ const Navigation = styled.nav`
   left: 20%;
   transition: transform var(--animation-duration) ease;
   transform: translateX(100%);
+  line-height: initial;
 
   ${({ show }) =>
     show &&
@@ -73,12 +74,27 @@ const Navigation = styled.nav`
   li {
     margin: 0;
     padding: 0;
-    padding: 4px 0;
   }
 
   li a {
+    color: #777;
+    padding: 5px 10px;
     text-decoration: none;
-    color: inherit;
+    display: block;
+    font-size: 13px;
+
+    :hover {
+      background-color: #f1ffe6;
+    }
+
+    .active {
+      border-left: 3px solid #38932c;
+      font-weight: 700;
+    }
+  }
+
+  > ol > li > ol > li a {
+    padding-left: 25px;
   }
 `;
 

@@ -1,33 +1,34 @@
 import React from 'react';
 import styled from 'styled-components';
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import { gruvboxDark } from 'react-syntax-highlighter/styles/hljs';
+import { tomorrowNightEighties as theme } from 'react-syntax-highlighter/styles/hljs';
 
-const Code = ({ language, value, className }) => (
-  <SyntaxHighlighter language={language} style={gruvboxDark} className={className}>
-    {value}
-  </SyntaxHighlighter>
-);
-
-const StyledCode = styled(Code)`
-  padding: 0 15px;
+const CodeWrapper = styled.div`
   margin: 25px -30px;
-  color: white;
-  background-color: #282c34;
+  padding: 0 15px;
+  background-color: #2d2d2d;
   font-size: 14px;
   overflow: auto;
 
   @media (min-width: 720px) {
     border-radius: 10px;
   }
-
-  pre {
-    margin: 1rem;
-    font-size: 14px;
-    line-height: 20px;
-    white-space: pre-wrap;
-    word-break: break-word;
-  }
 `;
 
-export default StyledCode;
+const StyledSyntaxHighlighter = styled(SyntaxHighlighter)`
+  margin: calc(1rem - 0.5em);
+  font-size: 14px;
+  line-height: 20px;
+  white-space: pre-wrap;
+  word-break: break-word;
+`;
+
+const Code = ({ language, value }) => (
+  <CodeWrapper>
+    <StyledSyntaxHighlighter language={language} style={theme}>
+      {value}
+    </StyledSyntaxHighlighter>
+  </CodeWrapper>
+);
+
+export default Code;
