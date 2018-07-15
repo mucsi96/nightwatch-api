@@ -1,3 +1,3 @@
 import { startWebDriver } from 'nightwatch-api';
 
-startWebDriver().catch(err => console.log(err));
+startWebDriver('chrome').catch(err => console.log(err));

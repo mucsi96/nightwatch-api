@@ -8,7 +8,7 @@ const commonConfig = {
   },
   serve: {
     content: distPath,
-    hot: false
+    hotClient: false
   },
   stats: 'minimal',
   module: {
