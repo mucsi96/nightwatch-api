@@ -24,7 +24,7 @@ script:
   - npm run ci
   - cd examples/jest && npm run ci && cd ../..
   - cd examples/cucumber && npm run ci && cd ../..
-  - cd examples/node && npm run ci && cd ../..
+  - cd examples/node && npm test && cd ../..
 cache:
   directories:
     - node_modules
