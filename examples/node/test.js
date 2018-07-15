@@ -25,10 +25,11 @@ async function run() {
 
 (async function() {
   try {
-    await setup('chrome');
+    await setup('default');
     await run();
   } catch (err) {
     console.log(err.stack);
+    process.exitCode = 1;
   } finally {
     await shutdown();
   }
