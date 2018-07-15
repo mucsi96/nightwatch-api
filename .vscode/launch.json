@@ -5,6 +5,13 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "node",
+      "request": "launch",
+      "name": "Node example",
+      "program": "${workspaceFolder}/examples/node/test.js",
+      "cwd": "${workspaceFolder}/examples/node"
+    },
+    {
       "name": "Debug Jest Tests",
       "type": "node",
       "request": "launch",

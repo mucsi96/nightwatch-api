@@ -10,21 +10,22 @@ language: node_js
 node_js:
   - "8"
 install:
-  - yarn
-  - cd examples/jest && yarn && cd ../..
-  - cd examples/cucumber && yarn && cd ../..
+  - npm i
+  - cd examples/jest && npm i && cd ../..
+  - cd examples/cucumber && npm i && cd ../..
+  - cd examples/node && npm i && cd ../..
 before_script:
   - jdk_switcher use oraclejdk8
   - java -version
   - google-chrome --product-version
 script: 
-  - yarn lint
-  - yarn type-check
-  - yarn ci
-  - cd examples/jest && yarn ci && cd ../..
-  - cd examples/cucumber && yarn ci && cd ../..
+  - npm run lint
+  - npm run type-check
+  - npm run ci
+  - cd examples/jest && npm run ci && cd ../..
+  - cd examples/cucumber && npm run ci && cd ../..
+  - cd examples/node && npm test && cd ../..
 cache:
-  yarn: true
   directories:
     - node_modules
     - examples/jest/node_modules

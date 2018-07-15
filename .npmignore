@@ -16,3 +16,5 @@ nightwatch.conf.js
 *.log
 *.tgz
 yarn.lock
+doc
+site-dist

@@ -1,4 +1,11 @@
-import { CliRunner, CliRunnerInstance, client as createClient, Client, AssertionError, Api } from 'nightwatch';
+import {
+  CliRunner,
+  CliRunnerInstance,
+  client as createClient,
+  Client,
+  AssertionError,
+  Api
+} from 'nightwatch';
 import fs from 'fs';
 import path from 'path';
 import { log } from './logger';
@@ -24,6 +31,10 @@ function createRunner(env: string = 'default') {
   return runner;
 }
 
+/**
+ * Start WebDriver
+ * @param env Nightwatch environment
+ */
 export async function startWebDriver(env?: string) {
   createRunner(env);
   await runner.startWebDriver();
@@ -45,14 +56,22 @@ export async function createSession(env?: string): Promise<Api> {
 }
 
 export async function closeSession() {
-  client.queue.empty();
-  client.queue.reset();
-  client.session.close();
-  await runQueue();
+  if (client && client.queue) {
+    client.queue.empty();
+    client.queue.reset();
+    client.session.close();
+    await runQueue();
+  }
   log('Session closed');
 }
 
 export async function runQueue() {
+  if (!client || !client.queue) {
+    throw new Error(
+      `Nightwatch client is not ready.
+        Looks like function "createSession" did not succeed or was not called yet.`
+    );
+  }
   try {
     await new Promise((resolve, reject) => {
       client.queue.run((err: AssertionError) => {
@@ -68,8 +87,10 @@ export async function runQueue() {
   } catch (err) {
     throw err;
   } finally {
-    client.queue.removeAllListeners();
-    client.queue.empty();
-    client.queue.reset();
+    if (client && client.queue) {
+      client.queue.removeAllListeners();
+      client.queue.empty();
+      client.queue.reset();
+    }
   }
 }
