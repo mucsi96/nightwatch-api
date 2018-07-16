@@ -19,7 +19,7 @@ before_script:
   - java -version
   - google-chrome --product-version
 after_success:
-  - npm run coveralls
+  - npm run test:coveralls
 script: 
   - npm run lint
   - npm run type-check
