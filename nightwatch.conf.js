@@ -8,7 +8,7 @@ module.exports = {
   custom_commands_path: '',
   custom_assertions_path: '',
   page_objects_path: 'test/page-objects',
-  globals_path: '',
+  globals_path: 'test/globals/globals.json',
   output: false,
   selenium: {
     server_path: seleniumServer.path,
