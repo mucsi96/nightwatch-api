@@ -67,7 +67,7 @@ export interface Client {
 
 export function CliRunner(config: object): CliRunnerInstance;
 
-export function client(settings: object): Client;
+export function client(settings: object, runner: object): Client;
 
 export interface AssertionError extends Error {
   abortOnFailure: boolean;
