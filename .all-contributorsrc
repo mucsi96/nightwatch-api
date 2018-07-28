@@ -1,0 +1,24 @@
+{
+  "projectName": "nightwatch-api",
+  "projectOwner": "mucsi96",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "mucsi96",
+      "name": "Igor Muchychka",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3163392?v=4",
+      "profile": "https://twitter.com/mucsi96",
+      "contributions": []
+    },
+    {
+      "login": "mAiNiNfEcTiOn",
+      "name": "Ricardo Machado",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/1002056?v=4",
+      "profile": "https://github.com/mAiNiNfEcTiOn",
+      "contributions": []
+    }
+  ]
+}
