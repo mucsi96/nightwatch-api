@@ -10,6 +10,8 @@ import reporter from 'nightwatch/lib/testsuite/reporter';
 import fs from 'fs';
 import path from 'path';
 import { log } from './logger';
+import waitOn from 'wait-on';
+import { promisify } from 'util';
 
 let runner: CliRunnerInstance;
 let client: Client;
@@ -32,19 +34,30 @@ function createRunner(env: string = 'default') {
   return runner;
 }
 
+async function waitForWebDriver(host: string, port: number, start: boolean = true) {
+  await promisify(waitOn)({
+    reverse: !start,
+    resources: [`http-get://${host}:${port}/status`]
+  });
+}
+
 /**
  * Start WebDriver
  * @param env Nightwatch environment
  */
 export async function startWebDriver(env?: string) {
   createRunner(env);
+  const { host, port } = runner.test_settings.webdriver;
   await runner.startWebDriver();
-  log(`WebDriver started on port ${runner.test_settings.webdriver.port}`);
+  await waitForWebDriver(host, port, true);
+  log(`WebDriver started on port ${port}`);
 }
 
 export async function stopWebDriver() {
+  const { host, port } = runner.test_settings.webdriver;
   await runner.stopWebDriver();
-  log(`WebDriver stopped on port ${runner.test_settings.webdriver.port}`);
+  await waitForWebDriver(host, port, false);
+  log(`WebDriver stopped on port ${port}`);
 }
 
 export async function createSession(env?: string): Promise<Api> {

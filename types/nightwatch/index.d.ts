@@ -5,6 +5,7 @@ interface SeleniumSettings {
 }
 
 interface WebdriverSettings {
+  host: string;
   port: number;
 }
 
