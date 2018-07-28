@@ -144,3 +144,7 @@ node test.js
 Now try to change the `environment` parameter of the `setup` function. In this example the supported environments are `default`, `chrome` and `firefox`. You can change the code to get the environment from command line arguments as well.
 
 For complete working examples check out the [examples](https://github.com/mucsi96/nightwatch-api/tree/master/examples) folder of the source code.
+
+## Contributors
+
+[contributors](#contributors)

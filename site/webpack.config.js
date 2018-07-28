@@ -1,7 +1,11 @@
 const path = require('path');
+const fs = require('fs');
 const nodeExternals = require('webpack-node-externals');
 const StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin');
 const distPath = path.resolve(__dirname, '../site-dist');
+const { contributors } = JSON.parse(
+  fs.readFileSync(path.resolve(__dirname, '../.all-contributorsrc'))
+);
 const commonConfig = {
   output: {
     path: distPath
@@ -56,6 +60,9 @@ const serverConfig = {
     new StaticSiteGeneratorPlugin({
       entry: 'main',
       crawl: true,
+      locals: {
+        contributors
+      },
       globals: {
         window: {}
       }

@@ -7,6 +7,7 @@ import Image from '../components/Image';
 import InlineCode from '../components/InlineCode';
 import Emoji from '../components/Emoji';
 import Paragraph from './Paragraph';
+import Contributors from './Contributors';
 
 const EMOJI_MAP_REGEX = /<--EMOJI-MAP--(.*)--EMOJI-MAP-->/;
 
@@ -21,6 +22,9 @@ const Article = ({ markdown }) => {
         renderers={{
           heading: Heading,
           link: ({ href, children }) => {
+            if (href === '#contributors') {
+              return <Contributors />;
+            }
             if (href === '#emoji') {
               return <Emoji svg={emojiMap[children]} />;
             }
