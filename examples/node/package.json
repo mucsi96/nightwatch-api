@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "node test.js",
-    "debug": "npm test -- --inspect"
+    "debug": "node --inspect-brk test.js"
   },
   "repository": "git@github.com:mucsi96/nightwatch-api.git",
   "author": "Igor Mucsicska <mucsi_96@yahoo.com>",

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "babel-node test/server.js",
-    "test": "cucumber-js --require-module babel-core/register --require test/support --require step-definitions",
+    "test": "cucumber-js --require-module babel-core/register --require test/support --require step-definitions --format node_modules/cucumber-pretty",
     "ci": "start-server-and-test start http-get://localhost:4444/status test"
   },
   "repository": "git@github.com:mucsi96/nightwatch-api.git",
@@ -17,6 +17,7 @@
     "babel-preset-env": "^1.7.0",
     "chromedriver": "^2.40.0",
     "cucumber": "^4.2.1",
+    "cucumber-pretty": "^1.4.4",
     "geckodriver": "^1.11.0",
     "nightwatch": "1.0.6",
     "nightwatch-api": "latest",

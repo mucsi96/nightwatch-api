@@ -6,6 +6,7 @@ import {
   AssertionError,
   Api
 } from 'nightwatch';
+import reporter from 'nightwatch/lib/testsuite/reporter';
 import fs from 'fs';
 import path from 'path';
 import { log } from './logger';
@@ -49,7 +50,7 @@ export async function stopWebDriver() {
 export async function createSession(env?: string): Promise<Api> {
   createRunner(env);
   const settings = runner.test_settings;
-  client = createClient(settings);
+  client = createClient(settings, new reporter([], 0, {}, {}));
   await client.startSession();
   log('Session created');
   return client.api;
