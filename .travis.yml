@@ -11,9 +11,7 @@ node_js:
   - "8"
 install:
   - npm i
-  - cd examples/jest && npm i && cd ../..
-  - cd examples/cucumber && npm i && cd ../..
-  - cd examples/node && npm i && cd ../..
+  - npm run pack-into-examples
 before_script:
   - jdk_switcher use oraclejdk8
   - java -version
