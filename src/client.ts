@@ -34,8 +34,14 @@ function createRunner(env: string = 'default') {
   return runner;
 }
 
-async function waitForWebDriver(host: string, port: number, start: boolean = true) {
+async function waitForWebDriver(
+  host: string = 'localhost',
+  port: number = 4444,
+  timeout: number,
+  start: boolean = true
+) {
   await promisify(waitOn)({
+    timeout,
     reverse: !start,
     resources: [`http-get://${host}:${port}/status`]
   });
@@ -44,19 +50,32 @@ async function waitForWebDriver(host: string, port: number, start: boolean = tru
 /**
  * Start WebDriver
  * @param env Nightwatch environment
+ * @param timeout Timeout in ms, default 3000ms
  */
-export async function startWebDriver(env?: string) {
+export async function startWebDriver(env?: string, timeout: number = 5000) {
   createRunner(env);
   const { host, port } = runner.test_settings.webdriver;
   await runner.startWebDriver();
-  await waitForWebDriver(host, port, true);
+  try {
+    await waitForWebDriver(host, port, timeout, true);
+  } catch (err) {
+    throw new Error(`Starting WebDriver on ${host}:${port} timed out. Timeout was ${timeout}`);
+  }
   log(`WebDriver started on port ${port}`);
 }
 
-export async function stopWebDriver() {
+/**
+ * Stop WebDriver
+ * @param timeout Timeout in ms, default 3000ms
+ */
+export async function stopWebDriver(timeout: number = 5000) {
   const { host, port } = runner.test_settings.webdriver;
   await runner.stopWebDriver();
-  await waitForWebDriver(host, port, false);
+  try {
+    await waitForWebDriver(host, port, timeout, false);
+  } catch (err) {
+    throw new Error(`Stopping WebDriver on ${host}:${port} timed out. Timeout was ${timeout}`);
+  }
   log(`WebDriver stopped on port ${port}`);
 }
 
