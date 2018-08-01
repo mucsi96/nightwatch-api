@@ -20,6 +20,7 @@
     "test:coveralls": "cat ./coverage/lcov.info | coveralls",
     "test:ci": "start-server-and-test start http://localhost:3000 test:coverage",
     "prepack": "npm run clean && npm run build",
+    "pack-into-examples": "node test/pack-into-examples.js",
     "debug": "cross-env DEBUG=nightwatch-api babel-node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
     "lint": "tslint 'src/**/*.{ts,tsx}'",
     "precommit": "pretty-quick --staged",
@@ -29,6 +30,7 @@
   },
   "dependencies": {
     "debug": "^3.1.0",
+    "wait-on": "^2.1.0",
     "@types/debug": "^0.0.30"
   },
   "peerDependencies": {
@@ -83,7 +85,6 @@
     "twemoji": "^11.0.0",
     "typedoc": "^0.11.1",
     "typescript": "^2.9.2",
-    "wait-on": "^2.1.0",
     "webpack": "^4.16.2",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.5",
