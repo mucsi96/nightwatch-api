@@ -59,7 +59,7 @@ export async function startWebDriver(env?: string, timeout: number = 5000) {
   try {
     await waitForWebDriver(host, port, timeout, true);
   } catch (err) {
-    throw new Error(`Starting WebDriver on ${host}:${port} timed out. Timeout was ${timeout}`);
+    throw new Error(`Starting WebDriver on ${host}:${port} timed out. Timeout was ${timeout}ms.`);
   }
   log(`WebDriver started on port ${port}`);
 }
@@ -74,7 +74,7 @@ export async function stopWebDriver(timeout: number = 5000) {
   try {
     await waitForWebDriver(host, port, timeout, false);
   } catch (err) {
-    throw new Error(`Stopping WebDriver on ${host}:${port} timed out. Timeout was ${timeout}`);
+    throw new Error(`Stopping WebDriver on ${host}:${port} timed out. Timeout was ${timeout}ms.`);
   }
   log(`WebDriver stopped on port ${port}`);
 }
