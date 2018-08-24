@@ -9,6 +9,10 @@ Nightwatch.js uses the powerful [W3C WebDriver](https://www.w3.org/TR/webdriver/
 - Running acceptance tests based on feature requirements written in Gherkin language ([Cucumber.js](https://github.com/cucumber/cucumber-js))
 - Controlling the browser using Nightwatch.js commands and assertions
 
+## Differences from nightwatch-cucumber package
+
+With this package the Nightwatch.js runner is disabled in favour of any type of test runner or other custom usage. Check the [examples](https://github.com/mucsi96/nightwatch-api/tree/master/examples) to see how can it be used with Cucumber.js
+
 ## Installation
 
 This module is distributed via [npm][npm] which is bundled with [node][node] and
