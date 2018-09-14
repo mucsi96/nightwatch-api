@@ -1,7 +1,7 @@
 import {
   CliRunner,
   CliRunnerInstance,
-  client as createClient,
+  client as createNightwatchClient,
   Client,
   AssertionError,
   Api
@@ -16,22 +16,22 @@ import { promisify } from 'util';
 let runner: CliRunnerInstance;
 let client: Client;
 
-function createRunner(env: string = 'default') {
-  if (!runner) {
-    const jsonConfigFile = './nightwatch.json';
-    const jsConfigFie = path.resolve('./nightwatch.conf.js');
-    const configFile = fs.existsSync(jsConfigFie) ? jsConfigFie : jsonConfigFile;
-    runner = CliRunner({ env, config: configFile });
-    runner.isWebDriverManaged = function() {
-      if (this.baseSettings.selenium) {
-        this.baseSettings.selenium.start_process = true;
-      }
-      return true;
-    };
-    runner.setup();
-  }
+export function createClient() {
+  const jsonConfigFile = './nightwatch.json';
+  const jsConfigFie = path.resolve('./nightwatch.conf.js');
+  const configFile = fs.existsSync(jsConfigFie) ? jsConfigFie : jsonConfigFile;
+  runner = CliRunner({ config: configFile });
+  runner.isWebDriverManaged = function() {
+    if (this.baseSettings.selenium) {
+      this.baseSettings.selenium.start_process = true;
+    }
+    return true;
+  };
+  runner.setup();
+  const settings = runner.test_settings;
+  client = createNightwatchClient(settings, new reporter([], 0, {}, {}));
 
-  return runner;
+  return client;
 }
 
 async function waitForWebDriver(
@@ -52,8 +52,10 @@ async function waitForWebDriver(
  * @param env Nightwatch environment
  * @param timeout Timeout in ms, default 3000ms
  */
-export async function startWebDriver(env?: string, timeout: number = 5000) {
-  createRunner(env);
+export async function startWebDriver(env: string = 'default', timeout: number = 5000) {
+  runner.argv.env = env;
+  runner.setCurrentTestEnv();
+  runner.setupConcurrency();
   const { host, port } = runner.test_settings.webdriver;
   await runner.startWebDriver();
   try {
@@ -79,10 +81,10 @@ export async function stopWebDriver(timeout: number = 5000) {
   log(`WebDriver stopped on port ${port}`);
 }
 
-export async function createSession(env?: string): Promise<Api> {
-  createRunner(env);
-  const settings = runner.test_settings;
-  client = createClient(settings, new reporter([], 0, {}, {}));
+export async function createSession(env: string = 'default'): Promise<Api> {
+  runner.argv.env = env;
+  runner.parseTestSettings();
+  client.session.options.desiredCapabilities = runner.test_settings.desiredCapabilities;
   await client.startSession();
   log('Session created');
   return client.api;
