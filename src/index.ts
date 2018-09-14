@@ -1,21 +1,15 @@
-import { createSession as createNightwatchSession, runQueue } from './client';
+import { createClient, runQueue } from './client';
 import { promisifyApi, promisifySection, promisifyExpect, promisifyPageObjects } from './promisify';
-import proxy from './proxy';
-import { Api } from 'nightwatch';
 import section from 'nightwatch/lib/page-object/section';
 
-let nightwatchClient: Api;
+const nightwatchClient = createClient();
+export const client = nightwatchClient.api;
 
-export { startWebDriver, stopWebDriver, closeSession } from './client';
+promisifyApi(client, runQueue);
+promisifyExpect(client, runQueue);
+promisifyPageObjects(client, runQueue);
 
-export async function createSession(env: string) {
-  nightwatchClient = await createNightwatchSession(env);
-  promisifyApi(nightwatchClient, runQueue);
-  promisifyExpect(nightwatchClient, runQueue);
-  promisifyPageObjects(nightwatchClient, runQueue);
-}
-
-export const client = proxy(() => nightwatchClient);
+export { startWebDriver, stopWebDriver, createSession, closeSession } from './client';
 
 export class Section extends section {
   constructor(definition: object, options: object) {

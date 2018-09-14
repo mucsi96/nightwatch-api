@@ -12,6 +12,11 @@ interface WebdriverSettings {
 interface Settings {
   selenium: SeleniumSettings;
   webdriver: WebdriverSettings;
+  desiredCapabilities: DesiredCapabilities;
+}
+
+interface CliRunnerArguments {
+  env: string;
 }
 
 export interface CliRunnerInstance {
@@ -21,6 +26,10 @@ export interface CliRunnerInstance {
   setup: Function;
   startWebDriver: Function;
   stopWebDriver: Function;
+  argv: CliRunnerArguments;
+  setCurrentTestEnv: Function;
+  setupConcurrency: Function;
+  parseTestSettings: Function;
 }
 
 export interface Queue {
@@ -30,8 +39,15 @@ export interface Queue {
   removeAllListeners: Function;
 }
 
+interface DesiredCapabilities {}
+
+interface SessionOptions {
+  desiredCapabilities: DesiredCapabilities;
+}
+
 export interface Session {
   close: Function;
+  options: SessionOptions;
 }
 
 export interface Page {
