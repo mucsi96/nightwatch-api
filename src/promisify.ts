@@ -21,10 +21,18 @@ export function promisifyExpect(api: Api, runQueue: Function) {
   Object.keys(api.expect).forEach(field => {
     const originalExpectation = api.expect[field];
 
-    api.expect[field] = function() {
-      const result = originalExpectation.apply(this, arguments);
-      promisifyApi(result, runQueue);
-      return result;
+    let onSuccess: Function;
+    let onCatch: Function;
+
+    originalExpectation.catch = (catchCb: Function) => {
+      if (catchCb) onCatch = catchCb;
+    };
+    originalExpectation.then = (successCb: Function, catchCb: Function) => {
+      if (successCb) onSuccess = successCb;
+      if (catchCb) onCatch = catchCb;
+      return runQueue()
+        .then(onSuccess)
+        .catch(onCatch);
     };
   });
 }

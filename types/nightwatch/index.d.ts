@@ -38,8 +38,13 @@ export interface Page {
   (): Api;
 }
 
+export interface Expectation extends Function {
+  catch: Function;
+  then: Function;
+}
+
 export interface Expect {
-  [key: string]: Function;
+  [key: string]: Expectation;
 }
 
 export interface Pages {
