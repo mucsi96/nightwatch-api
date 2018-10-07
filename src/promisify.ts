@@ -1,4 +1,4 @@
-import { Api, Page, Pages } from 'nightwatch';
+import { Api, Page, Pages, Expect } from 'nightwatch';
 
 export function promisifyApi(api: Api, runQueue: Function) {
   let onSuccess: Function;
@@ -16,18 +16,19 @@ export function promisifyApi(api: Api, runQueue: Function) {
   };
 }
 
-export function promisifyExpect(api: Api, runQueue: Function) {
-  if (!api.expect) return;
-  Object.keys(api.expect).forEach(field => {
-    const originalExpectation = api.expect[field];
+export function promisifyExpectDeep(target: Expect, runQueue: Function) {
+  Object.keys(target).forEach(field => {
+    const method = <Expect>target[field];
+
+    promisifyExpectDeep(method, runQueue);
 
     let onSuccess: Function;
     let onCatch: Function;
 
-    originalExpectation.catch = (catchCb: Function) => {
+    method.catch = (catchCb: Function) => {
       if (catchCb) onCatch = catchCb;
     };
-    originalExpectation.then = (successCb: Function, catchCb: Function) => {
+    method.then = (successCb: Function, catchCb: Function) => {
       if (successCb) onSuccess = successCb;
       if (catchCb) onCatch = catchCb;
       return runQueue()
@@ -35,6 +36,11 @@ export function promisifyExpect(api: Api, runQueue: Function) {
         .catch(onCatch);
     };
   });
+}
+
+export function promisifyExpect(api: Api, runQueue: Function) {
+  if (!api.expect) return;
+  promisifyExpectDeep(api.expect, runQueue);
 }
 
 export function promisifySection(section: Api, runQueue: Function) {
