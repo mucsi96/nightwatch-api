@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import styled from 'styled-components';
-import slug from 'slug';
+import slugify from '@sindresorhus/slugify';
 import TableOfContentsCollector from './TableOfContentsCollector';
 
 const StyledHeading1 = styled.h1`
@@ -40,7 +40,7 @@ const styledLevels = {
 const Heading = ({ level, children }) => {
   const title = Array.isArray(children) ? children[0] : children.toString();
   const Container = styledLevels[level] || `h${level}`;
-  const id = slug(title).toLowerCase();
+  const id = slugify(title);
   return (
     <Fragment>
       {level <= 2 ? <TableOfContentsCollector id={id} level={level} title={title} /> : null}
