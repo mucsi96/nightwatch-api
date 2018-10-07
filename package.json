@@ -21,7 +21,7 @@
     "test:ci": "start-server-and-test start http://localhost:3000 test:coverage",
     "prepack": "npm run clean && npm run build",
     "pack-into-examples": "node test/pack-into-examples.js",
-    "debug": "cross-env DEBUG=nightwatch-api babel-node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
+    "debug": "cross-env DEBUG=nightwatch-api NIGHTWATCH_VERBOSE=true babel-node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
     "lint": "tslint 'src/**/*.{ts,tsx}'",
     "build:doc": "typedoc --json typedoc.json --mode modules src/index.ts",
     "build:site": "del-cli site-dist && webpack --config ./site/webpack.config.js && del-cli site-dist/site-server-renderer.js",

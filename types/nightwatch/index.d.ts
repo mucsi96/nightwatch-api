@@ -1,4 +1,5 @@
 import Section from './lib/page-object/section';
+import { EventEmitter } from 'events';
 
 interface SeleniumSettings {
   start_process: boolean;
@@ -23,11 +24,10 @@ export interface CliRunnerInstance {
   stopWebDriver: Function;
 }
 
-export interface Queue {
+export interface Queue extends EventEmitter {
   empty: Function;
   reset: Function;
   run: Function;
-  removeAllListeners: Function;
 }
 
 export interface Session {
@@ -70,6 +70,6 @@ export function CliRunner(config: object): CliRunnerInstance;
 
 export function client(settings: object, runner: object): Client;
 
-export interface AssertionError extends Error {
+export interface NightwatchError extends Error {
   abortOnFailure: boolean;
 }

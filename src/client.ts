@@ -3,9 +3,10 @@ import {
   CliRunnerInstance,
   client as createClient,
   Client,
-  AssertionError,
-  Api
+  Api,
+  NightwatchError
 } from 'nightwatch';
+import assertionError from 'assertion-error';
 import reporter from 'nightwatch/lib/testsuite/reporter';
 import fs from 'fs';
 import path from 'path';
@@ -88,14 +89,35 @@ export async function createSession(env?: string): Promise<Api> {
   return client.api;
 }
 
-export async function closeSession() {
+function resetQueue() {
   if (client && client.queue) {
-    client.queue.empty();
-    client.queue.reset();
-    client.session.close();
+    client.queue
+      .reset()
+      .removeAllListeners()
+      .empty();
+  }
+}
+
+export async function closeSession() {
+  resetQueue();
+  if (client && client.queue) {
     await runQueue();
   }
   log('Session closed');
+}
+
+function handleQueueResult(err: NightwatchError, resolve: Function, reject: Function) {
+  if (!err) {
+    resolve();
+    return;
+  }
+
+  if (!(err instanceof assertionError) || err.abortOnFailure) {
+    resetQueue();
+  }
+
+  err.stack = [err.message, err.stack].join('\n');
+  reject(err);
 }
 
 export async function runQueue() {
@@ -105,25 +127,14 @@ export async function runQueue() {
         Looks like function "createSession" did not succeed or was not called yet.`
     );
   }
+
   try {
     await new Promise((resolve, reject) => {
-      client.queue.run((err: AssertionError) => {
-        if (!err || !(err.abortOnFailure || err.abortOnFailure === undefined)) {
-          resolve();
-          return;
-        }
-
-        err.stack = [err.message, err.stack].join('\n');
-        reject(err);
-      });
+      client.queue.run((err: NightwatchError) => handleQueueResult(err, resolve, reject));
     });
   } catch (err) {
     throw err;
   } finally {
-    if (client && client.queue) {
-      client.queue.removeAllListeners();
-      client.queue.empty();
-      client.queue.reset();
-    }
+    resetQueue();
   }
 }

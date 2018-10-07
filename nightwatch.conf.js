@@ -2,11 +2,13 @@ const chromedriver = require('chromedriver');
 const geckodriver = require('geckodriver');
 
 module.exports = {
+  silent: !process.env.NIGHTWATCH_VERBOSE,
   src_folders: ['tests'],
   page_objects_path: 'test/page-objects',
   globals_path: 'test/globals/globals.json',
   test_settings: {
     default: {
+      launch_url: 'http://localhost:3000',
       webdriver: {
         start_process: true,
         server_path: chromedriver.path,
