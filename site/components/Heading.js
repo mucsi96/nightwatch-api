@@ -37,8 +37,19 @@ const styledLevels = {
   '2': StyledHeading2
 };
 
+const getTitleForChildren = children => {
+  process.stdout.write(`getTitleForChildren ${JSON.stringify(children)}\n`);
+  if (Array.isArray(children)) {
+    return getTitleForChildren(children[0]);
+  } else if (typeof children === 'object') {
+    return children.props.value;
+  }
+
+  return children;
+};
+
 const Heading = ({ level, children }) => {
-  const title = Array.isArray(children) ? children[0] : children.toString();
+  const title = getTitleForChildren(children);
   const Container = styledLevels[level] || `h${level}`;
   const id = slugify(title);
   return (
