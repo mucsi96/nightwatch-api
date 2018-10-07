@@ -17,7 +17,7 @@ const commands = {
               return this.click('#add');
             },
             checkResult: function() {
-              return this.assert.containsText('#result', expectedResult);
+              return this.assert.containsText('#result-value', expectedResult);
             }
           }
         ]

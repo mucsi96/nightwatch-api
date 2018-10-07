@@ -22,7 +22,7 @@ module.exports = {
     a: '#a',
     b: '#b',
     add: '#add',
-    result: '#result',
+    result: '#result-value',
     searchBar: 'input[name="p"]'
   },
   commands: [commands]

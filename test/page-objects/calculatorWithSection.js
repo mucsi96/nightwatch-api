@@ -26,7 +26,7 @@ module.exports = {
   },
   sections: {
     result: {
-      selector: '#result'
+      selector: '#result-value'
     }
   },
   commands: [commands]

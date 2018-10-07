@@ -5,6 +5,6 @@ module.exports = {
     a: '#a',
     b: '#b',
     add: '#add',
-    result: '#result'
+    result: '#result-value'
   }
 };
