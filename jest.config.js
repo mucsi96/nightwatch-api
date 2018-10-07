@@ -1,9 +1,9 @@
 module.exports = {
   setupTestFrameworkScriptFile: './test/setup',
   testPathIgnorePatterns: ['/node_modules/', '/examples/'],
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
+  moduleFileExtensions: ['js', 'ts'],
   transform: {
-    '^.+\\.(js|jsx|ts|tsx)$': 'babel-jest'
+    '^.+\\.(js|ts)$': 'babel-jest'
   },
-  collectCoverageFrom: ['src/**/*.{js,jsx}']
+  collectCoverageFrom: ['src/**/*.{js,ts}']
 };
