@@ -2,6 +2,10 @@
   "name": "nightwatch-api",
   "version": "0.4.0",
   "main": "./lib/index.js",
+  "files": [
+    "lib",
+    "types"
+  ],
   "types": "./lib/main.d.ts",
   "engines": {
     "node": ">= 8.0.0"
