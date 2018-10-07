@@ -39,9 +39,7 @@ export interface Page {
 }
 
 export interface Expect {
-  catch: Function;
-  then: Function;
-  [key: string]: Function | Expect;
+  [key: string]: Function;
 }
 
 export interface Pages {
