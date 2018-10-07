@@ -38,7 +38,6 @@ const styledLevels = {
 };
 
 const getTitleForChildren = children => {
-  process.stdout.write(`getTitleForChildren ${JSON.stringify(children)}\n`);
   if (Array.isArray(children)) {
     return getTitleForChildren(children[0]);
   } else if (typeof children === 'object') {
