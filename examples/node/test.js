@@ -7,8 +7,8 @@ const {
 } = require('nightwatch-api');
 
 async function setup(env = 'default') {
-  await startWebDriver(env);
-  await createSession(env);
+  await startWebDriver({ env });
+  await createSession({ env });
 }
 
 async function shutdown() {

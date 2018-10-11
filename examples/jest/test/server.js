@@ -1,3 +1,3 @@
 import { startWebDriver } from 'nightwatch-api';
 
-startWebDriver('default').catch(err => console.log(err));
+startWebDriver({ env: 'default' }).catch(err => console.log(err));

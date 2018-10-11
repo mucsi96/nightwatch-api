@@ -8,8 +8,8 @@ let nightwatchClient: Api;
 
 export { startWebDriver, stopWebDriver, closeSession } from './client';
 
-export async function createSession(env: string) {
-  nightwatchClient = await createNightwatchSession(env);
+export async function createSession({ env }: { env?: string } = {}) {
+  nightwatchClient = await createNightwatchSession({ env });
   promisifyApi(nightwatchClient, runQueue);
   promisifyExpect(nightwatchClient, runQueue);
   promisifyPageObjects(nightwatchClient, runQueue);

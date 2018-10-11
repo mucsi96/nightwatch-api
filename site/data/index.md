@@ -93,6 +93,23 @@ module.exports = {
 };
 ```
 
+### Change Nightwatch.js configuration file path
+
+By default Nightwatch API looks for a `nightwatch.conf.js` or `nightwatch.json` Nightwatch.js configuration file in the root directory of your project. If you want to place your configuration file in a sub directory or if you want to change the filename, you can do so by providing the path as a configuration option to the `startWebDriver()` and `createSession()` methods.
+
+```javascript
+// test.js
+
+// ...
+
+async function setup(env = 'default') {
+  await startWebDriver({ env, configFile: './test/nightwatch.conf.js' });
+  await createSession({ env, configFile: './test/nightwatch.conf.js' });
+}
+
+// ...
+```
+
 ## Usage
 
 Let's create a file called `test.js` to try out the features
@@ -109,8 +126,8 @@ const {
 } = require('nightwatch-api');
 
 async function setup(env = 'default') {
-  await startWebDriver(env);
-  await createSession(env);
+  await startWebDriver({ env });
+  await createSession({ env });
 }
 
 async function shutdown() {
