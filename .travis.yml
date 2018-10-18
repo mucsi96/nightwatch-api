@@ -5,6 +5,7 @@ addons:
 language: node_js
 node_js:
   - '8'
+  - '10'
 env:
   - DEBUG=nightwatch-api
   - NIGHTWATCH_VERBOSE=true
