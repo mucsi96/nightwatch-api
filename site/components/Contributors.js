@@ -17,7 +17,7 @@ const ContributorContainer = styled.li`
 `;
 
 const Contributor = ({ login, name, avatar_url, profile }) => (
-  <ContributorContainer>
+  <ContributorContainer key={login}>
     <Link href={profile} title={login}>
       <Avatar src={avatar_url} />
       {name}
