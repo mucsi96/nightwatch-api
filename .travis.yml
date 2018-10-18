@@ -9,6 +9,9 @@ addons:
 language: node_js
 node_js:
   - '8'
+env:
+  - DEBUG=nightwatch-api
+  - NIGHTWATCH_VERBOSE=true
 install:
   - npm i
   - npm run pack-into-examples
