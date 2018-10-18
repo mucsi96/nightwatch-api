@@ -8,7 +8,7 @@ node_js:
   - '10'
 env:
   global:
-    - DEBUG=nightwatch-api
+    - DEBUG=nightwatch-api,start-server-and-test
     - NIGHTWATCH_VERBOSE=true
 install:
   - npm i
