@@ -26,7 +26,7 @@ script:
   - npx wait-on -r tcp:4444 && cd examples/jest && npm test && cd ../..
   - npx wait-on -r tcp:4444 && cd examples/cucumber && npm test && cd ../..
   - npx wait-on -r tcp:4444 && cd examples/node && npm test && cd ../..
-  - npx wait-on -r
+  - npx wait-on -r tcp:4444
 cache:
   directories:
     - node_modules
