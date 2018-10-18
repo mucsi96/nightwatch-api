@@ -33,7 +33,6 @@
   },
   "dependencies": {
     "debug": "^4.0.1",
-    "wait-on": "^3.1.0",
     "@types/debug": "^0.0.31"
   },
   "peerDependencies": {
