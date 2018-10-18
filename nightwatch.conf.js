@@ -2,7 +2,7 @@ const chromedriver = require('chromedriver');
 const geckodriver = require('geckodriver');
 
 module.exports = {
-  silent: !process.env.NIGHTWATCH_VERBOSE,
+  silent: !process.env.NIGHTWATCH_VERBOSE && !process.env.CI,
   src_folders: ['tests'],
   page_objects_path: 'test/page-objects',
   globals_path: 'test/globals/globals.json',
