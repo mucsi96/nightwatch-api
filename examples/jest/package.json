@@ -21,7 +21,7 @@
     "jest": "^23.6.0",
     "nightwatch": "1.0.11",
     "nightwatch-api": "latest",
-    "start-server-and-test": "^1.7.4"
+    "start-server-and-test": "^1.7.5"
   },
   "dependencies": {
     "cross-env": "^5.2.0"
