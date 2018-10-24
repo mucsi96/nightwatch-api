@@ -14,6 +14,7 @@ async function setup(env = 'default') {
 async function shutdown() {
   await closeSession();
   await stopWebDriver();
+  process.exit();
 }
 
 async function run() {
