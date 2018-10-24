@@ -47,22 +47,13 @@ const server = http.createServer((req, res) => {
   });
 });
 
-if (process.platform === 'win32') {
-  const rl = require('readline').createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
-
-  rl.on('SIGINT', () => process.emit('SIGINT'));
-}
-
 (async function() {
   server.listen(3000);
   log('Test server started on port 3000');
   await startWebDriver();
 })().catch(err => log(err));
 
-process.on('SIGINT', async () => {
+process.on('SIGTERM', async () => {
   try {
     server.close();
     log('Test server stoped on port 3000');

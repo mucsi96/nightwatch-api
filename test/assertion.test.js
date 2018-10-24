@@ -66,7 +66,7 @@ describe('Assertion features', () => {
       .setValue('#a', 4)
       .setValue('#b', 5)
       .click('#add')
-      .expect.element('#result')
+      .expect.element('#result-value')
       .text.to.equal('9');
   });
 
@@ -78,13 +78,13 @@ describe('Assertion features', () => {
         .setValue('#a', 4)
         .setValue('#b', 5)
         .click('#add')
-        .expect.element('#result')
+        .expect.element('#result-value')
         .text.to.equal('10');
     } catch (err) {
       errorHandler(err.message);
     }
     expect(errorHandler).toBeCalledWith(
-      expect.stringContaining('Expected element <#result> text to equal: "10"')
+      expect.stringContaining('Expected element <#result-value> text to equal: "10"')
     );
   });
 

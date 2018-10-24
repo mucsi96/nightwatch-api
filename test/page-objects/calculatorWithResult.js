@@ -1,5 +1,5 @@
 module.exports = {
   elements: {
-    result: '#result'
+    result: '#result-value'
   }
 };

@@ -14,14 +14,14 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
-    "babel-jest": "^23.4.0",
+    "babel-jest": "^23.6.0",
     "babel-preset-env": "^1.7.0",
-    "chromedriver": "^2.40.0",
-    "geckodriver": "^1.11.0",
-    "jest": "^23.4.1",
-    "nightwatch": "1.0.6",
+    "chromedriver": "^2.43.0",
+    "geckodriver": "^1.12.2",
+    "jest": "^23.6.0",
+    "nightwatch": "1.0.11",
     "nightwatch-api": "latest",
-    "start-server-and-test": "^1.4.1"
+    "start-server-and-test": "^1.7.5"
   },
   "dependencies": {
     "cross-env": "^5.2.0"

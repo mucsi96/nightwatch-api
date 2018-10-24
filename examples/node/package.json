@@ -11,9 +11,9 @@
   "author": "Igor Mucsicska <mucsi_96@yahoo.com>",
   "license": "MIT",
   "devDependencies": {
-    "chromedriver": "^2.40.0",
-    "geckodriver": "^1.11.0",
-    "nightwatch": "^1.0.6",
+    "chromedriver": "^2.43.0",
+    "geckodriver": "^1.12.2",
+    "nightwatch": "^1.0.11",
     "nightwatch-api": "latest"
   }
 }

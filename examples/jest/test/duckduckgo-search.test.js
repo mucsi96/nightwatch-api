@@ -13,6 +13,6 @@ describe('Searching DuckDuckGo', () => {
       .url('https://duckduckgo.com/')
       .setValue('input[name="q"]', 'WebDriver')
       .click('input[type="submit"]')
-      .assert.containsText('#links', 'WebDriver - World Wide Web Consortium');
+      .assert.containsText('#links', 'WebDriver - w3.org');
   });
 });

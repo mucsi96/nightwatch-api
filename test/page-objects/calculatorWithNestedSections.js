@@ -4,9 +4,9 @@ module.exports = {
       selector: 'body',
       sections: {
         child: {
-          selector: 'h3',
+          selector: '#result',
           elements: {
-            result: '#result'
+            result: '#result-value'
           }
         }
       }

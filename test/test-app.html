@@ -15,7 +15,7 @@
     <button id="divide">Divide</button>
     <button id="multiply">Multiply</button>
   </h3>
-  <h3>Result: <span id="result"></span></h3>
+  <h3 id="result">Result: <span id="result-value"></span></h3>
   <style>
     #result {
       background-color: lightgray;
@@ -26,7 +26,7 @@
       return function () {
         var a = parseInt(document.querySelector('#a').value);
         var b = parseInt(document.querySelector('#b').value);
-        document.querySelector('#result').innerText = op(a, b)
+        document.querySelector('#result-value').innerText = op(a, b)
       }
     }
 
