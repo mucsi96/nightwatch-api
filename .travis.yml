@@ -22,9 +22,9 @@ script:
   - npm run lint
   - npm run type-check
   - npm run test:ci
+  - cd examples/node && npm test && npx wait-on -r tcp:4444 && cd ../..
   - cd examples/jest && npm test && npx wait-on -r tcp:4444 && cd ../..
   - cd examples/cucumber && npm test && npx wait-on -r tcp:4444 && cd ../..
-  - cd examples/node && npm test && npx wait-on -r tcp:4444 && cd ../..
 cache:
   directories:
     - node_modules
