@@ -53,7 +53,7 @@ const server = http.createServer((req, res) => {
   await startWebDriver();
 })().catch(err => log(err));
 
-process.on('SIGINT', async () => {
+process.on('SIGTERM', async () => {
   try {
     server.close();
     log('Test server stoped on port 3000');
