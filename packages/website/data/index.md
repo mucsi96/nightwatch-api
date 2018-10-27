@@ -93,6 +93,32 @@ module.exports = {
 };
 ```
 
+### Changing the WebDriver port
+
+By default Nightwatch API uses the port 4444 to connect to the WebDriver API. In order to change this, you have to provide both a `--port` CLI argument and the `port` WebDriver configuration option.
+
+```javascript
+// nightwatch.conf.js
+
+const chromedriver = require("chromedriver");
+const geckodriver = require("geckodriver");
+
+module.exports = {
+  test_settings: {
+    default: {
+      webdriver: {
+        start_process: true,
+        server_path: chromedriver.path,
+        port: 5555,
+        cli_args: ["--port=5555"]
+      }
+      // ...
+    }
+    // ...
+  }
+};
+```
+
 ## Usage
 
 Let's create a file called `test.js` to try out the features
@@ -109,8 +135,8 @@ const {
 } = require("nightwatch-api");
 
 async function setup(env = "default") {
-  await startWebDriver(env);
-  await createSession(env);
+  await startWebDriver({ env });
+  await createSession({ env });
 }
 
 async function shutdown() {
