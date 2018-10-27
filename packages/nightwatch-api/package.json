@@ -65,10 +65,6 @@
       "pre-commit": "pretty-quick --staged"
     }
   },
-  "prettier": {
-    "printWidth": 100,
-    "singleQuote": true
-  },
   "dependencies": {
     "debug": "^4.1.0",
     "@types/debug": "^0.0.31"

@@ -4,11 +4,11 @@ const {
   startWebDriver,
   stopWebDriver,
   client
-} = require("nightwatch-api");
+} = require('nightwatch-api');
 
-async function setup(env = "default") {
-  await startWebDriver(env);
-  await createSession(env);
+async function setup(options) {
+  await startWebDriver(options);
+  await createSession(options);
 }
 
 async function shutdown() {
@@ -18,16 +18,16 @@ async function shutdown() {
 }
 
 async function run() {
-  await client.url("https://duckduckgo.com/");
+  await client.url('https://duckduckgo.com/');
   let title;
   await client.getTitle(t => (title = t));
-  await client.assert.title("DuckDuckGo — Privacy, simplified.");
+  await client.assert.title('DuckDuckGo — Privacy, simplified.');
   console.log(title);
 }
 
 (async function() {
   try {
-    await setup("default");
+    await setup({ env: 'default' });
     await run();
   } catch (err) {
     console.log(err.stack);
