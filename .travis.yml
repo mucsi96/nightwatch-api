@@ -10,7 +10,7 @@ env:
   global:
     - DEBUG=nightwatch-api
 install:
-  - npm i
+  - cd packages/nightwatch-api && npm i
   - cd packages/nightwatch-api && npm run pack-into-examples
 before_script:
   - jdk_switcher use oraclejdk8
