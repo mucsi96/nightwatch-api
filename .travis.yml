@@ -4,12 +4,13 @@ addons:
   chrome: stable
 language: node_js
 node_js:
-  - '8'
-  - '10'
+  - "8"
+  - "10"
 env:
   global:
     - DEBUG=nightwatch-api
 install:
+  - cd packages/nightwatch-api
   - npm i
   - npm run pack-into-examples
 before_script:
@@ -17,19 +18,21 @@ before_script:
   - java -version
   - google-chrome --product-version
 after_success:
-  - npm run test:coveralls
+  - cd packages/nightwatch-api && npm run test:coveralls
 script:
   - npm run lint
   - npm run type-check
   - npm run test:ci
-  - cd examples/node && npm test && npx wait-on -r tcp:4444 && cd ../..
-  - cd examples/jest && npm test && npx wait-on -r tcp:4444 && cd ../..
-  - cd examples/cucumber && npm test && npx wait-on -r tcp:4444 && cd ../..
+  - cd ../..
+  - cd packages/node-example && npm test && npx wait-on -r tcp:4444 && cd ../..
+  - cd packages/jest-example && npm test && npx wait-on -r tcp:4444 && cd ../..
+  - cd packages/cucumber-example && npm test && npx wait-on -r tcp:4444 && cd ../..
 cache:
   directories:
-    - node_modules
-    - examples/jest/node_modules
-    - examples/cucumber/node_modules
+    - packages/nightwatch-api/node_modules
+    - packages/node-example/node_modules
+    - packages/jest-example/node_modules
+    - packages/cucumber-example/node_modules
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
