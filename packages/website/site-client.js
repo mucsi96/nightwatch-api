@@ -1,15 +1,11 @@
-import rehydrate from "./components/rehydrate";
-import React, { Component, Fragment } from "react";
-import { render } from "react-dom";
-import TableOfContents from "./components/TableOfContents";
-import HamburgerButton from "./components/HamburgerButton";
+import rehydrate from './components/rehydrate';
+import React, { Component, Fragment } from 'react';
+import { render } from 'react-dom';
+import TableOfContents from './components/TableOfContents';
+import HamburgerButton from './components/HamburgerButton';
 
-const RehydratedTableOfContents = rehydrate("table-of-contents")(
-  TableOfContents
-);
-const RehydratedHamburgerButton = rehydrate("hamburger-button")(
-  HamburgerButton
-);
+const RehydratedTableOfContents = rehydrate('table-of-contents')(TableOfContents);
+const RehydratedHamburgerButton = rehydrate('hamburger-button')(HamburgerButton);
 
 class App extends Component {
   state = {
@@ -23,7 +19,7 @@ class App extends Component {
   };
 
   handleTableOfContentsClick = ({ target: { tagName } }) => {
-    if (tagName === "A") {
+    if (tagName === 'A') {
       this.setState({
         showSmallScreenNavigation: false
       });
@@ -48,4 +44,4 @@ class App extends Component {
   }
 }
 
-render(<App />, document.getElementById("app"));
+render(<App />, document.getElementById('app'));

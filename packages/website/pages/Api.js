@@ -1,5 +1,5 @@
-import React from "react";
+import React from 'react';
 
-const Api = () => "API";
+const Api = () => 'API';
 
 export default Api;

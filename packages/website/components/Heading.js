@@ -1,7 +1,7 @@
-import React, { Fragment } from "react";
-import styled from "styled-components";
-import slugify from "@sindresorhus/slugify";
-import TableOfContentsCollector from "./TableOfContentsCollector";
+import React, { Fragment } from 'react';
+import styled from 'styled-components';
+import slugify from '@sindresorhus/slugify';
+import TableOfContentsCollector from './TableOfContentsCollector';
 
 const StyledHeading1 = styled.h1`
   font-size: 40px;
@@ -33,14 +33,14 @@ const StyledHeading2 = styled.h2`
 `;
 
 const styledLevels = {
-  "1": StyledHeading1,
-  "2": StyledHeading2
+  '1': StyledHeading1,
+  '2': StyledHeading2
 };
 
 const getTitleForChildren = children => {
   if (Array.isArray(children)) {
     return getTitleForChildren(children[0]);
-  } else if (typeof children === "object") {
+  } else if (typeof children === 'object') {
     return children.props.value;
   }
 
@@ -53,9 +53,7 @@ const Heading = ({ level, children }) => {
   const id = slugify(title);
   return (
     <Fragment>
-      {level <= 2 ? (
-        <TableOfContentsCollector id={id} level={level} title={title} />
-      ) : null}
+      {level <= 2 ? <TableOfContentsCollector id={id} level={level} title={title} /> : null}
       <Container id={id}>{children}</Container>
     </Fragment>
   );

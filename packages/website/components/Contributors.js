@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import { withContributors } from "./ContributorsProvider";
-import Link from "./Link";
+import React from 'react';
+import styled from 'styled-components';
+import { withContributors } from './ContributorsProvider';
+import Link from './Link';
 
 const Avatar = styled.img`
   width: 100px;

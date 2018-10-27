@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const WidthLimiter = styled.div`
   box-sizing: border-box;

@@ -1,11 +1,6 @@
-import { withTableOfContents } from "./TableOfContentsProvider";
+import { withTableOfContents } from './TableOfContentsProvider';
 
-const TableOfContentsCollector = ({
-  id,
-  level,
-  title,
-  addTableOfContentsItem
-}) => {
+const TableOfContentsCollector = ({ id, level, title, addTableOfContentsItem }) => {
   addTableOfContentsItem({ id, level, title });
   return null;
 };

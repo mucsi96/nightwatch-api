@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { tomorrowNightEighties as theme } from "react-syntax-highlighter/styles/hljs";
+import React from 'react';
+import styled from 'styled-components';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { tomorrowNightEighties as theme } from 'react-syntax-highlighter/styles/hljs';
 
 const CodeWrapper = styled.div`
   margin: 25px -30px;

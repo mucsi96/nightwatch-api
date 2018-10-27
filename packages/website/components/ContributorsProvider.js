@@ -1,4 +1,4 @@
-import React, { createContext } from "react";
+import React, { createContext } from 'react';
 
 const Context = createContext();
 
@@ -8,9 +8,7 @@ const ContributorsProvider = ({ contributors, children }) => (
 
 export const withContributors = WrappedComponent => ({ props }) => (
   <Context.Consumer>
-    {contributors => (
-      <WrappedComponent {...props} contributors={contributors} />
-    )}
+    {contributors => <WrappedComponent {...props} contributors={contributors} />}
   </Context.Consumer>
 );
 

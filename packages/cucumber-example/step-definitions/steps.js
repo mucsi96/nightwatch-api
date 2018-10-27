@@ -1,12 +1,12 @@
-import { client } from "nightwatch-api";
-import { Given, Then } from "cucumber";
+import { client } from 'nightwatch-api';
+import { Given, Then } from 'cucumber';
 
 Given(/^I open Google`s search page$/, async () => {
-  await client.url("http://google.com");
+  await client.url('http://google.com');
 });
 
 Given(/^I open DuckDuckGo search page$/, async () => {
-  await client.url("https://duckduckgo.com/");
+  await client.url('https://duckduckgo.com/');
 });
 
 Then(/^the title is "(.*?)"$/, async text => {

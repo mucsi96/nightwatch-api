@@ -1,6 +1,6 @@
 {
   "name": "nightwatch-api",
-  "version": "0.4.0",
+  "version": "1.0.0",
   "main": "./lib/index.js",
   "files": [
     "lib",
@@ -64,10 +64,6 @@
     "hooks": {
       "pre-commit": "pretty-quick --staged"
     }
-  },
-  "prettier": {
-    "printWidth": 100,
-    "singleQuote": true
   },
   "dependencies": {
     "debug": "^4.1.0",

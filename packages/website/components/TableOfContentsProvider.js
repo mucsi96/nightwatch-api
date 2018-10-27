@@ -1,4 +1,4 @@
-import React, { Component, createContext } from "react";
+import React, { Component, createContext } from 'react';
 
 const Context = createContext();
 
@@ -15,9 +15,7 @@ class TableOfContentsProvider extends Component {
 
     return (
       <div>
-        <Provider value={{ addItem: this.addItem, getItems: this.getItems }}>
-          {children}
-        </Provider>
+        <Provider value={{ addItem: this.addItem, getItems: this.getItems }}>{children}</Provider>
       </div>
     );
   }

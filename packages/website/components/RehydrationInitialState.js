@@ -1,5 +1,5 @@
-import React from "react";
-import { withDehydration } from "./DehydrationProvider";
+import React from 'react';
+import { withDehydration } from './DehydrationProvider';
 
 const RehydrationInitialState = ({ getInitialState }) => (
   <script

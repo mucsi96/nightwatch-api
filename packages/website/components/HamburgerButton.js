@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import styled, { css } from "styled-components";
+import React, { Component } from 'react';
+import styled, { css } from 'styled-components';
 
 const HamburgerInner = styled.div`
   margin-top: -2px;
@@ -8,20 +8,18 @@ const HamburgerInner = styled.div`
   position: absolute;
   width: 40px;
   height: 4px;
-  transition: transform var(--animation-duration) ease,
-    opacity var(--animation-duration) ease;
+  transition: transform var(--animation-duration) ease, opacity var(--animation-duration) ease;
   background-color: currentColor;
   border-radius: 4px;
 
   :after,
   :before {
     display: block;
-    content: "";
+    content: '';
     position: absolute;
     width: 40px;
     height: 4px;
-    transition: transform var(--animation-duration) ease,
-      opacity var(--animation-duration) ease;
+    transition: transform var(--animation-duration) ease, opacity var(--animation-duration) ease;
     border-radius: 4px;
     background-color: currentColor;
   }
