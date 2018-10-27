@@ -10,8 +10,9 @@ env:
   global:
     - DEBUG=nightwatch-api
 install:
-  - cd packages/nightwatch-api && npm i
-  - cd packages/nightwatch-api && npm run pack-into-examples
+  - cd packages/nightwatch-api
+  - npm i
+  - npm run pack-into-examples
 before_script:
   - jdk_switcher use oraclejdk8
   - java -version
@@ -19,9 +20,9 @@ before_script:
 after_success:
   - cd packages/nightwatch-api && npm run test:coveralls
 script:
-  - cd packages/nightwatch-api && npm run lint
-  - cd packages/nightwatch-api && npm run type-check
-  - cd packages/nightwatch-api && npm run test:ci
+  - npm run lint
+  - npm run type-check
+  - npm run test:ci
   - cd packages/node-example && npm test && npx wait-on -r tcp:4444 && cd ../..
   - cd packages/jest-example && npm test && npx wait-on -r tcp:4444 && cd ../..
   - cd packages/cucumber-example && npm test && npx wait-on -r tcp:4444 && cd ../..
