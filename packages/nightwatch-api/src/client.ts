@@ -11,16 +11,20 @@ import reporter from 'nightwatch/lib/testsuite/reporter';
 import fs from 'fs';
 import path from 'path';
 import { log } from './logger';
-import { IApiConfig } from '.';
 
 let runner: CliRunnerInstance;
 let client: Client;
 
-function getDefautEnvironment() {
+interface IOptions {
+  env: string;
+  configFile: string;
+}
+
+export function getDefautEnvironment() {
   return 'default';
 }
 
-function getDefaultConfigFile() {
+export function getDefaultConfigFile() {
   const jsonConfigFile = './nightwatch.json';
   const jsConfigFie = path.resolve('./nightwatch.conf.js');
 
@@ -42,12 +46,9 @@ function getDefaultConfigFile() {
   );
 }
 
-function createRunner({
-  env = getDefautEnvironment(),
-  configFile = getDefaultConfigFile()
-}: IApiConfig = {}) {
+function createRunner(options: IOptions) {
   if (!runner) {
-    runner = CliRunner({ env, config: configFile });
+    runner = CliRunner({ env: options.env, config: options.configFile });
     runner.isWebDriverManaged = function() {
       if (this.baseSettings.selenium) {
         this.baseSettings.selenium.start_process = true;
@@ -60,11 +61,8 @@ function createRunner({
   return runner;
 }
 
-export async function startWebDriver({
-  env = getDefautEnvironment(),
-  configFile = getDefaultConfigFile()
-}: IApiConfig = {}) {
-  createRunner({ env, configFile });
+export async function startWebDriver(options: IOptions) {
+  createRunner(options);
   const { port } = runner.test_settings.webdriver;
   await runner.startWebDriver();
   log(`WebDriver started on port ${port}`);
@@ -76,11 +74,8 @@ export async function stopWebDriver() {
   log(`WebDriver stopped on port ${port}`);
 }
 
-export async function createSession({
-  env = getDefautEnvironment(),
-  configFile = getDefaultConfigFile()
-}: IApiConfig = {}): Promise<Api> {
-  createRunner({ env, configFile });
+export async function createSession(options: IOptions): Promise<Api> {
+  createRunner(options);
   const settings = runner.test_settings;
   client = createClient(settings, new reporter([], 0, {}, {}));
   await client.startSession();

@@ -1,4 +1,4 @@
-import { createSession as createNightwatchSession, runQueue } from './client';
+import * as Client from './client';
 import { promisifyApi, promisifySection, promisifyExpect, promisifyPageObjects } from './promisify';
 import proxy from './proxy';
 import { Api } from 'nightwatch';
@@ -6,18 +6,58 @@ import section from 'nightwatch/lib/page-object/section';
 
 let nightwatchClient: Api;
 
-export { startWebDriver, stopWebDriver, closeSession } from './client';
+export { stopWebDriver, closeSession } from './client';
 
-export interface IApiConfig {
-  env?: string;
-  configFile?: string;
+/**
+ * eeeeeeeeeee
+ * @param options xxxxxxxxxxxxxxxxxxxxxxxxxx
+ * @example
+ * ```js
+ * sdfsdfsdsadasda
+ * ```
+ */
+export async function startWebDriver(
+  options: {
+    /**
+     * ddddddddddddddddddddd
+     */
+    env?: string;
+    /**
+     * gggggggggggggggggg
+     */
+    configFile?: string;
+  } = {}
+) {
+  const {
+    env = Client.getDefautEnvironment(),
+    configFile = Client.getDefaultConfigFile()
+  } = options;
+  return Client.startWebDriver({ env, configFile });
 }
 
-export async function createSession({ env, configFile }: IApiConfig = {}) {
-  nightwatchClient = await createNightwatchSession({ env, configFile });
-  promisifyApi(nightwatchClient, runQueue);
-  promisifyExpect(nightwatchClient, runQueue);
-  promisifyPageObjects(nightwatchClient, runQueue);
+/**
+ * aaaaaaaaaaaaaaaa
+ */
+export async function createSession(
+  options: {
+    /**
+     * bbbbbbbbbbbbbbbbbbbbb
+     */
+    env?: string;
+    /**
+     * cccccccccccccccccc
+     */
+    configFile?: string;
+  } = {}
+) {
+  const {
+    env = Client.getDefautEnvironment(),
+    configFile = Client.getDefaultConfigFile()
+  } = options;
+  nightwatchClient = await Client.createSession({ env, configFile });
+  promisifyApi(nightwatchClient, Client.runQueue);
+  promisifyExpect(nightwatchClient, Client.runQueue);
+  promisifyPageObjects(nightwatchClient, Client.runQueue);
 }
 
 export const client = proxy(() => nightwatchClient);
@@ -25,6 +65,6 @@ export const client = proxy(() => nightwatchClient);
 export class Section extends section {
   constructor(definition: object, options: object) {
     super(definition, options);
-    promisifySection(this.api, runQueue);
+    promisifySection(this.api, Client.runQueue);
   }
 }

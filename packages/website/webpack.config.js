@@ -6,6 +6,7 @@ const distPath = path.resolve(__dirname, 'dist');
 const { contributors } = JSON.parse(
   fs.readFileSync(path.resolve(__dirname, '.all-contributorsrc'))
 );
+const typedoc = require('./typedoc.json');
 const commonConfig = {
   output: {
     path: distPath
@@ -61,7 +62,8 @@ const serverConfig = {
       entry: 'main',
       crawl: true,
       locals: {
-        contributors
+        contributors,
+        typedoc
       },
       globals: {
         window: {}

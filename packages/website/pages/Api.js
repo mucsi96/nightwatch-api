@@ -1,5 +1,6 @@
 import React from 'react';
+import TypeDoc from '../components/TypeDoc';
 
-const Api = () => 'API';
+const Api = () => <TypeDoc />;
 
 export default Api;
