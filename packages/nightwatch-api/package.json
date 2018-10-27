@@ -27,6 +27,48 @@
     "debug": "cross-env DEBUG=nightwatch-api NIGHTWATCH_VERBOSE=true babel-node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
     "lint": "tslint 'src/**/*.{ts,tsx}'"
   },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "8"
+          }
+        }
+      ],
+      "@babel/preset-typescript"
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-class-properties",
+      "@babel/plugin-proposal-object-rest-spread"
+    ]
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "./test/setup",
+    "testPathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "ts"
+    ],
+    "transform": {
+      "^.+\\.(js|ts)$": "babel-jest"
+    },
+    "collectCoverageFrom": [
+      "src/**/*.{js,ts}"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true
+  },
   "dependencies": {
     "debug": "^4.1.0",
     "@types/debug": "^0.0.31"

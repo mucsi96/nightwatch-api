@@ -1,11 +1,12 @@
 const chromedriver = require('chromedriver');
 const geckodriver = require('geckodriver');
+const path = require('path');
 
 module.exports = {
   silent: !process.env.NIGHTWATCH_VERBOSE,
-  src_folders: ['tests'],
-  page_objects_path: 'test/page-objects',
-  globals_path: 'test/globals/globals.json',
+  src_folders: ['.'],
+  page_objects_path: path.resolve(__dirname, 'page-objects'),
+  globals_path: path.resolve(__dirname, 'globals/globals.json'),
   test_settings: {
     default: {
       launch_url: 'http://localhost:3000',
