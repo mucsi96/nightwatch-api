@@ -1,6 +1,6 @@
-import React from "react";
-import { withSiteConfig } from "./SiteConfigProvider";
-import openGraphImg from "../images/opengraph.png";
+import React from 'react';
+import { withSiteConfig } from './SiteConfigProvider';
+import openGraphImg from '../images/opengraph.png';
 
 const Head = ({ title, description, url }) => (
   <head>

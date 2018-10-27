@@ -47,8 +47,8 @@ You can view the complete list of capabilities on [SeleniumHQ wiki](https://gith
 ```javascript
 // nightwatch.conf.js
 
-const chromedriver = require("chromedriver");
-const geckodriver = require("geckodriver");
+const chromedriver = require('chromedriver');
+const geckodriver = require('geckodriver');
 
 module.exports = {
   test_settings: {
@@ -56,14 +56,14 @@ module.exports = {
       webdriver: {
         start_process: true,
         server_path: chromedriver.path,
-        cli_args: ["--port=4444"]
+        cli_args: ['--port=4444']
       },
       desiredCapabilities: {
-        browserName: "chrome",
+        browserName: 'chrome',
         javascriptEnabled: true,
         acceptSslCerts: true,
         chromeOptions: {
-          args: ["headless", "disable-gpu"]
+          args: ['headless', 'disable-gpu']
         }
       }
     },
@@ -72,11 +72,11 @@ module.exports = {
         server_path: chromedriver.path
       },
       desiredCapabilities: {
-        browserName: "chrome",
+        browserName: 'chrome',
         javascriptEnabled: true,
         acceptSslCerts: true,
         chromeOptions: {
-          args: ["disable-gpu"]
+          args: ['disable-gpu']
         }
       }
     },
@@ -85,7 +85,7 @@ module.exports = {
         server_path: geckodriver.path
       },
       desiredCapabilities: {
-        browserName: "firefox",
+        browserName: 'firefox',
         marionette: true
       }
     }
@@ -100,8 +100,8 @@ By default Nightwatch API uses the port 4444 to connect to the WebDriver API. In
 ```javascript
 // nightwatch.conf.js
 
-const chromedriver = require("chromedriver");
-const geckodriver = require("geckodriver");
+const chromedriver = require('chromedriver');
+const geckodriver = require('geckodriver');
 
 module.exports = {
   test_settings: {
@@ -110,7 +110,7 @@ module.exports = {
         start_process: true,
         server_path: chromedriver.path,
         port: 5555,
-        cli_args: ["--port=5555"]
+        cli_args: ['--port=5555']
       }
       // ...
     }
@@ -132,9 +132,9 @@ const {
   startWebDriver,
   stopWebDriver,
   client
-} = require("nightwatch-api");
+} = require('nightwatch-api');
 
-async function setup(env = "default") {
+async function setup(env = 'default') {
   await startWebDriver({ env });
   await createSession({ env });
 }
@@ -145,7 +145,7 @@ async function shutdown() {
 }
 
 async function run() {
-  await client.url("https://duckduckgo.com/");
+  await client.url('https://duckduckgo.com/');
   let title;
   await client.getTitle(t => (title = t));
   console.log(title);
@@ -153,7 +153,7 @@ async function run() {
 
 (async function() {
   try {
-    await setup("chrome");
+    await setup('chrome');
     await run();
   } catch (err) {
     console.log(err.stack);

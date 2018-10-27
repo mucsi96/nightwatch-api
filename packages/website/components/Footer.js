@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import Heart from "twemoji/2/svg/2764.svg";
-import CH from "twemoji/2/svg/1f1e8-1f1ed.svg";
-import WidthLimiter from "./WidthLimiter";
+import React from 'react';
+import styled from 'styled-components';
+import Heart from 'twemoji/2/svg/2764.svg';
+import CH from 'twemoji/2/svg/1f1e8-1f1ed.svg';
+import WidthLimiter from './WidthLimiter';
 
 const StyledHeart = styled(Heart)`
   width: 21px;

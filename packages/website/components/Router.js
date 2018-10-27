@@ -1,5 +1,5 @@
-import React from "react";
-import { StaticRouter } from "react-router";
+import React from 'react';
+import { StaticRouter } from 'react-router';
 
 const Router = ({ path, children }) => (
   <StaticRouter location={path} context={{}}>

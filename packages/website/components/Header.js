@@ -1,15 +1,13 @@
-import React from "react";
-import styled from "styled-components";
-import WidthLimiter from "./WidthLimiter";
-import { withSiteConfig } from "./SiteConfigProvider";
-import HomeIcon from "../images/nightwatch-api-logo.svg";
-import HeaderNavigation from "./HeaderNavigation";
-import HamburgerButton from "./HamburgerButton";
-import dehydrate from "./dehydrate";
+import React from 'react';
+import styled from 'styled-components';
+import WidthLimiter from './WidthLimiter';
+import { withSiteConfig } from './SiteConfigProvider';
+import HomeIcon from '../images/nightwatch-api-logo.svg';
+import HeaderNavigation from './HeaderNavigation';
+import HamburgerButton from './HamburgerButton';
+import dehydrate from './dehydrate';
 
-const DehydratedHamburgerButton = dehydrate("hamburger-button")(
-  HamburgerButton
-);
+const DehydratedHamburgerButton = dehydrate('hamburger-button')(HamburgerButton);
 const StyledDehydratedHamburgerButton = styled(DehydratedHamburgerButton)`
   @media (min-width: 720px) {
     display: none;

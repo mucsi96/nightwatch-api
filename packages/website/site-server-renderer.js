@@ -1,8 +1,8 @@
-import React from "react";
-import { renderToStaticMarkup } from "react-dom/server";
-import { ServerStyleSheet } from "styled-components";
-import Site from "./components/Site";
-import ContributorsProvider from "./components/ContributorsProvider";
+import React from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
+import { ServerStyleSheet } from 'styled-components';
+import Site from './components/Site';
+import ContributorsProvider from './components/ContributorsProvider';
 
 const render = ({ path, contributors }) => {
   const sheet = new ServerStyleSheet();
@@ -14,7 +14,7 @@ const render = ({ path, contributors }) => {
     )
   )}`;
   const styleTags = sheet.getStyleTags();
-  return html.replace("</head>", `${styleTags}</head>`);
+  return html.replace('</head>', `${styleTags}</head>`);
 };
 
 export default render;

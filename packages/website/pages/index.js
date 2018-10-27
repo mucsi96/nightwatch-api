@@ -1,7 +1,7 @@
-import React, { Fragment } from "react";
-import { Route } from "react-router";
-import Home from "./Home";
-import Api from "./Api";
+import React, { Fragment } from 'react';
+import { Route } from 'react-router';
+import Home from './Home';
+import Api from './Api';
 
 const Routes = () => (
   <Fragment>

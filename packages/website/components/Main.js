@@ -1,17 +1,13 @@
-import React from "react";
-import WidthLimiter from "./WidthLimiter";
-import styled from "styled-components";
-import { withTableOfContents } from "../components/TableOfContentsProvider";
-import dehydrate from "../components/dehydrate";
-import TableOfContents from "../components/TableOfContents";
+import React from 'react';
+import WidthLimiter from './WidthLimiter';
+import styled from 'styled-components';
+import { withTableOfContents } from '../components/TableOfContentsProvider';
+import dehydrate from '../components/dehydrate';
+import TableOfContents from '../components/TableOfContents';
 
-const DehydratedTableOfContents = dehydrate("table-of-contents")(
-  TableOfContents
-);
+const DehydratedTableOfContents = dehydrate('table-of-contents')(TableOfContents);
 
-const TableOfContentsContainer = styled(
-  withTableOfContents(DehydratedTableOfContents)
-)`
+const TableOfContentsContainer = styled(withTableOfContents(DehydratedTableOfContents))`
   display: flex;
 `;
 

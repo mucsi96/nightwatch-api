@@ -1,5 +1,5 @@
-const chromedriver = require("chromedriver");
-const geckodriver = require("geckodriver");
+const chromedriver = require('chromedriver');
+const geckodriver = require('geckodriver');
 
 module.exports = {
   test_settings: {
@@ -7,14 +7,14 @@ module.exports = {
       webdriver: {
         start_process: true,
         server_path: chromedriver.path,
-        cli_args: ["--port=4444"]
+        cli_args: ['--port=4444']
       },
       desiredCapabilities: {
-        browserName: "chrome",
+        browserName: 'chrome',
         javascriptEnabled: true,
         acceptSslCerts: true,
         chromeOptions: {
-          args: ["headless", "disable-gpu"]
+          args: ['headless', 'disable-gpu']
         }
       }
     },
@@ -23,11 +23,11 @@ module.exports = {
         server_path: chromedriver.path
       },
       desiredCapabilities: {
-        browserName: "chrome",
+        browserName: 'chrome',
         javascriptEnabled: true,
         acceptSslCerts: true,
         chromeOptions: {
-          args: ["disable-gpu"]
+          args: ['disable-gpu']
         }
       }
     },
@@ -36,7 +36,7 @@ module.exports = {
         server_path: geckodriver.path
       },
       desiredCapabilities: {
-        browserName: "firefox",
+        browserName: 'firefox',
         marionette: true
       }
     }

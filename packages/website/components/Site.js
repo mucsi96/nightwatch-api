@@ -1,14 +1,14 @@
-import React from "react";
-import DehydrationProvider from "../components/DehydrationProvider";
-import RehydrationInitialState from "../components/RehydrationInitialState";
-import Footer from "../components/Footer";
-import Body from "../components/Body";
-import Main from "../components/Main";
-import TableOfContentsProvider from "../components/TableOfContentsProvider";
-import Header from "../components/Header";
-import Router from "../components/Router";
-import Head from "../components/Head";
-import SiteContent from "../pages";
+import React from 'react';
+import DehydrationProvider from '../components/DehydrationProvider';
+import RehydrationInitialState from '../components/RehydrationInitialState';
+import Footer from '../components/Footer';
+import Body from '../components/Body';
+import Main from '../components/Main';
+import TableOfContentsProvider from '../components/TableOfContentsProvider';
+import Header from '../components/Header';
+import Router from '../components/Router';
+import Head from '../components/Head';
+import SiteContent from '../pages';
 
 const Site = ({ path }) => (
   <Router path={path}>

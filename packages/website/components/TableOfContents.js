@@ -1,12 +1,12 @@
-import React from "react";
-import styled, { css } from "styled-components";
-import TableOfContentsNode from "./TableOfContentsNode";
-import HeaderNavigation from "./HeaderNavigation";
+import React from 'react';
+import styled, { css } from 'styled-components';
+import TableOfContentsNode from './TableOfContentsNode';
+import HeaderNavigation from './HeaderNavigation';
 
 const StyledHeaderNavigation = styled(HeaderNavigation)`
   :after {
     display: block;
-    content: " ";
+    content: ' ';
     margin: 20px 20px 20px 0;
     border-bottom: 1px solid #7ac35f;
   }
