@@ -11,15 +11,42 @@ import reporter from 'nightwatch/lib/testsuite/reporter';
 import fs from 'fs';
 import path from 'path';
 import { log } from './logger';
+import { IApiConfig } from '.';
 
 let runner: CliRunnerInstance;
 let client: Client;
 
-function createRunner(env: string = 'default') {
+function getDefautEnvironment() {
+  return 'default';
+}
+
+function getDefaultConfigFile() {
+  const jsonConfigFile = './nightwatch.json';
+  const jsConfigFie = path.resolve('./nightwatch.conf.js');
+
+  if (fs.existsSync(jsonConfigFile)) {
+    return jsonConfigFile;
+  }
+
+  if (fs.existsSync(jsConfigFie)) {
+    return jsConfigFie;
+  }
+
+  throw new Error(
+    [
+      'No configuration file was found for Nightwatch in the current process folder.',
+      '(nightwatch.json or nightwatch.conf.js).',
+      'For custom location please provide "configFile" option for "startWebDriver" and',
+      '"createSession" functions.'
+    ].join(' ')
+  );
+}
+
+function createRunner({
+  env = getDefautEnvironment(),
+  configFile = getDefaultConfigFile()
+}: IApiConfig = {}) {
   if (!runner) {
-    const jsonConfigFile = './nightwatch.json';
-    const jsConfigFie = path.resolve('./nightwatch.conf.js');
-    const configFile = fs.existsSync(jsConfigFie) ? jsConfigFie : jsonConfigFile;
     runner = CliRunner({ env, config: configFile });
     runner.isWebDriverManaged = function() {
       if (this.baseSettings.selenium) {
@@ -33,28 +60,27 @@ function createRunner(env: string = 'default') {
   return runner;
 }
 
-/**
- * Start WebDriver
- * @param env Nightwatch environment
- */
-export async function startWebDriver(env?: string) {
-  createRunner(env);
+export async function startWebDriver({
+  env = getDefautEnvironment(),
+  configFile = getDefaultConfigFile()
+}: IApiConfig = {}) {
+  createRunner({ env, configFile });
   const { port } = runner.test_settings.webdriver;
   await runner.startWebDriver();
   log(`WebDriver started on port ${port}`);
 }
 
-/**
- * Stop WebDriver
- */
 export async function stopWebDriver() {
   const { port } = runner.test_settings.webdriver;
   await runner.stopWebDriver();
   log(`WebDriver stopped on port ${port}`);
 }
 
-export async function createSession(env?: string): Promise<Api> {
-  createRunner(env);
+export async function createSession({
+  env = getDefautEnvironment(),
+  configFile = getDefaultConfigFile()
+}: IApiConfig = {}): Promise<Api> {
+  createRunner({ env, configFile });
   const settings = runner.test_settings;
   client = createClient(settings, new reporter([], 0, {}, {}));
   await client.startSession();

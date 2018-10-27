@@ -50,7 +50,7 @@ const server = http.createServer((req, res) => {
 (async function() {
   server.listen(3000);
   log('Test server started on port 3000');
-  await startWebDriver();
+  await startWebDriver({ configFile: path.resolve(__dirname, 'nightwatch.conf.js') });
 })().catch(err => log(err));
 
 process.on('SIGTERM', async () => {
