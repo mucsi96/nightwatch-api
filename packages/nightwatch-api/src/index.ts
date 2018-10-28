@@ -12,9 +12,11 @@ export { stopWebDriver, closeSession } from './client';
  * eeeeeeeeeee
  * @param options xxxxxxxxxxxxxxxxxxxxxxxxxx
  * @example
- * ```js
- * sdfsdfsdsadasda
- * ```
+ * sadasdasdasda
+ * asdasd
+ * @example
+ * ewityqewfndm,vndasjngj,dasngkjadfngajdsngvm,\jgrane;gh,opaesd
+ * dsffjdsakjgnrqekhjernfdska
  */
 export async function startWebDriver(
   options: {

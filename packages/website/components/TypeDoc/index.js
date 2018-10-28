@@ -2,6 +2,8 @@ import React from 'react';
 import { withTypedoc } from './Provider';
 import ApiFunction from './ApiFunction';
 import Debug from '../Debug';
+import ApiVariable from './ApiVariable';
+import ApiClass from './ApiClass';
 
 const Typedoc = ({ typedoc, entryPoit }) => {
   const module = typedoc.children.find(({ name }) => name === `"${entryPoit}"`);
@@ -15,11 +17,16 @@ const Typedoc = ({ typedoc, entryPoit }) => {
       return null;
     }
 
-    if (child.kindString === 'Function') {
-      return <ApiFunction {...child} />;
+    switch (child.kindString) {
+      case 'Class':
+        return <ApiClass {...child} />;
+      case 'Function':
+        return <ApiFunction {...child} />;
+      case 'Variable':
+        return <ApiVariable {...child} />;
+      default:
+        return <Debug {...child} />;
     }
-
-    return <Debug {...child} />;
   });
 };
 

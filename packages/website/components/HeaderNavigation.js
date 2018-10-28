@@ -7,7 +7,7 @@ const HeaderNavigation = ({ className, github, npm, githubId, twitterId, twitter
   <nav className={className} aria-label="Main">
     <ul>
       <li>
-        <a href="/api">Api</a>
+        <a href="/api">API</a>
       </li>
       <li>
         <a href={github}>Github</a>
