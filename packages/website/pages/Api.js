@@ -5,7 +5,7 @@ import Heading from '../components/Heading';
 const Api = () => (
   <>
     <Heading level={1}>API</Heading>
-    <TypeDoc />
+    {/* <TypeDoc /> */}
   </>
 );
 

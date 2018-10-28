@@ -2,18 +2,16 @@ import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { ServerStyleSheet } from 'styled-components';
 import Site from './components/Site';
-import ContributorsProvider from './components/ContributorsProvider';
-import TypedocProvider from './components/TypeDoc/Provider';
+import siteConfig from './site-config.json';
+import SiteConfigProvider from './components/SiteConfigProvider';
 
-const render = ({ path, contributors, typedoc }) => {
+const render = ({ path, contributors }) => {
   const sheet = new ServerStyleSheet();
   const html = `<!DOCTYPE html>${renderToStaticMarkup(
     sheet.collectStyles(
-      <TypedocProvider typedoc={typedoc}>
-        <ContributorsProvider contributors={contributors}>
-          <Site path={path} />
-        </ContributorsProvider>
-      </TypedocProvider>
+      <SiteConfigProvider {...siteConfig} contributors={contributors}>
+        <Site path={path} />
+      </SiteConfigProvider>
     )
   )}`;
   const styleTags = sheet.getStyleTags();
