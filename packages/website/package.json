@@ -8,8 +8,7 @@
   "scripts": {
     "add-contributor": "all-contributors add",
     "build": "del-cli dist && webpack --config ./webpack.config.js && del-cli dist/site-server-renderer.js",
-    "start": "webpack-serve --config ./webpack.config.js",
-    "typedoc": "typedoc --mode modules --json typedoc.json --tsconfig ../nightwatch-api/tsconfig.json ../nightwatch-api/src/index.ts"
+    "start": "webpack-serve --config ./webpack.config.js"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

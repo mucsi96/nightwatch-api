@@ -7,13 +7,13 @@ import section from 'nightwatch/lib/page-object/section';
 let nightwatchClient: Api;
 
 /**
- * This variable represents the Nightwatch webdriver client.
+ * This variable represents the Nightwatch WebDriver client.
  * This is the main part fo this package.
  * All Nightwatch [API](http://nightwatchjs.org/api) is available on this variable.
  * Important to note that every method call is wrapped in a promise.
  * So you can await it's execution using `await` keyword.
  * Also chaining is supported as well.
- * Before using it you need to create a webdriver session.
+ * Before using it you need to create a WebDriver session.
  * @example
  * const { client } = require('nightwatch-api');
  *
@@ -50,8 +50,8 @@ let nightwatchClient: Api;
 export const client = proxy(() => nightwatchClient);
 
 /**
- * Starts webdriver server according to selected environment configuration.
- * You can use it to start chromedriver, geckodriver, selenium server and other webdrivers.
+ * Starts WebDriver server according to selected environment configuration.
+ * You can use it to start chromedriver, geckodriver, selenium server and other WebDrivers.
  * @example
  * const { startWebDriver, stopWebDriver } = require('nightwatch-api');
  *
@@ -68,12 +68,12 @@ export const client = proxy(() => nightwatchClient);
  * (async function() {
  *   try {
  *     await startWebDriver({ env: 'chrome' });
- *     // create webdriver client
- *     // use webdriver session
+ *     // create WebDriver client
+ *     // use WebDriver session
  *   } catch (err) {
  *     console.log(err.stack);
  *   } finally {
- *     // close webdriver session
+ *     // close WebDriver session
  *     await stopWebDriver();
  *   }
  * )();
@@ -100,14 +100,14 @@ export async function startWebDriver(
 }
 
 /**
- * Stops the currently running webdriver.
+ * Stops the currently running WebDriver.
  */
 export async function stopWebDriver() {
   await Client.stopWebDriver();
 }
 
 /**
- * Creates a new webdriver session.
+ * Creates a new WebDriver session.
  * You need to create a session to be able to communicate with the browser.
  * @example
  * const { createSession, closeSession } = require('nightwatch-api');
@@ -124,20 +124,20 @@ export async function stopWebDriver() {
  *
  * (async function() {
  *   try {
- *     // create webdriver session
+ *     // create WebDriver session
  *     await createSession({ env: 'chrome' });
- *     // use webdriver client
+ *     // use WebDriver client
  *   } catch (err) {
  *     console.log(err.stack);
  *   } finally {
  *     await closeSession();
- *     // close webdriver session
+ *     // close WebDriver session
  *   }
  * )();
  */
 export async function createSession(
   /**
-   * Options are ignored if you already started a the webdriver using `startWebDriver`.
+   * Options are ignored if you already started a the WebDriver using `startWebDriver`.
    */
   options: {
     /**
@@ -163,7 +163,7 @@ export async function createSession(
 }
 
 /**
- * Closes the active webdriver session.
+ * Closes the active WebDriver session.
  */
 export async function closeSession() {
   await Client.closeSession();

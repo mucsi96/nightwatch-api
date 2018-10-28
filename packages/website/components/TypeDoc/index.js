@@ -1,4 +1,5 @@
 import React from 'react';
+import path from 'path';
 import { Application } from 'typedoc';
 import ApiFunction from './ApiFunction';
 import ApiVariable from './ApiVariable';
@@ -19,13 +20,14 @@ const Typedoc = ({ sourceEntryPoint, tsConfig }) => {
     });
   }
 
-  const projectObject = this.app.serializer.projectToObject(result.project);
+  const projectObject = app.serializer.projectToObject(result.project);
+
   const module = projectObject.children.find(
-    ({ originalName }) => originalName === sourceEntryPoint
+    ({ originalName }) => originalName.replace(/\//g, path.sep) === sourceEntryPoint
   );
 
   if (!module) {
-    throw new Error(`${entryPoit} entry point not found.`);
+    throw new Error(`${sourceEntryPoint} entry point not found.`);
   }
 
   const children = module.children;

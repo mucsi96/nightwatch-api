@@ -5,11 +5,11 @@ import Site from './components/Site';
 import siteConfig from './site-config.json';
 import SiteConfigProvider from './components/SiteConfigProvider';
 
-const render = ({ path, contributors }) => {
+const render = props => {
   const sheet = new ServerStyleSheet();
   const html = `<!DOCTYPE html>${renderToStaticMarkup(
     sheet.collectStyles(
-      <SiteConfigProvider {...siteConfig} contributors={contributors} path={path}>
+      <SiteConfigProvider {...siteConfig} {...props}>
         <Site />
       </SiteConfigProvider>
     )
