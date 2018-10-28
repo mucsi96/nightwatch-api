@@ -7,7 +7,7 @@ const Body = styled.body`
   --sidebar-gutter: 40px;
   --animation-duration: 0.15s;
 
-  @media (min-width: 720px) {
+  @media (min-width: 720px) and (min-height: 1000px) {
     --header-height: 50px;
   }
 
@@ -19,7 +19,7 @@ const Body = styled.body`
     --sidebar-width: 300px;
   }
 
-  @media (min-width: 1280px) {
+  @media (min-width: 1280px) and (min-height: 1000px) {
     --header-height: 60px;
   }
 

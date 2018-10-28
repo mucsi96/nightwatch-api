@@ -77,7 +77,7 @@ const Navigation = styled.nav`
   }
 
   li a {
-    color: #777;
+    color: #737373;
     padding: 5px 10px;
     text-decoration: none;
     display: block;
