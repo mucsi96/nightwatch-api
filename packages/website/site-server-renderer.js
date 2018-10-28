@@ -9,8 +9,8 @@ const render = ({ path, contributors }) => {
   const sheet = new ServerStyleSheet();
   const html = `<!DOCTYPE html>${renderToStaticMarkup(
     sheet.collectStyles(
-      <SiteConfigProvider {...siteConfig} contributors={contributors}>
-        <Site path={path} />
+      <SiteConfigProvider {...siteConfig} contributors={contributors} path={path}>
+        <Site />
       </SiteConfigProvider>
     )
   )}`;
