@@ -1,8 +1,9 @@
 import React from 'react';
 import Heading from '../Heading';
-import Paragraph from '../Paragraph';
 import ApiFunction from './ApiFunction';
 import ApiVariable from './ApiVariable';
+import ApiDescription from './ApiDescription';
+import ApiExamples from './ApiExamples';
 
 const hasConstructors = children => {
   return (
@@ -17,7 +18,7 @@ const getConstructors = children => {
     .filter(({ kindString }) => {
       return kindString === 'Constructor';
     })
-    .map(constructor => <ApiFunction minLevel={4} {...constructor} />);
+    .map(constructor => <ApiFunction key={constructor.id} minLevel={4} {...constructor} />);
 };
 
 const hasProperties = children => {
@@ -33,7 +34,7 @@ const getProperties = children => {
     .filter(({ kindString }) => {
       return kindString === 'Property';
     })
-    .map(field => <ApiVariable minLevel={4} {...field} />);
+    .map(property => <ApiVariable key={property.id} minLevel={4} {...property} />);
 };
 
 const hasMethods = children => {
@@ -49,15 +50,14 @@ const getMethods = children => {
     .filter(({ kindString }) => {
       return kindString === 'Method';
     })
-    .map(method => <ApiFunction minLevel={4} {...method} />);
+    .map(method => <ApiFunction key={method.id} minLevel={4} {...method} />);
 };
 
 const ApiClass = ({ name, comment, children }) => {
-  const description = comment && comment.shortText;
   return (
     <>
       <Heading level={2}>{name}</Heading>
-      <Paragraph>{description}</Paragraph>
+      <ApiDescription {...comment} />
       {hasConstructors(children) && (
         <>
           <Heading level={3}>Constructors</Heading>
@@ -76,6 +76,7 @@ const ApiClass = ({ name, comment, children }) => {
           {getMethods(children)}
         </>
       )}
+      <ApiExamples {...comment} headingLevel={3} />
     </>
   );
 };

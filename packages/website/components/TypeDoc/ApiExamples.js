@@ -7,8 +7,8 @@ const hasExampes = tags => {
 };
 
 const getExamples = tags => {
-  return tags.filter(({ tag }) => tag === 'example').map(({ text }) => {
-    return <Code language="javascript" value={text} />;
+  return tags.filter(({ tag }) => tag === 'example').map(({ text }, index) => {
+    return <Code key={index} language="javascript" value={text} />;
   });
 };
 

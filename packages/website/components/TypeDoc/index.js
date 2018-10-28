@@ -12,20 +12,26 @@ const Typedoc = ({ typedoc, entryPoit }) => {
     throw new Error(`${entryPoit} entry point not found.`);
   }
 
-  return module.children.map(child => {
+  const children = module.children;
+
+  children.sort((a, b) => {
+    return a.sources[0].line - b.sources[0].line;
+  });
+
+  return children.map(child => {
     if (!child.flags || !child.flags.isExported) {
       return null;
     }
 
     switch (child.kindString) {
       case 'Class':
-        return <ApiClass {...child} />;
+        return <ApiClass key={child.id} {...child} />;
       case 'Function':
-        return <ApiFunction {...child} />;
+        return <ApiFunction key={child.id} {...child} />;
       case 'Variable':
-        return <ApiVariable {...child} />;
+        return <ApiVariable key={child.id} {...child} />;
       default:
-        return <Debug {...child} />;
+        return null;
     }
   });
 };

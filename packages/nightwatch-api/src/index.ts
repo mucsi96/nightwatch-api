@@ -6,26 +6,88 @@ import section from 'nightwatch/lib/page-object/section';
 
 let nightwatchClient: Api;
 
-export { stopWebDriver, closeSession } from './client';
+/**
+ * This variable represents the Nightwatch webdriver client.
+ * This is the main part fo this package.
+ * All Nightwatch [API](http://nightwatchjs.org/api) is available on this variable.
+ * Important to note that every method call is wrapped in a promise.
+ * So you can await it's execution using `await` keyword.
+ * Also chaining is supported as well.
+ * Before using it you need to create a webdriver session.
+ * @example
+ * const { client } = require('nightwatch-api');
+ *
+ * (async function() {
+ *   await client
+ *     .url('https://duckduckgo.com/')
+ *     .setValue('input[name="q"]', 'WebDriver')
+ *     .click('input[type="submit"]')
+ *     .assert.containsText('#links', 'WebDriver - w3.org');
+ * )();
+ * @example
+ * const { client } = require('nightwatch-api');
+ *
+ * (async function() {
+ *   // This is much easier to debug, place console.logs, use if conditions and for loops
+ *   await client.url('https://duckduckgo.com/');
+ *   await client.setValue('input[name="q"]', 'WebDriver');
+ *   await client.click('input[type="submit"]');
+ *   await client.assert.containsText('#links', 'WebDriver - w3.org');
+ * )();
+ * @example
+ *
+ * const { client } = require('nightwatch-api');
+ *
+ * const googleSearch = client.page.google();
+ *
+ * (async function() {
+ *   await googleSearch.init();
+ *   await googleSearch.setValue('@searchField', 'WebDriver');
+ *   await googleSearch.click('@searchButton');
+ *   await googleSearch.assert.containsText('@searchResult', 'WebDriver - w3.org');
+ * )();
+ */
+export const client = proxy(() => nightwatchClient);
 
 /**
- * eeeeeeeeeee
- * @param options xxxxxxxxxxxxxxxxxxxxxxxxxx
+ * Starts webdriver server according to selected environment configuration.
+ * You can use it to start chromedriver, geckodriver, selenium server and other webdrivers.
  * @example
- * sadasdasdasda
- * asdasd
+ * const { startWebDriver, stopWebDriver } = require('nightwatch-api');
+ *
+ * beforeAll(async () => {
+ *    await startWebDriver({ env: 'firefox' });
+ * });
+ *
+ * afterAll(async () => {
+ *    await stopWebDriver();
+ * });
  * @example
- * ewityqewfndm,vndasjngj,dasngkjadfngajdsngvm,\jgrane;gh,opaesd
- * dsffjdsakjgnrqekhjernfdska
+ * const { startWebDriver, stopWebDriver } = require('nightwatch-api');
+ *
+ * (async function() {
+ *   try {
+ *     await startWebDriver({ env: 'chrome' });
+ *     // create webdriver client
+ *     // use webdriver session
+ *   } catch (err) {
+ *     console.log(err.stack);
+ *   } finally {
+ *     // close webdriver session
+ *     await stopWebDriver();
+ *   }
+ * )();
  */
 export async function startWebDriver(
   options: {
     /**
-     * ddddddddddddddddddddd
+     * Selected Nightwatch [environment](http://nightwatchjs.org/gettingstarted#test-settings).
+     * By default it's `default`.
      */
     env?: string;
     /**
-     * gggggggggggggggggg
+     * Nightwatch configuration file location.
+     * By default it's `nightwatch.json` or `nightwatch.conf.js` in current process working directory.
      */
     configFile?: string;
   } = {}
@@ -38,16 +100,54 @@ export async function startWebDriver(
 }
 
 /**
- * aaaaaaaaaaaaaaaa
+ * Stops the currently running webdriver.
+ */
+export async function stopWebDriver() {
+  await Client.stopWebDriver();
+}
+
+/**
+ * Creates a new webdriver session.
+ * You need to create a session to be able to communicate with the browser.
+ * @example
+ * const { createSession, closeSession } = require('nightwatch-api');
+ *
+ * beforeAll(async () => {
+ *    await createSession({ env: 'firefox' });
+ * });
+ *
+ * afterAll(async () => {
+ *    await closeSession();
+ * });
+ * @example
+ * const { createSession, closeSession } = require('nightwatch-api');
+ *
+ * (async function() {
+ *   try {
+ *     // create webdriver session
+ *     await createSession({ env: 'chrome' });
+ *     // use webdriver client
+ *   } catch (err) {
+ *     console.log(err.stack);
+ *   } finally {
+ *     await closeSession();
+ *     // close webdriver session
+ *   }
+ * )();
  */
 export async function createSession(
+  /**
+   * Options are ignored if you already started a the webdriver using `startWebDriver`.
+   */
   options: {
     /**
-     * bbbbbbbbbbbbbbbbbbbbb
+     * Selected Nightwatch [environment](http://nightwatchjs.org/gettingstarted#test-settings).
+     * By default it's `default`.
      */
     env?: string;
     /**
-     * cccccccccccccccccc
+     * Nightwatch configuration file location.
+     * By default it's `nightwatch.json` or `nightwatch.conf.js` in current process working directory.
      */
     configFile?: string;
   } = {}
@@ -62,8 +162,43 @@ export async function createSession(
   promisifyPageObjects(nightwatchClient, Client.runQueue);
 }
 
-export const client = proxy(() => nightwatchClient);
+/**
+ * Closes the active webdriver session.
+ */
+export async function closeSession() {
+  await Client.closeSession();
+}
 
+/**
+ * This class enables creations of Nightwatch page object sections dynamically.
+ * @example
+ * const { client, Section } = require('nightwatch-api');
+ *
+ * function createSearchSection(provider, parent) {
+ *   if (provider === 'google') {
+ *     return new Section(
+ *       {
+ *          selector: 'body',
+ *          elements: {
+ *            searchField: 'input[name="q"]',
+ *            searchButton: 'input[type="submit"]',
+ *          },
+ *       },
+ *       {
+ *         name: 'Search Section',
+ *         parent: client
+ *       }
+ *     );
+ *   }
+ * }
+ *
+ * (async function() {
+ *   const section = createSearchSection('google');
+ *   await client.init();
+ *   await section.setValue('@searchField', 'WebDriver');
+ *   await section.click('@searchButton');
+ * )();
+ */
 export class Section extends section {
   constructor(definition: object, options: object) {
     super(definition, options);

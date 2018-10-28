@@ -1,18 +1,19 @@
 import React from 'react';
 import Heading from '../Heading';
-import Paragraph from '../Paragraph';
 import ApiType from './ApiType';
+import ApiDescription from './ApiDescription';
+import ApiExamples from './ApiExamples';
 
 const ApiVariable = ({ name, type, comment, minLevel }) => {
   const title = name;
-  const description = comment && comment.shortText;
 
   return (
     <>
       <Heading level={minLevel}>{title}</Heading>
-      <Paragraph>{description}</Paragraph>
+      <ApiDescription {...comment} />
       <Heading level={minLevel + 1}>Type</Heading>
       <ApiType {...type} />
+      <ApiExamples {...comment} headingLevel={minLevel + 1} />
     </>
   );
 };

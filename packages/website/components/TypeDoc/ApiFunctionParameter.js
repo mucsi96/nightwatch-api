@@ -1,6 +1,6 @@
 import React from 'react';
-import Debug from '../Debug';
 import InlineCode from '../InlineCode';
+import ApiDescription from './ApiDescription';
 
 const getParameterType = type => {
   switch (type && type.type) {
@@ -26,7 +26,7 @@ const getSubTypes = type => {
   return (
     <ul>
       {type.declaration.children.map(item => (
-        <ApiFunctionParameter {...item} />
+        <ApiFunctionParameter key={item.id} {...item} />
       ))}
     </ul>
   );
@@ -34,11 +34,10 @@ const getSubTypes = type => {
 
 const ApiFunctionParameter = ({ name, type, comment, flags }) => {
   const title = [name, flags && flags.isOptional ? '?' : '', ': ', getParameterType(type)].join('');
-  const description = comment && comment.shortText;
 
   return (
     <li>
-      <InlineCode>{title}</InlineCode> {description}
+      <InlineCode>{title}</InlineCode> <ApiDescription {...comment} />
       {getSubTypes(type)}
     </li>
   );

@@ -1,5 +1,6 @@
 import React from 'react';
 import InlineCode from '../InlineCode';
+import ApiDescription from './ApiDescription';
 
 const getTypeArguments = typeArguments => {
   if (!typeArguments) {
@@ -17,10 +18,10 @@ const getTypeDefinition = (name, type, typeArguments) => {
 };
 
 const ApiType = ({ type, name, comment, typeArguments }) => {
-  const description = comment && comment.shortText;
   return (
     <>
-      <InlineCode>{getTypeDefinition(name, type, typeArguments)}</InlineCode> {description}
+      <InlineCode>{getTypeDefinition(name, type, typeArguments)}</InlineCode>{' '}
+      <ApiDescription {...comment} />
     </>
   );
 };
