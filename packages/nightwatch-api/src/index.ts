@@ -8,7 +8,7 @@ let nightwatchClient: Api;
 
 /**
  * This variable represents the Nightwatch WebDriver client.
- * This is the main part fo this package.
+ * This is the main part of this package.
  * All Nightwatch [API](http://nightwatchjs.org/api) is available on this variable.
  * Important to note that every method call is wrapped in a promise.
  * So you can await it's execution using `await` keyword.
