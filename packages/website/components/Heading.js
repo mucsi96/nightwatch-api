@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import slugify from '@sindresorhus/slugify';
 import TableOfContentsCollector from './TableOfContentsCollector';
@@ -52,10 +52,10 @@ const Heading = ({ level, children }) => {
   const Container = styledLevels[level] || `h${level}`;
   const id = slugify(title);
   return (
-    <Fragment>
+    <>
       {level <= 2 ? <TableOfContentsCollector id={id} level={level} title={title} /> : null}
       <Container id={id}>{children}</Container>
-    </Fragment>
+    </>
   );
 };
 

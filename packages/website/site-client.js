@@ -1,5 +1,5 @@
 import rehydrate from './components/rehydrate';
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { render } from 'react-dom';
 import TableOfContents from './components/TableOfContents';
 import HamburgerButton from './components/HamburgerButton';
@@ -30,7 +30,7 @@ class App extends Component {
     const { showSmallScreenNavigation } = this.state;
 
     return (
-      <Fragment>
+      <>
         <RehydratedHamburgerButton
           active={showSmallScreenNavigation}
           onClick={this.handleHamburgerButtonClick}
@@ -39,7 +39,7 @@ class App extends Component {
           show={showSmallScreenNavigation}
           onClick={this.handleTableOfContentsClick}
         />
-      </Fragment>
+      </>
     );
   }
 }

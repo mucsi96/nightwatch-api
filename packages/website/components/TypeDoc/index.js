@@ -1,12 +1,28 @@
 import React from 'react';
-import { withTypedoc } from './Provider';
+import { Application } from 'typedoc';
 import ApiFunction from './ApiFunction';
-import Debug from '../Debug';
 import ApiVariable from './ApiVariable';
 import ApiClass from './ApiClass';
+import { withSiteConfig } from '../SiteConfigProvider';
 
-const Typedoc = ({ typedoc, entryPoit }) => {
-  const module = typedoc.children.find(({ name }) => name === `"${entryPoit}"`);
+const Typedoc = ({ sourceEntryPoint, tsConfig }) => {
+  const app = new Application({
+    mode: 'modules',
+    tsConfig
+  });
+
+  const result = app.converter.convert([sourceEntryPoint]);
+
+  if (result.errors && result.errors.length) {
+    result.errors.map(error => {
+      throw new Error(error.messageText);
+    });
+  }
+
+  const projectObject = this.app.serializer.projectToObject(result.project);
+  const module = projectObject.children.find(
+    ({ originalName }) => originalName === sourceEntryPoint
+  );
 
   if (!module) {
     throw new Error(`${entryPoit} entry point not found.`);
@@ -36,8 +52,4 @@ const Typedoc = ({ typedoc, entryPoit }) => {
   });
 };
 
-Typedoc.defaultProps = {
-  entryPoit: 'index'
-};
-
-export default withTypedoc(Typedoc);
+export default withSiteConfig(Typedoc);

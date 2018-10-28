@@ -1,12 +1,12 @@
 const path = require('path');
 const fs = require('fs');
+const { version } = require('../nightwatch-api/package.json');
 const nodeExternals = require('webpack-node-externals');
 const StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin');
 const distPath = path.resolve(__dirname, 'dist');
 const { contributors } = JSON.parse(
   fs.readFileSync(path.resolve(__dirname, '.all-contributorsrc'))
 );
-const typedoc = require('./typedoc.json');
 const commonConfig = {
   output: {
     path: distPath
@@ -63,7 +63,9 @@ const serverConfig = {
       crawl: true,
       locals: {
         contributors,
-        typedoc
+        version,
+        sourceEntryPoint: path.resolve(__dirname, '../nightwatch-api/src/index.ts'),
+        tsConfig: path.resolve(__dirname, '../nightwatch-api/tsconfig.json')
       },
       globals: {
         window: {}
