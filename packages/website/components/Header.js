@@ -19,10 +19,8 @@ const HomeLink = styled.a`
   margin-right: calc(var(--spacing) / 2);
   white-space: nowrap;
   font-weight: bold;
-
-  span {
-    color: #c7ffc7;
-  }
+  color: #a5cc91;
+  text-decoration: none;
 `;
 
 const HeaderWidthLimiter = styled(WidthLimiter)`
@@ -52,51 +50,12 @@ const StyledHeader = styled.header`
   @media (min-width: 720px) {
     z-index: 2;
   }
-
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
-
-  nav {
-    overflow: hidden;
-    white-space: nowrap;
-    margin-right: 18px;
-    display: none;
-    margin-left: var(--sidebar-gutter);
-
-    @media (min-width: 720px) {
-      display: initial;
-    }
-
-    @media (min-width: 2000px) {
-      position: fixed;
-      right: 0;
-      width: var(--sidebar-width);
-      margin-left: 0;
-    }
-  }
-
-  ul {
-    list-style: none;
-    display: flex;
-    padding: 0;
-    margin: 0;
-  }
-
-  li {
-    display: flex;
-    align-items: center;
-    padding: 0 calc(var(--spacing) / 2);
-  }
 `;
 
 const Header = ({ title }) => (
   <StyledHeader>
     <HeaderWidthLimiter>
-      <HomeLink href="/">
-        <span>{title}</span>
-      </HomeLink>
+      <HomeLink href="/">{title}</HomeLink>
       <HeaderNavigation />
       <StyledDehydratedHamburgerButton />
     </HeaderWidthLimiter>
