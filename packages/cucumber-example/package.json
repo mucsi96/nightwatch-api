@@ -15,7 +15,7 @@
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
-    "chromedriver": "^2.43.0",
+    "chromedriver": "^2.43.1",
     "cucumber": "^5.0.2",
     "cucumber-pretty": "^1.4.4",
     "geckodriver": "^1.12.2",

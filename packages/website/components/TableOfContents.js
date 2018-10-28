@@ -13,6 +13,8 @@ const StyledHeaderNavigation = styled(HeaderNavigation)`
 `;
 
 const Wrapper = styled.div`
+  margin-top: var(--header-height);
+
   @media (min-width: 720px) {
     margin-left: var(--sidebar-gutter);
     width: var(--sidebar-width);
@@ -77,7 +79,7 @@ const Navigation = styled.nav`
   }
 
   li a {
-    color: #777;
+    color: #737373;
     padding: 5px 10px;
     text-decoration: none;
     display: block;

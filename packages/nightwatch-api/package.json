@@ -86,7 +86,7 @@
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^23.6.0",
     "chai": "^4.2.0",
-    "chromedriver": "2.43.0",
+    "chromedriver": "2.43.1",
     "coveralls": "^3.0.2",
     "cross-env": "^5.2.0",
     "del-cli": "^1.1.0",
@@ -103,7 +103,6 @@
     "tslint": "^5.11.0",
     "tslint-config-airbnb": "^5.11.0",
     "tslint-config-prettier": "^1.15.0",
-    "typedoc": "^0.13.0",
     "typescript": "^3.1.3"
   }
 }

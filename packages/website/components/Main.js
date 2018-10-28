@@ -12,7 +12,6 @@ const TableOfContentsContainer = styled(withTableOfContents(DehydratedTableOfCon
 `;
 
 const MainWidthLimiter = styled(WidthLimiter)`
-  margin-top: var(--header-height);
   display: flex;
   flex-direction: row-reverse;
   padding-bottom: 50px;

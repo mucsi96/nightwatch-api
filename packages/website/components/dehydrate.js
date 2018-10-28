@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { withDehydration } from './DehydrationProvider';
 
 const InitialStateCollector = ({ initialStateKey, addToInitialState, ...props }) => {

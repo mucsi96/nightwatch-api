@@ -1,7 +1,7 @@
 {
   "title": "Nightwatch API",
-  "description": "Cucumber.js plugin for Nightwatch.js.",
-  "url": "http://mucsi96.github.io/nightwatch-cucumber/",
+  "description": "Cross-runner API for Nightwatch.js",
+  "url": "https://nightwatch-api.netlify.com/",
   "githubId": "mucsi96/nightwatch-api",
   "github": "https://github.com/mucsi96/nightwatch-api",
   "npm": "https://www.npmjs.com/package/nightwatch-api",

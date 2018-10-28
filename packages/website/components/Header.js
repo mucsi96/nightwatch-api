@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import WidthLimiter from './WidthLimiter';
 import { withSiteConfig } from './SiteConfigProvider';
-import HomeIcon from '../images/nightwatch-api-logo.svg';
 import HeaderNavigation from './HeaderNavigation';
 import HamburgerButton from './HamburgerButton';
 import dehydrate from './dehydrate';
@@ -18,17 +17,10 @@ const HomeLink = styled.a`
   display: flex;
   align-items: center;
   margin-right: calc(var(--spacing) / 2);
-  margin-left: calc(var(--icon-size) + var(--spacing) / 2);
   white-space: nowrap;
-`;
-
-const StyledHomeIcon = styled(HomeIcon)`
-  width: var(--icon-size);
-  height: var(--icon-size);
-  margin-right: calc(var(--spacing) / 2);
-  position: absolute;
-  left: var(--horizontal-padding);
-  bottom: -2px;
+  font-weight: bold;
+  color: #a5cc91;
+  text-decoration: none;
 `;
 
 const HeaderWidthLimiter = styled(WidthLimiter)`
@@ -52,57 +44,18 @@ const StyledHeader = styled.header`
   left: 0;
   right: 0;
   line-height: var(--header-height);
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  background-color: #20232a;
+  color: white;
 
   @media (min-width: 720px) {
     z-index: 2;
-  }
-
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
-
-  nav {
-    overflow: hidden;
-    white-space: nowrap;
-    margin-right: 18px;
-    display: none;
-    margin-left: var(--sidebar-gutter);
-
-    @media (min-width: 720px) {
-      display: initial;
-    }
-
-    @media (min-width: 2000px) {
-      position: fixed;
-      right: 0;
-      width: var(--sidebar-width);
-      margin-left: 0;
-    }
-  }
-
-  ul {
-    list-style: none;
-    display: flex;
-    padding: 0;
-    margin: 0;
-  }
-
-  li {
-    display: flex;
-    align-items: center;
-    padding: 0 calc(var(--spacing) / 2);
   }
 `;
 
 const Header = ({ title }) => (
   <StyledHeader>
     <HeaderWidthLimiter>
-      <HomeLink href="/">
-        <StyledHomeIcon />
-        <span>{title}</span>
-      </HomeLink>
+      <HomeLink href="/">{title}</HomeLink>
       <HeaderNavigation />
       <StyledDehydratedHamburgerButton />
     </HeaderWidthLimiter>

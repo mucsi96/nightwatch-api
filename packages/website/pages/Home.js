@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import markdown from '../data/index.md';
 import Article from '../components/Article';
 

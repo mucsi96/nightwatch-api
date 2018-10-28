@@ -2,15 +2,16 @@ import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { ServerStyleSheet } from 'styled-components';
 import Site from './components/Site';
-import ContributorsProvider from './components/ContributorsProvider';
+import siteConfig from './site-config.json';
+import SiteConfigProvider from './components/SiteConfigProvider';
 
-const render = ({ path, contributors }) => {
+const render = props => {
   const sheet = new ServerStyleSheet();
   const html = `<!DOCTYPE html>${renderToStaticMarkup(
     sheet.collectStyles(
-      <ContributorsProvider contributors={contributors}>
-        <Site path={path} />
-      </ContributorsProvider>
+      <SiteConfigProvider {...siteConfig} {...props}>
+        <Site />
+      </SiteConfigProvider>
     )
   )}`;
   const styleTags = sheet.getStyleTags();

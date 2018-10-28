@@ -1,6 +1,15 @@
 import React, { createContext } from 'react';
-import siteConfig from '../site-config.json';
 
-export const withSiteConfig = WrappedComponent => props => {
-  return <WrappedComponent {...props} {...siteConfig} />;
-};
+const Context = createContext();
+
+const SiteConfigProvider = ({ children, ...siteConfig }) => (
+  <Context.Provider value={siteConfig}>{children}</Context.Provider>
+);
+
+export const withSiteConfig = WrappedComponent => props => (
+  <Context.Consumer>
+    {siteConfig => <WrappedComponent {...siteConfig} {...props} />}
+  </Context.Consumer>
+);
+
+export default SiteConfigProvider;

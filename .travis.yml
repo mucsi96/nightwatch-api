@@ -34,7 +34,7 @@ cache:
     - packages/jest-example/node_modules
     - packages/cucumber-example/node_modules
 branches:
-  except:
-    - /^v\d+\.\d+\.\d+$/
+  only:
+    - master
 notifications:
   email: false
