@@ -22,8 +22,6 @@ const Site = () => (
           <Footer />
           <RehydrationInitialState />
           <div id="app" />
-          <script async defer src="https://buttons.github.io/buttons.js" />
-          <script async defer src="https://platform.twitter.com/widgets.js" />
           <script async defer src="site-client.js" />
         </TableOfContentsProvider>
       </DehydrationProvider>
