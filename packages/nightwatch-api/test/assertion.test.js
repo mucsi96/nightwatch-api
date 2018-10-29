@@ -13,7 +13,7 @@ describe('Assertion features', () => {
   });
 
   // Due to bug in Nightwatch this test throws error
-  // Error is emmited but not catched
+  // Error is emitted but not caught
   // https://github.com/nightwatchjs/nightwatch/blob/master/lib/core/assertion.js#L109
   test('Handles assert.ok failure', async () => {
     const errorHandler = jest.fn();
@@ -32,7 +32,7 @@ describe('Assertion features', () => {
   });
 
   // Due to bug in Nightwatch this test throws error
-  // Error is emmited but not catched
+  // Error is emitted but not caught
   // https://github.com/nightwatchjs/nightwatch/blob/master/lib/core/assertion.js#L109
   test('Handles verify.ok failure', async () => {
     const errorHandler = jest.fn();

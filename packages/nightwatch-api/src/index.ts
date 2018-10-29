@@ -11,7 +11,7 @@ let nightwatchClient: Api;
  * This is the main part of this package.
  * All Nightwatch [API](http://nightwatchjs.org/api) is available on this variable.
  * Important to note that every method call is wrapped in a promise.
- * So you can await it's execution using `await` keyword.
+ * So you can await its execution using `await` keyword.
  * Also chaining is supported as well.
  * Before using it you need to create a WebDriver session.
  * @example
@@ -93,7 +93,7 @@ export async function startWebDriver(
   } = {}
 ) {
   const {
-    env = Client.getDefautEnvironment(),
+    env = Client.getDefaultEnvironment(),
     configFile = Client.getDefaultConfigFile()
   } = options;
   return Client.startWebDriver({ env, configFile });
@@ -137,7 +137,7 @@ export async function stopWebDriver() {
  */
 export async function createSession(
   /**
-   * Options are ignored if you already started a the WebDriver using `startWebDriver`.
+   * Options are ignored if you already started the WebDriver using `startWebDriver`.
    */
   options: {
     /**
@@ -153,7 +153,7 @@ export async function createSession(
   } = {}
 ) {
   const {
-    env = Client.getDefautEnvironment(),
+    env = Client.getDefaultEnvironment(),
     configFile = Client.getDefaultConfigFile()
   } = options;
   nightwatchClient = await Client.createSession({ env, configFile });
@@ -170,7 +170,7 @@ export async function closeSession() {
 }
 
 /**
- * This class enables creations of Nightwatch page object sections dynamically.
+ * This class enables creation of Nightwatch page object sections dynamically.
  * @example
  * const { client, Section } = require('nightwatch-api');
  *

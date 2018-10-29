@@ -20,7 +20,7 @@ interface IOptions {
   configFile: string;
 }
 
-export function getDefautEnvironment() {
+export function getDefaultEnvironment() {
   return 'default';
 }
 
