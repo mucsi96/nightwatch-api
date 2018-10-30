@@ -21,11 +21,14 @@ const FooterWidthLimiter = styled(WidthLimiter)`
   padding-bottom: 50px;
 
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 
-  @media (min-width: 720px) {
-    padding-right: calc(var(--sidebar-width) + var(--sidebar-gutter));
+  > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 `;
 
@@ -36,7 +39,10 @@ const StyledFooter = styled.footer`
 const Footer = () => (
   <StyledFooter>
     <FooterWidthLimiter>
-      Created with <StyledHeart /> in <StyledCH />
+      <div>
+        Created with <StyledHeart /> in <StyledCH />
+      </div>
+      <div>{new Date().getFullYear()}</div>
     </FooterWidthLimiter>
   </StyledFooter>
 );

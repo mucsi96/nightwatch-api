@@ -39,6 +39,10 @@ const Navigation = styled.nav`
   transform: translateX(100%);
   line-height: initial;
 
+  @media (min-width: 720px) {
+    background-color: transparent;
+  }
+
   nav {
     display: none;
   }
