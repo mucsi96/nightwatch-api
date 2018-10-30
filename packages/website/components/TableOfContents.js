@@ -45,6 +45,7 @@ const Navigation = styled.nav`
     right: initial;
     left: initial;
     transform: none;
+    font-size: 13px;
   }
 
   @media (min-width: 780px) {
@@ -83,10 +84,13 @@ const Navigation = styled.nav`
 
   li a {
     color: #737373;
-    padding: 5px 10px;
     text-decoration: none;
     display: block;
-    font-size: 13px;
+    padding: 10px;
+
+    @media (min-width: 720px) {
+      padding: 5px 10px;
+    }
 
     :hover {
       background-color: #f1ffe6;
