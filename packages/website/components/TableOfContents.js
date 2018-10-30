@@ -3,12 +3,13 @@ import styled, { css } from 'styled-components';
 import TableOfContentsNode from './TableOfContentsNode';
 import HeaderNavigation from './HeaderNavigation';
 
-const StyledHeaderNavigation = styled(HeaderNavigation)`
-  :after {
-    display: block;
-    content: ' ';
-    margin: 20px 20px 20px 0;
-    border-bottom: 1px solid #7ac35f;
+const Separator = styled('div')`
+  display: block;
+  border-bottom: 1px solid #7ac35f;
+  margin: 20px 20px 20px 0;
+
+  @media (min-width: 720px) {
+    display: none;
   }
 `;
 
@@ -37,10 +38,18 @@ const Navigation = styled.nav`
   transform: translateX(100%);
   line-height: initial;
 
+  nav {
+    display: none;
+  }
+
   ${({ show }) =>
     show &&
     css`
       transform: none;
+
+      nav {
+        display: block;
+      }
     `};
 
   @media (min-width: 720px) {
@@ -103,7 +112,8 @@ const Navigation = styled.nav`
 const TableOfContents = ({ onClick, show, tableOfContentsItems: items }) => (
   <Wrapper>
     <Navigation aria-label="Secondary" show={show} onClick={onClick}>
-      {show && <StyledHeaderNavigation />}
+      <HeaderNavigation />
+      <Separator />
       <TableOfContentsNode level={0}>{items}</TableOfContentsNode>
     </Navigation>
   </Wrapper>

@@ -10,10 +10,23 @@ const Navigation = styled('nav')`
   white-space: nowrap;
   margin-right: 18px;
   display: none;
-  margin-left: var(--sidebar-gutter);
 
   @media (min-width: 720px) {
+    margin-left: var(--sidebar-gutter);
     display: flex;
+
+    ul {
+      flex: 1;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+    }
+
+    li {
+      display: flex;
+      flex-direction: column;
+    }
   }
 
   @media (min-width: 2000px) {
@@ -25,16 +38,37 @@ const Navigation = styled('nav')`
 `;
 
 const Spacer = styled('div')`
-  flex: 1;
+  display: none;
+
+  @media (min-width: 720px) {
+    display: block;
+    flex: 1;
+  }
+`;
+
+const Version = styled('li')`
+  display: none;
+
+  @media (min-width: 720px) {
+    display: block;
+  }
 `;
 
 const HeaderNavigation = ({ className, github }) => (
   <Navigation className={className} aria-label="Main">
-    <Link href="/">Intro</Link>
-    <Link href="/api">API</Link>
-    <Spacer />
-    <span>{`v${version}`}</span>
-    <Link href={github}>Github</Link>
+    <ul>
+      <li>
+        <Link href="/">Intro</Link>
+      </li>
+      <li>
+        <Link href="/api">API</Link>
+      </li>
+      <Spacer />
+      <Version>{`v${version}`}</Version>
+      <li>
+        <Link href={github}>Github</Link>
+      </li>
+    </ul>
   </Navigation>
 );
 
