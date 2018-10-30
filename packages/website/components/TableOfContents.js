@@ -1,8 +1,8 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import TableOfContentsNode from './TableOfContentsNode';
-import HeaderNavigation from './HeaderNavigation';
 import MostVisibleSectionTracker from './MostVisibleSectionTracker';
+import TableOfContentNavigation from './TableOfContentNavigation';
 
 const Separator = styled('div')`
   display: block;
@@ -41,23 +41,6 @@ const Navigation = styled.nav`
 
   @media (min-width: 720px) {
     background-color: transparent;
-  }
-
-  nav {
-    display: none;
-  }
-
-  ${({ show }) =>
-    show &&
-    css`
-      transform: none;
-
-      nav {
-        display: block;
-      }
-    `};
-
-  @media (min-width: 720px) {
     box-shadow: none;
     right: initial;
     left: initial;
@@ -79,6 +62,12 @@ const Navigation = styled.nav`
   @media (min-width: 2000px) {
     position: static;
   }
+
+  ${({ show }) =>
+    show &&
+    css`
+      transform: none;
+    `};
 
   ol,
   ul {
@@ -109,10 +98,10 @@ const Navigation = styled.nav`
   }
 `;
 
-const TableOfContents = ({ onClick, show, tableOfContentsItems: items }) => (
+const TableOfContents = ({ onClick, show, tableOfContentsItems: items, github }) => (
   <Wrapper>
     <Navigation aria-label="Secondary" show={show} onClick={onClick}>
-      <HeaderNavigation />
+      <TableOfContentNavigation github={github} />
       <Separator />
       <MostVisibleSectionTracker>
         {({ mostVisibleSectionId }) => (

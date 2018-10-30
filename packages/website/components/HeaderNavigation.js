@@ -1,32 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
-import { withSiteConfig } from './SiteConfigProvider';
 import Link from './HeaderNavigationLink';
 import { version } from 'packageJson';
 
 const Navigation = styled('nav')`
-  flex: 1;
-  overflow: hidden;
-  white-space: nowrap;
-  margin-right: 18px;
   display: none;
 
   @media (min-width: 720px) {
-    margin-left: var(--sidebar-gutter);
     display: flex;
-
-    ul {
-      flex: 1;
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-    }
-
-    li {
-      display: flex;
-      flex-direction: column;
-    }
+    flex: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-right: 18px;
+    margin-left: var(--sidebar-gutter);
   }
 
   @media (min-width: 2000px) {
@@ -34,6 +20,19 @@ const Navigation = styled('nav')`
     right: 0;
     width: var(--sidebar-width);
     margin-left: 0;
+  }
+
+  ul {
+    flex: 1;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+
+  li {
+    display: flex;
+    flex-direction: column;
   }
 `;
 
@@ -72,4 +71,4 @@ const HeaderNavigation = ({ className, github }) => (
   </Navigation>
 );
 
-export default withSiteConfig(HeaderNavigation);
+export default HeaderNavigation;

@@ -4,10 +4,13 @@ import styled from 'styled-components';
 import { withTableOfContents } from '../components/TableOfContentsProvider';
 import dehydrate from '../components/dehydrate';
 import TableOfContents from '../components/TableOfContents';
+import { withSiteConfig } from './SiteConfigProvider';
 
 const DehydratedTableOfContents = dehydrate('table-of-contents')(TableOfContents);
 
-const TableOfContentsContainer = styled(withTableOfContents(DehydratedTableOfContents))`
+const TableOfContentsContainer = styled(
+  withTableOfContents(withSiteConfig(DehydratedTableOfContents))
+)`
   display: flex;
 `;
 

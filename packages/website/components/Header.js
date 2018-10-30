@@ -59,11 +59,11 @@ const StyledHeader = styled.header`
   }
 `;
 
-const Header = ({ title }) => (
+const Header = ({ title, github }) => (
   <StyledHeader>
     <HeaderWidthLimiter>
       <HomeLink href="/">{title}</HomeLink>
-      <HeaderNavigation />
+      <HeaderNavigation github={github} />
       <StyledDehydratedHamburgerButton />
     </HeaderWidthLimiter>
   </StyledHeader>
