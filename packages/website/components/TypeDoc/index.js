@@ -1,36 +1,12 @@
 import React from 'react';
-import path from 'path';
-import { Application } from 'typedoc';
 import ApiFunction from './ApiFunction';
 import ApiVariable from './ApiVariable';
 import ApiClass from './ApiClass';
 import { withSiteConfig } from '../SiteConfigProvider';
+import typedoc from 'typeDoc';
 
-const Typedoc = ({ sourceEntryPoint, tsConfig }) => {
-  const app = new Application({
-    mode: 'modules',
-    tsConfig
-  });
-
-  const result = app.converter.convert([sourceEntryPoint]);
-
-  if (result.errors && result.errors.length) {
-    result.errors.map(error => {
-      throw new Error(error.messageText);
-    });
-  }
-
-  const projectObject = app.serializer.projectToObject(result.project);
-
-  const module = projectObject.children.find(
-    ({ originalName }) => originalName.replace(/\//g, path.sep) === sourceEntryPoint
-  );
-
-  if (!module) {
-    throw new Error(`${sourceEntryPoint} entry point not found.`);
-  }
-
-  const children = module.children;
+const Typedoc = () => {
+  const children = typedoc.children;
 
   children.sort((a, b) => {
     return a.sources[0].line - b.sources[0].line;

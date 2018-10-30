@@ -1,13 +1,14 @@
 const path = require('path');
-const fs = require('fs');
-const { version } = require('../nightwatch-api/package.json');
 const nodeExternals = require('webpack-node-externals');
 const StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin');
 const distPath = path.resolve(__dirname, 'dist');
-const { contributors } = JSON.parse(
-  fs.readFileSync(path.resolve(__dirname, '.all-contributorsrc'))
-);
 const commonConfig = {
+  resolve: {
+    alias: {
+      typeDoc$: path.resolve(__dirname, '../nightwatch-api/src/index.ts'),
+      packageJson$: path.resolve(__dirname, '../nightwatch-api/package.json')
+    }
+  },
   output: {
     path: distPath
   },
@@ -41,6 +42,27 @@ const commonConfig = {
             }
           }
         ]
+      },
+      {
+        test: /\.ts$/,
+        include: path.resolve(__dirname, '../nightwatch-api/src'),
+        use: [
+          {
+            loader: path.resolve(__dirname, 'typedoc-loader.js'),
+            options: {
+              mode: 'modules',
+              tsConfig: path.resolve(__dirname, '../nightwatch-api/tsconfig.json')
+            }
+          }
+        ]
+      },
+      {
+        test: /.all-contributorsrc/,
+        use: [
+          {
+            loader: 'json-loader'
+          }
+        ]
       }
     ]
   }
@@ -61,12 +83,6 @@ const serverConfig = {
     new StaticSiteGeneratorPlugin({
       entry: 'main',
       crawl: true,
-      locals: {
-        contributors,
-        version,
-        sourceEntryPoint: path.resolve(__dirname, '../nightwatch-api/src/index.ts'),
-        tsConfig: path.resolve(__dirname, '../nightwatch-api/tsconfig.json')
-      },
       globals: {
         window: {}
       }

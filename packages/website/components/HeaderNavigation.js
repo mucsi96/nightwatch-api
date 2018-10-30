@@ -2,8 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { withSiteConfig } from './SiteConfigProvider';
 import Link from './HeaderNavigationLink';
+import { version } from 'packageJson';
 
 const Navigation = styled('nav')`
+  flex: 1;
   overflow: hidden;
   white-space: nowrap;
   margin-right: 18px;
@@ -22,10 +24,16 @@ const Navigation = styled('nav')`
   }
 `;
 
+const Spacer = styled('div')`
+  flex: 1;
+`;
+
 const HeaderNavigation = ({ className, github }) => (
   <Navigation className={className} aria-label="Main">
     <Link href="/">Intro</Link>
     <Link href="/api">API</Link>
+    <Spacer />
+    <span>{`v${version}`}</span>
     <Link href={github}>Github</Link>
   </Navigation>
 );

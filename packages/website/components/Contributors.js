@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Link from './Link';
-import { withSiteConfig } from './SiteConfigProvider';
+import { contributors } from '../.all-contributorsrc';
 
 const Avatar = styled.img`
   width: 100px;
@@ -34,8 +34,8 @@ const ContributorsContainer = styled.ul`
   font-size: 12px;
 `;
 
-const Contributors = ({ contributors }) => (
+const Contributors = () => (
   <ContributorsContainer>{contributors.map(Contributor)}</ContributorsContainer>
 );
 
-export default withSiteConfig(Contributors);
+export default Contributors;

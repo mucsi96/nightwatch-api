@@ -22,7 +22,7 @@ const Site = () => (
           <Footer />
           <RehydrationInitialState />
           <div id="app" />
-          <script async defer src="site-client.js" />
+          <script async defer src="/site-client.js" />
         </TableOfContentsProvider>
       </DehydrationProvider>
     </Body>
