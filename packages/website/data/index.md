@@ -11,7 +11,7 @@ Nightwatch.js uses the powerful [W3C WebDriver](https://www.w3.org/TR/webdriver/
 
 ## Differences from nightwatch-cucumber package
 
-With this package the Nightwatch.js runner is disabled in favour of any type of test runner or other custom usage. Check the [examples](https://github.com/mucsi96/nightwatch-api/tree/master/examples) to see how can it be used with Cucumber.js
+With this package the Nightwatch.js runner is disabled in favour of any type of test runner or other custom usage. Check the [cucumber-example](https://github.com/mucsi96/nightwatch-api/tree/master/packages/cucumber-example) to see how can it be used with Cucumber.js
 
 ## Installation
 
@@ -173,7 +173,7 @@ node test.js
 
 Now try to change the `environment` parameter of the `setup` function. In this example the supported environments are `default`, `chrome` and `firefox`. You can change the code to get the environment from command line arguments as well.
 
-For complete working examples check out the [examples](https://github.com/mucsi96/nightwatch-api/tree/master/examples) folder of the source code.
+For complete working examples check out the [node-example](https://github.com/mucsi96/nightwatch-api/tree/master/packages/node-example), [jest-example](https://github.com/mucsi96/nightwatch-api/tree/master/packages/jest-example) and [cucumber-example](https://github.com/mucsi96/nightwatch-api/tree/master/packages/cucumber-example) folders of the source code.
 
 ## Contributors
 
