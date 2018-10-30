@@ -38,6 +38,7 @@ const StyledHeader = styled.header`
   --spacing: 20px;
   --icon-size: 50px;
 
+  display: flex;
   background-color: white;
   position: fixed;
   top: 0;

@@ -3,7 +3,7 @@ import ApiFunction from './ApiFunction';
 import ApiVariable from './ApiVariable';
 import ApiClass from './ApiClass';
 import { withSiteConfig } from '../SiteConfigProvider';
-import typedoc from 'appSource';
+import typedoc from 'typeDoc';
 
 const Typedoc = () => {
   const children = typedoc.children;

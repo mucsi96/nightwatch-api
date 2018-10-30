@@ -23,5 +23,6 @@ module.exports = function() {
   if (!module) {
     throw new Error(`${this.resourcePath} entry point not found.`);
   }
-  return JSON.stringify(module);
+
+  return `export default ${JSON.stringify(module)}`;
 };
