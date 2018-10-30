@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
+import styled, { css } from 'styled-components';
+
+const Link = styled('a')`
+  ${({ active }) =>
+    active &&
+    css`
+      border-left: 3px solid #38932c;
+      font-weight: 700;
+    `};
+`;
 
 class TableOfContentsNode extends Component {
   renderChildren() {
-    const { level, children, className } = this.props;
+    const { level, children, className, activeItemId } = this.props;
 
     if (!children.length) {
       return null;
@@ -20,7 +30,13 @@ class TableOfContentsNode extends Component {
             return [...prev, { ...last, children: [...last.children, child] }];
           }, [])
           .map(({ id, level, title, children }) => (
-            <TableOfContentsNode key={id} id={id} level={level} title={title}>
+            <TableOfContentsNode
+              key={id}
+              id={id}
+              level={level}
+              title={title}
+              activeItemId={activeItemId}
+            >
               {children}
             </TableOfContentsNode>
           ))}
@@ -29,12 +45,14 @@ class TableOfContentsNode extends Component {
   }
 
   render() {
-    const { id, title } = this.props;
+    const { id, title, activeItemId } = this.props;
 
     if (id) {
       return (
         <li>
-          <a href={`#${id}`}>{title}</a>
+          <Link href={`#${id}`} active={activeItemId === id}>
+            {title}
+          </Link>
           {this.renderChildren()}
         </li>
       );

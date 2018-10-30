@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import TableOfContentsNode from './TableOfContentsNode';
 import HeaderNavigation from './HeaderNavigation';
+import MostVisibleSectionTracker from './MostVisibleSectionTracker';
 
 const Separator = styled('div')`
   display: block;
@@ -97,11 +98,6 @@ const Navigation = styled.nav`
     :hover {
       background-color: #f1ffe6;
     }
-
-    .active {
-      border-left: 3px solid #38932c;
-      font-weight: 700;
-    }
   }
 
   > ol > li > ol > li a {
@@ -114,7 +110,13 @@ const TableOfContents = ({ onClick, show, tableOfContentsItems: items }) => (
     <Navigation aria-label="Secondary" show={show} onClick={onClick}>
       <HeaderNavigation />
       <Separator />
-      <TableOfContentsNode level={0}>{items}</TableOfContentsNode>
+      <MostVisibleSectionTracker>
+        {({ mostVisibleSectionId }) => (
+          <TableOfContentsNode level={0} activeItemId={mostVisibleSectionId}>
+            {items}
+          </TableOfContentsNode>
+        )}
+      </MostVisibleSectionTracker>
     </Navigation>
   </Wrapper>
 );
