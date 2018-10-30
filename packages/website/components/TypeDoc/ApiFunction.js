@@ -8,6 +8,7 @@ import ApiDescription from './ApiDescription';
 
 const ApiFunctionDetails = styled('div')`
   display: flex;
+  flex-wrap: wrap;
 
   div:first-child {
     margin-right: var(--sidebar-gutter);

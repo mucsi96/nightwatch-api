@@ -8,8 +8,10 @@ const StyledLink = styled('a')`
     color: white;
     padding: 0 20px;
     position: relative;
+    transition: filter var(--animation-duration) linear;
 
     :hover {
+      filter: contrast(200%);
       color: #a5cc91;
     }
 

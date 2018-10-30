@@ -50,36 +50,11 @@ const HamburgerInner = styled.div`
 `;
 
 const HamburgerBox = styled.div`
+  color: #a5cc91;
   position: relative;
   width: 40px;
   height: 24px;
 `;
-
-// class HamburgerButton extends Component {
-//   state = {
-//     active: false
-//   };
-
-//   handleClick = () => {
-//     document.body.classList.toggle('hamburger-button-active', !this.state.active);
-//     this.setState(({ active }) => ({
-//       active: !active
-//     }));
-//   };
-
-//   render() {
-//     const { className, ...props } = this.props;
-//     const { active } = this.state;
-
-//     return (
-//       <div className={className} {...props} aria-hidden={true} onClick={this.handleClick}>
-//         <HamburgerBox>
-//           <HamburgerInner active={active} />
-//         </HamburgerBox>
-//       </div>
-//     );
-//   }
-// }
 
 const HamburgerButton = ({ className, active, ...props }) => (
   <div className={className} {...props} aria-hidden={true}>
@@ -91,10 +66,10 @@ const HamburgerButton = ({ className, active, ...props }) => (
 
 const StyledHamburgerButton = styled(HamburgerButton)`
   overflow: visible;
-  transition: opacity var(--animation-duration) linear;
+  transition: filter var(--animation-duration) linear;
 
   :hover {
-    opacity: 0.7;
+    filter: contrast(200%);
   }
 `;
 

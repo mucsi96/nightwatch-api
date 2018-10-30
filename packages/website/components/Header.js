@@ -21,6 +21,12 @@ const HomeLink = styled.a`
   font-weight: bold;
   color: #a5cc91;
   text-decoration: none;
+
+  transition: filter var(--animation-duration) linear;
+
+  :hover {
+    filter: contrast(200%);
+  }
 `;
 
 const HeaderWidthLimiter = styled(WidthLimiter)`
