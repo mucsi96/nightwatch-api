@@ -41,6 +41,20 @@ const commonConfig = {
             }
           }
         ]
+      },
+      {
+        test: /\.ts$/,
+        include: path.resolve(__dirname, '../nightwatch-api/src'),
+        use: [
+          'json-loader',
+          {
+            loader: path.resolve(__dirname, 'typedoc-loader.js'),
+            options: {
+              mode: 'modules',
+              tsConfig: path.resolve(__dirname, '../nightwatch-api/tsconfig.json')
+            }
+          }
+        ]
       }
     ]
   }
@@ -50,6 +64,11 @@ const serverConfig = {
   ...commonConfig,
   mode: 'development',
   entry: path.resolve(__dirname, 'site-server-renderer.js'),
+  resolve: {
+    alias: {
+      appSource$: path.resolve(__dirname, '../nightwatch-api/src/index.ts')
+    }
+  },
   output: {
     ...commonConfig.output,
     libraryTarget: 'commonjs2',
@@ -63,9 +82,7 @@ const serverConfig = {
       crawl: true,
       locals: {
         contributors,
-        version,
-        sourceEntryPoint: path.resolve(__dirname, '../nightwatch-api/src/index.ts'),
-        tsConfig: path.resolve(__dirname, '../nightwatch-api/tsconfig.json')
+        version
       },
       globals: {
         window: {}
