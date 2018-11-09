@@ -13,7 +13,7 @@ export default class MostVisibleSectionTracker extends Component {
     ) {
       return {
         id: element.id,
-        top: scrollTop + element.getBoundingClientRect().top + 60
+        top: scrollTop + element.getBoundingClientRect().top
       };
     });
 
