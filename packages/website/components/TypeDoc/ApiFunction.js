@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Heading from '../Heading';
+import Heading from '../content/Heading';
 import ApiFunctionParameter from './ApiFunctionParameter';
 import ApiType from './ApiType';
 import ApiExamples from './ApiExamples';

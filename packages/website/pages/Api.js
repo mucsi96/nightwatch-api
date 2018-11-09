@@ -1,6 +1,6 @@
 import React from 'react';
 import TypeDoc from '../components/TypeDoc';
-import Heading from '../components/Heading';
+import Heading from '../components/content/Heading';
 
 const Api = () => (
   <>

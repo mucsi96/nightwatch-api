@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Link from './Link';
-import { contributors } from '../.all-contributorsrc';
+import { contributors } from '../../.all-contributorsrc';
 
 const Avatar = styled.img`
   width: 100px;

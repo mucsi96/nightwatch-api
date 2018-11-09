@@ -1,11 +1,11 @@
 import React from 'react';
 import Markdown from 'react-markdown';
-import Heading from '../components/Heading';
-import Link from '../components/Link';
-import Code from '../components/Code';
-import Image from '../components/Image';
-import InlineCode from '../components/InlineCode';
-import Emoji from '../components/Emoji';
+import Heading from './Heading';
+import Link from './Link';
+import Code from './Code';
+import Image from './Image';
+import InlineCode from './InlineCode';
+import Emoji from './Emoji';
 import Paragraph from './Paragraph';
 import Contributors from './Contributors';
 

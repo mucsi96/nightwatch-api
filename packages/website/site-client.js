@@ -1,8 +1,8 @@
-import rehydrate from './components/rehydrate';
+import rehydrate from './components/utils/rehydrate';
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import TableOfContents from './components/TableOfContents';
-import HamburgerButton from './components/HamburgerButton';
+import TableOfContents from './components/toc/TableOfContents';
+import HamburgerButton from './components/header/HamburgerButton';
 
 const RehydratedTableOfContents = rehydrate('table-of-contents')(TableOfContents);
 const RehydratedHamburgerButton = rehydrate('hamburger-button')(HamburgerButton);

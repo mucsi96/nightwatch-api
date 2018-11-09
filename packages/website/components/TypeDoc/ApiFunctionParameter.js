@@ -1,5 +1,5 @@
 import React from 'react';
-import InlineCode from '../InlineCode';
+import InlineCode from '../content/InlineCode';
 import ApiDescription from './ApiDescription';
 
 const getParameterType = type => {

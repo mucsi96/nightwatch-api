@@ -3,7 +3,7 @@ import { Route } from 'react-router';
 import Home from './Home';
 import Api from './Api';
 import { StaticRouter } from 'react-router';
-import { withSiteConfig } from '../components/SiteConfigProvider';
+import { withSiteConfig } from '../components/utils/SiteConfigProvider';
 
 const Routes = ({ path }) => (
   <StaticRouter location={path} context={{}}>

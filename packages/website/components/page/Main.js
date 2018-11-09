@@ -1,10 +1,10 @@
 import React from 'react';
-import WidthLimiter from './WidthLimiter';
+import WidthLimiter from '../utils/WidthLimiter';
 import styled from 'styled-components';
-import { withTableOfContents } from '../components/TableOfContentsProvider';
-import dehydrate from '../components/dehydrate';
-import TableOfContents from '../components/TableOfContents';
-import { withSiteConfig } from './SiteConfigProvider';
+import { withTableOfContents } from '../toc/TableOfContentsProvider';
+import dehydrate from '../utils/dehydrate';
+import TableOfContents from '../toc/TableOfContents';
+import { withSiteConfig } from '../utils/SiteConfigProvider';
 
 const DehydratedTableOfContents = dehydrate('table-of-contents')(TableOfContents);
 

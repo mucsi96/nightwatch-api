@@ -1,13 +1,13 @@
 import React from 'react';
-import DehydrationProvider from '../components/DehydrationProvider';
-import RehydrationInitialState from '../components/RehydrationInitialState';
-import Footer from '../components/Footer';
-import Body from '../components/Body';
-import Main from '../components/Main';
-import TableOfContentsProvider from '../components/TableOfContentsProvider';
-import Header from '../components/Header';
-import Head from '../components/Head';
-import SiteContent from '../pages';
+import DehydrationProvider from '../utils/DehydrationProvider';
+import RehydrationInitialState from '../utils/RehydrationInitialState';
+import Footer from './Footer';
+import Body from './Body';
+import Main from './Main';
+import TableOfContentsProvider from '../toc/TableOfContentsProvider';
+import Header from '../header/Header';
+import Head from './Head';
+import SiteContent from '../../pages';
 
 const Site = () => (
   <html>

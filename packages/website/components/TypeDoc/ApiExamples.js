@@ -1,15 +1,17 @@
 import React from 'react';
-import Code from '../Code';
-import Heading from '../Heading';
+import Code from '../content/Code';
+import Heading from '../content/Heading';
 
 const hasExampes = tags => {
   return tags.filter(({ tag }) => tag === 'example').length > 0;
 };
 
 const getExamples = tags => {
-  return tags.filter(({ tag }) => tag === 'example').map(({ text }, index) => {
-    return <Code key={index} language="javascript" value={text} />;
-  });
+  return tags
+    .filter(({ tag }) => tag === 'example')
+    .map(({ text }, index) => {
+      return <Code key={index} language="javascript" value={text} />;
+    });
 };
 
 const ApiExamples = ({ tags, headingLevel }) => {

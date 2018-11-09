@@ -1,5 +1,5 @@
 import React from 'react';
-import Heading from '../Heading';
+import Heading from '../content/Heading';
 import ApiFunction from './ApiFunction';
 import ApiVariable from './ApiVariable';
 import ApiDescription from './ApiDescription';

@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import WidthLimiter from './WidthLimiter';
-import { withSiteConfig } from './SiteConfigProvider';
+import WidthLimiter from '../utils/WidthLimiter';
+import { withSiteConfig } from '../utils/SiteConfigProvider';
 import HeaderNavigation from './HeaderNavigation';
 import HamburgerButton from './HamburgerButton';
-import dehydrate from './dehydrate';
+import dehydrate from '../utils/dehydrate';
 
 const DehydratedHamburgerButton = dehydrate('hamburger-button')(HamburgerButton);
 const StyledDehydratedHamburgerButton = styled(DehydratedHamburgerButton)`

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { withSiteConfig } from './SiteConfigProvider';
+import { withSiteConfig } from '../utils/SiteConfigProvider';
 
 const StyledLink = styled('a')`
   @media (min-width: 720px) {

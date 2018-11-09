@@ -2,7 +2,7 @@ import React from 'react';
 import ApiFunction from './ApiFunction';
 import ApiVariable from './ApiVariable';
 import ApiClass from './ApiClass';
-import { withSiteConfig } from '../SiteConfigProvider';
+import { withSiteConfig } from '../utils/SiteConfigProvider';
 import typedoc from 'typeDoc';
 
 const Typedoc = () => {

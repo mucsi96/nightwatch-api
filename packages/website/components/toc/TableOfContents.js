@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import TableOfContentsNode from './TableOfContentsNode';
-import MostVisibleSectionTracker from './MostVisibleSectionTracker';
+import MostVisibleSectionTracker from '../utils/MostVisibleSectionTracker';
 import TableOfContentNavigation from './TableOfContentNavigation';
 
 const Separator = styled('div')`
