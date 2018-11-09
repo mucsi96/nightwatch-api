@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import Link from './Link';
 import { contributors } from '../../.all-contributorsrc';
 
 const Avatar = styled.img`
@@ -8,12 +7,24 @@ const Avatar = styled.img`
   display: block;
   overflow: hidden;
   border-radius: 50%;
+  opacity: inherit;
+  transition: inherit;
 `;
 
 const ContributorContainer = styled.li`
   text-align: center;
   padding: 15px;
   width: 100px;
+`;
+
+const Link = styled('a')`
+  color: inherit;
+  text-decoration: none;
+
+  transition: opacity 0.1s ease;
+  :hover {
+    opacity: 0.5;
+  }
 `;
 
 const Contributor = ({ login, name, avatar_url, profile }) => (

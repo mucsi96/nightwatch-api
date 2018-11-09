@@ -16,7 +16,7 @@ const Route = ({ exact, path, component, title }) => (
 const Routes = ({ path, github }) => (
   <StaticRouter location={path} context={{}}>
     <>
-      <Route exact path="/" component={Home} title="Intro" />
+      <Route exact path="/" component={Home} title="Introduction" />
       <Route path="/api" component={Api} title="API" />
       <TableOfContentsCollector url={github} level={1} title="GitHub" />
     </>
