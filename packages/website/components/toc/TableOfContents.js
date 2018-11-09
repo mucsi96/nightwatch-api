@@ -2,17 +2,6 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import TableOfContentsNode from './TableOfContentsNode';
 import MostVisibleSectionTracker from '../utils/MostVisibleSectionTracker';
-import TableOfContentNavigation from './TableOfContentNavigation';
-
-const Separator = styled('div')`
-  display: block;
-  border-bottom: 1px solid #7ac35f;
-  margin: 20px 20px 20px 0;
-
-  @media (min-width: 720px) {
-    display: none;
-  }
-`;
 
 const Wrapper = styled.div`
   margin-top: var(--header-height);
@@ -105,11 +94,9 @@ const Navigation = styled.nav`
 const TableOfContents = ({ onClick, show, tableOfContentsItems: items, github }) => (
   <Wrapper>
     <Navigation aria-label="Secondary" show={show} onClick={onClick}>
-      <TableOfContentNavigation github={github} />
-      <Separator />
       <MostVisibleSectionTracker>
         {({ mostVisibleSectionId }) => (
-          <TableOfContentsNode level={0} activeItemId={mostVisibleSectionId}>
+          <TableOfContentsNode level={0} activeUrl={`#${mostVisibleSectionId}`}>
             {items}
           </TableOfContentsNode>
         )}

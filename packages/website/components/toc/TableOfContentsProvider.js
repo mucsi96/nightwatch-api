@@ -5,7 +5,7 @@ const Context = createContext();
 class TableOfContentsProvider extends Component {
   toc = [];
 
-  addItem = ({ id, level, title }) => this.toc.push({ id, level, title });
+  addItem = ({ url, level, title }) => this.toc.push({ url, level, title });
 
   getItems = () => this.toc;
 

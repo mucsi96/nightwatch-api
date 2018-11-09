@@ -1,7 +1,7 @@
 import { withTableOfContents } from './TableOfContentsProvider';
 
-const TableOfContentsCollector = ({ id, level, title, addTableOfContentsItem }) => {
-  addTableOfContentsItem({ id, level, title });
+const TableOfContentsCollector = ({ url, level, title, addTableOfContentsItem }) => {
+  addTableOfContentsItem({ url, level, title });
   return null;
 };
 

@@ -54,7 +54,7 @@ const Heading = ({ level, children }) => {
   const id = slugify(title);
   return (
     <>
-      {level <= 2 ? <TableOfContentsCollector id={id} level={level} title={title} /> : null}
+      {level === 2 ? <TableOfContentsCollector url={`#${id}`} level={level} title={title} /> : null}
       <Container id={id}>{children}</Container>
     </>
   );

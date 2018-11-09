@@ -12,7 +12,7 @@ const Link = styled('a')`
 
 class TableOfContentsNode extends Component {
   renderChildren() {
-    const { level, children, className, activeItemId } = this.props;
+    const { level, children, className, activeUrl } = this.props;
 
     if (!children.length) {
       return null;
@@ -29,13 +29,13 @@ class TableOfContentsNode extends Component {
             const last = prev.pop();
             return [...prev, { ...last, children: [...last.children, child] }];
           }, [])
-          .map(({ id, level, title, children }) => (
+          .map(({ url, level, title, children }) => (
             <TableOfContentsNode
-              key={id}
-              id={id}
+              key={url}
+              url={url}
               level={level}
               title={title}
-              activeItemId={activeItemId}
+              activeUrl={activeUrl}
             >
               {children}
             </TableOfContentsNode>
@@ -45,12 +45,12 @@ class TableOfContentsNode extends Component {
   }
 
   render() {
-    const { id, title, activeItemId } = this.props;
+    const { url, title, activeUrl } = this.props;
 
-    if (id) {
+    if (url) {
       return (
         <li>
-          <Link href={`#${id}`} active={activeItemId === id}>
+          <Link href={url} active={activeUrl === url}>
             {title}
           </Link>
           {this.renderChildren()}
