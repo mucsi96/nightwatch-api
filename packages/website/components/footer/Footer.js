@@ -32,19 +32,15 @@ const FooterWidthLimiter = styled(WidthLimiter)`
   }
 `;
 
-const StyledFooter = styled.footer`
-  background-color: #7ac35f;
-`;
-
 const Footer = () => (
-  <StyledFooter>
+  <footer>
     <FooterWidthLimiter>
       <div>
         Created with <StyledHeart /> in <StyledCH />
       </div>
       <div>{new Date().getFullYear()}</div>
     </FooterWidthLimiter>
-  </StyledFooter>
+  </footer>
 );
 
 export default Footer;

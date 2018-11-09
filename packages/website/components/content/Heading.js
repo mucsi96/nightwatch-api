@@ -6,26 +6,23 @@ import TableOfContentsCollector from '../toc/TableOfContentsCollector';
 const StyledHeading1 = styled.h1`
   font-size: 40px;
   line-height: 1.125;
-  margin-top: calc(-1 * var(--header-height));
-  margin-bottom: 0;
-  padding-top: calc(60px + var(--header-height));
+  margin: 40px 0;
   color: #282c34;
 
   @media (min-width: 780px) {
     font-size: 60px;
-    padding-top: calc(70px + var(--header-height));
+    margin: 50px 0;
   }
 
   @media (min-width: 980px) {
-    padding-top: calc(100px + var(--header-height));
+    margin-top: 80px;
   }
 `;
 
 const StyledHeading2 = styled.h2`
   font-size: 20px;
-  margin-top: calc(-1 * var(--header-height));
-  margin-bottom: 40px;
-  padding-top: calc(60px + var(--header-height));
+  margin: 40px 0;
+  color: #282c34;
 
   @media (min-width: 980px) {
     font-size: 24px;
