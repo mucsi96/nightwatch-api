@@ -2,10 +2,10 @@ import rehydrate from './components/utils/rehydrate';
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import TableOfContents from './components/toc/TableOfContents';
-import HamburgerButton from './components/header/HamburgerButton';
+// import HamburgerButton from './components/header/HamburgerButton';
 
 const RehydratedTableOfContents = rehydrate('table-of-contents')(TableOfContents);
-const RehydratedHamburgerButton = rehydrate('hamburger-button')(HamburgerButton);
+// const RehydratedHamburgerButton = rehydrate('hamburger-button')(HamburgerButton);
 
 class App extends Component {
   state = {
@@ -31,10 +31,10 @@ class App extends Component {
 
     return (
       <>
-        <RehydratedHamburgerButton
+        {/* <RehydratedHamburgerButton
           active={showSmallScreenNavigation}
           onClick={this.handleHamburgerButtonClick}
-        />
+        /> */}
         <RehydratedTableOfContents
           show={showSmallScreenNavigation}
           onClick={this.handleTableOfContentsClick}

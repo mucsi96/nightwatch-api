@@ -18,7 +18,6 @@ const MainWidthLimiter = styled(WidthLimiter)`
   display: flex;
   flex-direction: row-reverse;
   padding-bottom: 50px;
-  min-height: calc(100vh - var(--header-height));
 
   @media (min-width: 2000px) {
     max-width: calc(840px + 2 * var(--horizontal-padding));

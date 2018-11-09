@@ -2,10 +2,9 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import TableOfContentsNode from './TableOfContentsNode';
 import MostVisibleSectionTracker from '../utils/MostVisibleSectionTracker';
+import HomeLink from './HomeLink';
 
 const Wrapper = styled.div`
-  margin-top: var(--header-height);
-
   @media (min-width: 720px) {
     margin-left: var(--sidebar-gutter);
     width: var(--sidebar-width);
@@ -16,9 +15,9 @@ const Navigation = styled.nav`
   box-sizing: border-box;
   margin-right: -999px;
   padding: 10px 999px 10px 20px;
-  background-color: white;
+  background-color: #f7f7f7;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-  height: calc(100vh - var(--header-height));
+  height: 100vh;
   position: fixed;
   z-index: 1;
   overflow-y: auto;
@@ -29,7 +28,6 @@ const Navigation = styled.nav`
   line-height: initial;
 
   @media (min-width: 720px) {
-    background-color: transparent;
     box-shadow: none;
     right: initial;
     left: initial;
@@ -37,16 +35,8 @@ const Navigation = styled.nav`
     font-size: 13px;
   }
 
-  @media (min-width: 780px) {
-    padding-top: 60px;
-  }
-
   @media (min-width: 1100px) {
     padding-left: 40px;
-  }
-
-  @media (min-width: 1280px) {
-    padding-top: 70px;
   }
 
   @media (min-width: 2000px) {
@@ -71,29 +61,15 @@ const Navigation = styled.nav`
     padding: 0;
   }
 
-  li a {
-    color: #737373;
-    text-decoration: none;
-    display: block;
-    padding: 10px;
-
-    @media (min-width: 720px) {
-      padding: 5px 10px;
-    }
-
-    :hover {
-      background-color: #f1ffe6;
-    }
-  }
-
   > ol > li > ol > li a {
     padding-left: 25px;
   }
 `;
 
-const TableOfContents = ({ onClick, show, tableOfContentsItems: items, github }) => (
+const TableOfContents = ({ title, onClick, show, tableOfContentsItems: items }) => (
   <Wrapper>
-    <Navigation aria-label="Secondary" show={show} onClick={onClick}>
+    <Navigation show={show} onClick={onClick}>
+      <HomeLink title={title} />
       <MostVisibleSectionTracker>
         {({ mostVisibleSectionId }) => (
           <TableOfContentsNode level={0} activeUrl={`#${mostVisibleSectionId}`}>

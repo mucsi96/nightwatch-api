@@ -2,11 +2,35 @@ import React, { Component } from 'react';
 import styled, { css } from 'styled-components';
 
 const Link = styled('a')`
+  color: inherit;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  position: relative;
+
+  @media (min-width: 720px) {
+    padding: 5px 10px;
+  }
+
+  transition: filter 0.1s linear;
+  :hover {
+    filter: invert(50%);
+  }
+
   ${({ active }) =>
     active &&
     css`
-      border-left: 3px solid #38932c;
       font-weight: 700;
+      :before {
+        background-color: currentColor;
+        display: block;
+        position: absolute;
+        content: '';
+        top: 0;
+        bottom: 0;
+        left: -10px;
+        width: 3px;
+      }
     `};
 `;
 

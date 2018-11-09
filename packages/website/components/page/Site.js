@@ -5,7 +5,6 @@ import Footer from '../footer/Footer';
 import Body from './Body';
 import Main from './Main';
 import TableOfContentsProvider from '../toc/TableOfContentsProvider';
-import Header from '../header/Header';
 import Head from './Head';
 import SiteContent from '../../pages';
 
@@ -15,7 +14,6 @@ const Site = () => (
     <Body>
       <DehydrationProvider>
         <TableOfContentsProvider>
-          <Header />
           <Main>
             <SiteContent />
           </Main>
