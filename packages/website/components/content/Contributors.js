@@ -30,7 +30,7 @@ const Link = styled('a')`
 const Contributor = ({ login, name, avatar_url, profile }) => (
   <ContributorContainer key={login}>
     <Link href={profile} title={login}>
-      <Avatar src={avatar_url} />
+      <Avatar src={avatar_url} alt={name} />
       {name}
     </Link>
   </ContributorContainer>

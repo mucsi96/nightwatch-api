@@ -9,7 +9,7 @@ import Head from './Head';
 import SiteContent from '../../pages';
 
 const Site = () => (
-  <html>
+  <html lang="en">
     <Head />
     <Body>
       <DehydrationProvider>
