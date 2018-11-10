@@ -4,9 +4,13 @@ import styled from 'styled-components';
 import { withTableOfContents } from '../toc/TableOfContentsProvider';
 import dehydrate from '../utils/dehydrate';
 import TableOfContents from '../toc/TableOfContents';
+import FloatingHamburgerButton from '../toc/FloatingHamburgerButton';
 import { withSiteConfig } from '../utils/SiteConfigProvider';
 
 const DehydratedTableOfContents = dehydrate('table-of-contents')(TableOfContents);
+const DehydratedFloatingHamburgerButton = dehydrate('floating-hamburger-button')(
+  FloatingHamburgerButton
+);
 
 const TableOfContentsContainer = styled(
   withTableOfContents(withSiteConfig(DehydratedTableOfContents))
@@ -36,6 +40,7 @@ const Content = styled.main`
 const Main = ({ children, className }) => (
   <section className={className}>
     <MainWidthLimiter>
+      <DehydratedFloatingHamburgerButton />
       <TableOfContentsContainer />
       <Content>{children}</Content>
     </MainWidthLimiter>
