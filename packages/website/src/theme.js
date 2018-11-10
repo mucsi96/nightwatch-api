@@ -2,6 +2,12 @@ import { css } from 'styled-components';
 import * as HighlighJs from 'react-syntax-highlighter/styles/hljs';
 
 const theme = {
+  base: css`
+    color: #000;
+    background-color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
+      Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  `,
   syntaxHighlight: HighlighJs.tomorrowNightEighties,
   code: css`
     font-size: 14px;

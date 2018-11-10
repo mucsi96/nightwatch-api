@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { contributors } from '../../../.all-contributorsrc';
+import { contributors } from 'packageJson';
 import theme from '../../theme';
 
 const Avatar = styled.img`
@@ -28,10 +28,10 @@ const Link = styled.a`
   }
 `;
 
-const Contributor = ({ login, name, avatar_url, profile }) => (
-  <ContributorContainer key={login}>
-    <Link href={profile} title={login}>
-      <Avatar src={avatar_url} alt={name} />
+const Contributor = ({ name, avatar, url }) => (
+  <ContributorContainer key={avatar}>
+    <Link href={url} title={name}>
+      <Avatar src={avatar} alt={name} />
       {name}
     </Link>
   </ContributorContainer>

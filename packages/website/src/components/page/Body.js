@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import theme from '../../theme';
 
 const Body = styled.body`
   --horizontal-padding: 20px;
@@ -15,8 +16,7 @@ const Body = styled.body`
 
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
-    Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  ${theme.base}
 `;
 
 export default Body;

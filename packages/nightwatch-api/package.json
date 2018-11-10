@@ -104,5 +104,27 @@
     "tslint-config-airbnb": "^5.11.0",
     "tslint-config-prettier": "^1.15.0",
     "typescript": "^3.1.6"
-  }
+  },
+  "contributors": [
+    {
+      "name": "Igor Muchychka",
+      "url": "https://twitter.com/mucsi96",
+      "avatar": "https://avatars0.githubusercontent.com/u/3163392?v=4"
+    },
+    {
+      "name": "Ricardo Machado",
+      "url": "https://github.com/mAiNiNfEcTiOn",
+      "avatar": "https://avatars1.githubusercontent.com/u/1002056?v=4"
+    },
+    {
+      "name": "Markus Oberlehner",
+      "url": "https://github.com/maoberlehner",
+      "avatar": "https://avatars1.githubusercontent.com/u/6883314?v=4"
+    },
+    {
+      "name": "Padmanabha Raju Sagi",
+      "url": "https://github.com/spnraju",
+      "avatar": "https://avatars1.githubusercontent.com/u/33729221?v=4"
+    }
+  ]
 }

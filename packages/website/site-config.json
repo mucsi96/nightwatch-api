@@ -2,9 +2,5 @@
   "title": "Nightwatch API",
   "description": "Cross-runner API for Nightwatch.js",
   "url": "https://nightwatch-api.netlify.com/",
-  "githubId": "mucsi96/nightwatch-api",
-  "github": "https://github.com/mucsi96/nightwatch-api",
-  "npm": "https://www.npmjs.com/package/nightwatch-api",
-  "twitterId": "mucsi96",
-  "twitter": "https://twitter.com/mucsi96"
+  "github": "https://github.com/mucsi96/nightwatch-api"
 }

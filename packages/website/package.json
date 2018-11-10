@@ -47,5 +47,26 @@
   },
   "dependencies": {
     "react-scrolllock": "^3.0.2"
+  },
+  "browserslist": [
+    "> 1%",
+    "not ie > 0"
+  ],
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-class-properties",
+      "@babel/plugin-proposal-object-rest-spread",
+      [
+        "babel-plugin-styled-components",
+        {
+          "ssr": true
+        }
+      ],
+      "inline-react-svg"
+    ]
   }
 }
