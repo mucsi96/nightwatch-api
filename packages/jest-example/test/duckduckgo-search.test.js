@@ -13,6 +13,9 @@ describe('Searching DuckDuckGo', () => {
       .url('https://duckduckgo.com/')
       .setValue('input[name="q"]', 'WebDriver')
       .click('input[type="submit"]')
-      .assert.containsText('#links', 'WebDriver - w3.org');
+      .assert.containsText(
+        '#links',
+        'WebDriver is a remote control interface that enables introspection and control of user agents.'
+      );
   });
 });
