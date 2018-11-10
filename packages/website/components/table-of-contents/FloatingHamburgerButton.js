@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import theme from '../../theme';
 
 const scrollbarWidth = window.innerWidth - document.body.clientWidth;
 
@@ -9,8 +10,8 @@ const HamburgerInner = styled.div`
   position: absolute;
   width: 40px;
   height: 4px;
-  transition: transform var(--animation-duration) ease, opacity var(--animation-duration) ease;
-  background-color: currentColor;
+  transition: transform ${theme.animation}, opacity ${theme.animation};
+  background-color: ${theme.primaryColor};
   border-radius: 4px;
 
   :after,
@@ -20,9 +21,9 @@ const HamburgerInner = styled.div`
     position: absolute;
     width: 40px;
     height: 4px;
-    transition: transform var(--animation-duration) ease, opacity var(--animation-duration) ease;
+    transition: transform ${theme.animation}, opacity ${theme.animation};
     border-radius: 4px;
-    background-color: currentColor;
+    background-color: ${theme.primaryColor};
   }
 
   :before {
@@ -51,7 +52,6 @@ const HamburgerInner = styled.div`
 `;
 
 const HamburgerBox = styled.div`
-  color: #282c34;
   position: relative;
   width: 62px;
   height: 62px;
@@ -67,10 +67,10 @@ const FloatingHamburgerButton = ({ className, active, ...props }) => (
 
 const StyledHamburgerButton = styled(FloatingHamburgerButton)`
   overflow: visible;
-  transition: opacity 0.1s ease;
+  transition: opacity ${theme.shortAnimation};
   position: fixed;
   bottom: 44px;
-  background-color: #f7f7f7;
+  background-color: ${theme.secondaryColor};
   border-radius: 50%;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 20px;
   z-index: 2;

@@ -1,12 +1,13 @@
 import styled from 'styled-components';
+import theme from '../../theme';
 
 const Link = styled.a`
-  color: #337ab7;
   text-decoration: none;
+  color: ${theme.linkColor};
 
   :focus,
   .no-touchevents &:hover {
-    color: #23527c;
+    ${theme.hoverEffect}
     text-decoration: underline;
   }
 

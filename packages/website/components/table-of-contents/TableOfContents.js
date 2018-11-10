@@ -4,6 +4,7 @@ import TableOfContentsNode from './TableOfContentsNode';
 import MostVisibleSectionTracker from '../utils/MostVisibleSectionTracker';
 import HomeLink from './HomeLink';
 import ScrollLock from 'react-scrolllock';
+import theme from '../../theme';
 
 const Wrapper = styled.div`
   @media (min-width: 720px) {
@@ -16,7 +17,7 @@ const Navigation = styled.nav`
   box-sizing: border-box;
   margin-right: -999px;
   padding: 10px 999px 10px 20px;
-  background-color: #f7f7f7;
+  background-color: ${theme.secondaryColor};
   position: fixed;
   top: 0;
   bottom: 0;
@@ -24,7 +25,7 @@ const Navigation = styled.nav`
   left: 0;
   z-index: 1;
   overflow-y: auto;
-  transition: transform var(--animation-duration) ease;
+  transition: transform ${theme.animation};
   transform: translateX(100%);
   line-height: initial;
 

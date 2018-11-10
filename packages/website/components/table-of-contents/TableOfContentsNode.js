@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import styled, { css } from 'styled-components';
+import theme from '../../theme';
 
-const Link = styled('a')`
+const Link = styled.a`
   color: inherit;
   text-decoration: none;
   display: block;
   padding: 10px;
   position: relative;
-  transition: filter 0.1s ease, background-color 0.1s ease;
+  transition: filter ${theme.shortAnimation}, background-color ${theme.shortAnimation};
 
   --active-dot-size: 6px;
 
@@ -16,7 +17,7 @@ const Link = styled('a')`
   }
 
   .no-touchevents &:hover {
-    filter: invert(50%);
+    ${theme.hoverEffect}
   }
 
   ${({ active, level }) =>
@@ -31,7 +32,7 @@ const Link = styled('a')`
     level === 2 &&
     css`
       :before {
-        background-color: #282c34;
+        background-color: ${theme.primaryColor};
         display: block;
         position: absolute;
         content: '';

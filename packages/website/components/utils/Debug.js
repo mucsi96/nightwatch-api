@@ -2,7 +2,7 @@ import React from 'react';
 import { inspect } from 'util';
 import styled from 'styled-components';
 
-const Pre = styled('pre')`
+const Pre = styled.pre`
   overflow-x: auto;
   width: 790px;
 `;

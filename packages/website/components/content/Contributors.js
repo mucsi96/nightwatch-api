@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { contributors } from '../../.all-contributorsrc';
+import theme from '../../theme';
 
 const Avatar = styled.img`
   width: 100px;
@@ -17,10 +18,10 @@ const ContributorContainer = styled.li`
   width: 100px;
 `;
 
-const Link = styled('a')`
+const Link = styled.a`
   color: inherit;
   text-decoration: none;
-  transition: opacity 0.1s ease;
+  transition: opacity ${theme.shortAnimation};
 
   .no-touchevents &:hover {
     opacity: 0.5;

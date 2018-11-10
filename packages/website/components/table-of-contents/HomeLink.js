@@ -1,17 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 import { version } from 'packageJson';
+import theme from '../../theme';
 
 const StyledHomeLink = styled.a`
   font-size: 1.3em;
   text-decoration: none;
   margin-bottom: 30px;
   display: block;
-  color: #282c34;
-  transition: filter 0.1s linear;
+  transition: filter ${theme.shortAnimation};
+  color: ${theme.primaryColor};
 
   .no-touchevents &:hover {
-    filter: invert(50%);
+    ${theme.hoverEffect}
   }
 `;
 

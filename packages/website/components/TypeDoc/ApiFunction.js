@@ -6,7 +6,7 @@ import ApiType from './ApiType';
 import ApiExamples from './ApiExamples';
 import ApiDescription from './ApiDescription';
 
-const ApiFunctionDetails = styled('div')`
+const ApiFunctionDetails = styled.div`
   display: flex;
   flex-wrap: wrap;
 
