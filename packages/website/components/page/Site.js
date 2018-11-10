@@ -14,6 +14,7 @@ const Site = () => (
     <Body>
       <DehydrationProvider>
         <TableOfContentsProvider>
+          <SiteContent onlyCollectTableOfContents />
           <Main>
             <SiteContent />
           </Main>

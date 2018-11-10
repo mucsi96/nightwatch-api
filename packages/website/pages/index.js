@@ -6,19 +6,33 @@ import { StaticRouter } from 'react-router';
 import { withSiteConfig } from '../components/utils/SiteConfigProvider';
 import TableOfContentsCollector from '../components/toc/TableOfContentsCollector';
 
-const Route = ({ exact, path, component, title }) => (
-  <>
-    <TableOfContentsCollector url={path} level={1} title={title} />
-    <ReactRouter.Route exact={exact} path={path} component={component} />
-  </>
-);
+const Route = ({ onlyCollectTableOfContents, exact, path, component, title }) => {
+  if (onlyCollectTableOfContents) {
+    return <TableOfContentsCollector url={path} level={1} title={title} />;
+  }
 
-const Routes = ({ path, github }) => (
+  return <ReactRouter.Route exact={exact} path={path} component={component} />;
+};
+
+const Routes = ({ onlyCollectTableOfContents, path, github }) => (
   <StaticRouter location={path} context={{}}>
     <>
-      <Route exact path="/" component={Home} title="Introduction" />
-      <Route path="/api" component={Api} title="API" />
-      <TableOfContentsCollector url={github} level={1} title="GitHub" />
+      <Route
+        onlyCollectTableOfContents={onlyCollectTableOfContents}
+        exact
+        path="/"
+        component={Home}
+        title="Introduction"
+      />
+      <Route
+        onlyCollectTableOfContents={onlyCollectTableOfContents}
+        path="/api"
+        component={Api}
+        title="API"
+      />
+      {onlyCollectTableOfContents && (
+        <TableOfContentsCollector url={github} level={1} title="GitHub" />
+      )}
     </>
   </StaticRouter>
 );
