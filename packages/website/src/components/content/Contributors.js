@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { contributors } from '../../.all-contributorsrc';
+import { contributors } from '../../../.all-contributorsrc';
 import theme from '../../theme';
 
 const Avatar = styled.img`

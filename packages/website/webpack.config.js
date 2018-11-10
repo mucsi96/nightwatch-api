@@ -29,7 +29,7 @@ const commonConfig = {
       {
         test: /\.md$/,
         use: {
-          loader: path.resolve(__dirname, 'markdown-loader.js')
+          loader: path.resolve(__dirname, 'src/loaders/markdown-loader.js')
         }
       },
       {
@@ -48,7 +48,7 @@ const commonConfig = {
         include: path.resolve(__dirname, '../nightwatch-api/src'),
         use: [
           {
-            loader: path.resolve(__dirname, 'typedoc-loader.js'),
+            loader: path.resolve(__dirname, 'src/loaders/typedoc-loader.js'),
             options: {
               mode: 'modules',
               tsConfig: path.resolve(__dirname, '../nightwatch-api/tsconfig.json')
@@ -71,7 +71,7 @@ const commonConfig = {
 const serverConfig = {
   ...commonConfig,
   mode: 'development',
-  entry: path.resolve(__dirname, 'site-server-renderer.js'),
+  entry: path.resolve(__dirname, 'src/site-server-renderer.js'),
   output: {
     ...commonConfig.output,
     libraryTarget: 'commonjs2',
@@ -93,7 +93,7 @@ const serverConfig = {
 const clientConfig = {
   ...commonConfig,
   mode: process.env.WEBPACK_SERVE ? 'development' : 'production',
-  entry: path.resolve(__dirname, 'site-client.js'),
+  entry: path.resolve(__dirname, 'src/site-client.js'),
   output: {
     ...commonConfig.output,
     filename: 'site-client.js'
