@@ -82,7 +82,7 @@ const serverConfig = {
   plugins: [
     new StaticSiteGeneratorPlugin({
       entry: 'main',
-      crawl: true,
+      paths: ['/', '/api'],
       globals: {
         window: {}
       }
