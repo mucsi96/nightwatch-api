@@ -14,7 +14,8 @@ const Wrapper = styled.div`
 
 const Navigation = styled.nav`
   box-sizing: border-box;
-  padding: 10px 20px;
+  margin-right: -999px;
+  padding: 10px 999px 10px 20px;
   background-color: #f7f7f7;
   position: fixed;
   top: 0;

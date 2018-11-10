@@ -7,7 +7,9 @@ const Link = styled('a')`
   display: block;
   padding: 10px;
   position: relative;
-  transition: filter 0.1s linear;
+  transition: filter 0.1s ease, background-color 0.1s ease;
+
+  --active-dot-size: 6px;
 
   @media (min-width: 720px) {
     padding: 5px 10px;
@@ -17,8 +19,9 @@ const Link = styled('a')`
     filter: invert(50%);
   }
 
-  ${({ active }) =>
+  ${({ active, level }) =>
     active &&
+    level === 1 &&
     css`
       font-weight: 700;
     `};
@@ -28,14 +31,16 @@ const Link = styled('a')`
     level === 2 &&
     css`
       :before {
-        background-color: currentColor;
+        background-color: #282c34;
         display: block;
         position: absolute;
         content: '';
-        top: 0;
-        bottom: 0;
-        left: -10px;
-        width: 3px;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 7px;
+        width: var(--active-dot-size);
+        height: var(--active-dot-size);
+        border-radius: 50%;
       }
     `};
 `;

@@ -4,7 +4,6 @@ import { version } from 'packageJson';
 
 const StyledHomeLink = styled.a`
   font-size: 1.3em;
-  color: inherit;
   text-decoration: none;
   margin-bottom: 30px;
   display: block;
@@ -16,16 +15,10 @@ const StyledHomeLink = styled.a`
   }
 `;
 
-const Title = styled('span')`
-  font-weight: bold;
-  margin-right: 15px;
-`;
-
-const Version = styled('span')``;
-
 const HomeLink = ({ title }) => (
   <StyledHomeLink href="/">
-    <Title>{title}</Title> <Version>{`v${version}`}</Version>
+    <strong>{title}</strong>
+    <div>{`v${version}`}</div>
   </StyledHomeLink>
 );
 
