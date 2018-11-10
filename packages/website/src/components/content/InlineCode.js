@@ -5,6 +5,7 @@ import theme from '../../theme';
 const StyledInlineCode = styled.code`
   padding: 2px 4px;
   border-radius: 4px;
+  background-color: ${theme.secondaryColor};
 
   ${theme.inlineCode}
 `;
