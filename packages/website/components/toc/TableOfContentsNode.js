@@ -21,6 +21,12 @@ const Link = styled('a')`
     active &&
     css`
       font-weight: 700;
+    `};
+
+  ${({ active, level }) =>
+    active &&
+    level === 2 &&
+    css`
       :before {
         background-color: currentColor;
         display: block;
@@ -36,7 +42,7 @@ const Link = styled('a')`
 
 class TableOfContentsNode extends Component {
   renderChildren() {
-    const { level, children, className, activeUrl } = this.props;
+    const { level, children, className, activeUrls } = this.props;
 
     if (!children.length) {
       return null;
@@ -59,7 +65,7 @@ class TableOfContentsNode extends Component {
               url={url}
               level={level}
               title={title}
-              activeUrl={activeUrl}
+              activeUrls={activeUrls}
             >
               {children}
             </TableOfContentsNode>
@@ -69,12 +75,12 @@ class TableOfContentsNode extends Component {
   }
 
   render() {
-    const { url, title, activeUrl } = this.props;
+    const { url, title, level, activeUrls } = this.props;
 
     if (url) {
       return (
         <li>
-          <Link href={url} active={activeUrl === url}>
+          <Link href={url} active={activeUrls.indexOf(url) > -1} level={level}>
             {title}
           </Link>
           {this.renderChildren()}

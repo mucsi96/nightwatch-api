@@ -20,7 +20,7 @@ const TableOfContentsContainer = styled(
 
 const MainWidthLimiter = styled(WidthLimiter)`
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   padding-bottom: 50px;
 
   @media (min-width: 2000px) {
@@ -41,8 +41,8 @@ const Main = ({ children, className }) => (
   <section className={className}>
     <MainWidthLimiter>
       <DehydratedFloatingHamburgerButton />
-      <TableOfContentsContainer />
       <Content>{children}</Content>
+      <TableOfContentsContainer />
     </MainWidthLimiter>
   </section>
 );

@@ -67,14 +67,14 @@ const Navigation = styled.nav`
   }
 `;
 
-const TableOfContents = ({ title, onClick, show, tableOfContentsItems: items }) => (
+const TableOfContents = ({ title, path, onClick, show, tableOfContentsItems: items }) => (
   <Wrapper>
     <BodyScrollLock on={show} />
     <Navigation show={show} onClick={onClick}>
       <HomeLink title={title} />
       <MostVisibleSectionTracker>
         {({ mostVisibleSectionId }) => (
-          <TableOfContentsNode level={0} activeUrl={`#${mostVisibleSectionId}`}>
+          <TableOfContentsNode level={0} activeUrls={[path, `#${mostVisibleSectionId}`]}>
             {items}
           </TableOfContentsNode>
         )}
