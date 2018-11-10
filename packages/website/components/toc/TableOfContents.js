@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import TableOfContentsNode from './TableOfContentsNode';
 import MostVisibleSectionTracker from '../utils/MostVisibleSectionTracker';
 import HomeLink from './HomeLink';
-import BodyScrollLock from '../utils/BodyScrollLock';
+import ScrollLock from 'react-scrolllock';
 
 const Wrapper = styled.div`
   @media (min-width: 720px) {
@@ -69,7 +69,7 @@ const Navigation = styled.nav`
 
 const TableOfContents = ({ title, path, onClick, show, tableOfContentsItems: items }) => (
   <Wrapper>
-    <BodyScrollLock on={show} />
+    {show && <ScrollLock />}
     <Navigation show={show} onClick={onClick}>
       <HomeLink title={title} />
       <MostVisibleSectionTracker>

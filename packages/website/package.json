@@ -46,6 +46,6 @@
     "webpack-serve": "^2.0.2"
   },
   "dependencies": {
-    "body-scroll-lock": "^2.5.10"
+    "react-scrolllock": "^3.0.2"
   }
 }
