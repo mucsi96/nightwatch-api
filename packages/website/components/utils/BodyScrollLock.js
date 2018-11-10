@@ -1,11 +1,13 @@
 import { Component } from 'react';
-
-const runningInBrowser = typeof document !== 'undefined';
-const scrollbarWidth = runningInBrowser && window.innerWidth - document.body.clientWidth;
+import { enableBodyScroll, disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 
 export default class BodyScrollLock extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.updateLock();
+  }
+
+  componentWillUnmount() {
+    clearAllBodyScrollLocks();
   }
 
   componentDidUpdate(prevProps) {
@@ -15,16 +17,10 @@ export default class BodyScrollLock extends Component {
   }
 
   updateLock() {
-    if (!runningInBrowser) {
-      return;
-    }
-
     if (this.props.on) {
-      document.body.style.paddingRight = `${scrollbarWidth}px`;
-      document.body.style.overflow = 'hidden';
+      disableBodyScroll();
     } else {
-      document.body.style.paddingRight = 'initial';
-      document.body.style.overflow = 'initial';
+      enableBodyScroll();
     }
   }
 

@@ -76,10 +76,6 @@ const StyledHamburgerButton = styled(FloatingHamburgerButton)`
   box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 20px;
   z-index: 2;
 
-  :hover {
-    opacity: 0.7;
-  }
-
   @media (min-width: 720px) {
     display: none;
   }

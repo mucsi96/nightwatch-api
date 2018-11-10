@@ -44,5 +44,8 @@
     "webpack-dev-server": "^3.1.10",
     "webpack-node-externals": "^1.7.2",
     "webpack-serve": "^2.0.2"
+  },
+  "dependencies": {
+    "body-scroll-lock": "^2.5.10"
   }
 }
