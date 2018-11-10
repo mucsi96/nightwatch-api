@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef, Component } from 'react';
 import styled, { css } from 'styled-components';
 import TableOfContentsNode from './TableOfContentsNode';
 import MostVisibleSectionTracker from '../utils/MostVisibleSectionTracker';
@@ -67,20 +67,27 @@ const Navigation = styled.nav`
   }
 `;
 
-const TableOfContents = ({ title, path, onClick, show, tableOfContentsItems: items }) => (
-  <Wrapper>
-    {show && <ScrollLock />}
-    <Navigation show={show} onClick={onClick}>
-      <HomeLink title={title} />
-      <MostVisibleSectionTracker>
-        {({ mostVisibleSectionId }) => (
-          <TableOfContentsNode level={0} activeUrls={[path, `#${mostVisibleSectionId}`]}>
-            {items}
-          </TableOfContentsNode>
-        )}
-      </MostVisibleSectionTracker>
-    </Navigation>
-  </Wrapper>
-);
+class TableOfContents extends Component {
+  navigationRef = createRef();
+
+  render() {
+    const { title, path, onClick, show, tableOfContentsItems: items } = this.props;
+    return (
+      <Wrapper>
+        {show && <ScrollLock touchScrollTarget={this.navigationRef.current} />}
+        <Navigation show={show} onClick={onClick} ref={this.navigationRef}>
+          <HomeLink title={title} />
+          <MostVisibleSectionTracker>
+            {({ mostVisibleSectionId }) => (
+              <TableOfContentsNode level={0} activeUrls={[path, `#${mostVisibleSectionId}`]}>
+                {items}
+              </TableOfContentsNode>
+            )}
+          </MostVisibleSectionTracker>
+        </Navigation>
+      </Wrapper>
+    );
+  }
+}
 
 export default TableOfContents;
