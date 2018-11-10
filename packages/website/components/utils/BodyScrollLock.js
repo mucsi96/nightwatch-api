@@ -2,9 +2,10 @@ import { Component } from 'react';
 import { enableBodyScroll, disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 
 const runningInBrowser = typeof document !== 'undefined';
-const scrollbarWidth = runningInBrowser && window.innerWidth - document.body.clientWidth;
 
 export default class BodyScrollLock extends Component {
+  originalPadding = (runningInBrowser && parseInt(document.body.paddingRight)) || 0;
+
   componentDidMount() {
     this.updateLock();
   }
@@ -20,12 +21,16 @@ export default class BodyScrollLock extends Component {
   }
 
   updateLock() {
+    if (!runningInBrowser) {
+      return;
+    }
+
     if (this.props.on) {
-      disableBodyScroll();
-      document.body.style.paddingRight = `${scrollbarWidth}px`;
+      disableBodyScroll(document.body);
+      document.body.style.paddingRight = `${window.innerWidth - document.body.clientWidth}px`;
     } else {
-      enableBodyScroll();
-      document.body.style.paddingRight = 'initial';
+      document.body.style.paddingRight = `${this.originalPadding}px`;
+      enableBodyScroll(document.body);
     }
   }
 
