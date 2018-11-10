@@ -1,16 +1,12 @@
 import React from 'react';
 import WidthLimiter from '../utils/WidthLimiter';
 import styled from 'styled-components';
-import { withTableOfContents } from '../toc/TableOfContentsProvider';
+import { withTableOfContents } from '../table-of-contents/TableOfContentsProvider';
 import dehydrate from '../utils/dehydrate';
-import TableOfContents from '../toc/TableOfContents';
-import FloatingHamburgerButton from '../toc/FloatingHamburgerButton';
+import TableOfContents from '../table-of-contents/TableOfContents';
 import { withSiteConfig } from '../utils/SiteConfigProvider';
 
 const DehydratedTableOfContents = dehydrate('table-of-contents')(TableOfContents);
-const DehydratedFloatingHamburgerButton = dehydrate('floating-hamburger-button')(
-  FloatingHamburgerButton
-);
 
 const TableOfContentsContainer = styled(
   withTableOfContents(withSiteConfig(DehydratedTableOfContents))
@@ -40,7 +36,6 @@ const Content = styled.main`
 const Main = ({ children, className }) => (
   <section className={className}>
     <MainWidthLimiter>
-      <DehydratedFloatingHamburgerButton />
       <Content>{children}</Content>
       <TableOfContentsContainer />
     </MainWidthLimiter>

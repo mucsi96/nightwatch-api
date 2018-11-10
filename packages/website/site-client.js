@@ -1,13 +1,11 @@
 import rehydrate from './components/utils/rehydrate';
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import TableOfContents from './components/toc/TableOfContents';
-import FloatingHamburgerButton from './components/toc/FloatingHamburgerButton';
+import TableOfContents from './components/table-of-contents/TableOfContents';
+import FloatingHamburgerButton from './components/table-of-contents/FloatingHamburgerButton';
+import TouchSpy from './components/utils/TouchSpy';
 
 const RehydratedTableOfContents = rehydrate('table-of-contents')(TableOfContents);
-const RehydratedFloatingHamburgerButton = rehydrate('floating-hamburger-button')(
-  FloatingHamburgerButton
-);
 
 class App extends Component {
   state = {
@@ -33,7 +31,8 @@ class App extends Component {
 
     return (
       <>
-        <RehydratedFloatingHamburgerButton
+        <TouchSpy />
+        <FloatingHamburgerButton
           active={showSmallScreenNavigation}
           onClick={this.handleHamburgerButtonClick}
         />

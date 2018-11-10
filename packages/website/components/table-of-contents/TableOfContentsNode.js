@@ -7,13 +7,13 @@ const Link = styled('a')`
   display: block;
   padding: 10px;
   position: relative;
+  transition: filter 0.1s linear;
 
   @media (min-width: 720px) {
     padding: 5px 10px;
   }
 
-  transition: filter 0.1s linear;
-  :hover {
+  .no-touchevents &:hover {
     filter: invert(50%);
   }
 

@@ -4,7 +4,7 @@ import Home from './Home';
 import Api from './Api';
 import { StaticRouter } from 'react-router';
 import { withSiteConfig } from '../components/utils/SiteConfigProvider';
-import TableOfContentsCollector from '../components/toc/TableOfContentsCollector';
+import TableOfContentsCollector from '../components/table-of-contents/TableOfContentsCollector';
 
 const Route = ({ exact, path, component, title }) => (
   <>

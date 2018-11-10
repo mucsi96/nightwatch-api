@@ -9,9 +9,9 @@ const StyledHomeLink = styled.a`
   margin-bottom: 30px;
   display: block;
   color: #282c34;
-
   transition: filter 0.1s linear;
-  :hover {
+
+  .no-touchevents &:hover {
     filter: invert(50%);
   }
 `;

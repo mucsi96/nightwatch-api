@@ -5,7 +5,7 @@ const Link = styled.a`
   text-decoration: none;
 
   :focus,
-  :hover {
+  .no-touchevents &:hover {
     color: #23527c;
     text-decoration: underline;
   }

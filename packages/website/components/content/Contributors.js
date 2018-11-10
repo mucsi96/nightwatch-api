@@ -20,9 +20,9 @@ const ContributorContainer = styled.li`
 const Link = styled('a')`
   color: inherit;
   text-decoration: none;
-
   transition: opacity 0.1s ease;
-  :hover {
+
+  .no-touchevents &:hover {
     opacity: 0.5;
   }
 `;

@@ -4,7 +4,7 @@ import RehydrationInitialState from '../utils/RehydrationInitialState';
 import Footer from '../footer/Footer';
 import Body from './Body';
 import Main from './Main';
-import TableOfContentsProvider from '../toc/TableOfContentsProvider';
+import TableOfContentsProvider from '../table-of-contents/TableOfContentsProvider';
 import Head from './Head';
 import SiteContent from '../../pages';
 

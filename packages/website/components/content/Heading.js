@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import slugify from '@sindresorhus/slugify';
-import TableOfContentsCollector from '../toc/TableOfContentsCollector';
+import TableOfContentsCollector from '../table-of-contents/TableOfContentsCollector';
 
 const StyledHeading1 = styled.h1`
   font-size: 40px;

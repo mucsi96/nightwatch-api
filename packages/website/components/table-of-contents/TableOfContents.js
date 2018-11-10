@@ -14,16 +14,15 @@ const Wrapper = styled.div`
 
 const Navigation = styled.nav`
   box-sizing: border-box;
-  margin-right: -999px;
-  padding: 10px 999px 10px 20px;
+  padding: 10px 20px;
   background-color: #f7f7f7;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-  height: 100vh;
   position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
   z-index: 1;
   overflow-y: auto;
-  right: 0;
-  left: 20%;
   transition: transform var(--animation-duration) ease;
   transform: translateX(100%);
   line-height: initial;

@@ -1,8 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-const runningInBrowser = typeof document !== 'undefined';
-const scrollbarWidth = runningInBrowser && window.innerWidth - document.body.clientWidth;
+const scrollbarWidth = window.innerWidth - document.body.clientWidth;
 
 const HamburgerInner = styled.div`
   top: 19px;
@@ -75,6 +74,10 @@ const StyledHamburgerButton = styled(FloatingHamburgerButton)`
   border-radius: 50%;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 20px;
   z-index: 2;
+
+  .no-touchevents &:hover {
+    opacity: 0.7;
+  }
 
   @media (min-width: 720px) {
     display: none;
