@@ -15,7 +15,7 @@ export default class BodyScrollLock extends Component {
   }
 
   updateLock() {
-    if (!scrollbarWidth) {
+    if (!runningInBrowser) {
       return;
     }
 
