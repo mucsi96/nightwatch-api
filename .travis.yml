@@ -38,3 +38,12 @@ branches:
     - master
 notifications:
   email: false
+deploy:
+  provider: script
+  script:
+    - cd packages/website
+    - npm i
+    - npm run deploy -- --auth $NETLIFY_ACCESS_TOKEN
+  skip_cleanup: true
+  on:
+    branch: master
