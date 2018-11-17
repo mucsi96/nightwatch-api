@@ -1,6 +1,6 @@
 import React from 'react';
 import Code from '../content/Code';
-import Heading from '../content/Heading';
+import ApiSubSection from './ApiSubSection';
 
 const hasExampes = tags => {
   return tags.filter(({ tag }) => tag === 'example').length > 0;
@@ -21,7 +21,7 @@ const ApiExamples = ({ tags, headingLevel }) => {
 
   return (
     <>
-      <Heading level={headingLevel}>Examples</Heading>
+      <ApiSubSection>Examples</ApiSubSection>
       {getExamples(tags)}
     </>
   );

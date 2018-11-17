@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import Heart from 'twemoji/2/svg/2764.svg';
 import CH from 'twemoji/2/svg/1f1e8-1f1ed.svg';
-import WidthLimiter from '../utils/WidthLimiter';
 
 const StyledHeart = styled(Heart)`
   width: 21px;
@@ -16,7 +15,8 @@ const StyledCH = styled(CH)`
   margin: 7px;
 `;
 
-const FooterWidthLimiter = styled(WidthLimiter)`
+const StyledFooter = styled.footer`
+  grid-area: footer;
   padding-top: 50px;
   padding-bottom: 50px;
 
@@ -33,14 +33,12 @@ const FooterWidthLimiter = styled(WidthLimiter)`
 `;
 
 const Footer = () => (
-  <footer>
-    <FooterWidthLimiter>
-      <div>
-        Created with <StyledHeart /> in <StyledCH />
-      </div>
-      <div>{new Date().getFullYear()}</div>
-    </FooterWidthLimiter>
-  </footer>
+  <StyledFooter>
+    <div>
+      Created with <StyledHeart /> in <StyledCH />
+    </div>
+    <div>{new Date().getFullYear()}</div>
+  </StyledFooter>
 );
 
 export default Footer;

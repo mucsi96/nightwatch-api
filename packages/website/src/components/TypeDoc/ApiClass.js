@@ -4,6 +4,7 @@ import ApiFunction from './ApiFunction';
 import ApiVariable from './ApiVariable';
 import ApiDescription from './ApiDescription';
 import ApiExamples from './ApiExamples';
+import ApiSubSection from './ApiSubSection';
 
 const hasConstructors = children => {
   return (
@@ -60,19 +61,19 @@ const ApiClass = ({ name, comment, children }) => {
       <ApiDescription {...comment} />
       {hasConstructors(children) && (
         <>
-          <Heading level={3}>Constructors</Heading>
+          <ApiSubSection>Constructors</ApiSubSection>
           {getConstructors(children)}
         </>
       )}
       {hasProperties(children) && (
         <>
-          <Heading level={3}>Properties</Heading>
+          <ApiSubSection>Properties</ApiSubSection>
           {getProperties(children)}
         </>
       )}
       {hasMethods(children) && (
         <>
-          <Heading level={3}>Methods</Heading>
+          <ApiSubSection>Methods</ApiSubSection>
           {getMethods(children)}
         </>
       )}

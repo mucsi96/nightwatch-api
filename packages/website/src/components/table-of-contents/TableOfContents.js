@@ -5,44 +5,31 @@ import MostVisibleSectionTracker from '../utils/MostVisibleSectionTracker';
 import HomeLink from './HomeLink';
 import ScrollLock from 'react-scrolllock';
 import theme from '../../theme';
+import SearchField from './SearchField';
 
 const Wrapper = styled.div`
-  @media (min-width: 720px) {
-    margin-left: var(--sidebar-gutter);
-    width: var(--sidebar-width);
-  }
-`;
-
-const Navigation = styled.nav`
-  box-sizing: border-box;
-  margin-right: -999px;
-  padding: 10px 999px 10px 20px;
-  background-color: ${theme.secondaryColor};
   position: fixed;
   top: 0;
-  bottom: 0;
-  right: 0;
   left: 0;
-  z-index: 1;
-  overflow-y: auto;
+  right: 0;
+  display: grid;
+  gap: 15px;
+  grid-template-rows: auto auto 1fr;
+  padding: 60px 20px 10px;
   transition: transform ${theme.animation};
   transform: translateX(100%);
-  line-height: initial;
+  background-color: ${theme.secondaryColor};
+  box-sizing: border-box;
+  height: 100vh;
 
-  @media (min-width: 720px) {
+  @media (min-width: 600px) {
+    position: sticky;
     box-shadow: none;
-    right: initial;
-    left: initial;
     transform: none;
     font-size: 13px;
   }
 
-  @media (min-width: 1100px) {
-    padding-left: 40px;
-  }
-
   @media (min-width: 2000px) {
-    position: static;
   }
 
   ${({ show }) =>
@@ -50,6 +37,12 @@ const Navigation = styled.nav`
     css`
       transform: none;
     `};
+`;
+
+const Navigation = styled.nav`
+  flex: 1;
+  overflow-y: auto;
+  line-height: initial;
 
   ol,
   ul {
@@ -74,10 +67,11 @@ class TableOfContents extends Component {
   render() {
     const { title, path, onClick, show, tableOfContentsItems: items } = this.props;
     return (
-      <Wrapper>
+      <Wrapper show={show}>
         {show && <ScrollLock touchScrollTarget={this.navigationRef.current} />}
-        <Navigation show={show} onClick={onClick} ref={this.navigationRef}>
-          <HomeLink title={title} />
+        <HomeLink title={title} />
+        <SearchField />
+        <Navigation onClick={onClick} ref={this.navigationRef}>
           <MostVisibleSectionTracker>
             {({ mostVisibleSectionId }) => (
               <TableOfContentsNode level={0} activeUrls={[path, `#${mostVisibleSectionId}`]}>

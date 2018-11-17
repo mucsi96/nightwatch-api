@@ -27,6 +27,10 @@ const commonConfig = {
         }
       },
       {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      },
+      {
         test: /\.md$/,
         use: {
           loader: path.resolve(__dirname, 'src/loaders/markdown-loader.js')

@@ -6,7 +6,6 @@ import theme from '../../theme';
 const StyledHomeLink = styled.a`
   font-size: 1.3em;
   text-decoration: none;
-  margin-bottom: 30px;
   display: block;
   transition: filter ${theme.shortAnimation};
   color: ${theme.primaryColor};

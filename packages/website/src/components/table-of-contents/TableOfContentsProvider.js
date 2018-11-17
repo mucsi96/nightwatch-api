@@ -14,9 +14,7 @@ class TableOfContentsProvider extends Component {
     const { children } = this.props;
 
     return (
-      <div>
-        <Provider value={{ addItem: this.addItem, getItems: this.getItems }}>{children}</Provider>
-      </div>
+      <Provider value={{ addItem: this.addItem, getItems: this.getItems }}>{children}</Provider>
     );
   }
 }

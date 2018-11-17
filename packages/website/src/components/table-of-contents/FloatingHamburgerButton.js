@@ -79,7 +79,7 @@ const StyledHamburgerButton = styled(FloatingHamburgerButton)`
     opacity: 0.7;
   }
 
-  @media (min-width: 720px) {
+  @media (min-width: 600px) {
     display: none;
   }
 

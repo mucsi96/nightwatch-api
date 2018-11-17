@@ -5,13 +5,14 @@ import ApiFunctionParameter from './ApiFunctionParameter';
 import ApiType from './ApiType';
 import ApiExamples from './ApiExamples';
 import ApiDescription from './ApiDescription';
+import ApiSubSection from './ApiSubSection';
 
 const ApiFunctionDetails = styled.div`
   display: flex;
   flex-wrap: wrap;
 
   div:first-child {
-    margin-right: var(--sidebar-gutter);
+    margin-right: 40px;
   }
 `;
 
@@ -26,7 +27,7 @@ const ApiFunction = ({ signatures, minLevel }) => {
         <ApiFunctionDetails>
           {!!parameters.length && (
             <div>
-              <Heading level={minLevel + 1}>Parameters</Heading>
+              <ApiSubSection>Parameters</ApiSubSection>
               <ul>
                 {parameters.map(parameter => (
                   <ApiFunctionParameter key={parameter.id} {...parameter} />
@@ -35,7 +36,7 @@ const ApiFunction = ({ signatures, minLevel }) => {
             </div>
           )}
           <div>
-            <Heading level={minLevel + 1}>Returns</Heading> <ApiType {...type} />
+            <ApiSubSection>Returns</ApiSubSection> <ApiType {...type} />
           </div>
         </ApiFunctionDetails>
         <ApiExamples {...comment} headingLevel={minLevel + 1} />

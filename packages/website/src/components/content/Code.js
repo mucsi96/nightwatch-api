@@ -10,7 +10,7 @@ const CodeWrapper = styled.div`
 
   ${theme.code}
 
-  @media (min-width: 720px) {
+  @media (min-width: 600px) {
     border-radius: 10px;
   }
 `;

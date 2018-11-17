@@ -3,6 +3,7 @@ import Heading from '../content/Heading';
 import ApiType from './ApiType';
 import ApiDescription from './ApiDescription';
 import ApiExamples from './ApiExamples';
+import ApiSubSection from './ApiSubSection';
 
 const ApiVariable = ({ name, type, comment, minLevel }) => {
   const title = name;
@@ -11,7 +12,7 @@ const ApiVariable = ({ name, type, comment, minLevel }) => {
     <>
       <Heading level={minLevel}>{title}</Heading>
       <ApiDescription {...comment} />
-      <Heading level={minLevel + 1}>Type</Heading>
+      <ApiSubSection>Type</ApiSubSection>
       <ApiType {...type} />
       <ApiExamples {...comment} headingLevel={minLevel + 1} />
     </>
