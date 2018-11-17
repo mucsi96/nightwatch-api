@@ -18,7 +18,9 @@ before_script:
   - java -version
   - google-chrome --product-version
 after_success:
-  - cd packages/nightwatch-api && npm run test:coveralls
+  - cd packages/nightwatch-api
+  - npm run test:coveralls
+  - cd ../..
 script:
   - npm run lint
   - npm run type-check
