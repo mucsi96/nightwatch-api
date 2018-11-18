@@ -1,26 +1,44 @@
 sudo: required
+
 dist: trusty
+
 addons:
   chrome: stable
+
 language: node_js
+
 node_js:
   - '8'
   - '10'
+
 env:
   global:
     - DEBUG=nightwatch-api
+
+cache:
+  directories:
+    - packages/nightwatch-api/node_modules
+    - packages/node-example/node_modules
+    - packages/jest-example/node_modules
+    - packages/cucumber-example/node_modules
+
+branches:
+  only:
+    - master
+
+notifications:
+  email: false
+
 install:
   - cd packages/nightwatch-api
   - npm i
   - npm run pack-into-examples
+
 before_script:
   - jdk_switcher use oraclejdk8
   - java -version
   - google-chrome --product-version
-after_success:
-  - cd packages/nightwatch-api
-  - npm run test:coveralls
-  - cd ../..
+
 script:
   - npm run lint
   - npm run type-check
@@ -29,17 +47,11 @@ script:
   - cd packages/node-example && npm test && npx wait-on -r tcp:4444 && cd ../..
   - cd packages/jest-example && npm test && npx wait-on -r tcp:4444 && cd ../..
   - cd packages/cucumber-example && npm test && npx wait-on -r tcp:4444 && cd ../..
-cache:
-  directories:
-    - packages/nightwatch-api/node_modules
-    - packages/node-example/node_modules
-    - packages/jest-example/node_modules
-    - packages/cucumber-example/node_modules
-branches:
-  only:
-    - master
-notifications:
-  email: false
+
+after_success:
+  - cd packages/nightwatch-api
+  - npm run test:coveralls
+  - cd ../..
 
 before_deploy:
   - cd packages/website
