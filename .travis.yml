@@ -59,9 +59,7 @@ before_deploy:
 
 deploy:
   provider: script
-  script:
-    - npm run deploy -- --auth $NETLIFY_ACCESS_TOKEN
-    - npm run audit:ci
+  script: npm run deploy -- --auth $NETLIFY_ACCESS_TOKEN
   skip_cleanup: true
   on:
     branch: master
