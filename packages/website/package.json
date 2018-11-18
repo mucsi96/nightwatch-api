@@ -12,7 +12,7 @@
     "start": "webpack-serve --config ./webpack.config.js",
     "deploy": "npm run build && netlify deploy --site cd855c1d-8162-4429-8fa6-69d3f76bcfaf --dir ./dist --prod",
     "audit": "lighthouse https://nightwatch-api.netlify.com --view",
-    "audit:ci": "lighthouse-ci https://nightwatch-api.netlify.com --performance=98 --pwa=54 --accessibility=100 --best-practices=100 --seo=100"
+    "audit:ci": "lighthouse-ci https://nightwatch-api.netlify.com --performance=98 --pwa=54 --accessibility=100 --best-practices=100 --seo=100 --cilent"
   },
   "dependencies": {
     "typedoc": "^0.13.0",
