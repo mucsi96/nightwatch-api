@@ -1,6 +1,6 @@
 import { startWebDriver, stopWebDriver } from 'nightwatch-api';
 
-startWebDriver('default').catch(err => console.log(err));
+startWebDriver({env: 'default'}).catch(err => console.log(err));
 
 process.once('SIGTERM', async () => {
   try {
