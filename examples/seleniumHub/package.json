@@ -1,0 +1,26 @@
+{
+  "name": "nightwatch-api-cucumber",
+  "version": "1.0.0",
+  "description": "Demonstration for using Nightwatch API from CucumberJS test runner",
+  "main": "index.js",
+  "scripts": {
+    "test:setup": "babel-node test/server.js",
+    "test:run": "cucumber-js --require-module babel-core/register --require test/support --require step-definitions --format node_modules/cucumber-pretty",
+    "test": "docker-compose up --abort-on-container-exit"
+  },
+  "repository": "git@github.com:mucsi96/nightwatch-api.git",
+  "author": "Igor Mucsicska <mucsi_96@yahoo.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "chromedriver": "^2.40.0",
+    "cucumber": "^4.2.1",
+    "cucumber-pretty": "^1.4.4",
+    "geckodriver": "^1.11.0",
+    "nightwatch": "1.0.6",
+    "nightwatch-api": "latest",
+    "start-server-and-test": "^1.5.0"
+  }
+}
