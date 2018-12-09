@@ -3,7 +3,7 @@ services:
   selenium-hub:
     image: selenium/hub
     logging:
-      driver: 'none'    
+      driver: 'none'
     ports:
       - 4444:4444
 
