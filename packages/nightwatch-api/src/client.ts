@@ -124,7 +124,10 @@ export async function runQueue() {
 
   try {
     await new Promise((resolve, reject) => {
-      client.queue.run((err: NightwatchError) => handleQueueResult(err, resolve, reject));
+      client.queue.once('queue:finished', (err: NightwatchError) =>
+        handleQueueResult(err, resolve, reject)
+      );
+      client.queue.run();
     });
   } catch (err) {
     throw err;

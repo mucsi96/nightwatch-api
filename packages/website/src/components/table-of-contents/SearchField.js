@@ -47,7 +47,7 @@ const Wrapper = styled.div`
 
 const SearchField = () => (
   <Wrapper>
-    <label for="search-field" class="label">
+    <label htmlFor="search-field" className="label">
       Search docs
     </label>
     <Icon className="icon" />

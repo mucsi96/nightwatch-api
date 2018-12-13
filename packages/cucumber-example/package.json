@@ -15,11 +15,11 @@
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
-    "chromedriver": "^2.44.0",
-    "cucumber": "^5.0.2",
+    "chromedriver": "^2.44.1",
+    "cucumber": "^5.0.3",
     "cucumber-pretty": "^1.5.0",
     "geckodriver": "^1.14.1",
-    "nightwatch": "1.0.11",
+    "nightwatch": "1.0.14",
     "nightwatch-api": "latest",
     "start-server-and-test": "^1.7.11"
   }
