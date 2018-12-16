@@ -29,7 +29,7 @@ describe('screenshots', () => {
     setupMocks();
     await createFailureScreenshot({ api: { screenshotsPath: 'testScreenshotsPath' } });
     expect(screenshots.writeScreenshotToFile).toBeCalledWith(
-      'testScreenshotsPath\\20181216-135042-047.png',
+      expect.stringMatching(/testScreenshotsPath[\/\\]20181216-135042-047.png/),
       'testImageData',
       expect.any(Function)
     );
