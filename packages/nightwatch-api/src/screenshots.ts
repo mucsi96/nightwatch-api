@@ -1,7 +1,7 @@
 import util from 'util';
 import path from 'path';
-import protocol from 'nightwatch/lib/api/protocol';
-import Screenshots from 'nightwatch/lib/testsuite/screenshots';
+import protocol, { ScreenshotResult } from 'nightwatch/lib/api/protocol';
+import screenshots from 'nightwatch/lib/testsuite/screenshots';
 import { Client } from 'nightwatch';
 
 function getFileName() {
@@ -14,9 +14,9 @@ function getFileName() {
   return `${datestamp}.png`;
 }
 
-function saveFailureScreenshot(fileName: string, screenshotData) {
+function saveFailureScreenshot(fileName: string, screenshotData: string) {
   return new Promise((resolve, reject) => {
-    Screenshots.writeScreenshotToFile(fileName, screenshotData, err => {
+    screenshots.writeScreenshotToFile(fileName, screenshotData, err => {
       if (err) {
         return reject(err);
       }
@@ -28,18 +28,24 @@ function saveFailureScreenshot(fileName: string, screenshotData) {
 
 export async function createFailureScreenshot(client: Client) {
   const protocolInstance = new protocol(client);
-  const screenshotData = await new Promise((resove, reject) => {
-    protocolInstance.Actions.screenshot.call(protocolInstance, false, response => {
-      if ((response.state && response.state !== 'success') || response.status) {
-        return reject(
-          new Error(
-            `Creating screenshot was not successful. Response was:\n${util.inspect(response)}`
-          )
-        );
-      }
+  const screenshotData = await new Promise<string>((resove, reject) => {
+    protocolInstance.Actions.screenshot.call(
+      protocolInstance,
+      false,
+      (response: ScreenshotResult) => {
+        if ((response.state && response.state !== 'success') || response.status) {
+          return reject(
+            new Error(
+              `Creating screenshot was not successful. Response was:\n${util.inspect(response)}`
+            )
+          );
 
-      return resove(response.value);
-    });
+          return null;
+        }
+
+        return resove(response.value);
+      }
+    );
   });
   await saveFailureScreenshot(path.join(client.api.screenshotsPath, getFileName()), screenshotData);
 }
