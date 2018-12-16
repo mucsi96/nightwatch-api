@@ -17,13 +17,13 @@
     "clean": "del-cli lib",
     "build": "tsc --emitDeclarationOnly && babel src --out-dir lib --extensions \".ts\"",
     "type-check": "tsc --noEmit",
-    "start": "ts-node test/server.ts",
+    "start": "cross-env DEBUG=nightwatch-api ts-node e2e-test/server.ts",
     "test": "cross-env DEBUG=nightwatch-api jest --no-cache",
     "test:coverage": "npm test -- --coverage",
     "test:coveralls": "cat ./coverage/lcov.info | coveralls",
     "test:ci": "start-server-and-test start http://localhost:3000 test:coverage",
     "prepack": "npm run clean && npm run build",
-    "pack-into-examples": "node test/pack-into-examples.js",
+    "pack-into-examples": "node e2e-test/pack-into-examples.js",
     "debug": "cross-env DEBUG=nightwatch-api NIGHTWATCH_VERBOSE=true babel-node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
     "lint": "tslint 'src/**/*.{ts,tsx}'"
   },
@@ -48,7 +48,7 @@
     "testMatch": [
       "**/?(*.)+(spec|test).(js|ts)"
     ],
-    "setupTestFrameworkScriptFile": "./test/setup",
+    "setupTestFrameworkScriptFile": "./e2e-test/setup",
     "testPathIgnorePatterns": [
       "/node_modules/"
     ],
