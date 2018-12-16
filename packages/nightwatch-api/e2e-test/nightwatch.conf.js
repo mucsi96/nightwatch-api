@@ -26,7 +26,7 @@ module.exports = {
       },
       screenshots: {
         enabled: true,
-        path: 'screenshots'
+        path: path.resolve(__dirname, 'e2e-test-screenshots')
       }
     },
     chrome: {
