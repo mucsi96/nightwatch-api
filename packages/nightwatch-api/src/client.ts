@@ -11,7 +11,6 @@ import reporter from 'nightwatch/lib/testsuite/reporter';
 import fs from 'fs';
 import path from 'path';
 import { log } from './logger';
-import './screenshots';
 import { createFailureScreenshot } from './screenshots';
 
 let runner: CliRunnerInstance;

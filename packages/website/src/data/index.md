@@ -122,7 +122,7 @@ module.exports = {
 ### Screenshots on failure
 
 You can enable screenshot generation on failure using following Nightwatch configuration.
-Screenshots will be named using teplate `[date]-[time]-[ms].png`.
+Screenshots will be named using template `[date]-[time]-[ms].png`.
 
 ```javascript
 // nightwatch.conf.js
