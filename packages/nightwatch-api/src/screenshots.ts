@@ -39,8 +39,6 @@ export async function createFailureScreenshot(client: Client) {
               `Creating screenshot was not successful. Response was:\n${util.inspect(response)}`
             )
           );
-
-          return null;
         }
 
         return resove(response.value);

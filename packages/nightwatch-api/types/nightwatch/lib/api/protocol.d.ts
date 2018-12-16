@@ -1,15 +1,15 @@
 import { Client } from '../..';
 
 export interface ScreenshotResult {
-  state: string;
+  state?: string;
   status: number;
   value: string;
 }
 
-type screenshotCallback = (result: ScreenshotResult) => void;
+export type ScreenshotCallback = (result: ScreenshotResult) => void;
 
 interface ProtocolActions {
-  screenshot: (log: boolean, callback: screenshotCallback) => void;
+  screenshot: (log: boolean, callback: ScreenshotCallback) => void;
 }
 
 export default class Protocol {

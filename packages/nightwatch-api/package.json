@@ -45,6 +45,9 @@
     ]
   },
   "jest": {
+    "testMatch": [
+      "**/?(*.)+(spec|test).(js|ts)"
+    ],
     "setupTestFrameworkScriptFile": "./test/setup",
     "testPathIgnorePatterns": [
       "/node_modules/"
