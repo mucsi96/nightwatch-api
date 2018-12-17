@@ -1,5 +1,6 @@
 node_modules
 *.log
-lib
+/lib
 *.tgz
 coverage
+e2e-test-screenshots

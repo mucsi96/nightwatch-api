@@ -56,7 +56,8 @@ export interface Api {
   expect: Expect;
   section: Sections;
   page: Pages;
-  [key: string]: Promise<Api> | Function | Expect | Sections | Pages;
+  screenshotsPath: string;
+  [key: string]: Promise<Api> | Function | Expect | Sections | Pages | string;
 }
 
 export interface Client {

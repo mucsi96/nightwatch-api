@@ -11,6 +11,7 @@ import reporter from 'nightwatch/lib/testsuite/reporter';
 import fs from 'fs';
 import path from 'path';
 import { log } from './logger';
+import { createFailureScreenshot } from './screenshots';
 
 let runner: CliRunnerInstance;
 let client: Client;
@@ -100,10 +101,19 @@ export async function closeSession() {
   log('Session closed');
 }
 
-function handleQueueResult(err: NightwatchError, resolve: Function, reject: Function) {
+async function handleQueueResult(err: NightwatchError, resolve: Function, reject: Function) {
   if (!err) {
     resolve();
     return;
+  }
+
+  if (client && client.api.screenshotsPath) {
+    log('Creating screenshot because of failure');
+    try {
+      await createFailureScreenshot(client);
+    } catch (e) {
+      throw e;
+    }
   }
 
   if (!(err instanceof assertionError) || err.abortOnFailure) {
@@ -124,8 +134,9 @@ export async function runQueue() {
 
   try {
     await new Promise((resolve, reject) => {
-      client.queue.once('queue:finished', (err: NightwatchError) =>
-        handleQueueResult(err, resolve, reject)
+      client.queue.once(
+        'queue:finished',
+        async (err: NightwatchError) => await handleQueueResult(err, resolve, reject)
       );
       client.queue.run();
     });

@@ -23,6 +23,10 @@ module.exports = {
         chromeOptions: {
           args: ['headless', 'disable-gpu']
         }
+      },
+      screenshots: {
+        enabled: true,
+        path: path.resolve(__dirname, 'e2e-test-screenshots')
       }
     },
     chrome: {
