@@ -15,12 +15,12 @@
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
-    "chromedriver": "^2.40.0",
-    "cucumber": "^4.2.1",
-    "cucumber-pretty": "^1.4.4",
-    "geckodriver": "^1.11.0",
-    "nightwatch": "1.0.6",
+    "chromedriver": "^2.45.0",
+    "cucumber": "^5.0.3",
+    "cucumber-pretty": "^1.5.0",
+    "geckodriver": "^1.14.1",
+    "nightwatch": "^1.0.16",
     "nightwatch-api": "latest",
-    "start-server-and-test": "^1.5.0"
+    "start-server-and-test": "^1.7.11"
   }
 }
