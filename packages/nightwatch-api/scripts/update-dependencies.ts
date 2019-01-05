@@ -6,7 +6,7 @@ const packages = fs.readdirSync(path.resolve(__dirname, '../..'));
 
 packages.forEach(packageName => {
   const cwd = path.resolve(__dirname, '../..', packageName);
-  // runCommand('npx npm-check-updates --upgradeAll', cwd);
+  runCommand('npx npm-check-updates --upgradeAll', cwd);
   runCommand('npm i', cwd);
 });
 
