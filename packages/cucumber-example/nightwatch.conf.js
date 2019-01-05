@@ -7,6 +7,7 @@ module.exports = {
       webdriver: {
         start_process: true,
         server_path: chromedriver.path,
+        port: 4444,
         cli_args: ['--port=4444']
       },
       desiredCapabilities: {
