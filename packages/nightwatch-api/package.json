@@ -100,7 +100,7 @@
     "lodash.omit": "^4.5.0",
     "nightwatch": "^1.0.18",
     "prettier": "^1.15.3",
-    "pretty-quick": "^1.8.0",
+    "pretty-quick": "^1.8.1",
     "selenium-server": "^3.141.59",
     "start-server-and-test": "^1.7.11",
     "ts-node": "^7.0.1",
