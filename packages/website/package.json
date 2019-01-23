@@ -24,7 +24,7 @@
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "docsearch.js": "^2.6.2",
-    "react-scrolllock": "^3.0.2"
+    "react-scrolllock": "^4.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
