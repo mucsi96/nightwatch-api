@@ -10,7 +10,7 @@ Given(/^I open DuckDuckGo search page$/, async () => {
 });
 
 Then(/^the title is "(.*?)"$/, async text => {
-  await client.assert.title(text);
+  await client.assert.CheckTitle(text);
 });
 
 Then(/^the Google search form exists$/, async () => {
