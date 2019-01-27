@@ -8,6 +8,7 @@ module.exports = {
   src_folders: [],
   output_folder: '',
   custom_commands_path: '',
+  custom_assertions_path: 'custom-assertions',
   page_objects_path: '',
   selenium: {
     start_process: true,
@@ -15,10 +16,10 @@ module.exports = {
     host: '127.0.0.1',
     port: 4444,
     cli_args: {
-      "webdriver.chrome.driver" : chromeDriver.path,
-      "webdriver.gecko.driver" : geckoDriver.path,
-      "webdriver.ie.driver" : ieDriver.path,
-      "webdriver.edge.driver" : edgeDriver.path
+      'webdriver.chrome.driver': chromeDriver.path,
+      'webdriver.gecko.driver': geckoDriver.path,
+      'webdriver.ie.driver': ieDriver.path,
+      'webdriver.edge.driver': edgeDriver.path
     }
   },
   test_settings: {
@@ -53,13 +54,13 @@ module.exports = {
     edge: {
       desiredCapabilities: {
         browserName: 'MicrosoftEdge',
-        javascriptEnabled: true,
+        javascriptEnabled: true
       }
     },
     ie: {
       desiredCapabilities: {
         browserName: 'internet explorer',
-        javascriptEnabled: true,
+        javascriptEnabled: true
       }
     }
   }
