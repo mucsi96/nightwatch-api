@@ -26,7 +26,7 @@ const Article = ({ markdown }) => {
               return <Contributors />;
             }
             if (href === '#emoji') {
-              return <Emoji svg={emojiMap[children]} />;
+              return <Emoji svg={emojiMap[children[0].props.value]} />;
             }
             return <Link href={href}>{children}</Link>;
           },
