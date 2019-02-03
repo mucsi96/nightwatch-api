@@ -97,7 +97,7 @@ function resetQueue() {
 export async function closeSession() {
   const protocolInstance = new protocol(client);
   if (protocolInstance.Actions.session) {
-    await new Promise<string>(resolve =>
+    await new Promise(resolve =>
       protocolInstance.Actions.session.call(
         protocolInstance,
         protocol.SessionActions.DELETE,
