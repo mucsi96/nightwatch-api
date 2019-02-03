@@ -9,6 +9,6 @@ const StyledImage = styled.img`
   margin-right: auto;
 `;
 
-const Image = ({ children }) => <StyledImage>{children}</StyledImage>;
+const Image = ({ src }) => <StyledImage src={src} />;
 
 export default Image;

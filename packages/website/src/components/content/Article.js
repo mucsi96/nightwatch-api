@@ -8,8 +8,9 @@ import InlineCode from './InlineCode';
 import Emoji from './Emoji';
 import Paragraph from './Paragraph';
 import Contributors from './Contributors';
+import Debug from '../utils/Debug';
 
-const EMOJI_MAP_REGEX = /<--EMOJI-MAP--(.*)--EMOJI-MAP-->/;
+const EMOJI_MAP_REGEX = /<--EMOJI-MAP--(.*?)--EMOJI-MAP-->/;
 
 const Article = ({ markdown }) => {
   const emojiMap = JSON.parse(EMOJI_MAP_REGEX.exec(markdown)[1]);
