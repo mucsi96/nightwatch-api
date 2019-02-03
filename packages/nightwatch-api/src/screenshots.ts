@@ -28,7 +28,7 @@ function saveFailureScreenshot(fileName: string, screenshotData: string) {
 
 export async function createFailureScreenshot(client: Client) {
   const protocolInstance = new protocol(client);
-  const screenshotData = await new Promise<string>((resove, reject) => {
+  const screenshotData = await new Promise<string>((resolve, reject) => {
     protocolInstance.Actions.screenshot.call(
       protocolInstance,
       false,
@@ -41,7 +41,7 @@ export async function createFailureScreenshot(client: Client) {
           );
         }
 
-        return resove(response.value);
+        return resolve(response.value);
       }
     );
   });

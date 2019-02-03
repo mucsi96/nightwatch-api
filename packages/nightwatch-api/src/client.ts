@@ -8,6 +8,7 @@ import {
 } from 'nightwatch';
 import assertionError from 'assertion-error';
 import reporter from 'nightwatch/lib/testsuite/reporter';
+import protocol from 'nightwatch/lib/api/protocol';
 import fs from 'fs';
 import path from 'path';
 import { log } from './logger';
@@ -94,9 +95,15 @@ function resetQueue() {
 }
 
 export async function closeSession() {
-  resetQueue();
-  if (client && client.queue) {
-    await runQueue();
+  const protocolInstance = new protocol(client);
+  if (protocolInstance.Actions.session) {
+    await new Promise<string>(resolve =>
+      protocolInstance.Actions.session.call(
+        protocolInstance,
+        protocol.SessionActions.DELETE,
+        resolve
+      )
+    );
   }
   log('Session closed');
 }
