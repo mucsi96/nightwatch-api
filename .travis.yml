@@ -42,11 +42,10 @@ before_script:
 script:
   - npm run lint
   - npm run type-check
-  - npm run test:ci
-  - cd ../..
-  - cd packages/node-example && npm test && npx wait-on -r tcp:4444 && cd ../..
-  - cd packages/jest-example && npm test && npx wait-on -r tcp:4444 && cd ../..
-  - cd packages/cucumber-example && npm test && npx wait-on -r tcp:4444 && cd ../..
+  - npm run test:ci && npm run check-webdriver-stopped && cd ../..
+  - cd packages/node-example && npm run check-webdriver-stopped && cd ../..
+  - cd packages/jest-example && npm run check-webdriver-stopped && cd ../..
+  - cd packages/cucumber-example && npm run check-webdriver-stopped && cd ../..
 
 after_success:
   - cd packages/nightwatch-api
