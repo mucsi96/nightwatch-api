@@ -44,18 +44,18 @@ script:
   - npm run type-check
   - npm run test:ci
   - npm run check-webdriver-stopped
-  - cd ../..
-  - cd packages/node-example && npm run check-webdriver-stopped && cd ../..
-  - cd packages/jest-example && npm run check-webdriver-stopped && cd ../..
-  - cd packages/cucumber-example && npm run check-webdriver-stopped && cd ../..
+  - cd ..
+  - cd node-example && cd ../nightwatch-api && npm run check-webdriver-stopped && cd ..
+  - cd jest-example && cd ../nightwatch-api && npm run check-webdriver-stopped && cd ..
+  - cd cucumber-example && cd ../nightwatch-api && npm run check-webdriver-stopped && cd ..
 
 after_success:
-  - cd packages/nightwatch-api
+  - cd nightwatch-api
   - npm run test:coveralls
-  - cd ../..
+  - cd ..
 
 before_deploy:
-  - cd packages/website
+  - cd website
   - npm i
 
 deploy:
