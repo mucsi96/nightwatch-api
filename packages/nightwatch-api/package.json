@@ -99,6 +99,7 @@
     "jest": "^24.0.0",
     "lodash.omit": "^4.5.0",
     "nightwatch": "^1.0.18",
+    "node-fetch": "^2.3.0",
     "prettier": "^1.16.3",
     "pretty-quick": "^1.10.0",
     "selenium-server": "^3.141.59",
