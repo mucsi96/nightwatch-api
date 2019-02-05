@@ -91,7 +91,7 @@
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^24.0.0",
     "chai": "^4.2.0",
-    "chromedriver": "2.45.0",
+    "chromedriver": "2.46.0",
     "coveralls": "^3.0.2",
     "cross-env": "^5.2.0",
     "del-cli": "^1.1.0",
