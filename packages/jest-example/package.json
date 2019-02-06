@@ -14,7 +14,7 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
-    "babel-jest": "^24.0.0",
+    "babel-jest": "^24.1.0",
     "babel-preset-env": "^1.7.0",
     "chromedriver": "2.46.0",
     "geckodriver": "^1.14.1",
