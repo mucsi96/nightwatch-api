@@ -18,14 +18,14 @@ With this package the Nightwatch.js runner is disabled in favour of any type of 
 This module is distributed via [npm][npm] which is bundled with [node][node] and
 should be installed as one of your project's `devDependencies`:
 
-```bash
+```terminal
 npm install --save-dev nightwatch-api
 ```
 
 This library has a `peerDependencies` listing for `nightwatch`.
 It should be installed as one of your project's `devDependencies`:
 
-```bash
+```terminal
 npm install --save-dev nightwatch
 ```
 
@@ -189,7 +189,7 @@ async function run() {
 
 You can run the example using
 
-```bash
+```terminal
 node test.js
 ```
 

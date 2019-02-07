@@ -1,11 +1,6 @@
 const fs = require('fs');
 const twemoji = require('twemoji');
-const emojiRegex = [
-  '[\u2049-\u3299]',
-  '\ud83c[\udf00-\udfff]',
-  '\ud83d[\udc00-\ude4f]',
-  '\ud83d[\ude80-\udeff]'
-].join('|');
+const emojiRegex = require('emoji-regex')();
 const mdImport = `@import '[^']+'`;
 const mdImportWithPath = /@import '([^']+)'/;
 const relativeImage = '!\\[alt-tag\\]\\(\\..*?\\)';
