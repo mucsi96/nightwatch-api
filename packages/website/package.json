@@ -43,7 +43,7 @@
     "lighthouse": "^4.1.0",
     "loader-utils": "^1.2.3",
     "netlify-cli": "^2.6.6",
-    "serve": "^10.1.1",
+    "serve": "^10.1.2",
     "simple-icons": "^1.9.19",
     "static-site-generator-webpack-plugin": "^3.4.2",
     "style-loader": "^0.23.1",
