@@ -100,7 +100,7 @@ Then(/^the Google search form exists$/, () => {
 
 ### Step 6 - Creating npm script
 
-For convinience we are creating an npm script in our `package.json` to be able to execute the test with a short command. You can choose any name for it.
+For convenience we are creating an npm script in our `package.json` to be able to execute the test with a short command. You can choose any name for it.
 
 ```json
 // package.json
