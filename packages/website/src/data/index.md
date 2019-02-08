@@ -18,22 +18,22 @@ With this package the Nightwatch.js runner is disabled in favour of any type of 
 This module is distributed via [npm][npm] which is bundled with [node][node] and
 should be installed as one of your project's `devDependencies`:
 
-```bash
+```terminal
 npm install --save-dev nightwatch-api
 ```
 
-This library has a `peerDependencies` listing for `nightwatch` version above `1.0.0`.
+This library has a `peerDependencies` listing for `nightwatch`.
 It should be installed as one of your project's `devDependencies`:
 
-```bash
-npm install --save-dev nightwatch@beta
+```terminal
+npm install --save-dev nightwatch
 ```
 
 You may also be interested in installing [chromedriver](https://www.npmjs.com/package/chromedriver) and [geckodriver][https://www.npmjs.com/package/geckodriver] (for Firefox) or [selenium-server](https://www.npmjs.com/package/selenium-server), so anybody can easily run the library without the need to do any manual installation.
 
 ## Configuration
 
-In project root create a JavaScript configuration file for Nightwatch.js. We suggest to use `nightwatch.conf.js` instead of `nightwatch.json` as it provides much more flexibility and ability to import packages in the configuration. For more details about the content of this file check out the [Nightwatch.js docs](http://nightwatchjs.org/gettingstarted#settings-file). Unfortunately the docs are still for version `0.9.x`. In this example there are 3 nightwatch environments
+In project root create a JavaScript configuration file for Nightwatch.js. We suggest to use `nightwatch.conf.js` instead of `nightwatch.json` as it provides much more flexibility and ability to import packages in the configuration. For more details about the content of this file check out the [Nightwatch.js docs](http://nightwatchjs.org/gettingstarted#settings-file). In this example there are 3 nightwatch environments
 
 - default - runs Chrome headless
 - chrome - runs Chrome with UI
@@ -189,7 +189,7 @@ async function run() {
 
 You can run the example using
 
-```bash
+```terminal
 node test.js
 ```
 
