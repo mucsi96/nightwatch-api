@@ -72,7 +72,7 @@
   },
   "dependencies": {
     "debug": "^4.1.1",
-    "@types/debug": "^0.0.31"
+    "@types/debug": "^4.1.0"
   },
   "peerDependencies": {
     "nightwatch": "^1.0.18"
