@@ -35,7 +35,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    working_dir: /app
     links:
       - selenium-hub
       - node-chrome
@@ -44,14 +43,3 @@ services:
       - selenium-hub
       - node-chrome
       - node-firefox
-    command: >
-      /bin/bash -c "
-        while ! nc -z selenium-hub 4444;
-        do
-          echo waiting selenium-hub;
-          sleep 10;
-        done;
-        echo Connected!;
-        node --version
-        npm run test
-      "
