@@ -21,9 +21,12 @@ env:
 cache:
   directories:
     - packages/nightwatch-api/node_modules
+    - packages/website/node_modules
     - packages/node-example/node_modules
     - packages/jest-example/node_modules
     - packages/cucumber-example/node_modules
+    - packages/cucumber-selenium-example/node_modules
+    - packages/cucumber-selenium-hub-example/node_modules
 
 branches:
   only:
