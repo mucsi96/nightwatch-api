@@ -4,9 +4,7 @@ export default class Reporter {
   logFailedAssertion() {}
 
   registerPassed(message: string) {
-    const symbol = process.platform === 'win32' ? '\u221A' : String.fromCharCode(10004);
-    const ok = `\u{1b}[0;32m${symbol}\u{1b}[0m`;
-    process.stdout.write(`${ok} ${message}\n`);
+    process.stdout.write(`\u{1b}[0;32m√\u{1b}[0m ${message}\n`);
   }
 
   registerFailed() {}
