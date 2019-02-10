@@ -8,7 +8,7 @@
     "test:firefox": "cross-env browser=firefox npm test",
     "test:edge": "cross-env browser=edge npm test",
     "test:ie": "cross-env browser=ie npm test",
-    "test": "cucumber-js --require-module babel-core/register --require test/support --require step-definitions --format node_modules/cucumber-pretty"
+    "test": "cucumber-js --require-module babel-core/register --require cucumber.conf.js --require step-definitions --format node_modules/cucumber-pretty"
   },
   "repository": "git@github.com:mucsi96/nightwatch-api.git",
   "author": "Raju <padmanabharaju.sagi@gmail.com>",

@@ -4,7 +4,7 @@ const { createSession, closeSession, startWebDriver, stopWebDriver } = require('
 setDefaultTimeout(60000);
 
 BeforeAll(async () => {
-  await startWebDriver();
+  await startWebDriver({ env: process.env.browser || 'chromeHeadless' });
   await createSession();
 });
 

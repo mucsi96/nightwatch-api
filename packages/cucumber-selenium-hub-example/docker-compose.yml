@@ -35,8 +35,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      args:
-        NODE_ENV: development
     working_dir: /app
     links:
       - selenium-hub
@@ -46,8 +44,6 @@ services:
       - selenium-hub
       - node-chrome
       - node-firefox
-    environment:
-      - NODE_ENV=development
     command: >
       /bin/bash -c "
         while ! nc -z selenium-hub 4444;
@@ -56,5 +52,6 @@ services:
           sleep 10;
         done;
         echo Connected!;
-        npm run test:run
+        node --version
+        npm run test
       "
