@@ -5,7 +5,7 @@ services:
     logging:
       driver: 'none'
     networks:
-      - hub
+      - grid
     healthcheck:
       test: ['CMD', '/opt/bin/check-grid.sh', '--host', '0.0.0.0', '--port', '4444']
       interval: 15s
@@ -17,7 +17,7 @@ services:
     logging:
       driver: 'none'
     networks:
-      - hub
+      - grid
     depends_on:
       - selenium-hub
     environment:
@@ -29,7 +29,7 @@ services:
     logging:
       driver: 'none'
     networks:
-      - hub
+      - grid
     depends_on:
       - selenium-hub
     environment:
@@ -40,10 +40,10 @@ services:
     build:
       context: .
     networks:
-      - hub
+      - grid
     depends_on:
       selenium-hub:
         condition: service_healthy
 
 networks:
-  hub:
+  grid:
