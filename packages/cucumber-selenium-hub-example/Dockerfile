@@ -4,4 +4,5 @@ WORKDIR "/app"
 ENV containerized true
 COPY package.json package-lock.json "/app/"
 RUN npm install
+RUN npm ls --depth 0
 COPY "." "/app"
