@@ -11,5 +11,8 @@ execSync(`npm i ../nightwatch-api/${tarball} && npm i`, {
   cwd: path.resolve(__dirname, '../../cucumber-example')
 });
 execSync(`npm i ../nightwatch-api/${tarball} && npm i`, {
+  cwd: path.resolve(__dirname, '../../cucumber-selenium-example')
+});
+execSync(`npm i ../nightwatch-api/${tarball} && npm i`, {
   cwd: path.resolve(__dirname, '../../node-example')
 });

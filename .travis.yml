@@ -48,6 +48,7 @@ script:
   - cd node-example && npm test && cd ../nightwatch-api && npm run check-webdriver-stopped && cd ..
   - cd jest-example && npm test && cd ../nightwatch-api && npm run check-webdriver-stopped && cd ..
   - cd cucumber-example && npm test && cd ../nightwatch-api && npm run check-webdriver-stopped && cd ..
+  - cd cucumber-selenium-example && npm test && cd ../nightwatch-api && npm run check-webdriver-stopped && cd ..
 
 after_success:
   - cd nightwatch-api

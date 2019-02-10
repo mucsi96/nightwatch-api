@@ -23,7 +23,7 @@ module.exports = {
     }
   },
   test_settings: {
-    default: {
+    chromeHeadless: {
       desiredCapabilities: {
         browserName: 'chrome',
         javascriptEnabled: true,
