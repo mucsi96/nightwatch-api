@@ -1,8 +1,6 @@
 const chromedriver = require('chromedriver');
 const geckodriver = require('geckodriver');
 
-console.log(geckodriver.path);
-
 module.exports = {
   test_settings: {
     default: {

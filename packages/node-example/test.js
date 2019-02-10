@@ -22,7 +22,6 @@ async function run() {
   let title;
   await client.getTitle(t => (title = t));
   await client.assert.title('DuckDuckGo — Privacy, simplified.');
-  console.log(title);
 }
 
 (async function() {
