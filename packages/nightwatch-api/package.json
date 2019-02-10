@@ -50,7 +50,9 @@
     "testMatch": [
       "**/?(*.)+(spec|test).(js|ts)"
     ],
-    "setupTestFrameworkScriptFile": "./e2e-test/setup",
+    "setupFilesAfterEnv": [
+      "./e2e-test/setup"
+    ],
     "testPathIgnorePatterns": [
       "/node_modules/"
     ],
@@ -58,9 +60,6 @@
       "js",
       "ts"
     ],
-    "transform": {
-      "^.+\\.(js|ts)$": "babel-jest"
-    },
     "collectCoverageFrom": [
       "src/**/*.{js,ts}"
     ]
@@ -89,7 +88,6 @@
     "@types/jest": "^24.0.0",
     "@types/node": "^10.12.23",
     "babel-core": "^7.0.0-bridge.0",
-    "babel-jest": "^24.1.0",
     "chai": "^4.2.0",
     "chromedriver": "2.46.0",
     "coveralls": "^3.0.2",
