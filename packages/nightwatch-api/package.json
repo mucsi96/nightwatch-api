@@ -53,13 +53,6 @@
     "setupFilesAfterEnv": [
       "./e2e-test/setup"
     ],
-    "testPathIgnorePatterns": [
-      "/node_modules/"
-    ],
-    "moduleFileExtensions": [
-      "js",
-      "ts"
-    ],
     "collectCoverageFrom": [
       "src/**/*.{js,ts}"
     ]
