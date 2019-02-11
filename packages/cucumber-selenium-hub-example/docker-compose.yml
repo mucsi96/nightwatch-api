@@ -4,15 +4,11 @@ services:
     image: selenium/hub
     logging:
       driver: 'none'
-    networks:
-      - grid
 
   node-chrome:
     image: selenium/node-chrome
     logging:
       driver: 'none'
-    networks:
-      - grid
     depends_on:
       - selenium-hub
     environment:
@@ -23,8 +19,6 @@ services:
     image: selenium/node-firefox
     logging:
       driver: 'none'
-    networks:
-      - grid
     depends_on:
       - selenium-hub
     environment:
@@ -34,12 +28,7 @@ services:
   test-machine:
     build:
       context: .
-    networks:
-      - grid
     depends_on:
       - selenium-hub
       - node-chrome
       - node-firefox
-
-networks:
-  grid:
