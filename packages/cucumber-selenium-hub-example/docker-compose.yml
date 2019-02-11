@@ -1,4 +1,4 @@
-version: '2.1'
+version: '3'
 services:
   selenium-hub:
     image: selenium/hub
@@ -6,11 +6,6 @@ services:
       driver: 'none'
     networks:
       - grid
-    healthcheck:
-      test: ['CMD', '/opt/bin/check-grid.sh', '--host', '0.0.0.0', '--port', '4444']
-      interval: 15s
-      timeout: 30s
-      retries: 5
 
   node-chrome:
     image: selenium/node-chrome
@@ -42,8 +37,9 @@ services:
     networks:
       - grid
     depends_on:
-      selenium-hub:
-        condition: service_healthy
+      - selenium-hub
+      - node-chrome
+      - node-firefox
 
 networks:
   grid:
