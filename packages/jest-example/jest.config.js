@@ -1,3 +1,5 @@
 module.exports = {
-  setupTestFrameworkScriptFile: './test/setup'
+  globalSetup: './jest-config/webdriver-setup.js',
+  globalTeardown: './jest-config/webdriver-teardown.js',
+  setupFilesAfterEnv: ['./jest-config/setup']
 };

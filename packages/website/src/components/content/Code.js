@@ -86,7 +86,7 @@ const WindowTitle = styled.div`
   padding-top: 15px;
 `;
 
-const titleRegex = /^\/\/ (\S+)/;
+const titleRegex = /^\/\/ (.*?)\r?\n/;
 
 const Code = ({ language, value }) => {
   const titleMatch = value.match(titleRegex);

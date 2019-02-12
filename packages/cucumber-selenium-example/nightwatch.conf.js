@@ -5,25 +5,22 @@ const ieDriver = require('iedriver');
 const edgeDriver = require('edgedriver');
 
 module.exports = {
-  src_folders: [],
-  output_folder: '',
-  custom_commands_path: '',
   custom_assertions_path: 'custom-assertions',
-  page_objects_path: '',
-  selenium: {
-    start_process: true,
-    server_path: seleniumServer.path,
-    host: '127.0.0.1',
-    port: 4444,
-    cli_args: {
-      'webdriver.chrome.driver': chromeDriver.path,
-      'webdriver.gecko.driver': geckoDriver.path,
-      'webdriver.ie.driver': ieDriver.path,
-      'webdriver.edge.driver': edgeDriver.path
-    }
-  },
   test_settings: {
     default: {
+      selenium: {
+        start_process: true,
+        server_path: seleniumServer.path,
+        port: 4444,
+        cli_args: {
+          'webdriver.chrome.driver': chromeDriver.path,
+          'webdriver.gecko.driver': geckoDriver.path,
+          'webdriver.ie.driver': ieDriver.path,
+          'webdriver.edge.driver': edgeDriver.path
+        }
+      }
+    },
+    chromeHeadless: {
       desiredCapabilities: {
         browserName: 'chrome',
         javascriptEnabled: true,

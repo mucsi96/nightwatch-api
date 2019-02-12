@@ -4,9 +4,7 @@
   "description": "Demonstration for using Nightwatch API from Jest test runner",
   "main": "index.js",
   "scripts": {
-    "test:setup": "babel-node test/server.js",
-    "test:run": "jest",
-    "test": "start-server-and-test test:setup http-get://localhost:4444/status test:run"
+    "test": "jest"
   },
   "repository": "git@github.com:mucsi96/nightwatch-api.git",
   "author": "Igor Mucsicska <mucsi_96@yahoo.com>",
@@ -17,11 +15,10 @@
     "babel-jest": "^24.1.0",
     "babel-preset-env": "^1.7.0",
     "chromedriver": "2.46.0",
+    "cross-env": "^5.2.0",
     "geckodriver": "^1.14.1",
     "jest": "^24.1.0",
     "nightwatch": "^1.0.19",
-    "nightwatch-api": "latest",
-    "start-server-and-test": "^1.7.11",
-    "cross-env": "^5.2.0"
+    "nightwatch-api": "latest"
   }
 }

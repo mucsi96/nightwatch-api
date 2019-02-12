@@ -12,7 +12,7 @@ npm install --save-dev nightwatch-api nightwatch cucumber chromedriver cucumber-
 
 ### Step 2- Configuring Nightwatch.js
 
-Now we need to configure Nightwatch.js. Let's create a JavaScript configuration file for Nightwatch.js in the project root folder. We use `nightwatch.conf.js` instead of `nightwatch.json` for flexibility. For more configuration option check out the [Nightwatch docs](http://nightwatchjs.org/guide#settings-file). We don't need to specify `src_folders` as test are running using Cucumber.
+Nightwatch.js requires a configuration to be able to start the correct WebDriver with the needed parameters. Create a JavaScript configuration file in the project root folder. We use `nightwatch.conf.js` instead of `nightwatch.json` for more flexibility. In the configuration file we provide the port we are going to use, set the browser name to "Chrome" and provide path for installed ChromeDriver. We don't need to specify `src_folders` as test are running using Cucumber. Check out [Nightwatch docs](http://nightwatchjs.org/guide#settings-file) where all options are documented. Please note that not all of them are supported here.
 
 ```javascript
 // nightwatch.conf.js
@@ -38,7 +38,7 @@ module.exports = {
 
 ### Step 3 - Configuring Cucumber
 
-Now we need to configure Cucumber. Let's create a JavaScript configuration file called `cucumber-setup.js` in the project root folder. This file is responsible for setting up the default timeout, starting the WebDriver and creating the session.
+Cucumber also needs some configuration. Create a JavaScript configuration file called `cucumber-setup.js` in the project root folder. This file is responsible for setting up the default timeout, starting the WebDriver and creating the session.
 
 ```javascript
 // cucumber-setup.js
@@ -77,7 +77,7 @@ Scenario: Searching Google
 
 ### Step 5 - Writing step definitions
 
-For Cucumber to be able to understand and execute the feature file we need to create matching step definitions for every feature step we use in our feature file. Let's create a step definition file under `step-definitions` folder called `google.js`.
+For Cucumber to be able to understand and execute the feature file we need to create matching step definitions for every feature step we use in our feature file. Create a step definition file under `step-definitions` folder called `google.js`.
 
 ```javascript
 // step_definitions/google.js
@@ -116,11 +116,7 @@ For convenience we are creating an npm script in our `package.json` to be able t
 
 ### Step 7 - Run the tests
 
-Let's run our first test.
-
-```terminal
-npm run e2e-test
-```
+We are ready to run our first test.
 
 ```terminal
 npm run e2e-test
@@ -145,4 +141,4 @@ Feature: Google Search
 ```
 
 For more examples check out the the [cucumber-example](https://github.com/mucsi96/nightwatch-api/tree/master/packages/cucumber-example)
-or [cucumber-selenium-example] projects.(https://github.com/mucsi96/nightwatch-api/tree/master/packages/cucumber-selenium-example)
+or [cucumber-selenium-example](https://github.com/mucsi96/nightwatch-api/tree/master/packages/cucumber-selenium-example) projects.

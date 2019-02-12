@@ -2,6 +2,9 @@ sudo: required
 
 dist: trusty
 
+services:
+  - docker
+
 addons:
   chrome: stable
 
@@ -18,9 +21,12 @@ env:
 cache:
   directories:
     - packages/nightwatch-api/node_modules
+    - packages/website/node_modules
     - packages/node-example/node_modules
     - packages/jest-example/node_modules
     - packages/cucumber-example/node_modules
+    - packages/cucumber-selenium-example/node_modules
+    - packages/cucumber-selenium-hub-example/node_modules
 
 branches:
   only:
@@ -45,9 +51,11 @@ script:
   - npm run test:ci
   - npm run check-webdriver-stopped
   - cd ..
-  - cd node-example && cd ../nightwatch-api && npm run check-webdriver-stopped && cd ..
-  - cd jest-example && cd ../nightwatch-api && npm run check-webdriver-stopped && cd ..
-  - cd cucumber-example && cd ../nightwatch-api && npm run check-webdriver-stopped && cd ..
+  - cd node-example && npm test && cd ../nightwatch-api && npm run check-webdriver-stopped && cd ..
+  - cd jest-example && npm test && cd ../nightwatch-api && npm run check-webdriver-stopped && cd ..
+  - cd cucumber-example && npm test && cd ../nightwatch-api && npm run check-webdriver-stopped && cd ..
+  - cd cucumber-selenium-example && npm test && cd ../nightwatch-api && npm run check-webdriver-stopped && cd ..
+  - cd cucumber-selenium-hub-example && docker-compose up --abort-on-container-exit
 
 after_success:
   - cd nightwatch-api

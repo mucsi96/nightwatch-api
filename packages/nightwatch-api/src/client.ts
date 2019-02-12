@@ -7,12 +7,12 @@ import {
   NightwatchError
 } from 'nightwatch';
 import assertionError from 'assertion-error';
-import reporter from 'nightwatch/lib/testsuite/reporter';
 import protocol from 'nightwatch/lib/api/protocol';
 import fs from 'fs';
 import path from 'path';
 import { log } from './logger';
 import { createFailureScreenshot } from './screenshots';
+import reporter from './reporter';
 
 let runner: CliRunnerInstance;
 let client: Client;
@@ -79,7 +79,7 @@ export async function stopWebDriver() {
 export async function createSession(options: IOptions): Promise<Api> {
   createRunner(options);
   const settings = runner.test_settings;
-  client = createClient(settings, new reporter([], 0, {}, {}));
+  client = createClient(settings, new reporter());
   await client.startSession();
   log('Session created');
   return client.api;

@@ -1,19 +1,28 @@
-const chromedriver = require('chromedriver');
-const geckodriver = require('geckodriver');
+const seleniumServer = require('selenium-server-standalone-jar');
+const chromeDriver = require('chromedriver');
+const geckoDriver = require('geckodriver');
 
 module.exports = {
   test_settings: {
     default: {
-      webdriver: {
-        start_process: true,
-        port: 4444
-      }
+      selenium: process.env.containerized
+        ? {
+            port: 4444,
+            host: 'selenium-hub'
+          }
+        : {
+            port: 4444,
+            start_process: true,
+            server_path: seleniumServer.path,
+            cli_args: {
+              'webdriver.chrome.driver': chromeDriver.path,
+              'webdriver.gecko.driver': geckoDriver.path,
+              'webdriver.ie.driver': ieDriver.path,
+              'webdriver.edge.driver': edgeDriver.path
+            }
+          }
     },
     chromeHeadless: {
-      webdriver: {
-        server_path: chromedriver.path,
-        cli_args: ['--port=4444']
-      },
       desiredCapabilities: {
         browserName: 'chrome',
         javascriptEnabled: true,
@@ -24,10 +33,6 @@ module.exports = {
       }
     },
     chrome: {
-      webdriver: {
-        server_path: chromedriver.path,
-        cli_args: ['--port=4444']
-      },
       desiredCapabilities: {
         browserName: 'chrome',
         javascriptEnabled: true,
@@ -38,10 +43,6 @@ module.exports = {
       }
     },
     firefox: {
-      webdriver: {
-        server_path: geckodriver.path,
-        cli_args: ['--port', '4444']
-      },
       desiredCapabilities: {
         browserName: 'firefox',
         javascriptEnabled: true,
