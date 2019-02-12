@@ -79,7 +79,7 @@
     "@babel/preset-typescript": "^7.1.0",
     "@babel/register": "^7.0.0",
     "@types/jest": "^24.0.0",
-    "@types/node": "^10.12.24",
+    "@types/node": "^11.9.0",
     "babel-core": "^7.0.0-bridge.0",
     "chai": "^4.2.0",
     "chromedriver": "2.46.0",
