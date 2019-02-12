@@ -80,7 +80,7 @@ Scenario: Searching Google
 For Cucumber to be able to understand and execute the feature file we need to create matching step definitions for every feature step we use in our feature file. Create a step definition file under `step-definitions` folder called `google.js`.
 
 ```javascript
-// step_definitions/google.js
+// step-definitions/google.js
 
 const { client } = require('nightwatch-api');
 const { Given, Then, When } = require('cucumber');
