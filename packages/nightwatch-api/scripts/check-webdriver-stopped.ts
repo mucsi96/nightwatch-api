@@ -1,5 +1,4 @@
-import fetch from 'node-fetch';
-import assert from 'assert';
+import nodeFetch from 'node-fetch';
 
 function fail() {
   console.error('WebDriver is still running!');
@@ -8,7 +7,7 @@ function fail() {
 
 (async () => {
   try {
-    await fetch('http://localhost:4444/status');
+    await nodeFetch('http://localhost:4444/status');
     fail();
   } catch (err) {
     if (err.code !== 'ECONNREFUSED') {
