@@ -38,7 +38,7 @@ const Link = styled.a`
         content: '';
         top: 50%;
         transform: translateY(-50%);
-        left: 7px;
+        left: 20px;
         width: var(--active-dot-size);
         height: var(--active-dot-size);
         border-radius: 50%;

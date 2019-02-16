@@ -18,19 +18,16 @@ SyntaxHighlighterCore.registerLanguage('terminal', () => ({
 }));
 
 const CodeWrapper = styled.div`
-  margin: 25px -30px;
-  padding: 0 15px;
+  margin: 25px -18px;
+  padding: 0 18px;
   overflow: auto;
+  border-radius: 10px;
 
   ${theme.code}
-
-  @media (min-width: 600px) {
-    border-radius: 10px;
-  }
 `;
 
 const StyledSyntaxHighlighter = styled(SyntaxHighlighter)`
-  margin: calc(1rem - 0.5em);
+  margin: 0 -0.5em;
   white-space: pre-wrap;
   word-break: break-word;
 
@@ -44,12 +41,9 @@ const StyledSyntaxHighlighter = styled(SyntaxHighlighter)`
 `;
 
 const WindowButton = styled.span`
-  display: inline-block;
   width: 14px;
   height: 14px;
-  margin: 4px;
   border-radius: 50%;
-  outline: 1px solid transparent;
 
   ${({ type }) => {
     const color = {
@@ -66,8 +60,12 @@ const WindowButton = styled.span`
 
 const WindowButtonsWrapper = styled.div`
   position: absolute;
-  top: 15px;
-  left: 11px;
+  top: 0;
+  bottom: 0;
+  display: grid;
+  grid-column-gap: 8px;
+  grid-template-columns: repeat(3, auto);
+  align-items: center;
 `;
 
 const WindowButtons = () => (
@@ -83,7 +81,7 @@ const WindowTitle = styled.div`
   font-weight: bold;
   text-align: center;
   position: relative;
-  padding-top: 15px;
+  margin-top: 10px;
 `;
 
 const titleRegex = /^\/\/ (.*?)\r?\n/;

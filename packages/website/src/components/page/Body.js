@@ -18,13 +18,13 @@ const Body = styled.body`
     20px
     0;
 
-  @media (min-width: 600px) {
+  /* @media (min-width: 600px) {
     grid-template-columns:
       20px
       1fr
       40px
       calc(20px + 200px);
-  }
+  } */
 
   @media (min-width: 780px) {
     grid-template-columns:
