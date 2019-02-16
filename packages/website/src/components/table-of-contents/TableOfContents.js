@@ -15,14 +15,15 @@ const Wrapper = styled.div`
   display: grid;
   gap: 15px;
   grid-template-rows: auto auto 1fr;
-  padding: 60px 20px 10px;
+  padding: 20px;
   transition: transform ${theme.animation};
   transform: translateX(100%);
   background-color: ${theme.secondaryColor};
   box-sizing: border-box;
   height: 100vh;
 
-  @media (min-width: 600px) {
+  @media (min-width: 780px) {
+    padding-top: 60px;
     position: sticky;
     box-shadow: none;
     transform: none;
@@ -57,7 +58,7 @@ const Navigation = styled.nav`
   }
 
   > ol > li > ol > li a {
-    padding-left: 25px;
+    padding-left: 40px;
   }
 `;
 
