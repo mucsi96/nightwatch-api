@@ -81,7 +81,7 @@ const WindowTitle = styled.div`
   font-weight: bold;
   text-align: center;
   position: relative;
-  margin-top: 10px;
+  margin-top: 12px;
 `;
 
 const titleRegex = /^\/\/ (.*?)\r?\n/;
