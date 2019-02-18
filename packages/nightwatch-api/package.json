@@ -76,7 +76,7 @@
     "@babel/plugin-proposal-class-properties": "^7.3.0",
     "@babel/plugin-proposal-object-rest-spread": "^7.3.2",
     "@babel/preset-env": "^7.3.1",
-    "@babel/preset-typescript": "^7.1.0",
+    "@babel/preset-typescript": "^7.3.3",
     "@babel/register": "^7.0.0",
     "@types/jest": "^24.0.5",
     "@types/node": "^11.9.4",
