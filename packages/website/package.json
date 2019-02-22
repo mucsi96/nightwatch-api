@@ -22,7 +22,7 @@
     "@sindresorhus/slugify": "^0.8.0",
     "react-router": "^4.3.1",
     "react": "^16.8.2",
-    "react-dom": "^16.8.2",
+    "react-dom": "^16.8.3",
     "docsearch.js": "^2.6.2",
     "react-scrolllock": "^4.0.1"
   },
