@@ -45,7 +45,7 @@
     "loader-utils": "^1.2.3",
     "netlify-cli": "^2.8.1",
     "serve": "^10.1.2",
-    "simple-icons": "^1.9.21",
+    "simple-icons": "^1.9.22",
     "static-site-generator-webpack-plugin": "^3.4.2",
     "style-loader": "^0.23.1",
     "twemoji": "^11.3.0",
