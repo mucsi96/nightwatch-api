@@ -18,8 +18,8 @@
     "clean": "del-cli lib",
     "build": "tsc --emitDeclarationOnly && babel src --out-dir lib --extensions \".ts\"",
     "type-check": "tsc --noEmit",
-    "start": "cross-env DEBUG=nightwatch-api ts-node ./scripts/test-app-server.ts",
     "test": "cross-env DEBUG=nightwatch-api jest --no-cache",
+    "test:unit": "npm run test -- --config jest.unit.config.js",
     "test:coverage": "npm test -- --coverage",
     "test:coveralls": "cat ./coverage/lcov.info | coveralls",
     "test:ci": "start-server-and-test start http://localhost:3000 test:coverage",
@@ -29,32 +29,10 @@
     "debug": "cross-env DEBUG=nightwatch-api NIGHTWATCH_VERBOSE=true babel-node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
     "lint": "tslint 'src/**/*.{ts,tsx}'"
   },
-  "babel": {
-    "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "targets": {
-            "node": "8"
-          }
-        }
-      ],
-      "@babel/preset-typescript"
-    ],
-    "plugins": [
-      "@babel/plugin-proposal-class-properties",
-      "@babel/plugin-proposal-object-rest-spread"
-    ]
-  },
   "jest": {
-    "testMatch": [
-      "**/?(*.)+(spec|test).(js|ts)"
-    ],
-    "setupFilesAfterEnv": [
-      "./e2e-test/setup"
-    ],
-    "collectCoverageFrom": [
-      "src/**/*.{js,ts}"
+    "projects": [
+      "jest.unit.config.js",
+      "jest.e2e.config.js"
     ]
   },
   "husky": {
