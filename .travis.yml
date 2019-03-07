@@ -48,7 +48,7 @@ before_script:
 script:
   - npm run lint
   - npm run type-check
-  - npm run test:ci
+  - npm run test:coverage
   - npm run check-webdriver-stopped
   - cd ..
   - cd node-example && npm test && cd ../nightwatch-api && npm run check-webdriver-stopped && cd ..
