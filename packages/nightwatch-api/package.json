@@ -79,7 +79,7 @@
     "@babel/preset-typescript": "^7.3.3",
     "@babel/register": "^7.0.0",
     "@types/jest": "^24.0.9",
-    "@types/node": "^11.10.4",
+    "@types/node": "^11.10.5",
     "@types/node-fetch": "^2.1.6",
     "babel-core": "^7.0.0-bridge.0",
     "chai": "^4.2.0",
