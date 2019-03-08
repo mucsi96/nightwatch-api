@@ -14,12 +14,16 @@ import { log } from './logger';
 import { createFailureScreenshot } from './screenshots';
 import reporter from './reporter';
 
-let runner: CliRunnerInstance;
-let client: Client;
-
 interface IOptions {
   env: string;
   configFile: string;
+}
+
+let runner: CliRunnerInstance | null;
+let client: Client;
+
+export function deleteRunner() {
+  runner = null;
 }
 
 export function getDefaultEnvironment() {
@@ -64,20 +68,38 @@ function createRunner(options: IOptions) {
 }
 
 export async function startWebDriver(options: IOptions) {
+  deleteRunner();
   createRunner(options);
+
+  if (!runner) {
+    return;
+  }
+
   const { port } = runner.test_settings.webdriver;
   await runner.startWebDriver();
   log(`WebDriver started on port ${port}`);
 }
 
 export async function stopWebDriver() {
+  if (!runner) {
+    return;
+  }
+
   const { port } = runner.test_settings.webdriver;
   await runner.stopWebDriver();
   log(`WebDriver stopped on port ${port}`);
 }
 
 export async function createSession(options: IOptions): Promise<Api> {
+  if (options) {
+    deleteRunner();
+  }
   createRunner(options);
+
+  if (!runner) {
+    return client.api;
+  }
+
   const settings = runner.test_settings;
   client = createClient(settings, new reporter());
   await client.startSession();

@@ -3,7 +3,7 @@ import url from 'url';
 import path from 'path';
 import fs from 'fs';
 import { log } from '../src/logger';
-import { startWebDriver, stopWebDriver } from '../src';
+import { promisify } from 'util';
 
 type MimeTypes = {
   [key: string]: string;
@@ -47,21 +47,12 @@ const server = http.createServer((req, res) => {
   });
 });
 
-(async function() {
-  server.listen(3000);
+export async function startTestAppServer() {
+  await promisify(server.listen).call(server, 3000);
   log('Test server started on port 3000');
-  await startWebDriver({
-    configFile: path.resolve(__dirname, '..', 'e2e-test/nightwatch.conf.js')
-  });
-})().catch(err => log(err));
+}
 
-process.on('SIGTERM', async () => {
-  try {
-    server.close();
-    log('Test server stopped on port 3000');
-    await stopWebDriver();
-    process.exit();
-  } catch (err) {
-    process.exit(1);
-  }
-});
+export async function stopTestAppServer() {
+  await promisify(server.close).call(server);
+  log('Test server stopped on port 3000');
+}
