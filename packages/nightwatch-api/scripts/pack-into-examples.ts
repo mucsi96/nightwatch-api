@@ -44,3 +44,9 @@ runCommand(
   '../../cucumber-selenium-hub-example',
   `npm install ./${tarball} --no-save --no-package-lock`
 );
+
+runCommand(
+  '../../cucumber-browserstack-example',
+  `npm install ../nightwatch-api/${tarball} --no-save --no-package-lock`
+);
+runCommand('../../cucumber-browserstack-example', 'npm install');
