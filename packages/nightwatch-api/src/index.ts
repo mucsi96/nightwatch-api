@@ -78,25 +78,19 @@ export const client = proxy(() => nightwatchClient);
  *   }
  * )();
  */
-export async function startWebDriver(
-  options: {
-    /**
-     * Selected Nightwatch [environment](http://nightwatchjs.org/gettingstarted#test-settings).
-     * By default it's `default`.
-     */
-    env?: string;
-    /**
-     * Nightwatch configuration file location.
-     * By default it's `nightwatch.json` or `nightwatch.conf.js` in current process working directory.
-     */
-    configFile?: string;
-  } = {}
-) {
-  const {
-    env = Client.getDefaultEnvironment(),
-    configFile = Client.getDefaultConfigFile()
-  } = options;
-  return Client.startWebDriver({ env, configFile });
+export async function startWebDriver(options: {
+  /**
+   * Selected Nightwatch [environment](http://nightwatchjs.org/gettingstarted#test-settings).
+   * By default it's `default`.
+   */
+  env?: string;
+  /**
+   * Nightwatch configuration file location.
+   * By default it's `nightwatch.json` or `nightwatch.conf.js` in current process working directory.
+   */
+  configFile?: string;
+}) {
+  return Client.startWebDriver(options);
 }
 
 /**
@@ -142,7 +136,7 @@ export async function createSession(
   options: {
     /**
      * Selected Nightwatch [environment](http://nightwatchjs.org/gettingstarted#test-settings).
-     * By default it's `default`.
+     * By default it's the same used for previous startWebDriver call otherwise `default`.
      */
     env?: string;
     /**
@@ -150,13 +144,9 @@ export async function createSession(
      * By default it's `nightwatch.json` or `nightwatch.conf.js` in current process working directory.
      */
     configFile?: string;
-  } = {}
+  }
 ) {
-  const {
-    env = Client.getDefaultEnvironment(),
-    configFile = Client.getDefaultConfigFile()
-  } = options;
-  nightwatchClient = await Client.createSession({ env, configFile });
+  nightwatchClient = await Client.createSession(options);
   promisifyApi(nightwatchClient, Client.runQueue);
   promisifyExpect(nightwatchClient, Client.runQueue);
   promisifyPageObjects(nightwatchClient, Client.runQueue);
