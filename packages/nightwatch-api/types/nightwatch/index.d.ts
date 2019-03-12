@@ -23,6 +23,7 @@ declare module 'nightwatch' {
     setup: Function;
     startWebDriver: Function;
     stopWebDriver: Function;
+    testEnv: string;
   }
 
   export interface Queue extends EventEmitter {

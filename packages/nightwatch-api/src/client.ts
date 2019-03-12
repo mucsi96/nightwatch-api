@@ -69,15 +69,11 @@ function createRunner(options: IOptions) {
 
 export async function startWebDriver(options: IOptions) {
   deleteRunner();
-  createRunner(options);
-
-  if (!runner) {
-    return;
-  }
+  const runner = createRunner(options);
 
   const { port } = runner.test_settings.webdriver;
   await runner.startWebDriver();
-  log(`WebDriver started on port ${port}`);
+  log(`WebDriver started on port ${port} for ${runner.testEnv} environment`);
 }
 
 export async function stopWebDriver() {
@@ -87,23 +83,19 @@ export async function stopWebDriver() {
 
   const { port } = runner.test_settings.webdriver;
   await runner.stopWebDriver();
-  log(`WebDriver stopped on port ${port}`);
+  log(`WebDriver stopped on port ${port} for ${runner.testEnv} environment`);
 }
 
 export async function createSession(options: IOptions): Promise<Api> {
   if (options) {
     deleteRunner();
   }
-  createRunner(options);
-
-  if (!runner) {
-    return client.api;
-  }
-
+  const runner = createRunner(options);
   const settings = runner.test_settings;
   client = createClient(settings, new reporter());
+  log(`Creating session for ${runner.testEnv} environment on port ${settings.webdriver.port}`);
   await client.startSession();
-  log('Session created');
+  log(`Session created for ${runner.testEnv} environment`);
   return client.api;
 }
 
@@ -127,7 +119,9 @@ export async function closeSession() {
       )
     );
   }
-  log('Session closed');
+  if (runner) {
+    log(`Session closed for ${runner.testEnv} environment`);
+  }
 }
 
 async function handleQueueResult(err: NightwatchError, resolve: Function, reject: Function) {
