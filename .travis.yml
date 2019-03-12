@@ -49,6 +49,7 @@ before_script:
 script:
   - npm run lint
   - npm run type-check
+  - npm run jest
   - npm run test:coverage
   - npm run check-webdriver-stopped
   - cd ..

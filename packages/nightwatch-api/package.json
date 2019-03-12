@@ -18,6 +18,7 @@
     "clean": "del-cli lib",
     "build": "tsc --emitDeclarationOnly && babel src --out-dir lib --extensions \".ts\"",
     "type-check": "tsc --noEmit",
+    "jest": "jest",
     "test": "cross-env DEBUG=nightwatch-api jest --no-cache",
     "test:unit": "npm test -- --config jest.unit.config.js",
     "test:coverage": "npm test -- --coverage",
@@ -25,7 +26,7 @@
     "check-webdriver-stopped": "ts-node ./scripts/check-webdriver-stopped.ts",
     "prepack": "npm run clean && npm run build",
     "pack-into-examples": "ts-node ./scripts/pack-into-examples.ts",
-    "debug": "cross-env DEBUG=nightwatch-api NIGHTWATCH_VERBOSE=true babel-node --inspect ./node_modules/jest/bin/jest.js --runInBand",
+    "debug": "cross-env DEBUG=nightwatch-api NIGHTWATCH_VERBOSE=true babel-node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
     "lint": "tslint 'src/**/*.{ts,tsx}'"
   },
   "jest": {
