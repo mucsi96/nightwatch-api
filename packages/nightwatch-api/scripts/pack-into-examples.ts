@@ -13,16 +13,16 @@ function runCommand(cwd: string, command: string) {
 runCommand('..', 'npm pack');
 
 runCommand('../../node-example', `npm install ../nightwatch-api/${tarball}`);
-runCommand('../../node-example', 'npm install');
+runCommand('../../node-example', 'npm ci');
 
 runCommand('../../jest-example', `npm install ../nightwatch-api/${tarball}`);
-runCommand('../../jest-example', 'npm install');
+runCommand('../../jest-example', 'npm ci');
 
 runCommand('../../cucumber-example', `npm install ../nightwatch-api/${tarball}`);
-runCommand('../../cucumber-example', 'npm install');
+runCommand('../../cucumber-example', 'npm ci');
 
 runCommand('../../cucumber-selenium-example', `npm install ../nightwatch-api/${tarball}`);
-runCommand('../../cucumber-selenium-example', 'npm install');
+runCommand('../../cucumber-selenium-example', 'npm ci');
 
 copyFileSync(
   resolve(__dirname, '..', tarball),
@@ -31,4 +31,4 @@ copyFileSync(
 runCommand('../../cucumber-selenium-hub-example', `npm install ./${tarball}`);
 
 runCommand('../../cucumber-browserstack-example', `npm install ../nightwatch-api/${tarball}`);
-runCommand('../../cucumber-browserstack-example', 'npm install');
+runCommand('../../cucumber-browserstack-example', 'npm ci');

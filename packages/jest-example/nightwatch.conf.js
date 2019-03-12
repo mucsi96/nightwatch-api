@@ -6,9 +6,13 @@ module.exports = {
     default: {
       webdriver: {
         start_process: true,
-        server_path: chromedriver.path,
         port: 4444,
         cli_args: ['--port=4444']
+      }
+    },
+    chromeHeadless: {
+      webdriver: {
+        server_path: chromedriver.path
       },
       desiredCapabilities: {
         browserName: 'chrome',
