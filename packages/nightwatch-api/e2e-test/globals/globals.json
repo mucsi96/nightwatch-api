@@ -1,8 +1,14 @@
 {
   "default": {
+    "myGlobal": 0
+  },
+  "chromeHeadless": {
     "myGlobal": 1
   },
-  "test_env": {
-    "myGlobal": 2
+  "chrome": {
+    "myGlobal": 1
+  },
+  "firefox": {
+    "myGlobal": 1
   }
 }
