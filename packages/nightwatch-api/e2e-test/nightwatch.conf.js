@@ -12,9 +12,17 @@ module.exports = {
       launch_url: 'http://localhost:3000',
       webdriver: {
         start_process: true,
-        server_path: chromedriver.path,
         port: 4444,
         cli_args: ['--port=4444']
+      },
+      screenshots: {
+        enabled: true,
+        path: path.resolve(__dirname, 'e2e-test-screenshots')
+      }
+    },
+    chromeHeadless: {
+      webdriver: {
+        server_path: chromedriver.path
       },
       desiredCapabilities: {
         browserName: 'chrome',
@@ -23,10 +31,6 @@ module.exports = {
         chromeOptions: {
           args: ['headless', 'disable-gpu']
         }
-      },
-      screenshots: {
-        enabled: true,
-        path: path.resolve(__dirname, 'e2e-test-screenshots')
       }
     },
     chrome: {

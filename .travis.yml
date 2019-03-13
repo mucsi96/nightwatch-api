@@ -17,6 +17,7 @@ node_js:
 env:
   global:
     - DEBUG=nightwatch-api
+    - NIGHTWATCH_ENV=chromeHeadless
 
 cache:
   directories:
@@ -37,7 +38,7 @@ notifications:
 
 install:
   - cd packages/nightwatch-api
-  - npm i
+  - npm ci
   - npm run pack-into-examples
 
 before_script:

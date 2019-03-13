@@ -20,6 +20,7 @@
     "type-check": "tsc --noEmit",
     "test": "cross-env DEBUG=nightwatch-api jest --no-cache",
     "test:unit": "npm test -- --config jest.unit.config.js",
+    "test:e2e": "npm test -- --config jest.e2e.config.js",
     "test:coverage": "npm test -- --coverage",
     "test:coveralls": "cat ./coverage/lcov.info | coveralls",
     "check-webdriver-stopped": "ts-node ./scripts/check-webdriver-stopped.ts",

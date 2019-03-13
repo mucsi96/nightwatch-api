@@ -8,7 +8,7 @@ const {
 
 async function setup(options) {
   await startWebDriver(options);
-  await createSession(options);
+  await createSession();
 }
 
 async function shutdown() {
@@ -26,7 +26,7 @@ async function run() {
 
 (async function() {
   try {
-    await setup({ env: 'default' });
+    await setup({ env: process.env.NIGHTWATCH_ENV || 'chromeHeadless' });
     await run();
   } catch (err) {
     console.log(err.stack);

@@ -4,8 +4,8 @@
   "description": "Demonstration for using Nightwatch API from CucumberJS test runner",
   "main": "index.js",
   "scripts": {
-    "test:chrome": "cross-env browser=chrome npm test",
-    "test:firefox": "cross-env browser=firefox npm test",
+    "test:chrome": "cross-env NIGHTWATCH_ENV=chrome npm test",
+    "test:firefox": "cross-env NIGHTWATCH_ENV=firefox npm test",
     "test": "cucumber-js --require-module babel-core/register --require cucumber.conf.js --require step-definitions --format node_modules/cucumber-pretty"
   },
   "repository": "git@github.com:mucsi96/nightwatch-api.git",

@@ -55,7 +55,7 @@ describe('client', () => {
     it('creates a new cli runner if options are provided', async () => {
       await startWebDriver({ env: 'default', configFile: 'testConfigFile.js' });
       mockCliRunnerInstance.setup.mockClear();
-      await createSession({ env: 'default' });
+      await createSession({ env: 'default', configFile: 'testConfigFile.js' });
       expect(mockCliRunnerInstance.setup).toBeCalled();
     });
   });
