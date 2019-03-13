@@ -93,7 +93,7 @@ export async function createSession(options: IOptions): Promise<Api> {
   if (options) {
     deleteRunner();
   }
-  debugger;
+
   const runner = createRunner(options);
   const settings = runner.test_settings;
   client = createClient(settings, new reporter());
