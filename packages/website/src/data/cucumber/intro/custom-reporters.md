@@ -1,71 +1,104 @@
 ## Custom Reporters
 
- To generate an HTML view of your test reports, you can use
+You can promive multiple reporters (formatters) for Cucumber. To generate an HTML view of your test reports, you can use
 [cucumber-html-reporter](https://github.com/gkushang/cucumber-html-reporter).
 
- ### Step 1 - Installing dependencies
+### Step 1 - Installing dependencies
 
- ```terminal
-npm install --save-dev cucumber-html-reporter npm-run-all
+```terminal
+npm install --save-dev cucumber-html-reporter mkdirp
 ```
 
- ### Step 2 - Create a reports config file
+### Step 2 - Create a cucumber config file
 
- This script is executed _after_ your test suites have completed, and sets various options on the reporter.
+```js
+// cucumber.conf.js
+const fs = require('fs');
+const path = require('path');
+const { setDefaultTimeout, After, AfterAll, BeforeAll } = require('cucumber');
+const { createSession, closeSession, startWebDriver, stopWebDriver } = require('nightwatch-api');
+const reporter = require('cucumber-html-reporter');
 
- ```js
-// reports.conf.js
- const reporter = require('cucumber-html-reporter');
- const options = {
-    theme: 'simple',
-    jsonFile: 'report.json',
-    output: 'report.html',
-    reportSuiteAsScenarios: true,
-    launchReport: true,
-};
- reporter.generate(options);
+const attachedScreenshots = getScreenshots();
+
+function getScreenshots() {
+  try {
+    const folder = path.resolve(__dirname, 'screenshots');
+
+    const screenshots = fs.readdirSync(folder).map(file => path.resolve(folder, file));
+    return screenshots;
+  } catch (err) {
+    return [];
+  }
+}
+
+setDefaultTimeout(60000);
+
+BeforeAll(async () => {
+  await startWebDriver({ env: process.env.NIGHTWATCH_ENV || 'chromeHeadless' });
+  await createSession();
+});
+
+AfterAll(async () => {
+  await closeSession();
+  await stopWebDriver();
+  setTimeout(() => {
+    reporter.generate({
+      theme: 'bootstrap',
+      jsonFile: 'report/cucumber_report.json',
+      output: 'report/cucumber_report.html',
+      reportSuiteAsScenarios: true,
+      launchReport: true,
+      metadata: {
+        'App Version': '0.3.2',
+        'Test Environment': 'POC'
+      }
+    });
+  }, 0);
+});
+
+After(function() {
+  return Promise.all(
+    getScreenshots()
+      .filter(file => !attachedScreenshots.includes(file))
+      .map(file => {
+        attachedScreenshots.push(file);
+        return this.attach(fs.readFileSync(file), 'image/png');
+      })
+  );
+});
 ```
 
- For details on available options, see the
+For details on available options for report generation, see the
 [Cucumber HTML Reporter documentation](https://github.com/gkushang/cucumber-html-reporter#usage).
 
- ### Step 3 - Update your npm scripts
+### Step 3 - Update your npm scripts
 
- You may have noticed in the first step we installed `npm-run-all`. This lets us run a sequence of npm scripts, while
-avoiding cross platform issues operators such as `&&` introduce. Another handy feature is the ability to continue the
-sequence when a previous script fails. This is important because we want to generate a test report even when our tests
-fail, and cause Nightwatch to throw an error.
-
- ```js
+```js
 // package.json
 {
-    ...
-    "scripts": {
-        "e2e-test": "npm-run-all ---continue-on-error e2e-test-run e2e-test-report",
-        "e2e-test-run": "cucumber-js --require cucumber-setup.js --require step-definitions --format json:report.json",
-        "e2e-test-report": "node report.conf.js",
-        ...
-    }
-    ...
+   ...
+   "scripts": {
+       "e2e-test": "mkdirp report && cucumber-js --require cucumber-setup.js --require step-definitions --format node_modules/cucumber-pretty --format json:report/cucumber_report.json",
+       ...
+   }
+   ...
 }
 ```
 
- Notice we have replaced the `cucumber-pretty` formatter with the built in `json` formatter. This generates a JSON
+Notice we have added the `json` formatter. This generates a JSON
 report which is used by `cucumber-html-reporter` to generate the HTML report.
+We use `mkdirp` to make sure `report` folder exists before running the test.
 
- If you no longer require `cucumber-pretty` you can remove it with the following command.
+### Step 4 - Run the tests
 
- ```terminal
-npm uninstall cucumber-pretty
-```
-
- ### Step 4 - Run the tests
-
- ```terminal
+```terminal
 npm run e2e-test
 ```
 
- When the test run completes, the HTML report is displayed in a new browser tab.
+When the test run completes, the HTML report is displayed in a new browser tab.
 
- Example reports are available in the
+Example reports are available in the
 [Cucumber HTML Reporter documentation](https://github.com/gkushang/cucumber-html-reporter#preview-of-html-reports).
+
+For working example check out the [cucumber-example](https://github.com/mucsi96/nightwatch-api/tree/master/packages/cucumber-example) in the repository.
