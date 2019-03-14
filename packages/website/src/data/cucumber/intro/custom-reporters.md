@@ -1,6 +1,6 @@
 ## Custom Reporters
 
-You can promive multiple reporters (formatters) for Cucumber. To generate an HTML view of your test reports, you can use
+You can provide multiple reporters (formatters) for Cucumber. To generate an HTML view of your test reports, you can use
 [cucumber-html-reporter](https://github.com/gkushang/cucumber-html-reporter).
 
 ### Step 1 - Installing dependencies
