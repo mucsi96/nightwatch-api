@@ -12,8 +12,7 @@ module.exports = {
       launch_url: 'http://localhost:3000',
       webdriver: {
         start_process: true,
-        port: 4444,
-        cli_args: ['--port=4444']
+        port: 4444
       },
       screenshots: {
         enabled: true,
@@ -22,7 +21,8 @@ module.exports = {
     },
     chromeHeadless: {
       webdriver: {
-        server_path: chromedriver.path
+        server_path: chromedriver.path,
+        cli_args: ['--port=4444']
       },
       desiredCapabilities: {
         browserName: 'chrome',
@@ -35,7 +35,8 @@ module.exports = {
     },
     chrome: {
       webdriver: {
-        server_path: chromedriver.path
+        server_path: chromedriver.path,
+        cli_args: ['--port=4444']
       },
       desiredCapabilities: {
         browserName: 'chrome',
@@ -48,7 +49,8 @@ module.exports = {
     },
     firefox: {
       webdriver: {
-        server_path: geckodriver.path
+        server_path: geckodriver.path,
+        cli_args: ['--port', '4444', '--log', 'debug']
       },
       desiredCapabilities: {
         browserName: 'firefox',

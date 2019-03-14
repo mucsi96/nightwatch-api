@@ -2,6 +2,7 @@ const chromedriver = require('chromedriver');
 const geckodriver = require('geckodriver');
 
 module.exports = {
+  silent: !process.env.NIGHTWATCH_VERBOSE,
   test_settings: {
     default: {
       webdriver: {
@@ -44,7 +45,7 @@ module.exports = {
     firefox: {
       webdriver: {
         server_path: geckodriver.path,
-        cli_args: ['--port', '4444']
+        cli_args: ['--port', '4444', '--log', 'debug']
       },
       desiredCapabilities: {
         browserName: 'firefox',

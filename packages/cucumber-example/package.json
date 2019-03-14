@@ -6,7 +6,8 @@
   "scripts": {
     "test:chrome": "cross-env NIGHTWATCH_ENV=chrome npm test",
     "test:firefox": "cross-env NIGHTWATCH_ENV=firefox npm test",
-    "test": "mkdirp report && cucumber-js --require-module babel-core/register --require cucumber.conf.js --require step-definitions --format node_modules/cucumber-pretty --format json:report/cucumber_report.json"
+    "test": "mkdirp report && cucumber-js --require-module babel-core/register --require cucumber.conf.js --require step-definitions --format node_modules/cucumber-pretty --format json:report/cucumber_report.json",
+    "debug": "cross-env DEBUG=nightwatch-api NIGHTWATCH_ENV=firefox NIGHTWATCH_VERBOSE=true node --inspect-brk ./node_modules/cucumber/bin/cucumber-js --require-module babel-core/register --require cucumber.conf.js --require step-definitions --format node_modules/cucumber-pretty"
   },
   "repository": "git@github.com:mucsi96/nightwatch-api.git",
   "author": "Igor Mucsicska <mucsi_96@yahoo.com>",
