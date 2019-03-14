@@ -8,6 +8,10 @@ module.exports = {
       webdriver: {
         start_process: true,
         port: 4444
+      },
+      screenshots: {
+        enabled: true,
+        path: 'screenshots'
       }
     },
     chromeHeadless: {

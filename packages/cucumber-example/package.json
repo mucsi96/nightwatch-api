@@ -6,7 +6,7 @@
   "scripts": {
     "test:chrome": "cross-env NIGHTWATCH_ENV=chrome npm test",
     "test:firefox": "cross-env NIGHTWATCH_ENV=firefox npm test",
-    "test": "cucumber-js --require-module babel-core/register --require cucumber.conf.js --require step-definitions --format node_modules/cucumber-pretty",
+    "test": "mkdirp report && cucumber-js --require-module babel-core/register --require cucumber.conf.js --require step-definitions --format node_modules/cucumber-pretty --format json:report/cucumber_report.json",
     "debug": "cross-env DEBUG=nightwatch-api NIGHTWATCH_ENV=firefox NIGHTWATCH_VERBOSE=true node --inspect-brk ./node_modules/cucumber/bin/cucumber-js --require-module babel-core/register --require cucumber.conf.js --require step-definitions --format node_modules/cucumber-pretty"
   },
   "repository": "git@github.com:mucsi96/nightwatch-api.git",
@@ -19,9 +19,12 @@
     "chromedriver": "2.46.0",
     "cross-env": "^5.2.0",
     "cucumber": "^5.1.0",
+    "cucumber-html-reporter": "^4.0.5",
     "cucumber-pretty": "^1.5.0",
     "geckodriver": "^1.16.0",
+    "mkdirp": "^0.5.1",
     "nightwatch": "^1.0.19",
-    "nightwatch-api": "latest"
+    "nightwatch-api": "latest",
+    "npm-run-all": "^4.1.5"
   }
 }
