@@ -30,6 +30,10 @@
     "lint": "tslint 'src/**/*.{ts,tsx}'"
   },
   "jest": {
+    "collectCoverageFrom": [
+      "<rootDir>/src/**/*.{js,ts}",
+      "!<rootDir>/src/**/*.test.{js,ts}"
+    ],
     "projects": [
       "jest.unit.config.js",
       "jest.e2e.config.js"
