@@ -38,10 +38,10 @@ module.exports = {
 
 ### Step 3 - Configuring Cucumber
 
-Cucumber also needs some configuration. Create a JavaScript configuration file called `cucumber-setup.js` in the project root folder. This file is responsible for setting up the default timeout, starting the WebDriver and creating the session.
+Cucumber also needs some configuration. Create a JavaScript configuration file called `cucumber.conf.js` in the project root folder. This file is responsible for setting up the default timeout, starting the WebDriver and creating the session.
 
 ```javascript
-// cucumber-setup.js
+// cucumber.conf.js
 
 const { setDefaultTimeout, AfterAll, BeforeAll } = require('cucumber');
 const { createSession, closeSession, startWebDriver, stopWebDriver } = require('nightwatch-api');
@@ -107,7 +107,7 @@ For convenience we are creating an npm script in our `package.json` to be able t
 {
   ...
   "scripts": {
-    "e2e-test": "cucumber-js --require cucumber-setup.js --require step-definitions --format node_modules/cucumber-pretty",
+    "e2e-test": "cucumber-js --require cucumber.conf.js --require step-definitions --format node_modules/cucumber-pretty",
     ...
   }
   ...
@@ -122,7 +122,7 @@ We are ready to run our first test.
 npm run e2e-test
 
 > nightwatch-api-test@1.0.0 e2e-test /home/igor/test/nightwatch-api-test
-> cucumber-js --require cucumber-setup.js --require step-definitions --format node_modules/cucumber-pretty
+> cucumber-js --require cucumber.conf.js --require step-definitions --format node_modules/cucumber-pretty
 
 
 Feature: Google Search
