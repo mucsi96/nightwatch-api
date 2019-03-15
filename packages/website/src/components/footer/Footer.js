@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import Heart from 'twemoji/2/svg/2764.svg';
 import CH from 'twemoji/2/svg/1f1e8-1f1ed.svg';
+import IN from 'twemoji/2/svg/1f1ee-1f1f3.svg';
+import US from 'twemoji/2/svg/1f1fa-1f1f8.svg';
 
 const StyledHeart = styled(Heart)`
   width: 21px;
@@ -9,10 +11,14 @@ const StyledHeart = styled(Heart)`
   margin: 7px;
 `;
 
-const StyledCH = styled(CH)`
-  width: 32px;
-  height: 32px;
-  margin: 7px;
+const Flag = styled.span`
+  line-height: 0;
+
+  svg {
+    width: 32px;
+    height: 32px;
+    margin: 7px;
+  }
 `;
 
 const StyledFooter = styled.footer`
@@ -35,9 +41,18 @@ const StyledFooter = styled.footer`
 const Footer = () => (
   <StyledFooter>
     <div>
-      Created with <StyledHeart /> in <StyledCH />
+      Created with <StyledHeart /> in{' '}
+      <Flag>
+        <CH />
+      </Flag>
+      <Flag>
+        <IN />
+      </Flag>
+      <Flag>
+        <US />
+      </Flag>
     </div>
-    <div>{new Date().getFullYear()}</div>
+    <div>2018 - {new Date().getFullYear()}</div>
   </StyledFooter>
 );
 
