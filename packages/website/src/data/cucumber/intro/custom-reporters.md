@@ -9,7 +9,29 @@ You can provide multiple reporters (formatters) for Cucumber. To generate an HTM
 npm install --save-dev cucumber-html-reporter mkdirp
 ```
 
+### Step 2 - Configuring Nightwatch.js
+
+HTML reports can contain screenshot images about the tested application in the state of feature step failure. This is a very handy feature as it provides immediate visual clue of possible problem and will simplify the debugging process. You can enable it in Nightwatch configuration file.
+
+```javascript
+// nightwatch.conf.js
+module.exports = {
+  test_settings: {
+    default: {
+      screenshots: {
+        enabled: true,
+        path: 'screenshots'
+      }
+      // ...
+    }
+    // ...
+  }
+};
+```
+
 ### Step 2 - Create a cucumber config file
+
+We also need to extend the Cucumber configuration file with handling of screenshots and attaching them to the report. Also the html report generation can be configured here. This report is generated based on Cucumber builtin json report using different templates. We use a setTimeout as we want to run the generation after Cucumber finishes with the creation of json report. Unfortunately currently there is no separate hook in Cucumber for doing this.
 
 ```js
 // cucumber.conf.js
