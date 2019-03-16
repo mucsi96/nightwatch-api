@@ -11,7 +11,7 @@ npm install --save-dev cucumber-html-reporter mkdirp
 
 ### Step 2 - Configuring Nightwatch.js
 
-HTML reports can contain screenshot images about the tested application in the state of feature step failure. This is a very handy feature as it provides immediate visual clue of possible problem and will simplify the debugging process. To enable screenshot creation on failure you need to enable it in Nightwatch configuration file.
+HTML reports can contain screenshot images about the tested application in the state of feature step failure. This is a very handy feature as it provides immediate visual clue of possible problem and will simplify the debugging process. You can enable it in Nightwatch configuration file.
 
 ```javascript
 // nightwatch.conf.js
