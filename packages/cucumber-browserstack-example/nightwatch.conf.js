@@ -14,13 +14,7 @@ module.exports = {
         'browserstack.user': process.env.BROWSERSTACK_USERNAME,
         'browserstack.key': process.env.BROWSERSTACK_ACCESS_KEY,
         os: 'Windows',
-        os_version: '10',
-        browserName: 'chrome',
-        javascriptEnabled: true,
-        acceptSslCerts: true,
-        chromeOptions: {
-          args: ['disable-gpu']
-        }
+        os_version: '10'
       }
     },
     chrome: {
