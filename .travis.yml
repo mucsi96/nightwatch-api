@@ -14,11 +14,6 @@ node_js:
   - '8'
   - '10'
 
-env:
-  global:
-    - DEBUG=nightwatch-api
-    - NIGHTWATCH_ENV=chromeHeadless
-
 cache:
   directories:
     - packages/nightwatch-api/node_modules
