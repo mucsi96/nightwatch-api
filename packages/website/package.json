@@ -21,7 +21,7 @@
     "highlight.js": "^9.15.6",
     "@sindresorhus/slugify": "^0.9.0",
     "react-router": "^5.0.0",
-    "react": "^16.8.4",
+    "react": "^16.8.5",
     "react-dom": "^16.8.5",
     "docsearch.js": "^2.6.2",
     "react-scrolllock": "^4.0.1"
