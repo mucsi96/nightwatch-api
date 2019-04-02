@@ -80,7 +80,7 @@
     "selenium-server": "^3.141.59",
     "start-server-and-test": "^1.7.12",
     "ts-node": "^8.0.3",
-    "tslint": "^5.14.0",
+    "tslint": "^5.15.0",
     "tslint-config-airbnb": "^5.11.1",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.3.4000"
