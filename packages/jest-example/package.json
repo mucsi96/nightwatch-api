@@ -19,7 +19,7 @@
     "chromedriver": "2.46.0",
     "cross-env": "^5.2.0",
     "geckodriver": "^1.16.0",
-    "jest": "^24.5.0",
+    "jest": "^24.6.0",
     "nightwatch": "^1.0.19",
     "nightwatch-api": "latest"
   }
