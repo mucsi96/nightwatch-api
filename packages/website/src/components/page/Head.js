@@ -1,9 +1,11 @@
 import React from 'react';
 import { withSiteConfig } from '../utils/SiteConfigProvider';
 import openGraphImg from '../../images/opengraph.png';
+import Analytics from './Analytics';
 
 const Head = ({ title, description, url }) => (
   <head>
+    <Analytics />
     <meta charSet="utf-8" />
     <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>{title}</title>
