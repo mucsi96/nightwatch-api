@@ -1,6 +1,7 @@
 ## Getting Started
 
 Before diving in technical steps we highly recommend to check out the [Cucumber introduction](https://docs.cucumber.io/guides/overview) page.
+If you like video tutorials we recommend checking out tutorial created by [Domenico Gemoli](https://www.domenicogemoli.com/) [End-to-end testing with NightwatchJS #8: Running tests with cucumber](https://www.youtube.com/embed/Jdlsv0CQ2CY)
 
 ### Step 1 - Installing dependencies
 

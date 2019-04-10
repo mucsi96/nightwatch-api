@@ -18,10 +18,15 @@ SyntaxHighlighterCore.registerLanguage('terminal', () => ({
 }));
 
 const CodeWrapper = styled.div`
-  margin: 25px -18px;
+  margin: 25px -20px;
   padding: 0 18px;
   overflow: auto;
-  border-radius: 10px;
+
+  @media (min-width: 894px) {
+    margin-right: -18px;
+    margin-left: -18px;
+    border-radius: 10px;
+  }
 
   ${theme.code}
 `;

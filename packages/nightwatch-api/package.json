@@ -123,8 +123,13 @@
     },
     {
       "name": "Vishal Bakshi",
-      "url": "https://vishalbakshi.github.io/",
-      "avatar": "https://avatars1.githubusercontent.com/u/28925987?s=460&v=4"
+      "url": "https://vishalbakshi.github.io",
+      "avatar": "https://avatars1.githubusercontent.com/u/28925987?v=4"
+    },
+    {
+      "name": "Domenico Gemoli",
+      "url": "https://www.domenicogemoli.com",
+      "avatar": "https://avatars0.githubusercontent.com/u/1260402?v=4"
     }
   ]
 }
