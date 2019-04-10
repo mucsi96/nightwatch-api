@@ -22,7 +22,7 @@ const Wrapper = styled.div`
   box-sizing: border-box;
   height: 100vh;
 
-  @media (min-width: 780px) {
+  @media (min-width: 1100px) {
     padding-top: 60px;
     position: sticky;
     box-shadow: none;

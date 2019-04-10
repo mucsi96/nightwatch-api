@@ -10,6 +10,7 @@ import Paragraph from './Paragraph';
 import Contributors from './Contributors';
 import Debug from '../utils/Debug';
 import BrowserStackLogo from './BrowserStackLogo';
+import YouTubeVideo from './YouTubeVideo';
 
 const EMOJI_MAP_REGEX = /<--EMOJI-MAP--(.*?)--EMOJI-MAP-->/;
 
@@ -32,6 +33,9 @@ const Article = ({ markdown }) => {
             }
             if (href === '#emoji') {
               return <Emoji svg={emojiMap[children[0].props.value]} />;
+            }
+            if (href.includes('www.youtube.com/embed')) {
+              return <YouTubeVideo src={href} />;
             }
             return <Link href={href}>{children}</Link>;
           },
