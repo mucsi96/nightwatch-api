@@ -59,7 +59,7 @@ function createRunner(options: IOptions) {
       config: (options && options.configFile) || getDefaultConfigFile()
     });
     runner.isWebDriverManaged = function() {
-      if (this.baseSettings.selenium) {
+      if (this.baseSettings.selenium && this.baseSettings.selenium.start_process === undefined) {
         this.baseSettings.selenium.start_process = true;
       }
       return true;
