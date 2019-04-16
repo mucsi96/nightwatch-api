@@ -140,22 +140,5 @@ describe('client', () => {
       } catch (error) {}
       expect(createFailureScreenshot).not.toBeCalled();
     });
-
-    it('creates screenshot on test success if set', async () => {
-      mockScreenshotsPath = '/testScreenshotPath';
-      mockTestError = new Error('test error');
-      try {
-        await runTests();
-      } catch (error) {}
-      expect(createFailureScreenshot).toBeCalled();
-    });
-
-    it('doesn`t create screenshot on test success if not set', async () => {
-      mockTestError = new Error('test error');
-      try {
-        await runTests();
-      } catch (error) {}
-      expect(createFailureScreenshot).not.toBeCalled();
-    });
   });
 });
