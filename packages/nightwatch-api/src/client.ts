@@ -20,10 +20,11 @@ interface IOptions {
 }
 
 let runner: CliRunnerInstance | null;
-let client: Client;
+let client: Client | null;
 
 export function deleteRunner() {
   runner = null;
+  client = null;
 }
 
 function getDefaultEnvironment() {
@@ -113,6 +114,9 @@ function resetQueue() {
 }
 
 export async function closeSession() {
+  if (!client) {
+    return;
+  }
   const protocolInstance = new protocol(client);
   if (protocolInstance.Actions.session) {
     await new Promise(resolve =>
@@ -136,11 +140,7 @@ async function handleQueueResult(err: NightwatchError, resolve: Function, reject
 
   if (client && client.api.screenshotsPath) {
     log('Creating screenshot because of failure');
-    try {
-      await createFailureScreenshot(client);
-    } catch (e) {
-      throw e;
-    }
+    await createFailureScreenshot(client);
   }
 
   if (!(err instanceof assertionError) || err.abortOnFailure) {
@@ -152,15 +152,14 @@ async function handleQueueResult(err: NightwatchError, resolve: Function, reject
 }
 
 export async function runQueue() {
-  if (!client || !client.queue) {
-    throw new Error(
-      `Nightwatch client is not ready.
-        Looks like function "createSession" did not succeed or was not called yet.`
-    );
-  }
-
   try {
     await new Promise((resolve, reject) => {
+      if (!client || !client.queue) {
+        throw new Error(
+          `Nightwatch client is not ready.
+            Looks like function "createSession" did not succeed or was not called yet.`
+        );
+      }
       client.queue.once(
         'queue:finished',
         async (err: NightwatchError) => await handleQueueResult(err, resolve, reject)
