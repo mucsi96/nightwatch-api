@@ -6,10 +6,8 @@ import {
   Api,
   NightwatchError
 } from 'nightwatch';
-import assertionError from 'assertion-error';
 import protocol from 'nightwatch/lib/api/protocol';
 import fs from 'fs';
-import path from 'path';
 import { log } from './logger';
 import { createFailureScreenshot } from './screenshots';
 import reporter from './reporter';
@@ -33,7 +31,7 @@ function getDefaultEnvironment() {
 
 function getDefaultConfigFile() {
   const jsonConfigFile = './nightwatch.json';
-  const jsConfigFie = path.resolve('./nightwatch.conf.js');
+  const jsConfigFie = './nightwatch.conf.js';
 
   if (fs.existsSync(jsonConfigFile)) {
     return jsonConfigFile;
@@ -118,15 +116,10 @@ export async function closeSession() {
     return;
   }
   const protocolInstance = new protocol(client);
-  if (protocolInstance.Actions.session) {
-    await new Promise(resolve =>
-      protocolInstance.Actions.session.call(
-        protocolInstance,
-        protocol.SessionActions.DELETE,
-        resolve
-      )
-    );
-  }
+  await new Promise(resolve =>
+    protocolInstance.Actions.session.call(protocolInstance, protocol.SessionActions.DELETE, resolve)
+  );
+  /* istanbul ignore next */
   if (runner) {
     log(`Session closed for ${runner.testEnv} environment`);
   }
@@ -141,10 +134,6 @@ async function handleQueueResult(err: NightwatchError, resolve: Function, reject
   if (client && client.api.screenshotsPath) {
     log('Creating screenshot because of failure');
     await createFailureScreenshot(client);
-  }
-
-  if (!(err instanceof assertionError) || err.abortOnFailure) {
-    resetQueue();
   }
 
   err.stack = [err.message, err.stack].join('\n');
