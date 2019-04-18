@@ -20,7 +20,7 @@
     "type-check": "tsc --noEmit",
     "test": "cross-env DEBUG=nightwatch-api jest --no-cache",
     "test:unit": "npm test -- --config jest.unit.config.js",
-    "test:unit:watch": "npm run test:unit -- --watch",
+    "test:unit:watch": "npm run test:unit -- --watch --coverage",
     "test:e2e": "npm test -- --config jest.e2e.config.js",
     "test:coverage": "npm test -- --coverage",
     "test:coveralls": "cat ./coverage/lcov.info | coveralls",
@@ -31,6 +31,11 @@
     "lint": "tslint 'src/**/*.{ts,tsx}'"
   },
   "jest": {
+    "coverageReporters": [
+      "json",
+      "lcov",
+      "clover"
+    ],
     "collectCoverageFrom": [
       "<rootDir>/src/**/*.{js,ts}",
       "!<rootDir>/src/**/*.test.{js,ts}"
