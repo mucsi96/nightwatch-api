@@ -10,7 +10,6 @@ import protocol from 'nightwatch/lib/api/protocol';
 import fs from 'fs';
 import { log } from './logger';
 import { createFailureScreenshot } from './screenshots';
-import reporter from './reporter';
 
 interface IOptions {
   env?: string;
@@ -95,7 +94,7 @@ export async function createSession(options: IOptions): Promise<Api> {
 
   const runner = createRunner(options);
   const settings = runner.test_settings;
-  client = createClient(settings, new reporter());
+  client = createClient(settings);
   log(`Creating session for ${runner.testEnv} environment on port ${settings.webdriver.port}`);
   await client.startSession();
   log(`Session created for ${runner.testEnv} environment`);

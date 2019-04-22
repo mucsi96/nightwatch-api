@@ -71,7 +71,7 @@ declare module 'nightwatch' {
 
   export function CliRunner(config: object): CliRunnerInstance;
 
-  export function client(settings: object, runner: object): Client;
+  export function client(settings: object): Client;
 
   export interface NightwatchError extends Error {
     abortOnFailure: boolean;
