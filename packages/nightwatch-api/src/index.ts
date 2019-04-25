@@ -89,6 +89,12 @@ export async function startWebDriver(options: {
    * By default it's `nightwatch.json` or `nightwatch.conf.js` in current process working directory.
    */
   configFile?: string;
+
+  /**
+   * Disable Nightwatch success logs like "√ Element <body> was visible after 96 milliseconds."
+   * By default it's false.
+   */
+  silent?: boolean;
 }) {
   return Client.startWebDriver(options);
 }
@@ -144,6 +150,12 @@ export async function createSession(
      * By default it's `nightwatch.json` or `nightwatch.conf.js` in current process working directory.
      */
     configFile?: string;
+
+    /**
+     * Disable Nightwatch success logs like "√ Element <body> was visible after 96 milliseconds."
+     * By default it's false.
+     */
+    silent?: boolean;
   }
 ) {
   nightwatchClient = await Client.createSession(options);

@@ -15,13 +15,16 @@ import reporter from './reporter';
 interface IOptions {
   env?: string;
   configFile?: string;
+  silent?: boolean;
 }
 
 let runner: CliRunnerInstance | null;
+let runnerOptions: IOptions | null;
 let client: Client | null;
 
 export function deleteRunner() {
   runner = null;
+  runnerOptions = null;
   client = null;
 }
 
@@ -53,10 +56,12 @@ function getDefaultConfigFile() {
 
 function createRunner(options: IOptions) {
   if (!runner) {
-    runner = CliRunner({
+    runnerOptions = {
       env: (options && options.env) || getDefaultEnvironment(),
-      config: (options && options.configFile) || getDefaultConfigFile()
-    });
+      configFile: (options && options.configFile) || getDefaultConfigFile(),
+      silent: (options && options.silent) || false
+    };
+    runner = CliRunner({ env: runnerOptions.env, config: runnerOptions.configFile });
     runner.isWebDriverManaged = function() {
       if (this.baseSettings.selenium) {
         this.baseSettings.selenium.start_process = true;
@@ -95,7 +100,10 @@ export async function createSession(options: IOptions): Promise<Api> {
 
   const runner = createRunner(options);
   const settings = runner.test_settings;
-  client = createClient(settings, new reporter());
+  client =
+    runnerOptions && runnerOptions.silent
+      ? createClient(settings)
+      : createClient(settings, new reporter());
   log(`Creating session for ${runner.testEnv} environment on port ${settings.webdriver.port}`);
   await client.startSession();
   log(`Session created for ${runner.testEnv} environment`);
