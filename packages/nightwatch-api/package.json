@@ -68,7 +68,7 @@
     "@babel/register": "^7.4.0",
     "@types/jest": "^24.0.11",
     "@types/node": "^11.13.7",
-    "@types/node-fetch": "^2.3.2",
+    "@types/node-fetch": "^2.3.3",
     "babel-core": "^7.0.0-bridge.0",
     "chai": "^4.2.0",
     "chromedriver": "73.0.0",
