@@ -6,10 +6,11 @@ import {
   closeSession,
   runQueue
 } from './client';
-import { CliRunner } from 'nightwatch';
+import { CliRunner, client } from 'nightwatch';
 import { EventEmitter } from 'events';
 import { createFailureScreenshot } from './screenshots';
 import fs from 'fs';
+import reporter from './reporter';
 
 let mockCliRunnerInstance = null;
 let mockTestError = null;
@@ -67,6 +68,7 @@ jest.mock(
 );
 jest.mock('./screenshots');
 jest.mock('fs');
+jest.mock('./reporter');
 
 beforeEach(() => {
   deleteRunner();
@@ -78,6 +80,7 @@ beforeEach(() => {
   CliRunner.mockClear();
   mockExecutedActions = [];
   mockQueueItems = [];
+  client.mockClear();
 });
 
 describe('client', () => {
@@ -168,6 +171,18 @@ describe('client', () => {
       mockCliRunnerInstance.setup.mockClear();
       await createSession({ env: 'default', configFile: 'testConfigFile.js' });
       expect(mockCliRunnerInstance.setup).toBeCalled();
+    });
+
+    it('provides a custom reporter', async () => {
+      await startWebDriver({ env: 'default', configFile: 'testConfigFile.js' });
+      await createSession();
+      expect(client).toBeCalledWith({ webdriver: { port: 1279 } }, expect.any(reporter));
+    });
+
+    it('provides no custom reporter if silent option is provided', async () => {
+      await startWebDriver({ env: 'default', configFile: 'testConfigFile.js', silent: true });
+      await createSession();
+      expect(client).toBeCalledWith({ webdriver: { port: 1279 } });
     });
   });
 

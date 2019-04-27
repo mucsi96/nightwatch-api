@@ -28,7 +28,7 @@
     "prepack": "npm run clean && npm run build",
     "pack-into-examples": "ts-node ./scripts/pack-into-examples.ts",
     "debug": "cross-env DEBUG=nightwatch-api NIGHTWATCH_VERBOSE=true babel-node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
-    "lint": "tslint 'src/**/*.{ts,tsx}'"
+    "lint": "tslint -p tsconfig.json 'src/**/*.{ts,tsx}'"
   },
   "jest": {
     "coverageReporters": [
@@ -69,7 +69,6 @@
     "@types/jest": "^24.0.11",
     "@types/node": "^11.13.7",
     "@types/node-fetch": "^2.3.3",
-    "babel-core": "^7.0.0-bridge.0",
     "chai": "^4.2.0",
     "chromedriver": "^74.0.0",
     "coveralls": "^3.0.3",
@@ -84,7 +83,6 @@
     "prettier": "^1.17.0",
     "pretty-quick": "^1.10.0",
     "selenium-server": "^3.141.59",
-    "start-server-and-test": "^1.9.0",
     "ts-node": "^8.1.0",
     "tslint": "^5.16.0",
     "tslint-config-airbnb": "^5.11.1",
