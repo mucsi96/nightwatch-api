@@ -67,7 +67,7 @@
     "@babel/preset-typescript": "^7.3.3",
     "@babel/register": "^7.4.4",
     "@types/jest": "^24.0.12",
-    "@types/node": "^11.13.7",
+    "@types/node": "^11.13.8",
     "@types/node-fetch": "^2.3.3",
     "chai": "^4.2.0",
     "chromedriver": "^74.0.0",
