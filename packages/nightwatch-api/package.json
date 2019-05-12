@@ -28,7 +28,7 @@
     "check-webdriver-stopped": "ts-node ./scripts/check-webdriver-stopped.ts",
     "prepack": "npm run clean && npm run build",
     "pack-into-examples": "ts-node ./scripts/pack-into-examples.ts",
-    "debug": "cross-env DEBUG=nightwatch-api NIGHTWATCH_VERBOSE=true node --inspect ./node_modules/jest/bin/jest.js --runInBand --testNamePattern \"Handles getAttribute failure\"",
+    "debug": "cross-env DEBUG=nightwatch-api NIGHTWATCH_VERBOSE=true node --inspect ./node_modules/jest/bin/jest.js --runInBand",
     "lint": "tslint -p tsconfig.json 'src/**/*.{ts,tsx}'"
   },
   "jest": {
