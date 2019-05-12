@@ -88,6 +88,20 @@ describe('Assertion features', () => {
     );
   });
 
+  test('Handles getAttribute failure', async () => {
+    const errorHandler = jest.fn();
+    try {
+      await client
+        .init()
+        .getAttribute('#not-existing-element', 'test-attribute', ({ error }) => { if (error) { throw Error(error) } });
+    } catch (err) {
+      errorHandler(err.message);
+    }
+    expect(errorHandler).toBeCalledWith(
+      expect.stringContaining('Error while running "getAttribute" command: no such element: Unable to locate element')
+    );
+  });
+
   test('Handles page object expect.element success', async () => {
     await client
       .init()
