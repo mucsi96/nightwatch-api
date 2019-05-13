@@ -8,4 +8,6 @@ export default class Reporter {
   }
 
   registerFailed() {}
+
+  registerTestError() {}
 }

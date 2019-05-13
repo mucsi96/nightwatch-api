@@ -22,12 +22,13 @@
     "test:unit": "npm test -- --config jest.unit.config.js",
     "test:unit:watch": "npm run test:unit -- --watch --coverage",
     "test:e2e": "npm test -- --config jest.e2e.config.js",
+    "test:e2e:watch": "npm run test:e2e -- --watch",
     "test:coverage": "npm test -- --coverage",
     "test:coveralls": "cat ./coverage/lcov.info | coveralls",
     "check-webdriver-stopped": "ts-node ./scripts/check-webdriver-stopped.ts",
     "prepack": "npm run clean && npm run build",
     "pack-into-examples": "ts-node ./scripts/pack-into-examples.ts",
-    "debug": "cross-env DEBUG=nightwatch-api NIGHTWATCH_VERBOSE=true babel-node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
+    "debug": "cross-env DEBUG=nightwatch-api NIGHTWATCH_VERBOSE=true node --inspect ./node_modules/jest/bin/jest.js --runInBand",
     "lint": "tslint -p tsconfig.json 'src/**/*.{ts,tsx}'"
   },
   "jest": {
