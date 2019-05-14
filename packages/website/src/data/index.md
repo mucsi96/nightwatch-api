@@ -13,6 +13,128 @@ Nightwatch.js uses the powerful [W3C WebDriver](https://www.w3.org/TR/webdriver/
 
 With this package the Nightwatch.js runner is disabled in favour of any type of test runner or other custom usage. Check the [cucumber-example](https://github.com/mucsi96/nightwatch-api/tree/master/packages/cucumber-example) to see how can it be used with Cucumber.js
 
+## Differences from nightwatch package
+
+This package has a chainable Promise based API. Because of that it can be used by any test runner which support asynchronous code testing like: Jest, Mocha, CucumberJs, Jasmine, etc. But because every command returns a Promise you should follow these rules.
+
+### Returning a Promise
+
+Every test case which uses Nightwatch client should return the result of api call as it returns a Promise. Please note that this behavior is different from plain Nightwatch client API.
+
+```
+// NOT OK
+
+Given(/^I open Google's search page$/, () => {
+  client
+    .url('http://google.com')
+    .waitForElementVisible('body', 1000);
+});
+```
+
+```
+// OK
+
+Given(/^I open Google's search page$/, () => {
+  return client
+    .url('http://google.com')
+    .waitForElementVisible('body', 1000);
+});
+```
+
+```
+// OK
+
+Given(/^I open Google's search page$/, async () => {
+  await client
+    .url('http://google.com')
+    .waitForElementVisible('body', 1000);
+});
+```
+
+```
+// OK
+
+Given(/^I open Google's search page$/, () => {
+  client.url('http://google.com');
+
+  return client.waitForElementVisible('body', 1000);
+});
+```
+
+```
+// OK
+
+Given(/^I open Google's search page$/, async () => {
+  client.url('http://google.com');
+
+  await client.waitForElementVisible('body', 1000);
+});
+```
+
+```
+// OK Recommended
+
+Given(/^I open Google's search page$/, async () => {
+  await client.url('http://google.com');
+  await client.waitForElementVisible('body', 1000);
+});
+```
+
+### Writing proper command callbacks
+
+```
+// NOT OK
+
+Then(/^the title is "(.*?)"$/, async text => {
+  await client.getAttribute(
+    'body',
+    'id',
+    result => client.assert.equal('pg-index', result.value)
+  );
+});
+```
+
+```
+// OK
+
+Then(/^the title is "(.*?)"$/, async text => {
+  let bodyId;
+  await client.getAttribute(
+    'body',
+    'id',
+    result => {
+      if (result.error) {
+        throw Error(result.error);
+      }
+
+      bodyId = result.value;
+    }
+  );
+  await client.assert.equal('pg-index', bodyId);
+});
+```
+
+```
+// OK
+
+Then(/^the title is "(.*?)"$/, async text => {
+  let bodyId;
+  await client.getAttribute(
+    'body',
+    'id',
+    ({ error, value }) => {
+      if (error) {
+        throw Error(error);
+      }
+
+      bodyId = value;
+    }
+  );
+  await client.assert.equal('pg-index', bodyId);
+});
+```
+
+
 ## Installation
 
 This module is distributed via [npm][npm] which is bundled with [node][node] and

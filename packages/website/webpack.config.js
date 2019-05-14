@@ -12,9 +12,9 @@ const commonConfig = {
   output: {
     path: distPath
   },
-  serve: {
-    content: distPath,
-    hotClient: false
+  devServer: {
+    contentBase: distPath,
+    inline: false
   },
   stats: 'minimal',
   module: {
