@@ -207,3 +207,10 @@ export class Section extends section {
     promisifySection(this.api, Client.runQueue);
   }
 }
+
+/**
+ * Return the screenshot filenames which were created after latest call of this method.
+ */
+export function getNewScreenshots() {
+  return Client.getNewScreenshots();
+}
