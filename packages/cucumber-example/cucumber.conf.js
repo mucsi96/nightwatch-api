@@ -31,7 +31,7 @@ AfterAll(async () => {
         'Test Environment': 'POC'
       }
     });
-  }, 0);
+  }, 1000);
 });
 
 After(function() {
