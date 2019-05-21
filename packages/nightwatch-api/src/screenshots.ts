@@ -45,5 +45,7 @@ export async function createFailureScreenshot(client: Client) {
       }
     );
   });
-  await saveFailureScreenshot(path.join(client.api.screenshotsPath, getFileName()), screenshotData);
+  const fileName = path.join(client.api.screenshotsPath, getFileName());
+  await saveFailureScreenshot(fileName, screenshotData);
+  return fileName;
 }

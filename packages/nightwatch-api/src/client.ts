@@ -21,6 +21,7 @@ interface IOptions {
 let runner: CliRunnerInstance | null;
 let runnerOptions: IOptions | null;
 let client: Client | null;
+let screenshots: string[] = [];
 
 export function deleteRunner() {
   runner = null;
@@ -141,7 +142,8 @@ async function handleQueueResult(err: NightwatchError, resolve: Function, reject
 
   if (client && client.api.screenshotsPath) {
     log('Creating screenshot because of failure');
-    await createFailureScreenshot(client);
+    const fileName = await createFailureScreenshot(client);
+    screenshots.push(fileName);
   }
 
   err.stack = [err.message, err.stack].join('\n');
@@ -168,4 +170,10 @@ export async function runQueue() {
   } finally {
     resetQueue();
   }
+}
+
+export function getNewScreenshots() {
+  const result = screenshots;
+  screenshots = [];
+  return result;
 }

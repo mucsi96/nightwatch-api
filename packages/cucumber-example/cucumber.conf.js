@@ -1,21 +1,13 @@
 const fs = require('fs');
-const path = require('path');
 const { setDefaultTimeout, After, AfterAll, BeforeAll } = require('cucumber');
-const { createSession, closeSession, startWebDriver, stopWebDriver } = require('nightwatch-api');
+const {
+  createSession,
+  closeSession,
+  startWebDriver,
+  stopWebDriver,
+  getNewScreenshots
+} = require('nightwatch-api');
 const reporter = require('cucumber-html-reporter');
-
-const attachedScreenshots = getScreenshots();
-
-function getScreenshots() {
-  try {
-    const folder = path.resolve(__dirname, 'screenshots');
-
-    const screenshots = fs.readdirSync(folder).map(file => path.resolve(folder, file));
-    return screenshots;
-  } catch (err) {
-    return [];
-  }
-}
 
 setDefaultTimeout(60000);
 
@@ -39,16 +31,9 @@ AfterAll(async () => {
         'Test Environment': 'POC'
       }
     });
-  }, 0);
+  }, 1000);
 });
 
 After(function() {
-  return Promise.all(
-    getScreenshots()
-      .filter(file => !attachedScreenshots.includes(file))
-      .map(file => {
-        attachedScreenshots.push(file);
-        return this.attach(fs.readFileSync(file), 'image/png');
-      })
-  );
+  getNewScreenshots().forEach(file => this.attach(fs.readFileSync(file), 'image/png'));
 });
