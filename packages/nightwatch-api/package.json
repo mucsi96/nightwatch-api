@@ -74,7 +74,7 @@
     "chromedriver": "^74.0.0",
     "coveralls": "^3.0.3",
     "cross-env": "^5.2.0",
-    "del-cli": "^1.1.0",
+    "del-cli": "^2.0.0",
     "geckodriver": "^1.16.2",
     "husky": "^2.3.0",
     "jest": "^24.8.0",
