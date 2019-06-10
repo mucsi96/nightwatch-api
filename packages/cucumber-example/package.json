@@ -20,7 +20,7 @@
     "cross-env": "^5.2.0",
     "cucumber": "^5.1.0",
     "cucumber-html-reporter": "^5.0.0",
-    "cucumber-pretty": "^1.5.0",
+    "cucumber-pretty": "^1.5.2",
     "geckodriver": "^1.16.2",
     "mkdirp": "^0.5.1",
     "nightwatch": "^1.1.11",
