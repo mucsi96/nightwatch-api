@@ -17,7 +17,7 @@
     "cucumber": "^5.1.0",
     "cucumber-pretty": "^1.5.0",
     "geckodriver": "^1.16.2",
-    "nightwatch": "^1.1.11",
+    "nightwatch": "^1.1.13",
     "nightwatch-api": "latest",
     "selenium-server-standalone-jar": "^3.141.5"
   }
