@@ -76,7 +76,7 @@
     "cross-env": "^5.2.0",
     "del-cli": "^2.0.0",
     "geckodriver": "^1.16.2",
-    "husky": "^2.3.0",
+    "husky": "^3.0.0",
     "jest": "^24.8.0",
     "lodash.omit": "^4.5.0",
     "nightwatch": "^1.1.11",
