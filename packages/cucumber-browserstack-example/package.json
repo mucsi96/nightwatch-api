@@ -15,7 +15,7 @@
     "cucumber": "^5.1.0",
     "cucumber-pretty": "^1.5.2",
     "dotenv-safe": "^6.1.0",
-    "nightwatch": "1.1.11",
+    "nightwatch": "^1.1.13",
     "nightwatch-api": "latest"
   }
 }
