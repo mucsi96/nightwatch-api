@@ -14,7 +14,7 @@
     "audit": "lighthouse https://nightwatch-api.netlify.com --output-path=./lighthouse.report.html --quiet --view"
   },
   "dependencies": {
-    "typedoc": "^0.14.2",
+    "typedoc": "^0.15.0",
     "styled-components": "^4.2.1",
     "react-syntax-highlighter": "^10.3.0",
     "react-markdown": "^4.0.8",
