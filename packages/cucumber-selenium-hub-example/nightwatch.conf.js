@@ -29,6 +29,7 @@ module.exports = {
         javascriptEnabled: true,
         acceptSslCerts: true,
         chromeOptions: {
+          w3c: false,
           args: ['headless', 'disable-gpu']
         }
       }
@@ -39,6 +40,7 @@ module.exports = {
         javascriptEnabled: true,
         acceptSslCerts: true,
         chromeOptions: {
+          w3c: false,
           args: ['disable-gpu']
         }
       }
