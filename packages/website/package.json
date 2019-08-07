@@ -36,7 +36,7 @@
     "babel-loader": "^8.0.6",
     "babel-plugin-inline-react-svg": "^1.1.0",
     "babel-plugin-styled-components": "^1.10.0",
-    "css-loader": "^2.1.1",
+    "css-loader": "^3.2.0",
     "del-cli": "^2.0.0",
     "emoji-regex": "^8.0.0",
     "file-loader": "^3.0.1",
