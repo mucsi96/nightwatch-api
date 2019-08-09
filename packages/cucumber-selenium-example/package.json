@@ -26,6 +26,6 @@
     "iedriver": "^3.14.1",
     "nightwatch": "^1.1.13",
     "nightwatch-api": "latest",
-    "selenium-server-standalone-jar": "^3.141.5"
+    "selenium-server-standalone-jar": "^3.141.59"
   }
 }
