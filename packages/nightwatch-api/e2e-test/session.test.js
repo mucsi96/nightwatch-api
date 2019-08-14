@@ -47,9 +47,8 @@ describe('Session handling', () => {
     const response = await fetch(`http://localhost:4444/session/${sessionId}`);
     const json = await response.json();
     expect(json).toMatchObject({
-      status: 6,
       value: {
-        message: expect.stringMatching(/^invalid session id/)
+        message: 'invalid session id'
       }
     });
   });

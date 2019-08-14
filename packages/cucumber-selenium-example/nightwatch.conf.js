@@ -23,20 +23,17 @@ module.exports = {
     chromeHeadless: {
       desiredCapabilities: {
         browserName: 'chrome',
-        javascriptEnabled: true,
-        acceptSslCerts: true,
-        chromeOptions: {
-          args: ['headless', 'disable-gpu']
+        'goog:chromeOptions': {
+          w3c: false,
+          args: ['--headless']
         }
       }
     },
     chrome: {
       desiredCapabilities: {
         browserName: 'chrome',
-        javascriptEnabled: true,
-        acceptSslCerts: true,
-        chromeOptions: {
-          args: ['disable-gpu']
+        'goog:chromeOptions': {
+          w3c: false
         }
       }
     },

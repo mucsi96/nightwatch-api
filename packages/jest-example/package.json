@@ -12,15 +12,12 @@
   "author": "Igor Mucsicska <mucsi_96@yahoo.com>",
   "license": "MIT",
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-jest": "^24.8.0",
-    "babel-preset-env": "^1.7.0",
-    "chromedriver": "^74.0.0",
+    "@babel/preset-env": "^7.5.5",
+    "chromedriver": "^76.0.0",
     "cross-env": "^5.2.0",
     "geckodriver": "^1.16.2",
     "jest": "^24.8.0",
-    "nightwatch": "^1.1.11",
+    "nightwatch": "^1.2.1",
     "nightwatch-api": "latest"
   }
 }

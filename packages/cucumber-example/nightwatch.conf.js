@@ -6,7 +6,7 @@ module.exports = {
   test_settings: {
     default: {
       webdriver: {
-        start_process: true,
+        start_process: false,
         port: 4444
       },
       screenshots: {
@@ -21,10 +21,9 @@ module.exports = {
       },
       desiredCapabilities: {
         browserName: 'chrome',
-        javascriptEnabled: true,
-        acceptSslCerts: true,
-        chromeOptions: {
-          args: ['headless', 'disable-gpu']
+        'goog:chromeOptions': {
+          w3c: false,
+          args: ['--headless']
         }
       }
     },
@@ -35,10 +34,8 @@ module.exports = {
       },
       desiredCapabilities: {
         browserName: 'chrome',
-        javascriptEnabled: true,
-        acceptSslCerts: true,
-        chromeOptions: {
-          args: ['disable-gpu']
+        'goog:chromeOptions': {
+          w3c: false
         }
       }
     },
