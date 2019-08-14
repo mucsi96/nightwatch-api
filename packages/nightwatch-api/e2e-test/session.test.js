@@ -6,8 +6,6 @@ describe('Session handling', () => {
     const response = await fetch('http://localhost:4444/status');
     const json = await response.json();
     expect(json).toMatchObject({
-      sessionId: '',
-      status: 0,
       value: {
         build: {
           version: expect.any(String)

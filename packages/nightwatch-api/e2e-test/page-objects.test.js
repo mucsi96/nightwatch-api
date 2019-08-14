@@ -48,6 +48,7 @@ describe('Page object features', () => {
 
   test('Export a section that inherits correctly', async () => {
     const dynamicSection = calculatorWithDynamicSection.getDynamicSection(9);
+    await client.init();
     expect(dynamicSection.toString()).toEqual('Section [name=Dynamic Section]');
     expect(dynamicSection.parent).toBe(calculatorWithDynamicSection);
   });
