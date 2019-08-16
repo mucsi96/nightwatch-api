@@ -32,9 +32,9 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
+    "@svgr/webpack": "^4.3.2",
     "babel-core": "^7.0.0-bridge.0",
     "babel-loader": "^8.0.6",
-    "babel-plugin-inline-react-svg": "^1.1.0",
     "babel-plugin-styled-components": "^1.10.6",
     "css-loader": "^3.2.0",
     "del-cli": "^2.0.0",
@@ -48,7 +48,6 @@
     "simple-icons": "^1.13.0",
     "static-site-generator-webpack-plugin": "^3.4.2",
     "style-loader": "^1.0.0",
-    "twemoji": "^12.1.2",
     "webpack": "^4.39.2",
     "webpack-cli": "^3.3.6",
     "webpack-dev-server": "^3.8.0",
@@ -71,8 +70,7 @@
         {
           "ssr": true
         }
-      ],
-      "inline-react-svg"
+      ]
     ]
   }
 }

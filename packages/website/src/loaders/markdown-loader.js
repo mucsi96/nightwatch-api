@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 const twemoji = require('twemoji');
 const emojiRegex = require('emoji-regex')();
 const mdImport = `@import '[^']+'`;
@@ -23,7 +24,10 @@ function processMarkdownImport(moduleParts, path) {
 function processEmoji(moduleParts, emoji) {
   const codePoint = twemoji.convert.toCodePoint(emoji);
   const importVariable = `emoji${moduleParts.imports.length + 1}`;
-  const svgPath = `raw-loader!twemoji/2/svg/${codePoint}.svg`;
+  const svgPath = `raw-loader!${path.relative(
+    path.dirname(moduleParts.resourcePath),
+    path.resolve(__dirname, '../emojis')
+  )}/${codePoint}.svg`;
   const importStatement = `import ${importVariable} from '${svgPath}';`;
 
   return {
@@ -72,7 +76,9 @@ function processMarkdownChunk(moduleParts, chunk) {
   return processTextChunk(moduleParts, chunk);
 }
 
-function createESModulePartsFromMarkdown(markdownSource) {
+function createESModulePartsFromMarkdown(resourcePath) {
+  const markdownSource = fs.readFileSync(resourcePath, 'utf8');
+
   return markdownSource
     .split(new RegExp(`(${mdImport}|${emojiRegex}|${relativeImage})`))
     .filter(chunk => chunk)
@@ -80,7 +86,8 @@ function createESModulePartsFromMarkdown(markdownSource) {
       imports: [],
       textChunks: [],
       emojiMap: {},
-      importedEmojiMaps: []
+      importedEmojiMaps: [],
+      resourcePath
     });
 }
 
@@ -104,10 +111,8 @@ function createESModuleSourceFromParts({ imports, textChunks, emojiMap, imported
 }
 
 module.exports = function() {
-  const markdownSource = fs.readFileSync(this.resourcePath, 'utf8');
-
   const ESModuleSource = createESModuleSourceFromParts(
-    createESModulePartsFromMarkdown(markdownSource)
+    createESModulePartsFromMarkdown(this.resourcePath)
   );
 
   return ESModuleSource;

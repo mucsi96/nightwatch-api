@@ -109,7 +109,27 @@ Then(/^the title is "(.*?)"$/, async text => {
   await client.getAttribute(
     'body',
     'id',
-    { value } => {
+    result => {
+      if (result.value.error) {
+        throw Error(result.value.error);
+      }
+
+      bodyId = result.value;
+    }
+  );
+  await client.assert.equal('pg-index', bodyId);
+});
+```
+
+```
+// OK
+
+Then(/^the title is "(.*?)"$/, async text => {
+  let bodyId;
+  await client.getAttribute(
+    'body',
+    'id',
+    ({ value }) => {
       if (value.error) {
         throw Error(value.error);
       }
