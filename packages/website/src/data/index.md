@@ -11,7 +11,7 @@ Nightwatch.js uses the powerful [W3C WebDriver](https://www.w3.org/TR/webdriver/
 
 ## Differences from nightwatch-cucumber and nightwatch package
 
-This package exposes the core features of Nightwatch without it's runner. The runner and test case handling is disabled. Due to this features related to runner and test cases are not supported.
+This package exposes the core features of Nightwatch without it's runner. The runner and test case handling are disabled. Due to this features related to runner and test cases are not supported.
 Instead you can use similar features of your chosen test runner.
 
 This package has a chainable Promise based API. Because of that it can be used by any test runner which support asynchronous code testing like: Jest, Mocha, CucumberJs, Jasmine, etc. But because every command returns a Promise you should follow these rules.
