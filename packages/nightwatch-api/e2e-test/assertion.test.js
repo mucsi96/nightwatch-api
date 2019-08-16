@@ -31,19 +31,8 @@ describe('Assertion features', () => {
     await client.verify.ok(true, 'this assertion should pass');
   });
 
-  // Due to bug in Nightwatch this test throws error
-  // Error is emitted but not caught
-  // https://github.com/nightwatchjs/nightwatch/blob/master/lib/core/assertion.js#L109
   test('Handles verify.ok failure', async () => {
-    const errorHandler = jest.fn();
-    try {
-      await client.verify.ok(false, 'this assertion should not pass');
-    } catch (err) {
-      errorHandler(err.message);
-    }
-    expect(errorHandler).toBeCalledWith(
-      expect.stringContaining('Failed [ok]: (this assertion should not pass)')
-    );
+    await client.verify.ok(false, 'this assertion should not pass');
   });
 
   test('Handles chai expect success', async () => {
@@ -91,14 +80,18 @@ describe('Assertion features', () => {
   test('Handles getAttribute failure', async () => {
     const errorHandler = jest.fn();
     try {
-      await client
-        .init()
-        .getAttribute('#not-existing-element', 'test-attribute', ({ error }) => { if (error) { throw Error(error) } });
+      await client.init().getAttribute('#not-existing-element', 'test-attribute', ({ error }) => {
+        if (error) {
+          throw Error(error);
+        }
+      });
     } catch (err) {
       errorHandler(err.message);
     }
     expect(errorHandler).toBeCalledWith(
-      expect.stringContaining('Error while running "getAttribute" command: no such element: Unable to locate element')
+      expect.stringContaining(
+        'Error while running "getAttribute" command: no such element: Unable to locate element'
+      )
     );
   });
 
