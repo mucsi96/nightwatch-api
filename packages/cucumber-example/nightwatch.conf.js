@@ -6,7 +6,7 @@ module.exports = {
   test_settings: {
     default: {
       webdriver: {
-        start_process: false,
+        start_process: true,
         port: 4444
       },
       screenshots: {
