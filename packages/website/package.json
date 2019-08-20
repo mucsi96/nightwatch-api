@@ -18,7 +18,7 @@
     "styled-components": "^4.2.1",
     "react-syntax-highlighter": "^10.3.0",
     "react-markdown": "^4.0.8",
-    "highlight.js": "^9.15.8",
+    "highlight.js": "^9.15.10",
     "@sindresorhus/slugify": "^0.9.1",
     "react-router": "^5.0.1",
     "react": "^16.8.6",
