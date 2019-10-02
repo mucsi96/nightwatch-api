@@ -11,26 +11,79 @@ import fs from 'fs';
 import { log } from './logger';
 import { createFailureScreenshot } from './screenshots';
 import reporter from './reporter';
-import browserstack from 'browserstack-local';
 
-interface IOptions {
+export declare interface BrowerStackLocalOptions {
+  key: string;
+  verbose: boolean;
+  force: boolean;
+  only: string;
+  onlyAutomate: boolean;
+  forceLocal: boolean;
+  localIdentifier: string;
+  folder: string;
+  proxyHost: string;
+  proxyPort: string;
+  proxyUser: string;
+  proxyPass: string;
+  forceProxy: boolean;
+  logFile: string;
+  parallelRuns: string;
+  binarypath: string;
+  [key: string]: string | boolean;
+}
+
+declare class BrowerStackLocal {
+  start(options: Partial<BrowerStackLocalOptions>, callback: () => void): void;
+  isRunning(): boolean;
+  stop(callback: () => void): void;
+}
+
+export interface IOptions {
+  /**
+   * Selected Nightwatch [environment](http://nightwatchjs.org/gettingstarted#test-settings).
+   * By default it's `default`.
+   */
   env?: string;
+  /**
+   * Nightwatch configuration file location.
+   * By default it's `nightwatch.json` or `nightwatch.conf.js` in current process working directory.
+   */
   configFile?: string;
+  /**
+   * Disable Nightwatch success logs like "√ Element <body> was visible after 96 milliseconds."
+   * By default it's `false`.
+   */
   silent?: boolean;
+  /**
+   * A set of options for configuring BrowserStack (and the browserstack-local package).
+   * By default it's `undefined`.
+   */
   browserStackOptions?: IBrowserStackOptions;
 }
 
-interface IBrowserStackOptions {
+export interface IBrowserStackOptions {
+  /**
+   * A flag to enable BrowserStack testing. You must have the appropriate options set in your selenium config.
+   * Defaults to `false`.
+   */
   enabled?: boolean;
-  useLocal?: boolean;
-  accessKey?: string;
+  /**
+   * A flag to enable the `browserstack-local` package. This is an optional dependency you must have installed.
+   * Defaults to `false`.
+   */
+  localEnabled?: boolean;
+  /**
+   * The options supported by `browserstack-local`.
+   * Please see https://github.com/browserstack/browserstack-local-nodejs/blob/master/index.d.ts for details.
+   */
+  localOptions?: Partial<BrowerStackLocalOptions>;
 }
 
 let runner: CliRunnerInstance | null;
 let runnerOptions: IOptions | null;
 let client: Client | null;
 let screenshots: string[] = [];
-let browserStackLocal: browserstack.Local | null;
+let browserStackLocal: BrowerStackLocal;
 
 export function deleteRunner() {
   runner = null;
@@ -67,8 +120,8 @@ function getDefaultConfigFile() {
 function getDefaultBrowserStackOptions() {
   let options: IBrowserStackOptions = {
     enabled: false,
-    useLocal: false,
-    accessKey: undefined
+    localEnabled: false,
+    localOptions: undefined
   };
   return options;
 }
@@ -88,13 +141,13 @@ async function createRunner(options: IOptions) {
     };
 
     let browserStackEnabled: boolean | undefined;
-    let browserStackUseLocal: boolean | undefined;
-    let browserStackAccessKey: string | undefined;
+    let browserStackLocalEnabled: boolean | undefined;
+    let browserStackLocalOptions: Partial<BrowerStackLocalOptions> = {};
 
     if (runnerOptions.browserStackOptions) {
       browserStackEnabled = runnerOptions.browserStackOptions.enabled;
-      browserStackUseLocal = runnerOptions.browserStackOptions.useLocal;
-      browserStackAccessKey = runnerOptions.browserStackOptions.accessKey;
+      browserStackLocalEnabled = runnerOptions.browserStackOptions.localEnabled;
+      browserStackLocalOptions = runnerOptions.browserStackOptions.localOptions || {};
     }
 
     runner = CliRunner({ env: runnerOptions.env, config: runnerOptions.configFile });
@@ -106,16 +159,23 @@ async function createRunner(options: IOptions) {
       return managed;
     };
 
-    if (browserStackEnabled && browserStackUseLocal) {
-      browserStackLocal = new browserstack.Local();
-      browserStackLocal.start({ key: browserStackAccessKey }, function() {
-        if (runner) {
-          runner.setup();
-          resolve(runner);
-        } else {
-          reject('Failed to create the runner within BrowserStack Local');
-        }
-      });
+    if (browserStackEnabled && browserStackLocalEnabled) {
+      try {
+        const browserstack = require('browserstack-local');
+
+        browserStackLocal = new browserstack.Local();
+
+        browserStackLocal.start(browserStackLocalOptions, function() {
+          if (runner) {
+            runner.setup();
+            resolve(runner);
+          } else {
+            reject('Failed to create the runner within BrowserStack Local');
+          }
+        });
+      } catch (err) {
+        reject(`Failed to create the runner within BrowserStack Local. Details: ${err}`);
+      }
     } else {
       runner.setup();
       resolve(runner);

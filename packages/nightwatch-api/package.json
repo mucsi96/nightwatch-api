@@ -56,8 +56,10 @@
     "debug": "^4.1.1"
   },
   "peerDependencies": {
-    "browserstack-local": "^1.4.2",
     "nightwatch": "^1.1.11"
+  },
+  "optionalDependencies": {
+    "browserstack-local": "^1.4.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",

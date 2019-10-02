@@ -1,4 +1,12 @@
-import * as Client from './client';
+import {
+  startWebDriver as clientStartWebDriver,
+  stopWebDriver as clientStopWebDriver,
+  createSession as clientCreateSession,
+  closeSession as clientCloseSession,
+  getNewScreenshots as clientGetNewScreenshots,
+  runQueue,
+  IOptions
+} from './client';
 import { promisifyApi, promisifySection, promisifyExpect, promisifyPageObjects } from './promisify';
 import proxy from './proxy';
 import { Api } from 'nightwatch';
@@ -78,32 +86,15 @@ export const client = proxy(() => nightwatchClient);
  *   }
  * )();
  */
-export async function startWebDriver(options: {
-  /**
-   * Selected Nightwatch [environment](http://nightwatchjs.org/gettingstarted#test-settings).
-   * By default it's `default`.
-   */
-  env?: string;
-  /**
-   * Nightwatch configuration file location.
-   * By default it's `nightwatch.json` or `nightwatch.conf.js` in current process working directory.
-   */
-  configFile?: string;
-
-  /**
-   * Disable Nightwatch success logs like "√ Element <body> was visible after 96 milliseconds."
-   * By default it's false.
-   */
-  silent?: boolean;
-}) {
-  return Client.startWebDriver(options);
+export async function startWebDriver(options: IOptions) {
+  return clientStartWebDriver(options);
 }
 
 /**
  * Stops the currently running WebDriver.
  */
 export async function stopWebDriver() {
-  await Client.stopWebDriver();
+  await clientStopWebDriver();
 }
 
 /**
@@ -139,36 +130,19 @@ export async function createSession(
   /**
    * Options are ignored if you already started the WebDriver using `startWebDriver`.
    */
-  options: {
-    /**
-     * Selected Nightwatch [environment](http://nightwatchjs.org/gettingstarted#test-settings).
-     * By default it's the same used for previous startWebDriver call otherwise `default`.
-     */
-    env?: string;
-    /**
-     * Nightwatch configuration file location.
-     * By default it's `nightwatch.json` or `nightwatch.conf.js` in current process working directory.
-     */
-    configFile?: string;
-
-    /**
-     * Disable Nightwatch success logs like "√ Element <body> was visible after 96 milliseconds."
-     * By default it's false.
-     */
-    silent?: boolean;
-  }
+  options: IOptions
 ) {
-  nightwatchClient = await Client.createSession(options);
-  promisifyApi(nightwatchClient, Client.runQueue);
-  promisifyExpect(nightwatchClient, Client.runQueue);
-  promisifyPageObjects(nightwatchClient, Client.runQueue);
+  nightwatchClient = await clientCreateSession(options);
+  promisifyApi(nightwatchClient, runQueue);
+  promisifyExpect(nightwatchClient, runQueue);
+  promisifyPageObjects(nightwatchClient, runQueue);
 }
 
 /**
  * Closes the active WebDriver session.
  */
 export async function closeSession() {
-  await Client.closeSession();
+  await clientCloseSession();
 }
 
 /**
@@ -204,7 +178,7 @@ export async function closeSession() {
 export class Section extends section {
   constructor(definition: object, options: object) {
     super(definition, options);
-    promisifySection(this.api, Client.runQueue);
+    promisifySection(this.api, runQueue);
   }
 }
 
@@ -212,5 +186,5 @@ export class Section extends section {
  * Return the screenshot filenames which were created after latest call of this method.
  */
 export function getNewScreenshots() {
-  return Client.getNewScreenshots();
+  return clientGetNewScreenshots();
 }
