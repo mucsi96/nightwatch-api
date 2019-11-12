@@ -1,9 +1,10 @@
 import { client, closeSession } from '../src';
-import fetch from 'node-fetch';
+import nodeFetch from 'node-fetch';
+import expect from 'expect';
 
 describe('Session handling', () => {
-  test('Should be ready for creating new sessions', async () => {
-    const response = await fetch('http://localhost:4444/status');
+  it('Should be ready for creating new sessions', async () => {
+    const response = await nodeFetch('http://localhost:4444/status');
     const json = await response.json();
     expect(json).toMatchObject({
       value: {
@@ -21,9 +22,9 @@ describe('Session handling', () => {
     });
   });
 
-  test('Should create session', async () => {
+  it('Should create session', async () => {
     const { sessionId } = client;
-    const response = await fetch(`http://localhost:4444/session/${sessionId}`);
+    const response = await nodeFetch(`http://localhost:4444/session/${sessionId}`);
     const json = await response.json();
     expect(json).toMatchObject({
       sessionId,
@@ -39,10 +40,10 @@ describe('Session handling', () => {
     });
   });
 
-  test('Should close session', async () => {
+  it('Should close session', async () => {
     const { sessionId } = client;
     await closeSession();
-    const response = await fetch(`http://localhost:4444/session/${sessionId}`);
+    const response = await nodeFetch(`http://localhost:4444/session/${sessionId}`);
     const json = await response.json();
     expect(json).toMatchObject({
       value: {

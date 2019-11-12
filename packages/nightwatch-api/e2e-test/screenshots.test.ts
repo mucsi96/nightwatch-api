@@ -1,9 +1,10 @@
 import fs from 'fs';
 import path from 'path';
 import { client, getNewScreenshots } from '../src';
+import expect from 'expect';
 
-Date.prototype.getTimezoneOffset = jest.fn(() => -60);
-Date.prototype.getTime = jest.fn(() => 1544964642047);
+Date.prototype.getTimezoneOffset = () => -60;
+Date.prototype.getTime = () => 1544964642047;
 
 describe('screenshots-e2e', () => {
   it('creates failure screenshot', async () => {
@@ -40,7 +41,7 @@ Array [
     try {
       await client.assert.ok(false);
     } catch (err) {}
-    
+
     expect(getNewScreenshots()).toEqual([filename]);
     expect(getNewScreenshots()).toEqual([]);
   });

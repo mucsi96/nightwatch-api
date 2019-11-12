@@ -1,18 +1,21 @@
 import { client } from '../src';
+import expect from 'expect';
 
 describe('General features', () => {
-  test('Handles basic commands', async () => {
-    const onResultReady = jest.fn();
+  it('Handles basic commands', async () => {
+    let result;
     await client
       .init()
       .setValue('#a', 4)
       .setValue('#b', 5)
       .click('#add')
-      .getText('#result-value', ({ value }) => onResultReady(parseInt(value)));
-    expect(onResultReady).toBeCalledWith(9);
+      .getText('#result-value', ({ value }) => {
+        result = parseInt(value, 10);
+      });
+    expect(result).toBeCalledWith(9);
   });
 
-  test('Handles getAttribute success', async () => {
+  it('Handles getAttribute success', async () => {
     let id;
     await client.init();
     await client.getAttribute('#a', 'id', ({ value }) => {
@@ -21,7 +24,7 @@ describe('General features', () => {
     expect(id).toEqual('a');
   });
 
-  test('Handles getAttribute failure', async () => {
+  it('Handles getAttribute failure', async () => {
     await client.init();
 
     let error;
