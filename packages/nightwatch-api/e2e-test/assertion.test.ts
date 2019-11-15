@@ -1,3 +1,4 @@
+import 'mocha';
 require('chai').should();
 
 import { client } from '../src';
@@ -48,7 +49,7 @@ describe('Assertion features', () => {
     expect(errorMessage).toContain('expected false to be true');
   });
 
-  it.only('Handles expect.element success', async () => {
+  it('Handles expect.element success', async () => {
     await client
       .init()
       .setValue('#a', 4)
@@ -57,6 +58,15 @@ describe('Assertion features', () => {
       .expect.element('#result-value')
       .text.to.equal('9');
 
+    await client.expect.element('#a').text.to.equal('10');
+  });
+
+  it('Handles expect.element twice', async () => {
+    await client.init();
+
+    debugger;
+
+    await client.expect.element('#a').text.to.equal('10');
     await client.expect.element('#a').text.to.equal('10');
   });
 

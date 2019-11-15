@@ -27,7 +27,7 @@
     "check-webdriver-stopped": "ts-node ./scripts/check-webdriver-stopped.ts",
     "prepack": "npm run clean && npm run build",
     "pack-into-examples": "ts-node ./scripts/pack-into-examples.ts",
-    "debug": "cross-env NIGHTWATCH_VERBOSE=true node --inspect ./node_modules/ts-mocha/bin/ts-mocha e2e-test/**/*.test.ts --timeout 60000",
+    "debug": "npm run test:e2e -- --inspect",
     "lint": "tslint -p tsconfig.json 'src/**/*.{ts,tsx}'"
   },
   "husky": {
