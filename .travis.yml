@@ -44,7 +44,7 @@ before_script:
 script:
   - npm run lint
   - npm run type-check
-  - npm run test:coverage -- --ci --runInBand
+  - npm run test:e2e
   - npm run check-webdriver-stopped
   - cd ..
   - cd node-example && npm test && cd ../nightwatch-api && npm run check-webdriver-stopped && cd ..
