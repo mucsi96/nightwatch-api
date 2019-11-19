@@ -204,7 +204,7 @@ export async function closeSession() {
 export class Section extends section {
   constructor(definition: object, options: object) {
     super(definition, options);
-    promisifySection(this.api, Client.runQueue);
+    promisifySection((this as unknown) as Api, Client.runQueue);
   }
 }
 

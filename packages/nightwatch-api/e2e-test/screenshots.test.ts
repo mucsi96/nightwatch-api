@@ -1,3 +1,4 @@
+import 'mocha';
 import fs from 'fs';
 import path from 'path';
 import { client, getNewScreenshots } from '../src';

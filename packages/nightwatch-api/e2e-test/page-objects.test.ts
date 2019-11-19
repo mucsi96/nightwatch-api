@@ -1,3 +1,4 @@
+import 'mocha';
 import { client } from '../src';
 
 const notExistingPage = client.page.notExistingPage();
@@ -19,30 +20,36 @@ describe('Page object features', () => {
 
   it('Enables the usage of client in page object custom commands', async () => {
     await client.init();
-    await calculatorWithClientInCustomCommand
+    const promise = calculatorWithClientInCustomCommand
       .setA(4)
       .setB(5)
       .pressAdd()
       .checkResult(9);
+    expect(promise.then).toBeDefined();
+    await promise;
   });
 
   it('Enable the usage of shared client in page object custom commands', async () => {
     await client.init();
-    await calculatorWithSharedPart
+    const promise = calculatorWithSharedPart
       .setA(4)
       .setB(5)
       .pressAdd()
       .checkResult(9);
+    expect(promise.then).toBeDefined();
+    await promise;
   });
 
   it('Enable the usage of section constructor', async () => {
     const dynamicSection = calculatorWithDynamicSection.getDynamicSection(9);
     await client.init();
-    await dynamicSection
+    const promise = dynamicSection
       .setA(4)
       .setB(5)
       .pressAdd()
       .checkResult();
+    expect(promise.then).toBeDefined();
+    await promise;
   });
 
   it('Export a section that inherits correctly', async () => {

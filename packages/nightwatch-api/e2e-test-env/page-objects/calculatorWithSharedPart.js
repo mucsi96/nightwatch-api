@@ -15,8 +15,7 @@ const commands = {
     return this;
   },
   checkResult: function(expectedResult) {
-    shared.assert.containsText('@result', expectedResult);
-    return this;
+    return shared.assert.containsText('@result', expectedResult);
   }
 };
 

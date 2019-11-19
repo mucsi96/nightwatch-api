@@ -1,3 +1,4 @@
+import 'mocha';
 import { client, closeSession } from '../src';
 import nodeFetch from 'node-fetch';
 import expect from 'expect';

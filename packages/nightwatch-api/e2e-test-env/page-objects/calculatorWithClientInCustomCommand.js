@@ -10,8 +10,7 @@ const commands = {
     return this.click('@add');
   },
   checkResult: function(expectedResult) {
-    this.assert.containsText('@result', expectedResult);
-    return this;
+    return this.assert.containsText('@result', expectedResult);
   }
 };
 

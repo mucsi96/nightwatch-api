@@ -1,3 +1,4 @@
+import 'mocha';
 import { client } from '../src';
 import expect from 'expect';
 
