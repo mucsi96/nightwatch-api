@@ -40,6 +40,9 @@ before_script:
   - java -version
   - google-chrome --product-version
 
+env:
+  - NIGHTWATCH_ENV=chromeHeadless
+
 script:
   - npm run lint
   - npm run type-check
