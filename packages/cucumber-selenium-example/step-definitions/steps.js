@@ -18,5 +18,5 @@ Then(/^the Google search form exists$/, async () => {
 });
 
 Then(/^the DuckDuckGo search form exists$/, async () => {
-  await client.assert.visible('input[name="q"]');
+  await client.assert.visible('#search_form_input_homepage');
 });
