@@ -28,7 +28,7 @@ module.exports = {
         browserName: 'chrome',
         'goog:chromeOptions': {
           w3c: false,
-          args: ['--headless']
+          args: ['--headless', '--no-sandbox', '--disable-dev-shm-usage']
         }
       }
     },
