@@ -12,7 +12,7 @@ describe('General features', () => {
       .getText('#result-value', ({ value }) => {
         result = parseInt(value, 10);
       });
-    expect(result).toBeCalledWith(9);
+    expect(result).toEqual(9);
   });
 
   it('Handles getAttribute success', async () => {

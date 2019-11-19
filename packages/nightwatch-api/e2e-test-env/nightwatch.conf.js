@@ -16,7 +16,7 @@ module.exports = {
       },
       screenshots: {
         enabled: true,
-        path: path.resolve(__dirname, 'e2e-test-screenshots')
+        path: path.resolve(__dirname, '../e2e-test/screenshots')
       }
     },
     chromeHeadless: {

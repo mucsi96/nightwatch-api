@@ -59,12 +59,6 @@ describe('Assertion features', () => {
       .text.to.equal('9');
   });
 
-  it('Handles expect.element twice', async () => {
-    await client.init();
-    await client.expect.element('#a').text.to.equal('10');
-    await client.expect.element('#a').text.to.equal('10');
-  });
-
   it('Handles expect.element failure', async () => {
     let errorMessage;
     try {
