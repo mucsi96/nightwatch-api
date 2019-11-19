@@ -57,15 +57,10 @@ describe('Assertion features', () => {
       .click('#add')
       .expect.element('#result-value')
       .text.to.equal('9');
-
-    await client.expect.element('#a').text.to.equal('10');
   });
 
   it('Handles expect.element twice', async () => {
     await client.init();
-
-    debugger;
-
     await client.expect.element('#a').text.to.equal('10');
     await client.expect.element('#a').text.to.equal('10');
   });
