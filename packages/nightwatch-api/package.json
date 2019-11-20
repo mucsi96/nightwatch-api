@@ -1,6 +1,6 @@
 {
   "name": "nightwatch-api",
-  "version": "2.3.0",
+  "version": "3.0.0",
   "main": "./lib/index.js",
   "files": [
     "lib",
