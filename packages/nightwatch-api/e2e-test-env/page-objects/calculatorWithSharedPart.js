@@ -1,17 +1,21 @@
+const { client } = require('../../src');
+
+const shared = client.page.shared();
 const commands = {
   setA: function(value) {
-    return this.setValue('@a', value);
+    shared.setValue('@a', value);
+    return this;
   },
   setB: function(value) {
-    return this.setValue('@b', value);
+    shared.setValue('@b', value);
+    return this;
   },
   pressAdd: function() {
-    this.api.pause(1000);
-    return this.click('@add');
+    shared.click('@add');
+    return this;
   },
   checkResult: function(expectedResult) {
-    this.assert.containsText('@result', expectedResult);
-    return this;
+    return shared.assert.containsText('@result', expectedResult);
   }
 };
 
@@ -19,10 +23,6 @@ module.exports = {
   url: `http://localhost:3000`,
   elements: {
     body: 'body',
-    a: '#a',
-    b: '#b',
-    add: '#add',
-    result: '#result-value',
     searchBar: 'input[name="p"]'
   },
   commands: [commands]

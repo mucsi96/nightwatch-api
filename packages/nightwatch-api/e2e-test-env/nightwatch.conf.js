@@ -16,7 +16,7 @@ module.exports = {
       },
       screenshots: {
         enabled: true,
-        path: path.resolve(__dirname, 'e2e-test-screenshots')
+        path: path.resolve(__dirname, '../e2e-test/screenshots')
       }
     },
     chromeHeadless: {
@@ -26,10 +26,9 @@ module.exports = {
       },
       desiredCapabilities: {
         browserName: 'chrome',
-        javascriptEnabled: true,
-        acceptSslCerts: true,
-        chromeOptions: {
-          args: ['headless', 'disable-gpu']
+        'goog:chromeOptions': {
+          w3c: false,
+          args: ['--headless', '--no-sandbox', '--disable-gpu']
         }
       }
     },
@@ -40,10 +39,8 @@ module.exports = {
       },
       desiredCapabilities: {
         browserName: 'chrome',
-        javascriptEnabled: true,
-        acceptSslCerts: true,
-        chromeOptions: {
-          args: ['disable-gpu']
+        'goog:chromeOptions': {
+          w3c: false
         }
       }
     },

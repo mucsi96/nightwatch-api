@@ -1,5 +1,5 @@
 import { css } from 'styled-components';
-import * as HighlighJs from 'react-syntax-highlighter/dist/styles/hljs';
+import * as HighlighJs from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 
 const syntaxHighlight = HighlighJs.tomorrowNightEighties;
 

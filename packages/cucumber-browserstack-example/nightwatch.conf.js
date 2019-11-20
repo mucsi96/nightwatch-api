@@ -20,10 +20,8 @@ module.exports = {
     chrome: {
       desiredCapabilities: {
         browserName: 'chrome',
-        javascriptEnabled: true,
-        acceptSslCerts: true,
-        chromeOptions: {
-          args: ['disable-gpu']
+        'goog:chromeOptions': {
+          w3c: false
         }
       }
     },

@@ -1,4 +1,5 @@
 {
+  "waitForConditionTimeout": 0,
   "default": {
     "myGlobal": 0
   },

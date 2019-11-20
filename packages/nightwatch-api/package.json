@@ -8,7 +8,7 @@
   ],
   "types": "./lib/index.d.ts",
   "engines": {
-    "node": ">= 8.0.0"
+    "node": ">= 10.0.0"
   },
   "repository": "git@github.com:mucsi96/nightwatch-api.git",
   "author": "Igor Mucsicska <mucsi_96@yahoo.com>",
@@ -18,33 +18,17 @@
     "clean": "del-cli lib",
     "build": "tsc --emitDeclarationOnly && babel src --out-dir lib --extensions \".ts\"",
     "type-check": "tsc --noEmit",
-    "test": "cross-env DEBUG=nightwatch-api jest --no-cache",
+    "test": "cross-env jest --no-cache",
     "test:unit": "npm test -- --config jest.unit.config.js",
     "test:unit:watch": "npm run test:unit -- --watch --coverage",
-    "test:e2e": "npm test -- --config jest.e2e.config.js",
-    "test:e2e:watch": "npm run test:e2e -- --watch",
+    "test:e2e": "cross-env NIGHTWATCH_VERBOSE=true ts-mocha e2e-test/**/*.test.ts --timeout 60000",
     "test:coverage": "npm test -- --coverage",
     "test:coveralls": "cat ./coverage/lcov.info | coveralls",
     "check-webdriver-stopped": "ts-node ./scripts/check-webdriver-stopped.ts",
     "prepack": "npm run clean && npm run build",
     "pack-into-examples": "ts-node ./scripts/pack-into-examples.ts",
-    "debug": "cross-env DEBUG=nightwatch-api NIGHTWATCH_VERBOSE=true node --inspect ./node_modules/jest/bin/jest.js --runInBand",
+    "debug": "npm run test:e2e -- --inspect",
     "lint": "tslint -p tsconfig.json 'src/**/*.{ts,tsx}'"
-  },
-  "jest": {
-    "coverageReporters": [
-      "json",
-      "lcov",
-      "clover"
-    ],
-    "collectCoverageFrom": [
-      "<rootDir>/src/**/*.{js,ts}",
-      "!<rootDir>/src/**/*.test.{js,ts}"
-    ],
-    "projects": [
-      "jest.unit.config.js",
-      "jest.e2e.config.js"
-    ]
   },
   "husky": {
     "hooks": {
@@ -53,42 +37,46 @@
   },
   "dependencies": {
     "debug": "^4.1.1",
-    "@types/debug": "^4.1.4"
+    "@types/debug": "^4.1.5"
   },
   "peerDependencies": {
-    "nightwatch": "^1.1.11"
+    "nightwatch": "^1.2.4"
   },
   "devDependencies": {
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.5",
-    "@babel/node": "^7.4.5",
-    "@babel/plugin-proposal-class-properties": "^7.4.4",
-    "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
-    "@babel/preset-env": "^7.4.5",
-    "@babel/preset-typescript": "^7.3.3",
-    "@babel/register": "^7.4.4",
-    "@types/jest": "^24.0.13",
-    "@types/node": "^12.0.4",
-    "@types/node-fetch": "^2.3.4",
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "@babel/node": "^7.7.0",
+    "@babel/plugin-proposal-class-properties": "^7.7.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/preset-typescript": "^7.7.2",
+    "@babel/register": "^7.7.0",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.12.7",
+    "@types/node-fetch": "^2.5.3",
+    "@types/sinon": "^7.5.0",
     "chai": "^4.2.0",
-    "chromedriver": "^74.0.0",
-    "coveralls": "^3.0.3",
-    "cross-env": "^5.2.0",
-    "del-cli": "^2.0.0",
-    "geckodriver": "^1.16.2",
-    "husky": "^2.3.0",
-    "jest": "^24.8.0",
+    "chromedriver": "^78.0.1",
+    "coveralls": "^3.0.7",
+    "cross-env": "^6.0.3",
+    "del-cli": "^3.0.0",
+    "expect": "^24.9.0",
+    "geckodriver": "^1.19.1",
+    "husky": "^3.0.9",
     "lodash.omit": "^4.5.0",
-    "nightwatch": "^1.1.11",
+    "mocha": "^6.2.2",
+    "nightwatch": "^1.2.4",
     "node-fetch": "^2.6.0",
-    "prettier": "^1.17.1",
-    "pretty-quick": "^1.11.0",
+    "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1",
     "selenium-server": "^3.141.59",
-    "ts-node": "^8.2.0",
-    "tslint": "^5.16.0",
-    "tslint-config-airbnb": "^5.11.1",
+    "sinon": "^7.5.0",
+    "ts-mocha": "^6.0.0",
+    "ts-node": "^8.5.0",
+    "tslint": "^5.20.1",
+    "tslint-config-airbnb": "^5.11.2",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.5.1"
+    "typescript": "^3.7.2"
   },
   "contributors": [
     {

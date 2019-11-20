@@ -1,6 +1,6 @@
 sudo: required
 
-dist: trusty
+dist: bionic
 
 services:
   - docker
@@ -11,8 +11,8 @@ addons:
 language: node_js
 
 node_js:
-  - '8'
   - '10'
+  - '12'
 
 cache:
   directories:
@@ -37,14 +37,16 @@ install:
   - npm run pack-into-examples
 
 before_script:
-  - jdk_switcher use oraclejdk8
   - java -version
   - google-chrome --product-version
+
+env:
+  - NIGHTWATCH_ENV=chromeHeadless
 
 script:
   - npm run lint
   - npm run type-check
-  - npm run test:coverage
+  - npm run test:e2e
   - npm run check-webdriver-stopped
   - cd ..
   - cd node-example && npm test && cd ../nightwatch-api && npm run check-webdriver-stopped && cd ..
@@ -52,7 +54,7 @@ script:
   - cd cucumber-example && npm test && cd ../nightwatch-api && npm run check-webdriver-stopped && cd ..
   - cd cucumber-selenium-example && npm test && cd ../nightwatch-api && npm run check-webdriver-stopped && cd ..
   - cd cucumber-selenium-hub-example && docker-compose up --abort-on-container-exit && cd ..
-  - cd cucumber-browserstack-example && npm test && cd ..
+  - cd cucumber-browserstack-example && NIGHTWATCH_ENV=chrome npm test && cd ..
 
 after_success:
   - cd nightwatch-api
@@ -69,4 +71,4 @@ deploy:
   skip_cleanup: true
   on:
     branch: master
-    node: '10'
+    node: '12'
