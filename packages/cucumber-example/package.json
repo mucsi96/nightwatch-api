@@ -18,7 +18,7 @@
     "@babel/register": "^7.7.0",
     "chromedriver": "^78.0.1",
     "cross-env": "^6.0.3",
-    "cucumber": "^6.0.4",
+    "cucumber": "^6.0.5",
     "cucumber-html-reporter": "^5.0.2",
     "cucumber-pretty": "^6.0.0",
     "geckodriver": "^1.19.1",
