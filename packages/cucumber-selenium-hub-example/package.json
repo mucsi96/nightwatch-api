@@ -14,7 +14,7 @@
     "@babel/preset-env": "^7.7.1",
     "@babel/register": "^7.7.0",
     "chromedriver": "^78.0.1",
-    "cucumber": "^6.0.4",
+    "cucumber": "^6.0.5",
     "cucumber-pretty": "^6.0.0",
     "geckodriver": "^1.19.1",
     "nightwatch": "^1.2.4",
