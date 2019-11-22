@@ -98,9 +98,7 @@ describe('Assertion features', () => {
     } catch (err) {
       errorMessage = err.message;
     }
-    expect(errorMessage).toContain(
-      'Expected element <Element [name=@result]> text to contain: "10"'
-    );
+    expect(errorMessage).toContain('Expected element <#result-value> text to contain: "10"');
   });
 
   it('Handles nested page object expect.element failure', async () => {
@@ -116,9 +114,7 @@ describe('Assertion features', () => {
     } catch (err) {
       errorMessage = err.message;
     }
-    expect(errorMessage).toContain(
-      'Expected element <Element [name=@result]> text to contain: "10"'
-    );
+    expect(errorMessage).toContain('Expected element <#result-value> text to contain: "10"');
   });
 
   it('Handles page object nested sections expect.element failure', async () => {
@@ -153,6 +149,6 @@ describe('Assertion features', () => {
     } catch (err) {
       errorMessage = err.message;
     }
-    expect(errorMessage).toContain('Expected element <Element [name=@result]> text to equal: "9"');
+    expect(errorMessage).toContain('Expected element <#result-value> text to equal: "9"');
   });
 });
