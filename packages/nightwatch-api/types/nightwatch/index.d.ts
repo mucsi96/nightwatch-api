@@ -62,11 +62,27 @@ declare module 'nightwatch' {
     [key: string]: Promise<Api> | Function | Expect | Sections | Pages | string;
   }
 
+  export interface ScreenshotResult {
+    state?: string;
+    status: number;
+    value: string;
+  }
+
+  export type ScreenshotCallback = (result: ScreenshotResult) => void;
+  export type SessionCallback = () => void;
+
+  export interface TransportActions {
+    sessionAction: (method: string, sessionId: string, callback: SessionCallback) => void;
+    getScreenshot: (log_screenshot_data: boolean, callback: ScreenshotCallback) => void;
+  }
+
   export interface Client {
     startSession: Function;
     api: Api;
     queue: Queue;
+    sessionId: string;
     session: Session;
+    transportActions: TransportActions;
   }
 
   export function CliRunner(config: object): CliRunnerInstance;
@@ -78,52 +94,22 @@ declare module 'nightwatch' {
   }
 }
 
-declare module 'nightwatch/lib/api/protocol' {
-  import { Client } from 'nightwatch';
-
-  export interface ScreenshotResult {
-    state?: string;
-    status: number;
-    value: string;
-  }
-
-  export type ScreenshotCallback = (result: ScreenshotResult) => void;
-  export type SessionCallback = () => void;
-
-  interface SessionActions {
-    GET: string;
-    POST: string;
-    DELETE: string;
-  }
-
-  interface ProtocolActions {
-    screenshot: (log: boolean, callback: ScreenshotCallback) => void;
-    session: (action: string, callback: SessionCallback) => void;
-  }
-
-  export default class Protocol {
-    constructor(client: Client);
-
-    Actions: ProtocolActions;
-
-    static SessionActions: SessionActions;
-  }
-}
-
 declare module 'nightwatch/lib/testsuite/reporter' {
   export default class Reporter {
     constructor(tests: Array<any>, suiteRetries: number, settings: Object, addOpts: Object);
   }
 }
 
-declare module 'nightwatch/lib/testsuite/screenshots' {
+declare module 'nightwatch/lib/utils/screenshots' {
   type writeScreenshotToFileCallback = (err: Error) => void;
 
-  export function writeScreenshotToFile(
-    fileName: string,
-    screenshotData: string,
-    callback: writeScreenshotToFileCallback
-  ): void;
+  export default class Screenshots {
+    static writeScreenshotToFile(
+      fileName: string,
+      screenshotData: string,
+      callback: writeScreenshotToFileCallback
+    ): void;
+  }
 }
 
 declare module 'nightwatch/lib/page-object/section' {

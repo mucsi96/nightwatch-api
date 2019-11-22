@@ -4,6 +4,7 @@ const path = require('path');
 
 module.exports = {
   silent: !process.env.NIGHTWATCH_VERBOSE,
+  disable_colors: true,
   src_folders: ['.'],
   page_objects_path: path.resolve(__dirname, 'page-objects'),
   globals_path: path.resolve(__dirname, 'globals/globals.json'),
