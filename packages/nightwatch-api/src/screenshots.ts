@@ -1,8 +1,8 @@
 import util from 'util';
 import path from 'path';
-import protocol, { ScreenshotResult } from 'nightwatch/lib/api/protocol';
-import screenshots from 'nightwatch/lib/testsuite/screenshots';
-import { Client } from 'nightwatch';
+// tslint:disable-next-line: import-name
+import Screenshots from 'nightwatch/lib/utils/screenshots';
+import { Client, ScreenshotResult } from 'nightwatch';
 
 function getFileName() {
   const date = new Date();
@@ -16,7 +16,7 @@ function getFileName() {
 
 function saveFailureScreenshot(fileName: string, screenshotData: string) {
   return new Promise((resolve, reject) => {
-    screenshots.writeScreenshotToFile(fileName, screenshotData, err => {
+    Screenshots.writeScreenshotToFile(fileName, screenshotData, err => {
       if (err) {
         return reject(err);
       }
@@ -27,23 +27,18 @@ function saveFailureScreenshot(fileName: string, screenshotData: string) {
 }
 
 export async function createFailureScreenshot(client: Client) {
-  const protocolInstance = new protocol(client);
   const screenshotData = await new Promise<string>((resolve, reject) => {
-    protocolInstance.Actions.screenshot.call(
-      protocolInstance,
-      false,
-      (response: ScreenshotResult) => {
-        if ((response.state && response.state !== 'success') || response.status) {
-          return reject(
-            new Error(
-              `Creating screenshot was not successful. Response was:\n${util.inspect(response)}`
-            )
-          );
-        }
-
-        return resolve(response.value);
+    client.transportActions.getScreenshot(false, (response: ScreenshotResult) => {
+      if ((response.state && response.state !== 'success') || response.status) {
+        return reject(
+          new Error(
+            `Creating screenshot was not successful. Response was:\n${util.inspect(response)}`
+          )
+        );
       }
-    );
+
+      return resolve(response.value);
+    });
   });
   const fileName = path.join(client.api.screenshotsPath, getFileName());
   await saveFailureScreenshot(fileName, screenshotData);
