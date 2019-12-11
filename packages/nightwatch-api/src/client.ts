@@ -11,13 +11,6 @@ import { log } from './logger';
 import { createFailureScreenshot } from './screenshots';
 import reporter from './reporter';
 
-export interface IOptions {
-  env?: string;
-  configFile?: string;
-  silent?: boolean;
-  browserStackOptions?: IBrowserStackOptions;
-}
-
 export declare interface BrowerStackLocalOptions {
   key: string;
   verbose: boolean;
@@ -60,6 +53,13 @@ export interface IBrowserStackOptions {
    * Please see https://github.com/browserstack/browserstack-local-nodejs/blob/master/index.d.ts for details.
    */
   localOptions?: Partial<BrowerStackLocalOptions>;
+}
+
+interface IOptions {
+  env?: string;
+  configFile?: string;
+  silent?: boolean;
+  browserStackOptions?: IBrowserStackOptions;
 }
 
 let runner: CliRunnerInstance | null;
@@ -148,7 +148,7 @@ async function createRunner(options: IOptions) {
 
         browserStackLocal = new browserstack.Local();
 
-        browserStackLocal.start(browserStackLocalOptions, function() {
+        browserStackLocal.start(browserStackLocalOptions, () => {
           if (runner) {
             runner.setup();
             resolve(runner);
@@ -169,7 +169,7 @@ async function createRunner(options: IOptions) {
 async function stopBrowserStackLocal() {
   return new Promise<void>((resolve, reject) => {
     if (browserStackLocal) {
-      browserStackLocal.stop(function() {
+      browserStackLocal.stop(() => {
         log('BrowserStack Local stopped');
         resolve();
       });
@@ -184,7 +184,7 @@ export async function startWebDriver(options: IOptions) {
   const runner = await createRunner(options);
 
   if (!runner) {
-    return Promise.reject("The CliRunner instance wasn't properly created");
+    throw new Error("The CliRunner instance wasn't properly created");
   }
 
   let driverPort: number | undefined;
@@ -228,7 +228,7 @@ export async function createSession(options: IOptions): Promise<Api> {
   const runner = await createRunner(options);
 
   if (!runner) {
-    return Promise.reject("The CliRunner instance wasn't properly created");
+    throw new Error("The CliRunner instance wasn't properly created");
   }
 
   const settings = runner.test_settings;
