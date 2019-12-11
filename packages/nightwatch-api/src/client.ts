@@ -205,8 +205,6 @@ export async function stopWebDriver() {
     return;
   }
 
-  await stopBrowserStackLocal();
-
   let driverPort: number | undefined;
   if (runner.test_settings.webdriver) {
     const { port } = runner.test_settings.webdriver;
@@ -214,6 +212,7 @@ export async function stopWebDriver() {
   }
 
   await runner.stopWebDriver();
+  await stopBrowserStackLocal();
 
   if (driverPort) {
     log(`WebDriver stopped on port ${driverPort} for ${runner.testEnv} environment`);
