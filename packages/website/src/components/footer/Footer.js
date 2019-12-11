@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import Heart from 'twemoji/2/svg/2764.svg';
-import CH from 'twemoji/2/svg/1f1e8-1f1ed.svg';
-import IN from 'twemoji/2/svg/1f1ee-1f1f3.svg';
-import US from 'twemoji/2/svg/1f1fa-1f1f8.svg';
+import Heart from '../../emojis/2764.svg';
+import CH from '../../emojis/1f1e8-1f1ed.svg';
+import IN from '../../emojis/1f1ee-1f1f3.svg';
+import US from '../../emojis/1f1fa-1f1f8.svg';
 
 const StyledHeart = styled(Heart)`
   width: 21px;

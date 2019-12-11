@@ -1,5 +1,9 @@
 export default class Reporter {
-  logAssertResult() {}
+  logAssertResult(result: any) {
+    if (result.failure) {
+      process.stdout.write(`${result.message}\n${result.stack}`);
+    }
+  }
 
   logFailedAssertion() {}
 

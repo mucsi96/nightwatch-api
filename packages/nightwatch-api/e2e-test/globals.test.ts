@@ -1,7 +1,9 @@
+import 'mocha';
 import { client } from '../src';
+import expect from 'expect';
 
 describe('Globals handling', () => {
-  test('Handles basic globals', async () => {
+  it('Handles basic globals', async () => {
     expect(client.globals.myGlobal).toEqual(1);
   });
 });

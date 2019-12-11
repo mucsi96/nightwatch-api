@@ -6,7 +6,6 @@ import {
   Api,
   NightwatchError
 } from 'nightwatch';
-import protocol from 'nightwatch/lib/api/protocol';
 import fs from 'fs';
 import { log } from './logger';
 import { createFailureScreenshot } from './screenshots';
@@ -274,13 +273,13 @@ function resetQueue() {
 }
 
 export async function closeSession() {
-  if (!client) {
-    return;
-  }
-  const protocolInstance = new protocol(client);
-  await new Promise(resolve =>
-    protocolInstance.Actions.session.call(protocolInstance, protocol.SessionActions.DELETE, resolve)
-  );
+  await new Promise(resolve => {
+    if (!client) {
+      return;
+    }
+
+    client.transportActions.sessionAction('DELETE', client.sessionId, resolve);
+  });
   /* istanbul ignore next */
   if (runner) {
     log(`Session closed for ${runner.testEnv} environment`);

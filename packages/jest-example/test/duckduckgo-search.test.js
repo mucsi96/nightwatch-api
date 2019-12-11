@@ -5,14 +5,14 @@ describe('Searching DuckDuckGo', () => {
     await client
       .url('https://duckduckgo.com/')
       .assert.title('DuckDuckGo — Privacy, simplified.')
-      .assert.visible('input[name="q"]');
+      .assert.visible('#search_form_input_homepage');
   });
 
   test('search for WebDriver', async () => {
     await client
       .url('https://duckduckgo.com/')
-      .setValue('input[name="q"]', 'WebDriver')
-      .click('input[type="submit"]')
+      .setValue('#search_form_input_homepage', 'WebDriver')
+      .click('#search_button_homepage')
       .assert.containsText(
         '#links',
         'WebDriver is a remote control interface that enables introspection and control of user agents.'

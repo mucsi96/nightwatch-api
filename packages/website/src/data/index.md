@@ -9,13 +9,20 @@ Nightwatch.js uses the powerful [W3C WebDriver](https://www.w3.org/TR/webdriver/
 - Running acceptance tests based on feature requirements written in Gherkin language ([Cucumber.js](https://github.com/cucumber/cucumber-js))
 - Controlling the browser using Nightwatch.js commands and assertions
 
-## Differences from nightwatch-cucumber package
+## Differences from nightwatch-cucumber and nightwatch package
 
-With this package the Nightwatch.js runner is disabled in favour of any type of test runner or other custom usage. Check the [cucumber-example](https://github.com/mucsi96/nightwatch-api/tree/master/packages/cucumber-example) to see how can it be used with Cucumber.js
-
-## Differences from nightwatch package
+This package exposes the core features of Nightwatch without it's runner. The runner and test case handling are disabled. Due to this features related to runner and test cases are not supported.
+Instead you can use similar features of your chosen test runner.
 
 This package has a chainable Promise based API. Because of that it can be used by any test runner which support asynchronous code testing like: Jest, Mocha, CucumberJs, Jasmine, etc. But because every command returns a Promise you should follow these rules.
+
+This package does support the following features of Nightwatch:
+
+1. Parallel execution. Use any parallel execution feature of you chosen runner.
+2. global hooks. Use test hooks of you chosen runner.
+3. Any plugins which depends on Nightwatch runner
+
+Check the [cucumber-example](https://github.com/mucsi96/nightwatch-api/tree/master/packages/cucumber-example) to see how can it be used with Cucumber.js
 
 ### Returning a Promise
 
@@ -103,8 +110,8 @@ Then(/^the title is "(.*?)"$/, async text => {
     'body',
     'id',
     result => {
-      if (result.error) {
-        throw Error(result.error);
+      if (result.value.error) {
+        throw Error(result.value.error);
       }
 
       bodyId = result.value;
@@ -122,9 +129,9 @@ Then(/^the title is "(.*?)"$/, async text => {
   await client.getAttribute(
     'body',
     'id',
-    ({ error, value }) => {
-      if (error) {
-        throw Error(error);
+    ({ value }) => {
+      if (value.error) {
+        throw Error(value.error);
       }
 
       bodyId = value;
@@ -133,7 +140,6 @@ Then(/^the title is "(.*?)"$/, async text => {
   await client.assert.equal('pg-index', bodyId);
 });
 ```
-
 
 ## Installation
 
