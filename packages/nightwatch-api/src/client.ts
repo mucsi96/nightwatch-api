@@ -11,6 +11,13 @@ import { log } from './logger';
 import { createFailureScreenshot } from './screenshots';
 import reporter from './reporter';
 
+export interface IOptions {
+  env?: string;
+  configFile?: string;
+  silent?: boolean;
+  browserStackOptions?: IBrowserStackOptions;
+}
+
 export declare interface BrowerStackLocalOptions {
   key: string;
   verbose: boolean;
@@ -35,29 +42,6 @@ declare class BrowerStackLocal {
   start(options: Partial<BrowerStackLocalOptions>, callback: () => void): void;
   isRunning(): boolean;
   stop(callback: () => void): void;
-}
-
-export interface IOptions {
-  /**
-   * Selected Nightwatch [environment](http://nightwatchjs.org/gettingstarted#test-settings).
-   * By default it's `default`.
-   */
-  env?: string;
-  /**
-   * Nightwatch configuration file location.
-   * By default it's `nightwatch.json` or `nightwatch.conf.js` in current process working directory.
-   */
-  configFile?: string;
-  /**
-   * Disable Nightwatch success logs like "√ Element <body> was visible after 96 milliseconds."
-   * By default it's `false`.
-   */
-  silent?: boolean;
-  /**
-   * A set of options for configuring BrowserStack (and the browserstack-local package).
-   * By default it's `undefined`.
-   */
-  browserStackOptions?: IBrowserStackOptions;
 }
 
 export interface IBrowserStackOptions {
@@ -117,7 +101,7 @@ function getDefaultConfigFile() {
 }
 
 function getDefaultBrowserStackOptions() {
-  let options: IBrowserStackOptions = {
+  const options: IBrowserStackOptions = {
     enabled: false,
     localEnabled: false,
     localOptions: undefined

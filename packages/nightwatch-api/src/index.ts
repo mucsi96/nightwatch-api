@@ -78,7 +78,29 @@ export const client = proxy(() => nightwatchClient);
  *   }
  * )();
  */
-export async function startWebDriver(options: Client.IOptions) {
+export async function startWebDriver(options: {
+  /**
+   * Selected Nightwatch [environment](http://nightwatchjs.org/gettingstarted#test-settings).
+   * By default it's `default`.
+   */
+  env?: string;
+  /**
+   * Nightwatch configuration file location.
+   * By default it's `nightwatch.json` or `nightwatch.conf.js` in current process working directory.
+   */
+  configFile?: string;
+
+  /**
+   * Disable Nightwatch success logs like "√ Element <body> was visible after 96 milliseconds."
+   * By default it's false.
+   */
+  silent?: boolean;
+  /**
+   * A set of options for configuring BrowserStack (and the browserstack-local package).
+   * By default it's `undefined`.
+   */
+  browserStackOptions?: Client.IBrowserStackOptions;
+}) {
   return Client.startWebDriver(options);
 }
 
@@ -122,7 +144,29 @@ export async function createSession(
   /**
    * Options are ignored if you already started the WebDriver using `startWebDriver`.
    */
-  options: Client.IOptions
+  options: {
+    /**
+     * Selected Nightwatch [environment](http://nightwatchjs.org/gettingstarted#test-settings).
+     * By default it's the same used for previous startWebDriver call otherwise `default`.
+     */
+    env?: string;
+    /**
+     * Nightwatch configuration file location.
+     * By default it's `nightwatch.json` or `nightwatch.conf.js` in current process working directory.
+     */
+    configFile?: string;
+
+    /**
+     * Disable Nightwatch success logs like "√ Element <body> was visible after 96 milliseconds."
+     * By default it's false.
+     */
+    silent?: boolean;
+    /**
+     * A set of options for configuring BrowserStack (and the browserstack-local package).
+     * By default it's `undefined`.
+     */
+    browserStackOptions?: Client.IBrowserStackOptions;
+  }
 ) {
   nightwatchClient = await Client.createSession(options);
   promisifyApi(nightwatchClient, Client.runQueue);
