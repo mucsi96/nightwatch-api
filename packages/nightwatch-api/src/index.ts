@@ -1,12 +1,4 @@
-import {
-  startWebDriver as clientStartWebDriver,
-  stopWebDriver as clientStopWebDriver,
-  createSession as clientCreateSession,
-  closeSession as clientCloseSession,
-  getNewScreenshots as clientGetNewScreenshots,
-  runQueue,
-  IOptions
-} from './client';
+import * as Client from './client';
 import { promisifyApi, promisifySection, promisifyExpect, promisifyPageObjects } from './promisify';
 import proxy from './proxy';
 import { Api } from 'nightwatch';
@@ -86,15 +78,15 @@ export const client = proxy(() => nightwatchClient);
  *   }
  * )();
  */
-export async function startWebDriver(options: IOptions) {
-  return clientStartWebDriver(options);
+export async function startWebDriver(options: Client.IOptions) {
+  return Client.startWebDriver(options);
 }
 
 /**
  * Stops the currently running WebDriver.
  */
 export async function stopWebDriver() {
-  await clientStopWebDriver();
+  await Client.stopWebDriver();
 }
 
 /**
@@ -130,19 +122,19 @@ export async function createSession(
   /**
    * Options are ignored if you already started the WebDriver using `startWebDriver`.
    */
-  options: IOptions
+  options: Client.IOptions
 ) {
-  nightwatchClient = await clientCreateSession(options);
-  promisifyApi(nightwatchClient, runQueue);
-  promisifyExpect(nightwatchClient, runQueue);
-  promisifyPageObjects(nightwatchClient, runQueue);
+  nightwatchClient = await Client.createSession(options);
+  promisifyApi(nightwatchClient, Client.runQueue);
+  promisifyExpect(nightwatchClient, Client.runQueue);
+  promisifyPageObjects(nightwatchClient, Client.runQueue);
 }
 
 /**
  * Closes the active WebDriver session.
  */
 export async function closeSession() {
-  await clientCloseSession();
+  await Client.closeSession();
 }
 
 /**
@@ -178,7 +170,7 @@ export async function closeSession() {
 export class Section extends section {
   constructor(definition: object, options: object) {
     super(definition, options);
-    promisifySection((this as unknown) as Api, runQueue);
+    promisifySection((this as unknown) as Api, Client.runQueue);
   }
 }
 
@@ -186,5 +178,5 @@ export class Section extends section {
  * Return the screenshot filenames which were created after latest call of this method.
  */
 export function getNewScreenshots() {
-  return clientGetNewScreenshots();
+  return Client.getNewScreenshots();
 }
