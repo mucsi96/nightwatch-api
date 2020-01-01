@@ -5,13 +5,13 @@ describe('Searching DuckDuckGo', () => {
     await client
       .url('https://duckduckgo.com/')
       .assert.title('DuckDuckGo — Privacy, simplified.')
-      .assert.visible('#search_form_input_homepage');
+      .assert.visible('.js-search-input.search__input--adv');
   });
 
   test('search for WebDriver', async () => {
     await client
       .url('https://duckduckgo.com/')
-      .setValue('#search_form_input_homepage', 'WebDriver')
+      .setValue('.js-search-input.search__input--adv', 'WebDriver')
       .click('#search_button_homepage')
       .assert.containsText(
         '#links',
