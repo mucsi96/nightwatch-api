@@ -95,11 +95,6 @@ export async function startWebDriver(options: {
    * By default it's false.
    */
   silent?: boolean;
-  /**
-   * A set of options for configuring BrowserStack (and the browserstack-local package).
-   * By default it's `undefined`.
-   */
-  browserStackOptions?: Client.IBrowserStackOptions;
 }) {
   return Client.startWebDriver(options);
 }
@@ -161,11 +156,6 @@ export async function createSession(
      * By default it's false.
      */
     silent?: boolean;
-    /**
-     * A set of options for configuring BrowserStack (and the browserstack-local package).
-     * By default it's `undefined`.
-     */
-    browserStackOptions?: Client.IBrowserStackOptions;
   }
 ) {
   nightwatchClient = await Client.createSession(options);

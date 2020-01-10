@@ -11,62 +11,16 @@ import { log } from './logger';
 import { createFailureScreenshot } from './screenshots';
 import reporter from './reporter';
 
-export declare interface BrowerStackLocalOptions {
-  key: string;
-  verbose: boolean;
-  force: boolean;
-  only: string;
-  onlyAutomate: boolean;
-  forceLocal: boolean;
-  localIdentifier: string;
-  folder: string;
-  proxyHost: string;
-  proxyPort: string;
-  proxyUser: string;
-  proxyPass: string;
-  forceProxy: boolean;
-  logFile: string;
-  parallelRuns: string;
-  binarypath: string;
-  [key: string]: string | boolean;
-}
-
-declare class BrowerStackLocal {
-  start(options: Partial<BrowerStackLocalOptions>, callback: () => void): void;
-  isRunning(): boolean;
-  stop(callback: () => void): void;
-}
-
-export interface IBrowserStackOptions {
-  /**
-   * A flag to enable BrowserStack testing. You must have the appropriate options set in your selenium config.
-   * Defaults to `false`.
-   */
-  enabled?: boolean;
-  /**
-   * A flag to enable the `browserstack-local` package. This is an optional dependency you must have installed.
-   * Defaults to `false`.
-   */
-  localEnabled?: boolean;
-  /**
-   * The options supported by `browserstack-local`.
-   * Please see https://github.com/browserstack/browserstack-local-nodejs/blob/master/index.d.ts for details.
-   */
-  localOptions?: Partial<BrowerStackLocalOptions>;
-}
-
 interface IOptions {
   env?: string;
   configFile?: string;
   silent?: boolean;
-  browserStackOptions?: IBrowserStackOptions;
 }
 
 let runner: CliRunnerInstance | null;
 let runnerOptions: IOptions | null;
 let client: Client | null;
 let screenshots: string[] = [];
-let browserStackLocal: BrowerStackLocal;
 
 export function deleteRunner() {
   runner = null;
@@ -100,104 +54,30 @@ function getDefaultConfigFile() {
   );
 }
 
-function getDefaultBrowserStackOptions() {
-  const options: IBrowserStackOptions = {
-    enabled: false,
-    localEnabled: false,
-    localOptions: undefined
-  };
-  return options;
-}
-
-async function createRunner(options: IOptions) {
-  if (runner) {
-    return runner;
-  }
-
-  return new Promise<CliRunnerInstance | null>((resolve, reject) => {
+function createRunner(options: IOptions) {
+  if (!runner) {
     runnerOptions = {
       env: (options && options.env) || getDefaultEnvironment(),
       configFile: (options && options.configFile) || getDefaultConfigFile(),
-      silent: (options && options.silent) || false,
-      browserStackOptions:
-        (options && options.browserStackOptions) || getDefaultBrowserStackOptions()
+      silent: (options && options.silent) || false
     };
-
-    let browserStackEnabled: boolean | undefined;
-    let browserStackLocalEnabled: boolean | undefined;
-    let browserStackLocalOptions: Partial<BrowerStackLocalOptions> = {};
-
-    if (runnerOptions.browserStackOptions) {
-      browserStackEnabled = runnerOptions.browserStackOptions.enabled;
-      browserStackLocalEnabled = runnerOptions.browserStackOptions.localEnabled;
-      browserStackLocalOptions = runnerOptions.browserStackOptions.localOptions || {};
-    }
-
     runner = CliRunner({ env: runnerOptions.env, config: runnerOptions.configFile });
     runner.isWebDriverManaged = function() {
-      const managed = typeof browserStackEnabled === 'undefined' ? true : !browserStackEnabled;
-      if (this.baseSettings.selenium) {
-        this.baseSettings.selenium.start_process = managed;
-      }
-      return managed;
+      return true;
     };
+    runner.setup();
+  }
 
-    if (browserStackEnabled && browserStackLocalEnabled) {
-      try {
-        const browserstack = require('browserstack-local');
-
-        browserStackLocal = new browserstack.Local();
-
-        browserStackLocal.start(browserStackLocalOptions, () => {
-          if (runner) {
-            runner.setup();
-            resolve(runner);
-          } else {
-            reject('Failed to create the runner within BrowserStack Local');
-          }
-        });
-      } catch (err) {
-        reject(`Failed to create the runner within BrowserStack Local. Details: ${err}`);
-      }
-    } else {
-      runner.setup();
-      resolve(runner);
-    }
-  });
-}
-
-async function stopBrowserStackLocal() {
-  return new Promise<void>((resolve, reject) => {
-    if (browserStackLocal) {
-      browserStackLocal.stop(() => {
-        log('BrowserStack Local stopped');
-        resolve();
-      });
-    } else {
-      resolve();
-    }
-  });
+  return runner;
 }
 
 export async function startWebDriver(options: IOptions) {
   deleteRunner();
-  const runner = await createRunner(options);
+  const runner = createRunner(options);
 
-  if (!runner) {
-    throw new Error("The CliRunner instance wasn't properly created");
-  }
-
-  let driverPort: number | undefined;
-  if (runner.test_settings.webdriver) {
-    const { port } = runner.test_settings.webdriver;
-    driverPort = port;
-  }
-
+  const { port } = runner.test_settings.webdriver;
   await runner.startWebDriver();
-
-  if (driverPort) {
-    log(`WebDriver started on port ${driverPort} for ${runner.testEnv} environment`);
-  }
+  log(`WebDriver started on port ${port} for ${runner.testEnv} environment`);
 }
 
 export async function stopWebDriver() {
@@ -205,18 +85,9 @@ export async function stopWebDriver() {
     return;
   }
 
-  let driverPort: number | undefined;
-  if (runner.test_settings.webdriver) {
-    const { port } = runner.test_settings.webdriver;
-    driverPort = port;
-  }
-
+  const { port } = runner.test_settings.webdriver;
   await runner.stopWebDriver();
-  await stopBrowserStackLocal();
-
-  if (driverPort) {
-    log(`WebDriver stopped on port ${driverPort} for ${runner.testEnv} environment`);
-  }
+  log(`WebDriver stopped on port ${port} for ${runner.testEnv} environment`);
 }
 
 export async function createSession(options: IOptions): Promise<Api> {
@@ -224,23 +95,13 @@ export async function createSession(options: IOptions): Promise<Api> {
     deleteRunner();
   }
 
-  const runner = await createRunner(options);
-
-  if (!runner) {
-    throw new Error("The CliRunner instance wasn't properly created");
-  }
-
+  const runner = createRunner(options);
   const settings = runner.test_settings;
   client =
     runnerOptions && runnerOptions.silent
       ? createClient(settings)
       : createClient(settings, new reporter());
-
-  if (settings.webdriver && settings.webdriver.port) {
-    log(`Creating session for ${runner.testEnv} environment on port ${settings.webdriver.port}`);
-  } else {
-    log(`Creating session for ${runner.testEnv} environment`);
-  }
+  log(`Creating session for ${runner.testEnv} environment on port ${settings.webdriver.port}`);
   await client.startSession();
   log(`Session created for ${runner.testEnv} environment`);
   return client.api;
