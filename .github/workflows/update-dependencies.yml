@@ -19,6 +19,9 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '12.x'
+      - name: Install dependencies
+        run: npm ci
+        working-directory: ./packages/nightwatch-api
       - name: Update dependencies
         run: npm run update:dependencies
         working-directory: ./packages/nightwatch-api
