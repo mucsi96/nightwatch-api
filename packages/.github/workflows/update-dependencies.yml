@@ -1,0 +1,91 @@
+name: Update dependencies
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    timeout-minutes: 3
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: 'master'
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Update dependencies
+        run: npm run update:dependencies
+        working-directory: ./packages/nightwatch-api
+      - name: Raise pull request
+        uses: actions/github-script@0.4.0
+        with:
+          github-token: ${{secrets.UPDATE_DEPENDENCIES_TOKEN}}
+          script: |
+            const { readFileSync } = require('fs');
+            const { resolve } = require('path');
+            const { execSync } = require('child_process');
+
+
+
+            const changedFiles = execSync('git diff --name-only')
+              .toString()
+              .split('\n')
+              .filter(Boolean);
+
+            if (!changedFiles.includes('package.json')) {
+              return;
+            }
+
+            const time = new Date().toISOString().split('.')[0];
+            const title = `Automated dependency update (${time.replace(/[T]/g, ' ')})`;
+
+            const baseBranch = execSync('git branch')
+              .toString()
+              .split('\n')
+              .map(branch => {
+                const match = /^\* (.*)$/.exec(branch);
+                return match && match[1];
+              })
+              .find(Boolean);
+
+            const parentSha = execSync('git rev-parse HEAD')
+              .toString()
+              .trim();
+
+            const branch = `update-dependencies-${time.replace(/[T:]/g, '-')}`;
+
+            const tree = await github.git.createTree({
+              ...context.repo,
+              base_tree: parentSha,
+              tree: changedFiles.map(path => ({
+                path,
+                mode: '100644',
+                content: readFileSync(resolve(process.cwd(), path), 'utf8')
+              }))
+            });
+
+            const commit = await github.git.createCommit({
+              ...context.repo,
+              message: title,
+              tree: tree.data.sha,
+              parents: [parentSha]
+            });
+
+            await github.git.createRef({
+              ...context.repo,
+              ref: `refs/heads/${branch}`,
+              sha: commit.data.sha
+            });
+
+            await github.pulls.create({
+              ...context.repo,
+              title,
+              head: branch,
+              base: baseBranch
+            });
