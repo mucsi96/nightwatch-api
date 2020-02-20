@@ -30,9 +30,6 @@ jobs:
             const { readFileSync } = require('fs');
             const { resolve } = require('path');
             const { execSync } = require('child_process');
-
-
-
             const changedFiles = execSync('git diff --name-only')
               .toString()
               .split('\n')
