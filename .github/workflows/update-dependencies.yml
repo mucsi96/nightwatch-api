@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    timeout-minutes: 3
+    timeout-minutes: 6
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
