@@ -1,12 +1,8 @@
 name: Update dependencies
 
 on:
-  push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
+  schedule:
+    - cron: '0 7 * * 1' # At 07:00 GMT on Monday. https://crontab.guru/#0_7_*_*_1
 
 jobs:
   build:
