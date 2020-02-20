@@ -1,5 +1,5 @@
-import { client } from 'nightwatch-api';
 import { Given, Then } from 'cucumber';
+import { client } from 'nightwatch-api';
 
 Given(/^I open Google`s search page$/, async () => {
   await client.url('http://google.com');
@@ -18,5 +18,5 @@ Then(/^the Google search form exists$/, async () => {
 });
 
 Then(/^the DuckDuckGo search form exists$/, async () => {
-  await client.assert.visible('#search_form_homepage_top');
+  await client.assert.visible('#search_form_homepage');
 });
