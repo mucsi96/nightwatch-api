@@ -12,7 +12,7 @@
   "author": "Igor Mucsicska <mucsi_96@yahoo.com>",
   "license": "MIT",
   "devDependencies": {
-    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-env": "^7.8.6",
     "chromedriver": "^80.0.1",
     "cross-env": "^7.0.0",
     "geckodriver": "^1.19.1",

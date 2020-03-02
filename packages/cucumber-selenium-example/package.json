@@ -15,9 +15,9 @@
   "author": "Raju <padmanabharaju.sagi@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.8.4",
-    "@babel/preset-env": "^7.8.4",
-    "@babel/register": "^7.8.3",
+    "@babel/core": "^7.8.6",
+    "@babel/preset-env": "^7.8.6",
+    "@babel/register": "^7.8.6",
     "chromedriver": "^80.0.1",
     "cross-env": "^7.0.0",
     "cucumber": "^6.0.5",
