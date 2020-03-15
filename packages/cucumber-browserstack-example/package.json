@@ -10,8 +10,8 @@
   "author": "Igor Mucsicska <mucsi_96@yahoo.com>",
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.8.6",
-    "@babel/preset-env": "^7.8.6",
+    "@babel/core": "^7.8.7",
+    "@babel/preset-env": "^7.8.7",
     "@babel/register": "^7.8.6",
     "cucumber": "^6.0.5",
     "cucumber-pretty": "^6.0.0",
