@@ -19,7 +19,7 @@
     "chromedriver": "^80.0.1",
     "cross-env": "^7.0.2",
     "cucumber": "^6.0.5",
-    "cucumber-html-reporter": "^5.1.0",
+    "cucumber-html-reporter": "^5.2.0",
     "cucumber-pretty": "^6.0.0",
     "geckodriver": "^1.19.1",
     "mkdirp": "^1.0.3",
