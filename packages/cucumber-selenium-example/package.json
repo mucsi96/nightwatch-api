@@ -9,7 +9,8 @@
     "test:firefox": "cross-env NIGHTWATCH_ENV=firefox npm test",
     "test:edge": "cross-env NIGHTWATCH_ENV=edge npm test",
     "test:ie": "cross-env NIGHTWATCH_ENV=ie npm test",
-    "test": "cucumber-js --require-module @babel/register --require cucumber.conf.js --require step-definitions --format node_modules/cucumber-pretty"
+    "test": "cucumber-js --require-module @babel/register --require cucumber.conf.js --require step-definitions --format node_modules/cucumber-pretty",
+    "test:parallel": "cucumber-js --require-module @babel/register --require cucumber.conf.js --require step-definitions --parallel 2 --format node_modules/cucumber-pretty"
   },
   "repository": "git@github.com:mucsi96/nightwatch-api.git",
   "author": "Raju <padmanabharaju.sagi@gmail.com>",
