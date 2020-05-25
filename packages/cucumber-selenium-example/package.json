@@ -19,7 +19,7 @@
     "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
     "@babel/register": "^7.9.0",
-    "chromedriver": "^81.0.0",
+    "chromedriver": "^83.0.0",
     "cross-env": "^7.0.2",
     "cucumber": "^6.0.5",
     "cucumber-pretty": "^6.0.0",
