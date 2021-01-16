@@ -69,7 +69,7 @@ declare module 'nightwatch' {
   }
 
   export type ScreenshotCallback = (result: ScreenshotResult) => void;
-  export type SessionCallback = () => void;
+  export type SessionCallback = (result: undefined) => void;
 
   export interface TransportActions {
     sessionAction: (method: string, sessionId: string, callback: SessionCallback) => void;

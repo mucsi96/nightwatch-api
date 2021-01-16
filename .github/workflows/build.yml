@@ -1,0 +1,47 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x]
+    steps:
+      - uses: actions/checkout@v2
+      - name: use nodejs v ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: install and package
+        run: |
+          cd packages/nightwatch-api
+          npm ci
+          npm run pack-into-examples
+      - name: lint and type-check
+        run: |
+          cd packages/nightwatch-api
+          npm run lint
+      - name: tests
+        env:
+          NIGHTWATCH_ENV: chromeHeadless
+        run: |
+          cd packages/nightwatch-api
+          npm run test:e2e
+          npm run check-webdriver-stopped
+      - name: e2e tests
+        run: |
+          cd packages
+          cd node-example && npm test && cd ../nightwatch-api && npm run check-webdriver-stopped && cd ..
+          cd jest-example && npm test && cd ../nightwatch-api && npm run check-webdriver-stopped && cd ..
+          cd cucumber-example && npm test && cd ../nightwatch-api && npm run check-webdriver-stopped && cd ..
+          cd cucumber-selenium-example && npm test && cd ../nightwatch-api && npm run check-webdriver-stopped && cd ..
+          cd cucumber-selenium-hub-example && docker-compose up --abort-on-container-exit && cd ..
+          # cd cucumber-browserstack-example && NIGHTWATCH_ENV=chrome npm test && cd ..
