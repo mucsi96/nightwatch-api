@@ -45,3 +45,12 @@ jobs:
           cd cucumber-selenium-example && npm test && cd ../nightwatch-api && npm run check-webdriver-stopped && cd ..
           cd cucumber-selenium-hub-example && docker-compose up --abort-on-container-exit && cd ..
           # cd cucumber-browserstack-example && NIGHTWATCH_ENV=chrome npm test && cd ..
+
+  deploy:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    name: deployment
+    needs: install
+    steps:
+      - name: deploy
+        run: npm run deploy -- --auth $NETLIFY_ACCESS_TOKEN
