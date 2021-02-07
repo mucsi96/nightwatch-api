@@ -10,13 +10,13 @@
   "author": "Igor Mucsicska <mucsi_96@yahoo.com>",
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.12.10",
-    "@babel/preset-env": "^7.12.11",
-    "@babel/register": "^7.12.10",
-    "chromedriver": "^87.0.5",
+    "@babel/core": "^7.12.13",
+    "@babel/preset-env": "^7.12.13",
+    "@babel/register": "^7.12.13",
+    "chromedriver": "^88.0.0",
     "cucumber": "^6.0.5",
     "cucumber-pretty": "^6.0.0",
-    "geckodriver": "^1.21.1",
+    "geckodriver": "^1.22.1",
     "nightwatch": "^1.5.1",
     "nightwatch-api": "latest",
     "selenium-server-standalone-jar": "^3.141.59"
