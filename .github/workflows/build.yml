@@ -29,6 +29,7 @@ jobs:
         run: |
           cd packages/nightwatch-api
           npm run lint
+          npm run type-check
       - name: tests
         env:
           NIGHTWATCH_ENV: chromeHeadless
@@ -48,10 +49,6 @@ jobs:
         env:
           BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
           BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
-      - name: coverage
-        run: |
-          cd packages/nightwatch-api
-          npm run test:coveralls
   deploy:
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
