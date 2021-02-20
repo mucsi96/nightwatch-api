@@ -16,12 +16,12 @@ function getFileName() {
 
 function saveFailureScreenshot(fileName: string, screenshotData: string) {
   return new Promise((resolve, reject) => {
-    Screenshots.writeScreenshotToFile(fileName, screenshotData, err => {
+    Screenshots.writeScreenshotToFile(fileName, screenshotData, (err) => {
       if (err) {
         return reject(err);
       }
 
-      return resolve();
+      return resolve(undefined);
     });
   });
 }
