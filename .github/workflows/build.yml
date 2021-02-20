@@ -29,6 +29,7 @@ jobs:
         run: |
           cd packages/nightwatch-api
           npm run lint
+          npm run type-check
       - name: tests
         env:
           NIGHTWATCH_ENV: chromeHeadless
@@ -48,7 +49,6 @@ jobs:
         env:
           BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
           BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
-
   deploy:
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
@@ -56,4 +56,7 @@ jobs:
     needs: install
     steps:
       - name: deploy
-        run: npm run deploy -- --auth ${{ secrets.NETLIFY_ACCESS_TOKEN }}
+        run: |
+          cd packages/website
+          npm i
+          npm run deploy -- --auth ${{ secrets.NETLIFY_ACCESS_TOKEN }}
