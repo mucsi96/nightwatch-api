@@ -45,6 +45,9 @@ jobs:
           cd cucumber-selenium-example && npm test && cd ../nightwatch-api && npm run check-webdriver-stopped && cd ..
           cd cucumber-selenium-hub-example && docker-compose up --abort-on-container-exit && cd ..
           cd cucumber-browserstack-example && NIGHTWATCH_ENV=chrome npm test && cd ..
+        env:
+          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+          BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
 
   deploy:
     if: github.event_name == 'push'
@@ -54,3 +57,5 @@ jobs:
     steps:
       - name: deploy
         run: npm run deploy -- --auth $NETLIFY_ACCESS_TOKEN
+        env:
+          NETLIFY_ACCESS_TOKEN: ${{ secrets.NETLIFY_ACCESS_TOKEN }}
