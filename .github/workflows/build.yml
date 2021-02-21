@@ -55,6 +55,11 @@ jobs:
     name: deployment
     needs: install
     steps:
+      - uses: actions/checkout@v2
+      - name: setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 12.x
       - name: deploy
         run: |
           cd packages/website
