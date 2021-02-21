@@ -55,6 +55,7 @@ jobs:
     name: deployment
     needs: install
     steps:
+      - uses: actions/checkout@v2
       - name: deploy
         run: |
           cd packages/website
