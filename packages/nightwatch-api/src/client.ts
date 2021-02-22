@@ -4,9 +4,10 @@ import {
   client as createClient,
   Client,
   Api,
-  NightwatchError
+  NightwatchError,
+  SessionCallback,
 } from 'nightwatch';
-import fs from 'fs';
+import { existsSync } from 'fs';
 import { log } from './logger';
 import { createFailureScreenshot } from './screenshots';
 import reporter from './reporter';
@@ -36,11 +37,11 @@ function getDefaultConfigFile() {
   const jsonConfigFile = './nightwatch.json';
   const jsConfigFie = './nightwatch.conf.js';
 
-  if (fs.existsSync(jsonConfigFile)) {
+  if (existsSync(jsonConfigFile)) {
     return jsonConfigFile;
   }
 
-  if (fs.existsSync(jsConfigFie)) {
+  if (existsSync(jsConfigFie)) {
     return jsConfigFie;
   }
 
@@ -49,7 +50,7 @@ function getDefaultConfigFile() {
       'No configuration file was found for Nightwatch in the current process folder.',
       '(nightwatch.json or nightwatch.conf.js).',
       'For custom location please provide "configFile" option for "startWebDriver" or',
-      '"createSession" functions.'
+      '"createSession" functions.',
     ].join(' ')
   );
 }
@@ -59,10 +60,10 @@ function createRunner(options: IOptions) {
     runnerOptions = {
       env: (options && options.env) || getDefaultEnvironment(),
       configFile: (options && options.configFile) || getDefaultConfigFile(),
-      silent: (options && options.silent) || false
+      silent: (options && options.silent) || false,
     };
     runner = CliRunner({ env: runnerOptions.env, config: runnerOptions.configFile });
-    runner.isWebDriverManaged = function() {
+    runner.isWebDriverManaged = function () {
       if (this.baseSettings.selenium) {
         this.baseSettings.selenium.start_process = true;
       }
@@ -112,20 +113,17 @@ export async function createSession(options: IOptions): Promise<Api> {
 
 function resetQueue() {
   if (client && client.queue) {
-    client.queue
-      .reset()
-      .removeAllListeners()
-      .empty();
+    client.queue.reset().removeAllListeners().empty();
   }
 }
 
 export async function closeSession() {
-  await new Promise(resolve => {
+  await new Promise<void>((resolve) => {
     if (!client) {
       return;
     }
 
-    client.transportActions.sessionAction('DELETE', client.sessionId, resolve);
+    client.transportActions.sessionAction('DELETE', client.sessionId, resolve as SessionCallback);
   });
   /* istanbul ignore next */
   if (runner) {
