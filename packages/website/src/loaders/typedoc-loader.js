@@ -2,14 +2,16 @@ const path = require('path');
 const { getOptions } = require('loader-utils');
 const { Application } = require('typedoc');
 
-module.exports = function() {
+module.exports = function () {
   const options = getOptions(this);
   const app = new Application(options);
+
+  console.log({ options, app, resourcePath: this.resourcePath });
 
   const result = app.converter.convert([this.resourcePath]);
 
   if (result.errors && result.errors.length) {
-    result.errors.map(error => {
+    result.errors.map((error) => {
       throw new Error(error.messageText);
     });
   }

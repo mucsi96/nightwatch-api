@@ -1,0 +1,17 @@
+name: Build
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: deployment
+    steps:
+      - uses: actions/checkout@v2
+      - name: setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 12.x
+      - name: deploy
+        run: |
+          cd packages
+          cd website && npm ci
+          npm run deploy -- --auth ${{ secrets.NETLIFY_ACCESS_TOKEN }}
