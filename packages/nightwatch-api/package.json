@@ -13,6 +13,14 @@
   "repository": "git@github.com:mucsi96/nightwatch-api.git",
   "author": "Igor Mucsicska <mucsi_96@yahoo.com>",
   "license": "MIT",
+  "keywords": [
+    "nightwatch",
+    "selenium",
+    "browser",
+    "automation",
+    "testing",
+    "test"
+  ],
   "scripts": {
     "update:dependencies": "ts-node ./scripts/update-dependencies.ts",
     "clean": "del-cli lib",
