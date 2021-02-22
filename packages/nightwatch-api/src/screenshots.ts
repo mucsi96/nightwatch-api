@@ -1,5 +1,5 @@
-import util from 'util';
-import path from 'path';
+import { inspect } from 'util';
+import { join } from 'path';
 // tslint:disable-next-line: import-name
 import Screenshots from 'nightwatch/lib/utils/screenshots';
 import { Client, ScreenshotResult } from 'nightwatch';
@@ -15,13 +15,13 @@ function getFileName() {
 }
 
 function saveFailureScreenshot(fileName: string, screenshotData: string) {
-  return new Promise((resolve, reject) => {
+  return new Promise<void>((resolve, reject) => {
     Screenshots.writeScreenshotToFile(fileName, screenshotData, (err) => {
       if (err) {
         return reject(err);
       }
 
-      return resolve(undefined);
+      return resolve();
     });
   });
 }
@@ -31,16 +31,14 @@ export async function createFailureScreenshot(client: Client) {
     client.transportActions.getScreenshot(false, (response: ScreenshotResult) => {
       if ((response.state && response.state !== 'success') || response.status) {
         return reject(
-          new Error(
-            `Creating screenshot was not successful. Response was:\n${util.inspect(response)}`
-          )
+          new Error(`Creating screenshot was not successful. Response was:\n${inspect(response)}`)
         );
       }
 
       return resolve(response.value);
     });
   });
-  const fileName = path.join(client.api.screenshotsPath, getFileName());
+  const fileName = join(client.api.screenshotsPath, getFileName());
   await saveFailureScreenshot(fileName, screenshotData);
   return fileName;
 }
