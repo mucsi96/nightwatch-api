@@ -62,6 +62,7 @@ jobs:
           node-version: 12.x
       - name: deploy
         run: |
-          cd packages/website
-          npm i
+          cd packages
+          cd nightwatch-api && npm ci && cd ..
+          cd website && npm ci
           npm run deploy -- --auth ${{ secrets.NETLIFY_ACCESS_TOKEN }}
