@@ -11,12 +11,12 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.13.8",
-    "@babel/preset-env": "^7.13.8",
+    "@babel/preset-env": "^7.13.9",
     "@babel/register": "^7.13.8",
-    "chromedriver": "^88.0.0",
+    "chromedriver": "^89.0.0",
     "cucumber": "^6.0.5",
     "cucumber-pretty": "^6.0.0",
-    "geckodriver": "^1.22.1",
+    "geckodriver": "^1.22.2",
     "nightwatch": "^1.5.1",
     "nightwatch-api": "latest",
     "selenium-server-standalone-jar": "^3.141.59"
