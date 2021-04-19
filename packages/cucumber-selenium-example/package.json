@@ -19,14 +19,14 @@
     "@babel/core": "^7.13.15",
     "@babel/preset-env": "^7.13.15",
     "@babel/register": "^7.13.14",
-    "chromedriver": "^89.0.0",
+    "chromedriver": "^90.0.0",
     "cross-env": "^7.0.3",
     "cucumber": "^6.0.5",
     "cucumber-pretty": "^6.0.0",
     "edgedriver": "^4.17134.1",
     "geckodriver": "^1.22.3",
     "iedriver": "^3.150.1",
-    "nightwatch": "^1.6.2",
+    "nightwatch": "^1.6.3",
     "nightwatch-api": "latest",
     "selenium-server-standalone-jar": "^3.141.59"
   }
