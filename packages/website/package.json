@@ -14,12 +14,12 @@
     "audit": "lighthouse https://nightwatch-api.netlify.com --output-path=./lighthouse.report.html --quiet --view"
   },
   "dependencies": {
-    "typedoc": "^0.20.35",
+    "typedoc": "^0.20.36",
     "styled-components": "^5.2.3",
     "react-syntax-highlighter": "^15.4.3",
-    "react-markdown": "^5.0.3",
+    "react-markdown": "^6.0.1",
     "highlight.js": "^10.7.2",
-    "@sindresorhus/slugify": "^1.1.0",
+    "@sindresorhus/slugify": "^2.0.0",
     "react-router": "^5.2.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -27,7 +27,7 @@
     "react-scrolllock": "^5.0.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.13.15",
+    "@babel/core": "^7.13.16",
     "@babel/plugin-proposal-class-properties": "^7.13.0",
     "@babel/plugin-proposal-object-rest-spread": "^7.13.8",
     "@babel/preset-env": "^7.13.15",
@@ -36,23 +36,23 @@
     "babel-core": "^7.0.0-bridge.0",
     "babel-loader": "^8.2.2",
     "babel-plugin-styled-components": "^1.12.0",
-    "css-loader": "^5.2.1",
+    "css-loader": "^5.2.4",
     "del-cli": "^3.0.1",
     "emoji-regex": "^9.2.2",
     "file-loader": "^6.2.0",
     "json-loader": "^0.5.7",
     "lighthouse": "^7.3.0",
     "loader-utils": "^2.0.0",
-    "netlify-cli": "^3.17.0",
+    "netlify-cli": "^3.21.10",
     "serve": "^11.3.2",
-    "simple-icons": "^4.19.0",
+    "simple-icons": "^4.21.0",
     "static-site-generator-webpack-plugin": "^3.4.2",
     "style-loader": "^2.0.0",
     "twemoji": "^13.0.2",
-    "webpack": "^5.31.2",
+    "webpack": "^5.35.1",
     "webpack-cli": "^4.6.0",
     "webpack-dev-server": "^3.11.2",
-    "webpack-node-externals": "^2.5.2"
+    "webpack-node-externals": "^3.0.0"
   },
   "browserslist": [
     "> 1%",
