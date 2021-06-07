@@ -13,7 +13,7 @@
     "@babel/core": "^7.14.3",
     "@babel/preset-env": "^7.14.4",
     "@babel/register": "^7.13.16",
-    "chromedriver": "^90.0.1",
+    "chromedriver": "^91.0.0",
     "cucumber": "^6.0.5",
     "cucumber-pretty": "^6.0.0",
     "geckodriver": "^2.0.0",
