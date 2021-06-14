@@ -15,7 +15,7 @@
     "chromedriver": "^91.0.0",
     "cross-env": "^7.0.3",
     "geckodriver": "^2.0.0",
-    "nightwatch": "^1.6.4",
+    "nightwatch": "^1.7.3",
     "nightwatch-api": "latest"
   }
 }
