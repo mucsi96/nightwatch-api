@@ -16,17 +16,17 @@
   "author": "Raju <padmanabharaju.sagi@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.14.3",
-    "@babel/preset-env": "^7.14.4",
-    "@babel/register": "^7.13.16",
-    "chromedriver": "^91.0.0",
+    "@babel/core": "^7.14.6",
+    "@babel/preset-env": "^7.14.7",
+    "@babel/register": "^7.14.5",
+    "chromedriver": "^91.0.1",
     "cross-env": "^7.0.3",
     "cucumber": "^6.0.5",
     "cucumber-pretty": "^6.0.0",
     "edgedriver": "^4.17134.1",
     "geckodriver": "^2.0.0",
     "iedriver": "^3.150.1",
-    "nightwatch": "^1.6.4",
+    "nightwatch": "^1.7.6",
     "nightwatch-api": "latest",
     "selenium-server-standalone-jar": "^3.141.59"
   }

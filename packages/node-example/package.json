@@ -12,10 +12,10 @@
   "author": "Igor Mucsicska <mucsi_96@yahoo.com>",
   "license": "MIT",
   "devDependencies": {
-    "chromedriver": "^91.0.0",
+    "chromedriver": "^91.0.1",
     "cross-env": "^7.0.3",
     "geckodriver": "^2.0.0",
-    "nightwatch": "^1.6.4",
+    "nightwatch": "^1.7.6",
     "nightwatch-api": "latest"
   }
 }
