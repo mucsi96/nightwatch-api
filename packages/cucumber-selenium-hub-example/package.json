@@ -4,7 +4,7 @@
   "description": "Demonstration for using Nightwatch API from CucumberJS test runner",
   "main": "index.js",
   "scripts": {
-    "test": "cucumber-js --require-module @babel/register --require cucumber.conf.js --require step-definitions --format node_modules/cucumber-pretty"
+    "test": "cucumber-js --require-module @babel/register --require cucumber.conf.js --require step-definitions --format node_modules/cucumber-pretty --parallel=4"
   },
   "repository": "git@github.com:mucsi96/nightwatch-api.git",
   "author": "Igor Mucsicska <mucsi_96@yahoo.com>",
@@ -19,6 +19,6 @@
     "geckodriver": "^2.0.0",
     "nightwatch": "^1.6.4",
     "nightwatch-api": "latest",
-    "selenium-server-standalone-jar": "^3.141.59"
+    "selenium-webdriver": "4.0.0-beta.4"
   }
 }

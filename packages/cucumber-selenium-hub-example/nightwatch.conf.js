@@ -1,4 +1,4 @@
-const seleniumServer = require('selenium-server-standalone-jar');
+const seleniumServer = require('selenium-webdriver');
 const chromeDriver = require('chromedriver');
 const geckoDriver = require('geckodriver');
 
@@ -7,18 +7,18 @@ module.exports = {
     default: {
       selenium: process.env.containerized
         ? {
-            port: 4444,
-            host: 'selenium-hub'
+            port: 443,
+            host: `${process.env.gridhost}`,
+            use_ssl : true
           }
         : {
-            port: 4444,
-            start_process: true,
+            port: 443,
+            start_process: false,
             server_path: seleniumServer.path,
+            host: `${process.env.gridhost}`,
             cli_args: {
               'webdriver.chrome.driver': chromeDriver.path,
               'webdriver.gecko.driver': geckoDriver.path,
-              'webdriver.ie.driver': ieDriver.path,
-              'webdriver.edge.driver': edgeDriver.path
             }
           }
     },
@@ -37,6 +37,13 @@ module.exports = {
         'goog:chromeOptions': {
           w3c: false
         }
+      }
+    },
+    edge: {
+      desiredCapabilities: {
+        browserName: "MicrosoftEdge",
+        platformName: "LINUX",
+        w3c: "true"
       }
     },
     firefox: {
