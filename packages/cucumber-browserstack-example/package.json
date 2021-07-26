@@ -10,13 +10,13 @@
   "author": "Igor Mucsicska <mucsi_96@yahoo.com>",
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.14.3",
-    "@babel/preset-env": "^7.14.4",
-    "@babel/register": "^7.13.16",
+    "@babel/core": "^7.14.8",
+    "@babel/preset-env": "^7.14.8",
+    "@babel/register": "^7.14.5",
     "cucumber": "^6.0.5",
     "cucumber-pretty": "^6.0.0",
     "dotenv-safe": "^8.2.0",
-    "nightwatch": "^1.6.4",
+    "nightwatch": "^1.7.7",
     "nightwatch-api": "latest"
   }
 }
