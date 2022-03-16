@@ -1,3 +1,5 @@
+# :warning: WARNING! This package is deprecated in favour of Nightwatch v2 as it supports other runners including Cucumber out of the box.
+
 # Cross-runner API for Nightwatch.js
 
 [![npm version](https://badge.fury.io/js/nightwatch-api.svg)](https://badge.fury.io/js/nightwatch-api)
